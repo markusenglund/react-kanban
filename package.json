@@ -10,7 +10,8 @@
     "analyze-bundle":
       "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/",
-    "format": "prettier --write '**/*.{js,jsx,css,scss,json,md}'"
+    "format": "prettier --write '**/*.{js,jsx,css,scss,json,md}'",
+    "flow": "flow"
   },
   "author": "Markus Englund <markus.s.englund@gmail.com>",
   "license": "MIT",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.38",
     "@babel/preset-env": "^7.0.0-beta.38",
+    "@babel/preset-flow": "^7.0.0-beta.38",
     "@babel/preset-react": "^7.0.0-beta.38",
     "@babel/preset-stage-2": "^7.0.0-beta.38",
     "autoprefixer": "^7.2.5",
@@ -38,11 +40,13 @@
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.41.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
+    "flow-bin": "^0.63.1",
     "ignore-loader": "^0.1.2",
     "image-webpack-loader": "^3.4.2",
     "node-sass": "^4.7.2",
