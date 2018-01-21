@@ -37,3 +37,22 @@
   padding: 6px;
   margin: 0 8px 8px 8px;
 }
+
+.add-card-button {
+  display: flex;
+  background: $bg-grey;
+  color: #838c91;
+  width: 100%;
+  font-size: 14px;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.add-card-button:hover {
+  color: $fg-black;
+  background: $bg-darker-grey;
+  text-decoration: underline;
+}
