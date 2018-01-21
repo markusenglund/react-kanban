@@ -4,10 +4,11 @@
   "description": "A twitter clone built with React",
   "main": "dist/server.js",
   "scripts": {
-    "build:watch": "webpack --watch",
+    "build": "webpack --watch",
     "build:prod": "webpack -p",
     "serve": "nodemon dist/server.js",
-    "analyze-bundle": "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
+    "analyze-bundle":
+      "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/",
     "format": "prettier --write '**/*.{js,jsx,css,scss,json,md}'"
   },
