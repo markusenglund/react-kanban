@@ -38,7 +38,7 @@
   margin: 0 8px 8px 8px;
 }
 
-.add-card-button {
+.open-composer-button {
   display: flex;
   background: $bg-grey;
   color: #838c91;
@@ -51,7 +51,7 @@
   border-bottom-right-radius: inherit;
 }
 
-.add-card-button:hover {
+.open-composer-button:hover {
   color: $fg-black;
   background: $bg-darker-grey;
   text-decoration: underline;
