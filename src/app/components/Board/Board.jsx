@@ -45,7 +45,12 @@ class Board extends Component<{}, State> {
       <Helmet>
         <title>Board name | Trello</title>
       </Helmet>
-      {this.state.lists.map(list => <List list={list} />)}
+      <div className="board-header">
+        <h1 className="board-title">Board name</h1>
+      </div>
+      <div className="lists">
+        {this.state.lists.map(list => <List list={list} />)}
+      </div>
     </div>
   );
 }

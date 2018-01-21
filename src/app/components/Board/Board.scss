@@ -1,6 +1,16 @@
 @import "../../variables.scss";
 
-.board {
+.board-header {
+  color: white;
+  margin: 8px 8px 4px 8px;
+}
+
+.board-title {
+  font-size: 18px;
+  margin: 0 0 0 8px;
+}
+
+.lists {
   display: flex;
 }
 
@@ -13,7 +23,7 @@
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  margin: 8px;
+  margin: 4px 8px 8px 8px;
 }
 
 .list-title {
