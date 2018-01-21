@@ -12,6 +12,7 @@
 
 .lists {
   display: flex;
+  margin: 5px;
 }
 
 .list {
@@ -23,7 +24,7 @@
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  margin: 4px 8px 8px 8px;
+  margin: 0 5px 0 5px;
 }
 
 .list-title {
