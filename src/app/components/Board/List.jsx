@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import Textarea from "react-textarea-autosize";
 
 type Props = {
   list: {
@@ -39,9 +40,10 @@ class List extends React.Component<Props, State> {
           </div>
         ))}
         {cardComposerIsOpen ? (
-          <textarea
+          <Textarea
+            useCacheForDOMMeasurements
+            minRows={3}
             onChange={this.handleCardComposerChange}
-            className="card-title"
             value={newCardText}
           />
         ) : (

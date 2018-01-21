@@ -1,4 +1,6 @@
 @import "../../variables.scss";
+$list-width: 270px;
+$list-margin: 8px;
 
 .board-header {
   color: white;
@@ -17,7 +19,7 @@
 }
 
 .list {
-  width: 270px;
+  width: $list-width;
   background: $bg-grey;
   color: $fg-black;
   border-radius: 3px;
@@ -27,7 +29,7 @@
 }
 
 .list-title {
-  margin: 8px;
+  margin: 10px;
   font-weight: 700;
 }
 
@@ -35,7 +37,7 @@
   background: white;
   border-radius: 3px;
   padding: 6px;
-  margin: 0 8px 8px 8px;
+  margin: 0 $list-margin $list-margin $list-margin;
 }
 
 .open-composer-button {
@@ -44,7 +46,7 @@
   color: #838c91;
   width: 100%;
   font-size: 14px;
-  padding: 8px;
+  padding: 10px;
   border: none;
   cursor: pointer;
   border-bottom-left-radius: inherit;
@@ -55,4 +57,15 @@
   color: $fg-black;
   background: $bg-darker-grey;
   text-decoration: underline;
+}
+
+.list textarea {
+  border-radius: 3px;
+  padding: 6px;
+  margin: 0 $list-margin $list-margin $list-margin;
+  width: $list-width - 2 * $list-margin;
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+  resize: none;
 }
