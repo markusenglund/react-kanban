@@ -1,5 +1,6 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const DashboardPlugin = require("webpack-dashboard/plugin");
 const nodeExternals = require("webpack-node-externals");
 const autoprefixer = require("autoprefixer");
 
@@ -60,7 +61,7 @@ module.exports = [
         }
       ]
     },
-    plugins: [new ExtractTextPlugin("bundle.css")],
+    plugins: [new ExtractTextPlugin("bundle.css"), new DashboardPlugin()],
     resolve: {
       extensions: [".js", ".jsx"]
     }
