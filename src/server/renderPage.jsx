@@ -30,8 +30,8 @@ export default function renderPage(req, res) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Organize anything, together. Trello is a collaboration tool that organizes your projects into boards. In one glance, know what's being worked on, who's working on what, and where something is in a process.">
         <link rel="stylesheet" href="/public/bundle.css">
-        ${helmet.meta.toString()}
         ${helmet.title.toString()}
       </head>
       <body>
