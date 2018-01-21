@@ -1,9 +1,10 @@
+// @flow
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import gandalfGif from "../assets/gandalf.gif";
 
-class Home extends Component {
+class Home extends Component<{}> {
   render = () => (
     <div>
       <Helmet>

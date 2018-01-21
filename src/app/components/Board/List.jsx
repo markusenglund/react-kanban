@@ -13,7 +13,8 @@ class List extends Component<Props> {
     const { list } = this.props;
     return (
       <div className="list">
-        <span className="list-title">{list.title}</span>
+        <div className="list-title">{list.title}</div>
+        {list.cards.map(card => <div className="card-title">{card.title}</div>)}
       </div>
     );
   };
