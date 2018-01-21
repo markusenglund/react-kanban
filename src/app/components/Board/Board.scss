@@ -2,7 +2,7 @@
 
 .board-header {
   color: white;
-  margin: 8px 8px 4px 8px;
+  margin: 12px 12px 9px 12px;
 }
 
 .board-title {
@@ -12,6 +12,7 @@
 
 .lists {
   display: flex;
+  align-items: flex-start;
   margin: 5px;
 }
 
@@ -22,8 +23,6 @@
   border-radius: 3px;
   box-sizing: border-box;
   font-size: 14px;
-  display: flex;
-  flex-direction: column;
   margin: 0 5px 0 5px;
 }
 
