@@ -6,9 +6,11 @@ import shortid from "shortid";
 
 type Props = {
   list: {
-    title: string
+    title: string,
+    id: string
   },
-  cards: Array<{ title: string, id: string }>
+  cards: Array<{ title: string, id: string }>,
+  dispatch: ({ type: string }) => void
 };
 
 type State = {
@@ -26,6 +28,7 @@ class List extends React.Component<Props, State> {
   }
 
   openCardComposer = () => this.setState({ cardComposerIsOpen: true });
+
   handleCardComposerChange = (event: { target: { value: string } }): void => {
     this.setState({ newCardTitle: event.target.value });
   };
@@ -79,10 +82,8 @@ class List extends React.Component<Props, State> {
   };
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    cards: ownProps.list.cards.map(cardId => state.cards[cardId])
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  cards: ownProps.list.cards.map(cardId => state.cards[cardId])
+});
 
 export default connect(mapStateToProps)(List);

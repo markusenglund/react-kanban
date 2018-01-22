@@ -1,10 +1,16 @@
+// @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import List from "./List";
 import "./Board.scss";
 
-class Board extends Component {
+type Props = {
+  lists: Array<{ id: string }>,
+  boardTitle: string
+};
+
+class Board extends Component<Props> {
   render = () => {
     const { lists, boardTitle } = this.props;
     return (

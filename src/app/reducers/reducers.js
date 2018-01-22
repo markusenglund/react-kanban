@@ -1,3 +1,23 @@
+// @flow
+type CardState = {
+  [string]: { title: string, id: string }
+};
+
+type ListState = {
+  [string]: { title: string, id: string, cards: Array<string> }
+};
+
+type BoardState = {
+  [string]: { title: string, id: string, lists: Array<string> }
+};
+
+type AddCardAction = {
+  type: string,
+  payload: { listId: string, cardId: string, cardTitle: string }
+};
+
+type Action = AddCardAction;
+
 const initialCardState = {
   qwer: {
     title: "Inspect how trello deals with loading boards, images",
@@ -39,7 +59,7 @@ const initialBoardState = {
   }
 };
 
-const cards = (state = initialCardState, action) => {
+const cards = (state: CardState = initialCardState, action: Action) => {
   switch (action.type) {
     case "ADD_CARD": {
       const { cardTitle, cardId } = action.payload;
@@ -50,7 +70,7 @@ const cards = (state = initialCardState, action) => {
   }
 };
 
-const lists = (state = initialListState, action) => {
+const lists = (state: ListState = initialListState, action: Action) => {
   switch (action.type) {
     case "ADD_CARD": {
       const { listId, cardId } = action.payload;
@@ -64,14 +84,14 @@ const lists = (state = initialListState, action) => {
   }
 };
 
-const boards = (state = initialBoardState, action) => {
+const boards = (state: BoardState = initialBoardState, action: Action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-const counter = (state = 1, action) => {
+const counter = (state: number = 1, action: Action) => {
   switch (action.type) {
     case "INCREMENT": {
       return state + 2;
