@@ -5,18 +5,15 @@ import List from "./List";
 import "./Board.scss";
 
 class Board extends Component {
-  // TODO: Start here, add a new card to one of the lists
-  // handleSubmitCard = () => this.setState({  })
-  // TODO: ACTUALLY START HERE: With the help of router, get the right board name and lists and all that
   render = () => {
-    const { lists } = this.props;
+    const { lists, boardTitle } = this.props;
     return (
       <div className="board">
         <Helmet>
-          <title>Board name | Trello</title>
+          <title>{boardTitle} | Trello</title>
         </Helmet>
         <div className="board-header">
-          <h1 className="board-title">Board name</h1>
+          <h1 className="board-title">{boardTitle}</h1>
         </div>
         <div className="lists">
           {lists.map(list => <List key={list.id} list={list} />)}
@@ -30,7 +27,8 @@ const mapStateToProps = (state, ownProps) => {
   const { boardId } = ownProps.match.params;
   const board = state.boards[boardId];
   return {
-    lists: board.lists.map(listId => state.lists[listId])
+    lists: board.lists.map(listId => state.lists[listId]),
+    boardTitle: board.title
   };
 };
 

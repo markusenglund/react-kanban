@@ -12,7 +12,7 @@ type Props = {
 
 type State = {
   cardComposerIsOpen: boolean,
-  newCardText: string
+  newCardTitle: string
 };
 
 class List extends React.Component<Props, State> {
@@ -20,18 +20,29 @@ class List extends React.Component<Props, State> {
     super();
     this.state = {
       cardComposerIsOpen: false,
-      newCardText: ""
+      newCardTitle: ""
     };
   }
 
   openCardComposer = () => this.setState({ cardComposerIsOpen: true });
   handleCardComposerChange = (event: { target: { value: string } }): void => {
-    this.setState({ newCardText: event.target.value });
+    this.setState({ newCardTitle: event.target.value });
+  };
+
+  handleSubmitCard = event => {
+    event.preventDefault();
+    const { newCardTitle } = this.state;
+    const { list, dispatch } = this.props;
+    dispatch({
+      type: "ADD_CARD",
+      payload: { cardTitle: newCardTitle, cardId: "oijer9393", listId: list.id }
+    });
+    this.setState({ newCardTitle: "" });
   };
 
   render = () => {
     const { cards, list } = this.props;
-    const { cardComposerIsOpen, newCardText } = this.state;
+    const { cardComposerIsOpen, newCardTitle } = this.state;
     return (
       <div className="list">
         <div className="list-title">{list.title}</div>
@@ -41,12 +52,12 @@ class List extends React.Component<Props, State> {
           </div>
         ))}
         {cardComposerIsOpen ? (
-          <form>
+          <form onSubmit={this.handleSubmitCard}>
             <Textarea
               useCacheForDOMMeasurements
               minRows={3}
               onChange={this.handleCardComposerChange}
-              value={newCardText}
+              value={newCardTitle}
             />
             <input type="submit" value="Add" />
           </form>

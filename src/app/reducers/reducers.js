@@ -41,6 +41,10 @@ const initialBoardState = {
 
 const cards = (state = initialCardState, action) => {
   switch (action.type) {
+    case "ADD_CARD": {
+      const { cardTitle, cardId } = action.payload;
+      return { ...state, [cardId]: { title: cardTitle, id: cardId } };
+    }
     default:
       return state;
   }
@@ -48,6 +52,13 @@ const cards = (state = initialCardState, action) => {
 
 const lists = (state = initialListState, action) => {
   switch (action.type) {
+    case "ADD_CARD": {
+      const { listId, cardId } = action.payload;
+      return {
+        ...state,
+        [listId]: { ...state[listId], cards: [...state[listId].cards, cardId] }
+      };
+    }
     default:
       return state;
   }
