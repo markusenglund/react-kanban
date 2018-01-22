@@ -72,3 +72,24 @@ $list-margin: 8px;
   outline: none;
   resize: none;
 }
+
+.submit-card-button {
+  background: #5aac44;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 18px 10px 18px;
+  margin: 0 $list-margin $list-margin $list-margin;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.submit-card-button:hover {
+  background: #4a9a34;
+}
+
+.submit-card-button:focus {
+  background: #3a8a24;
+}
