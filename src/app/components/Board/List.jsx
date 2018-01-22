@@ -2,6 +2,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
+import shortid from "shortid";
 
 type Props = {
   list: {
@@ -35,9 +36,13 @@ class List extends React.Component<Props, State> {
     const { list, dispatch } = this.props;
     dispatch({
       type: "ADD_CARD",
-      payload: { cardTitle: newCardTitle, cardId: "oijer9393", listId: list.id }
+      payload: {
+        cardId: shortid.generate(),
+        cardTitle: newCardTitle,
+        listId: list.id
+      }
     });
-    this.setState({ newCardTitle: "" });
+    this.setState({ newCardTitle: "", cardComposerIsOpen: false });
   };
 
   render = () => {
