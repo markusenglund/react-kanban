@@ -10,7 +10,7 @@ const App = () => (
   <>
     <Header />
     <Route exact path="/" component={Home} />
-    <Route path="/b/:id" component={Board} />
+    <Route path="/b/:boardId" component={Board} />
   </>
 );
 

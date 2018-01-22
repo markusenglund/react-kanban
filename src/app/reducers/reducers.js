@@ -31,6 +31,14 @@ const initialListState = {
   }
 };
 
+const initialBoardState = {
+  abc123: {
+    title: "Test Board: abc123",
+    id: "abc123",
+    lists: ["lgrnrirgi", "ogtpokpr"]
+  }
+};
+
 const cards = (state = initialCardState, action) => {
   switch (action.type) {
     default:
@@ -39,6 +47,13 @@ const cards = (state = initialCardState, action) => {
 };
 
 const lists = (state = initialListState, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+const boards = (state = initialBoardState, action) => {
   switch (action.type) {
     default:
       return state;
@@ -55,4 +70,4 @@ const counter = (state = 1, action) => {
   }
 };
 
-export default { counter, cards, lists };
+export default { counter, cards, lists, boards };

@@ -7,7 +7,7 @@ import "./Board.scss";
 class Board extends Component {
   // TODO: Start here, add a new card to one of the lists
   // handleSubmitCard = () => this.setState({  })
-
+  // TODO: ACTUALLY START HERE: With the help of router, get the right board name and lists and all that
   render = () => {
     const { lists } = this.props;
     return (
@@ -19,16 +19,18 @@ class Board extends Component {
           <h1 className="board-title">Board name</h1>
         </div>
         <div className="lists">
-          {Object.values(lists).map(list => <List key={list.id} list={list} />)}
+          {lists.map(list => <List key={list.id} list={list} />)}
         </div>
       </div>
     );
   };
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const { boardId } = ownProps.match.params;
+  const board = state.boards[boardId];
   return {
-    lists: state.lists
+    lists: board.lists.map(listId => state.lists[listId])
   };
 };
 
