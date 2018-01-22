@@ -1,12 +1,13 @@
 // @flow
 import * as React from "react";
+import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 
 type Props = {
   list: {
-    title: string,
-    cards: Array<{ title: string, id: string }>
-  }
+    title: string
+  },
+  cards: Array<{ title: string, id: string }>
 };
 
 type State = {
@@ -29,23 +30,26 @@ class List extends React.Component<Props, State> {
   };
 
   render = () => {
-    const { list } = this.props;
+    const { cards, list } = this.props;
     const { cardComposerIsOpen, newCardText } = this.state;
     return (
       <div className="list">
         <div className="list-title">{list.title}</div>
-        {list.cards.map(card => (
+        {cards.map(card => (
           <div key={card.id} className="card-title">
             {card.title}
           </div>
         ))}
         {cardComposerIsOpen ? (
-          <Textarea
-            useCacheForDOMMeasurements
-            minRows={3}
-            onChange={this.handleCardComposerChange}
-            value={newCardText}
-          />
+          <form>
+            <Textarea
+              useCacheForDOMMeasurements
+              minRows={3}
+              onChange={this.handleCardComposerChange}
+              value={newCardText}
+            />
+            <input type="submit" value="Add" />
+          </form>
         ) : (
           <button
             onClick={this.openCardComposer}
@@ -59,4 +63,10 @@ class List extends React.Component<Props, State> {
   };
 }
 
-export default List;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    cards: ownProps.list.cards.map(cardId => state.cards[cardId])
+  };
+};
+
+export default connect(mapStateToProps)(List);

@@ -11,7 +11,7 @@ class Home extends Component<{}> {
         <title>Home | Trello</title>
       </Helmet>
       <img src={gandalfGif} alt="laughing gandalf" />
-      <Link to="b/abc123">The best board</Link>
+      <Link to="/b/abc123">The best board</Link>
     </div>
   );
 }
