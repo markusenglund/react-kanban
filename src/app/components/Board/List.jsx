@@ -33,10 +33,17 @@ class List extends React.Component<Props, State> {
     this.setState({ newCardTitle: event.target.value });
   };
 
+  handleKeyDown = (event: SyntheticEvent<>): void => {
+    if (event.keyCode === 13) {
+      this.handleSubmitCard(event);
+    }
+  };
+
   handleSubmitCard = event => {
     event.preventDefault();
     const { newCardTitle } = this.state;
     const { list, dispatch } = this.props;
+    if (newCardTitle === "") return;
     dispatch({
       type: "ADD_CARD",
       payload: {
@@ -65,6 +72,7 @@ class List extends React.Component<Props, State> {
               useCacheForDOMMeasurements
               minRows={3}
               onChange={this.handleCardComposerChange}
+              onKeyDown={this.handleKeyDown}
               value={newCardTitle}
             />
             <input type="submit" value="Add" />

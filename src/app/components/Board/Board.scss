@@ -66,6 +66,9 @@ $list-margin: 8px;
   width: $list-width - 2 * $list-margin;
   border: 0;
   box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
   outline: none;
   resize: none;
 }
