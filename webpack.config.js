@@ -48,8 +48,9 @@ module.exports = [
           test: /\.(png|jpg|gif|svg)$/,
           use: [
             {
-              loader: "file-loader",
+              loader: "url-loader",
               options: {
+                limit: 4096,
                 name: "[name].[ext]",
                 outputPath: "assets/"
               }
@@ -93,12 +94,13 @@ module.exports = [
           test: /\.(png|jpg|gif|svg)$/,
           use: [
             {
-              loader: "file-loader",
+              loader: "url-loader",
               options: {
                 emitFile: false,
+                limit: 4096,
                 name: "[name].[ext]",
-                publicPath: "/public/",
-                outputPath: "assets/"
+                outputPath: "assets/",
+                publicPath: "/public/"
               }
             }
           ]

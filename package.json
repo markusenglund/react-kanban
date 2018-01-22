@@ -54,6 +54,7 @@
     "postcss-loader": "^2.0.10",
     "prettier": "^1.10.2",
     "sass-loader": "^6.0.6",
+    "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dashboard": "^1.0.2",
