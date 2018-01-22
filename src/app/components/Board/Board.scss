@@ -36,8 +36,25 @@ $list-margin: 8px;
 .card-title {
   background: white;
   border-radius: 3px;
-  padding: 6px;
+  padding: 8px;
   margin: 0 $list-margin $list-margin $list-margin;
+  position: relative;
+}
+
+.edit-card-button {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  border: 0;
+  padding: 4px 6px 7px 6px;
+  border-radius: 3px;
+  opacity: 0;
+  color: $fg-black;
+  cursor: pointer;
+}
+
+.edit-card-button:hover {
+  opacity: 1;
 }
 
 .open-composer-button {
