@@ -27,7 +27,8 @@
     "react-textarea-autosize": "^5.2.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "slugify": "^1.2.9"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.38",

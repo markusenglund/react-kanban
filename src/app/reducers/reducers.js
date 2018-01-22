@@ -53,7 +53,7 @@ const initialListState = {
 
 const initialBoardState = {
   abc123: {
-    title: "Test Board: abc123",
+    title: "Test Board Hejsvejs",
     id: "abc123",
     lists: ["lgrnrirgi", "ogtpokpr"]
   }

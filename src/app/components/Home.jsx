@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import slugify from "slugify";
 import gandalfGif from "../assets/gandalf.gif";
 
 type Props = {
@@ -19,7 +20,10 @@ class Home extends Component<Props> {
         </Helmet>
         <img src={gandalfGif} alt="laughing gandalf" />
         {boards.map(board => (
-          <Link key={board.id} to={`/b/${board.id}`}>
+          <Link
+            key={board.id}
+            to={`/b/${board.id}/${slugify(board.title, { lower: true })}`}
+          >
             {board.title}
           </Link>
         ))}
