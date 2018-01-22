@@ -69,6 +69,7 @@ class List extends React.Component<Props, State> {
         {cardComposerIsOpen ? (
           <form onSubmit={this.handleSubmitCard}>
             <Textarea
+              autoFocus
               useCacheForDOMMeasurements
               minRows={3}
               onChange={this.handleCardComposerChange}
