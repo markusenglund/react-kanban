@@ -3,8 +3,12 @@ import * as React from "react";
 import { connect } from "react-redux";
 import shortid from "shortid";
 import Textarea from "react-textarea-autosize";
+import Scrollbar from "react-gemini-scrollbar";
+import CustomScroll from "react-custom-scroll";
 import FaPencil from "react-icons/lib/fa/pencil";
+import "gemini-scrollbar/gemini-scrollbar.css";
 import ClickOutside from "./ClickOutside";
+import "./customScroll.css";
 
 type Props = {
   list: {
@@ -103,34 +107,36 @@ class List extends React.Component<Props, State> {
     return (
       <div className="list">
         <div className="list-title">{list.title}</div>
-        {cards.map(card => (
-          <div key={card.id}>
-            {cardInEdit !== card.id ? (
-              <div className="card-title">
-                <span>{card.title}</span>
-                <button
-                  onClick={() => this.openCardEditor(card)}
-                  className="edit-card-button"
-                >
-                  <FaPencil />
-                </button>
-              </div>
-            ) : (
-              <ClickOutside handleClickOutside={this.handleSubmitCardEdit}>
-                <div className="textarea-wrapper">
-                  <Textarea
-                    autoFocus
-                    useCacheForDOMMeasurements
-                    minRows={3}
-                    value={editableCardTitle}
-                    onChange={this.handleCardEditorChange}
-                    onKeyDown={this.handleEditKeyDown}
-                  />
+        <div className="cards">
+          {cards.map(card => (
+            <div key={card.id}>
+              {cardInEdit !== card.id ? (
+                <div className="card-title">
+                  <span>{card.title}</span>
+                  <button
+                    onClick={() => this.openCardEditor(card)}
+                    className="edit-card-button"
+                  >
+                    <FaPencil />
+                  </button>
                 </div>
-              </ClickOutside>
-            )}
-          </div>
-        ))}
+              ) : (
+                <ClickOutside handleClickOutside={this.handleSubmitCardEdit}>
+                  <div className="textarea-wrapper">
+                    <Textarea
+                      autoFocus
+                      useCacheForDOMMeasurements
+                      minRows={3}
+                      value={editableCardTitle}
+                      onChange={this.handleCardEditorChange}
+                      onKeyDown={this.handleEditKeyDown}
+                    />
+                  </div>
+                </ClickOutside>
+              )}
+            </div>
+          ))}
+        </div>
         {cardComposerIsOpen ? (
           <ClickOutside handleClickOutside={this.toggleCardComposer}>
             <form onSubmit={this.handleSubmitCard} className="textarea-wrapper">

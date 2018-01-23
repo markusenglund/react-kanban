@@ -34,13 +34,20 @@ $list-margin: 8px;
   box-sizing: border-box;
   font-size: 14px;
   margin: 0 5px 0 5px;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  // overflow: auto;
   max-height: 100%;
 }
 
 .list-title {
   margin: 10px;
   font-weight: 700;
+}
+
+.cards {
+  overflow: auto;
+  // max-height: 200px;
 }
 
 .card-title {
