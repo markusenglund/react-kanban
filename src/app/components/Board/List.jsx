@@ -82,7 +82,7 @@ class List extends React.Component<Props, State> {
     const { list, dispatch } = this.props;
     if (editableCardTitle === "") return;
     dispatch({
-      type: "EDIT_CARD",
+      type: "EDIT_CARD_TITLE",
       payload: {
         cardId: cardInEdit,
         cardTitle: editableCardTitle,

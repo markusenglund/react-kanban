@@ -61,10 +61,12 @@ const initialBoardState = {
 
 const cards = (state: CardState = initialCardState, action: Action) => {
   switch (action.type) {
-    case "ADD_CARD": {
+    case "ADD_CARD":
+    case "EDIT_CARD_TITLE": {
       const { cardTitle, cardId } = action.payload;
       return { ...state, [cardId]: { title: cardTitle, id: cardId } };
     }
+
     default:
       return state;
   }
