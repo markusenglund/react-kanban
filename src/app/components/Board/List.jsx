@@ -2,6 +2,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import shortid from "shortid";
+import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import NewCardForm from "./NewCardForm";
 
@@ -16,7 +17,8 @@ type Props = {
 
 type State = {
   cardComposerIsOpen: boolean,
-  newCardTitle: string
+  newCardTitle: string,
+  cardInEdit: ?string
 };
 
 class List extends React.Component<Props, State> {
@@ -24,7 +26,8 @@ class List extends React.Component<Props, State> {
     super();
     this.state = {
       cardComposerIsOpen: false,
-      newCardTitle: ""
+      newCardTitle: "",
+      cardInEdit: null
     };
   }
 
@@ -57,18 +60,36 @@ class List extends React.Component<Props, State> {
     this.setState({ newCardTitle: "", cardComposerIsOpen: false });
   };
 
+  openCardEditor = id => {
+    this.setState({ cardInEdit: id });
+  };
+
   render = () => {
     const { cards, list } = this.props;
-    const { cardComposerIsOpen, newCardTitle } = this.state;
+    const { cardComposerIsOpen, newCardTitle, cardInEdit } = this.state;
     return (
       <div className="list">
         <div className="list-title">{list.title}</div>
         {cards.map(card => (
           <div key={card.id} className="card-title">
-            {card.title}
-            <button className="edit-card-button">
-              <FaPencil />
-            </button>
+            {cardInEdit !== card.id ? (
+              <>
+                <span>{card.title}</span>
+                <button
+                  onClick={() => this.openCardEditor(card.id)}
+                  className="edit-card-button"
+                >
+                  <FaPencil />
+                </button>
+              </>
+            ) : (
+              <Textarea
+                autoFocus
+                useCacheForDOMMeasurements
+                minRows={3}
+                value="hej"
+              />
+            )}
           </div>
         ))}
         {cardComposerIsOpen ? (

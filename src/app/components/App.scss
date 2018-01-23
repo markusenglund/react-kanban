@@ -5,3 +5,9 @@ body {
   background: $bg-blue;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 }
+
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
