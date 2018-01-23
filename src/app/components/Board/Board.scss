@@ -86,13 +86,13 @@ $list-margin: 8px;
   text-decoration: underline;
 }
 
-.list form {
+.textarea-wrapper {
   margin: 0 $list-margin $list-margin $list-margin;
 }
 
 .list textarea {
   border-radius: 3px;
-  padding: 6px;
+  padding: 8px;
   overflow: hidden;
   width: 100%;
   border: 0;
