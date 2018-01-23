@@ -86,11 +86,15 @@ $list-margin: 8px;
   text-decoration: underline;
 }
 
+.list form {
+  margin: 0 $list-margin $list-margin $list-margin;
+}
+
 .list textarea {
   border-radius: 3px;
   padding: 6px;
-  margin: 0 $list-margin $list-margin $list-margin;
-  width: $list-width - 2 * $list-margin;
+  overflow: hidden;
+  width: 100%;
   border: 0;
   box-sizing: border-box;
   font-family: inherit;
@@ -106,7 +110,7 @@ $list-margin: 8px;
   font-size: 14px;
   font-weight: 700;
   padding: 10px 18px 10px 18px;
-  margin: 0 $list-margin $list-margin $list-margin;
+  margin: 5px 0 0 0;
   border: none;
   cursor: pointer;
   border-radius: 3px;
