@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import List from "./List";
+// import DndExample from "./BeautifulDndExample";
 import "./Board.scss";
 
 type Props = {

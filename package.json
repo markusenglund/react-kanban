@@ -18,6 +18,7 @@
     "compression": "^1.7.1",
     "express": "^4.16.2",
     "react": "^16.2.0",
+    "react-beautiful-dnd": "^4.0.1",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",

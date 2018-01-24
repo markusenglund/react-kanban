@@ -27,7 +27,9 @@ type Action = {
     listId: string,
     listTitle: string,
     cardId: string,
-    cardTitle: string
+    cardTitle: string,
+    sourceIndex: number,
+    destinationIndex: number
   }
 };
 
@@ -100,6 +102,13 @@ const lists = (state: ListState = initialListState, action: Action) => {
         ...state,
         [listId]: { ...state[listId], title: listTitle }
       };
+    }
+    case "REORDER_LIST": {
+      const { sourceIndex, destinationIndex, listId } = action.payload;
+      const newCards = Array.from(state[listId].cards);
+      const [removedCard] = newCards.splice(sourceIndex, 1);
+      newCards.splice(destinationIndex, 0, removedCard);
+      return { ...state, [listId]: { ...state[listId], cards: newCards } };
     }
     default:
       return state;
