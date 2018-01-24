@@ -3,12 +3,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import shortid from "shortid";
 import Textarea from "react-textarea-autosize";
-import Scrollbar from "react-gemini-scrollbar";
-import CustomScroll from "react-custom-scroll";
 import FaPencil from "react-icons/lib/fa/pencil";
-import "gemini-scrollbar/gemini-scrollbar.css";
 import ClickOutside from "./ClickOutside";
-import "./customScroll.css";
 
 type Props = {
   list: {
@@ -136,34 +132,37 @@ class List extends React.Component<Props, State> {
               )}
             </div>
           ))}
+          {cardComposerIsOpen ? (
+            <ClickOutside handleClickOutside={this.toggleCardComposer}>
+              <form
+                onSubmit={this.handleSubmitCard}
+                className="textarea-wrapper"
+              >
+                <Textarea
+                  autoFocus
+                  useCacheForDOMMeasurements
+                  minRows={3}
+                  onChange={this.handleCardComposerChange}
+                  onKeyDown={this.handleKeyDown}
+                  value={newCardTitle}
+                />
+                <input
+                  type="submit"
+                  value="Add"
+                  className="submit-card-button"
+                  disabled={newCardTitle === ""}
+                />
+              </form>
+            </ClickOutside>
+          ) : (
+            <button
+              onClick={this.toggleCardComposer}
+              className="open-composer-button"
+            >
+              Add a card...
+            </button>
+          )}
         </div>
-        {cardComposerIsOpen ? (
-          <ClickOutside handleClickOutside={this.toggleCardComposer}>
-            <form onSubmit={this.handleSubmitCard} className="textarea-wrapper">
-              <Textarea
-                autoFocus
-                useCacheForDOMMeasurements
-                minRows={3}
-                onChange={this.handleCardComposerChange}
-                onKeyDown={this.handleKeyDown}
-                value={newCardTitle}
-              />
-              <input
-                type="submit"
-                value="Add"
-                className="submit-card-button"
-                disabled={newCardTitle === ""}
-              />
-            </form>
-          </ClickOutside>
-        ) : (
-          <button
-            onClick={this.toggleCardComposer}
-            className="open-composer-button"
-          >
-            Add a card...
-          </button>
-        )}
       </div>
     );
   };

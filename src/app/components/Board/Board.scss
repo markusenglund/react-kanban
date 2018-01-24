@@ -36,7 +36,6 @@ $list-margin: 8px;
   margin: 0 5px 0 5px;
   display: flex;
   flex-direction: column;
-  // overflow: auto;
   max-height: 100%;
 }
 
@@ -47,7 +46,6 @@ $list-margin: 8px;
 
 .cards {
   overflow: auto;
-  // max-height: 200px;
 }
 
 .card-title {
