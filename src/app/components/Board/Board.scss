@@ -39,9 +39,35 @@ $list-margin: 8px;
   max-height: 100%;
 }
 
-.list-title {
-  margin: 10px;
+.list-title-button {
+  padding: 10px;
   font-weight: 700;
+  display: flex;
+  background: $bg-grey;
+  color: $fg-black;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.list-title-textarea-wrapper {
+  margin: 4px 4px 1px 4px;
+}
+
+.list-title-textarea {
+  border-radius: 3px;
+  padding: 6px;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  color: inherit;
+  resize: none;
 }
 
 .cards {
@@ -96,7 +122,7 @@ $list-margin: 8px;
   margin: 0 $list-margin $list-margin $list-margin;
 }
 
-.list textarea {
+.list-textarea {
   border-radius: 3px;
   padding: 8px;
   overflow: hidden;

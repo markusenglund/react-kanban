@@ -11,12 +11,25 @@ type BoardState = {
   [string]: { title: string, id: string, lists: Array<string> }
 };
 
-type AddCardAction = {
-  type: string,
-  payload: { listId: string, cardId: string, cardTitle: string }
-};
+// type AddCardAction = {
+//   type: string,
+//   payload: { listId: string, cardId: string, cardTitle: string }
+// };
 
-type Action = AddCardAction;
+// type EditListTitleAction = {
+//   type: string,
+//   payload: { listId: string, listTitle: string }
+// };
+
+type Action = {
+  type: string,
+  payload: {
+    listId: string,
+    listTitle: string,
+    cardId: string,
+    cardTitle: string
+  }
+};
 
 const initialCardState = {
   qwer: {
@@ -79,6 +92,13 @@ const lists = (state: ListState = initialListState, action: Action) => {
       return {
         ...state,
         [listId]: { ...state[listId], cards: [...state[listId].cards, cardId] }
+      };
+    }
+    case "EDIT_LIST_TITLE": {
+      const { listId, listTitle } = action.payload;
+      return {
+        ...state,
+        [listId]: { ...state[listId], title: listTitle }
       };
     }
     default:

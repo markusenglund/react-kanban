@@ -19,7 +19,9 @@ type State = {
   cardComposerIsOpen: boolean,
   newCardTitle: string,
   cardInEdit: ?string,
-  editableCardTitle: string
+  editableCardTitle: string,
+  isListTitleInEdit: boolean,
+  newListTitle: string
 };
 
 class List extends React.Component<Props, State> {
@@ -29,7 +31,9 @@ class List extends React.Component<Props, State> {
       cardComposerIsOpen: false,
       newCardTitle: "",
       cardInEdit: null,
-      editableCardTitle: ""
+      editableCardTitle: "",
+      isListTitleInEdit: false,
+      newListTitle: ""
     };
   }
 
@@ -92,17 +96,72 @@ class List extends React.Component<Props, State> {
     this.setState({ editableCardTitle: "", cardInEdit: null });
   };
 
+  openTitleEditor = () => {
+    this.setState({
+      isListTitleInEdit: true,
+      newListTitle: this.props.list.title
+    });
+  };
+
+  handleListTitleEditorChange = (event: { target: { value: string } }) => {
+    this.setState({ newListTitle: event.target.value });
+  };
+
+  handleListTitleKeyDown = (event: SyntheticEvent<>) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      this.handleSubmitListTitle();
+    }
+  };
+
+  handleSubmitListTitle = () => {
+    const { newListTitle } = this.state;
+    const { list, dispatch } = this.props;
+    if (newListTitle === "") return;
+    dispatch({
+      type: "EDIT_LIST_TITLE",
+      payload: {
+        listTitle: newListTitle,
+        listId: list.id
+      }
+    });
+    this.setState({
+      isListTitleInEdit: false,
+      newListTitle: ""
+    });
+  };
+
   render = () => {
     const { cards, list } = this.props;
     const {
       cardComposerIsOpen,
       newCardTitle,
       cardInEdit,
-      editableCardTitle
+      editableCardTitle,
+      isListTitleInEdit,
+      newListTitle
     } = this.state;
     return (
       <div className="list">
-        <div className="list-title">{list.title}</div>
+        {isListTitleInEdit ? (
+          <ClickOutside handleClickOutside={this.handleSubmitListTitle}>
+            <div className="list-title-textarea-wrapper">
+              <Textarea
+                autoFocus
+                useCacheForDOMMeasurements
+                // minRows={1}
+                value={newListTitle}
+                onChange={this.handleListTitleEditorChange}
+                onKeyDown={this.handleListTitleKeyDown}
+                className="list-title-textarea"
+              />
+            </div>
+          </ClickOutside>
+        ) : (
+          <button onClick={this.openTitleEditor} className="list-title-button">
+            {list.title}
+          </button>
+        )}
         <div className="cards">
           {cards.map(card => (
             <div key={card.id}>
@@ -126,6 +185,7 @@ class List extends React.Component<Props, State> {
                       value={editableCardTitle}
                       onChange={this.handleCardEditorChange}
                       onKeyDown={this.handleEditKeyDown}
+                      className="list-textarea"
                     />
                   </div>
                 </ClickOutside>
@@ -145,6 +205,7 @@ class List extends React.Component<Props, State> {
                   onChange={this.handleCardComposerChange}
                   onKeyDown={this.handleKeyDown}
                   value={newCardTitle}
+                  className="list-textarea"
                 />
                 <input
                   type="submit"
