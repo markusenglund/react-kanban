@@ -144,21 +144,23 @@ class List extends React.Component<Props, State> {
     return (
       <div className="list">
         {isListTitleInEdit ? (
-          <ClickOutside handleClickOutside={this.handleSubmitListTitle}>
-            <div className="list-title-textarea-wrapper">
-              <Textarea
-                autoFocus
-                useCacheForDOMMeasurements
-                // minRows={1}
-                value={newListTitle}
-                onChange={this.handleListTitleEditorChange}
-                onKeyDown={this.handleListTitleKeyDown}
-                className="list-title-textarea"
-              />
-            </div>
-          </ClickOutside>
+          <div className="list-title-textarea-wrapper">
+            <Textarea
+              autoFocus
+              useCacheForDOMMeasurements
+              value={newListTitle}
+              onChange={this.handleListTitleEditorChange}
+              onKeyDown={this.handleListTitleKeyDown}
+              className="list-title-textarea"
+              onBlur={this.handleSubmitListTitle}
+            />
+          </div>
         ) : (
-          <button onClick={this.openTitleEditor} className="list-title-button">
+          <button
+            onFocus={this.openTitleEditor}
+            onClick={this.openTitleEditor}
+            className="list-title-button"
+          >
             {list.title}
           </button>
         )}
@@ -176,19 +178,18 @@ class List extends React.Component<Props, State> {
                   </button>
                 </div>
               ) : (
-                <ClickOutside handleClickOutside={this.handleSubmitCardEdit}>
-                  <div className="textarea-wrapper">
-                    <Textarea
-                      autoFocus
-                      useCacheForDOMMeasurements
-                      minRows={3}
-                      value={editableCardTitle}
-                      onChange={this.handleCardEditorChange}
-                      onKeyDown={this.handleEditKeyDown}
-                      className="list-textarea"
-                    />
-                  </div>
-                </ClickOutside>
+                <div className="textarea-wrapper">
+                  <Textarea
+                    autoFocus
+                    useCacheForDOMMeasurements
+                    minRows={3}
+                    value={editableCardTitle}
+                    onChange={this.handleCardEditorChange}
+                    onKeyDown={this.handleEditKeyDown}
+                    className="list-textarea"
+                    onBlur={this.handleSubmitCardEdit}
+                  />
+                </div>
               )}
             </div>
           ))}
