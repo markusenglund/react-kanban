@@ -82,6 +82,7 @@ $list-margin: 8px;
   position: relative;
   overflow-wrap: break-word;
   user-select: none;
+  box-sizing: border-box;
 }
 
 .card-title:hover {
