@@ -178,6 +178,8 @@ class List extends React.Component<Props, State> {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
+                          data-react-beautiful-dnd-draggable="0"
+                          data-react-beautiful-dnd-drag-handle="0"
                         >
                           <span>{card.title}</span>
                           <button
