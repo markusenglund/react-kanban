@@ -132,7 +132,7 @@ class List extends React.Component<Props, State> {
               )}
             </div>
           ))}
-          {cardComposerIsOpen ? (
+          {cardComposerIsOpen && (
             <ClickOutside handleClickOutside={this.toggleCardComposer}>
               <form
                 onSubmit={this.handleSubmitCard}
@@ -154,15 +154,16 @@ class List extends React.Component<Props, State> {
                 />
               </form>
             </ClickOutside>
-          ) : (
-            <button
-              onClick={this.toggleCardComposer}
-              className="open-composer-button"
-            >
-              Add a card...
-            </button>
           )}
         </div>
+        {cardComposerIsOpen || (
+          <button
+            onClick={this.toggleCardComposer}
+            className="open-composer-button"
+          >
+            Add a card...
+          </button>
+        )}
       </div>
     );
   };

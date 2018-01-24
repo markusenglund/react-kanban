@@ -54,6 +54,7 @@ $list-margin: 8px;
   padding: 8px;
   margin: 0 $list-margin $list-margin $list-margin;
   position: relative;
+  overflow-wrap: break-word;
 }
 
 .edit-card-button {
