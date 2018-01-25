@@ -162,3 +162,22 @@ $list-margin: 8px;
 .submit-card-button:focus {
   background: #3a8a24;
 }
+
+.add-list-button {
+  background: rgba(0, 0, 0, 0.15);
+  color: #ddd;
+  cursor: pointer;
+  display: flex;
+  width: $list-width;
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  margin: 0 5px 0 5px;
+  transition: background 0.2s;
+}
+
+.add-list-button:hover,
+add-list-button:focus {
+  background: rgba(0, 0, 0, 0.25);
+}
