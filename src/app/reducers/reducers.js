@@ -26,6 +26,7 @@ type Action = {
   payload: {
     listId: string,
     listTitle: string,
+    cards: Array<string>,
     cardId: string,
     cardTitle: string,
     boardId: string,
@@ -89,6 +90,15 @@ const cards = (state: CardState = initialCardState, action: Action) => {
       const { [cardId]: deletedCard, ...restOfCards } = state;
       return restOfCards;
     }
+    case "DELETE_LIST": {
+      const { cards: cardIds } = action.payload;
+      return Object.keys(state)
+        .filter(cardId => !cardIds.includes(cardId))
+        .reduce(
+          (newState, cardId) => ({ ...newState, [cardId]: state[cardId] }),
+          {}
+        );
+    }
     default:
       return state;
   }
@@ -119,6 +129,11 @@ const lists = (state: ListState = initialListState, action: Action) => {
         ...state,
         [listId]: { id: listId, title: listTitle, cards: [] }
       };
+    }
+    case "DELETE_LIST": {
+      const { listId } = action.payload;
+      const { [listId]: deletedList, ...restOfLists } = state;
+      return restOfLists;
     }
     case "EDIT_LIST_TITLE": {
       const { listId, listTitle } = action.payload;
@@ -169,6 +184,16 @@ const boards = (state: BoardState = initialBoardState, action: Action) => {
         [boardId]: {
           ...state[boardId],
           lists: [...state[boardId].lists, listId]
+        }
+      };
+    }
+    case "DELETE_LIST": {
+      const { listId: newListId, boardId } = action.payload;
+      return {
+        ...state,
+        [boardId]: {
+          ...state[boardId],
+          lists: state[boardId].lists.filter(listId => listId !== newListId)
         }
       };
     }

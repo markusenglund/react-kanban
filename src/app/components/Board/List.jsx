@@ -9,9 +9,11 @@ import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import ClickOutside from "./ClickOutside";
 
 type Props = {
+  boardId: string,
   list: {
     title: string,
-    id: string
+    id: string,
+    cards: Array<string>
   },
   cards: Array<{ title: string, id: string }>,
   dispatch: ({ type: string }) => void
@@ -138,6 +140,18 @@ class List extends React.Component<Props, State> {
     });
   };
 
+  deleteList = () => {
+    const { list, boardId, dispatch } = this.props;
+    dispatch({
+      type: "DELETE_LIST",
+      payload: {
+        listId: list.id,
+        boardId,
+        cards: list.cards
+      }
+    });
+  };
+
   render = () => {
     const { cards, list } = this.props;
     const {
@@ -163,13 +177,18 @@ class List extends React.Component<Props, State> {
             />
           </div>
         ) : (
-          <button
-            onFocus={this.openTitleEditor}
-            onClick={this.openTitleEditor}
-            className="list-title-button"
-          >
-            {list.title}
-          </button>
+          <div className="list-title">
+            <button
+              onFocus={this.openTitleEditor}
+              onClick={this.openTitleEditor}
+              className="list-title-button"
+            >
+              {list.title}
+            </button>
+            <button onClick={this.deleteList} className="delete-list-button">
+              <FaTimesCircle />
+            </button>
+          </div>
         )}
         <Droppable droppableId={list.id}>
           {provided => (

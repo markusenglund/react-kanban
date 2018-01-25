@@ -71,7 +71,7 @@ class Board extends React.Component<Props> {
                           data-react-beautiful-dnd-draggable="0"
                           data-react-beautiful-dnd-drag-handle="0"
                         >
-                          <List list={list} />
+                          <List list={list} boardId={boardId} />
                         </div>
                         {provided.placeholder}
                       </>

@@ -39,7 +39,12 @@ $list-margin: 8px;
   max-height: 100%;
 }
 
+.list-title {
+  display: flex;
+}
+
 .list-title-button {
+  flex-grow: 1;
   padding: 10px;
   font-weight: 700;
   display: flex;
@@ -50,6 +55,16 @@ $list-margin: 8px;
   cursor: pointer;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
+}
+
+.delete-list-button {
+  border: 0;
+  padding: 4px 6px 7px 6px;
+  border-radius: 3px;
+  color: $fg-black;
+  background: $bg-grey;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .list-title-textarea-wrapper {
