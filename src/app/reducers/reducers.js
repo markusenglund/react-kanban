@@ -28,6 +28,7 @@ type Action = {
     listTitle: string,
     cardId: string,
     cardTitle: string,
+    boardId: string,
     sourceIndex: number,
     destinationIndex: number,
     sourceId: string,
@@ -98,6 +99,13 @@ const lists = (state: ListState = initialListState, action: Action) => {
         [listId]: { ...state[listId], cards: [...state[listId].cards, cardId] }
       };
     }
+    case "ADD_LIST": {
+      const { listId, listTitle } = action.payload;
+      return {
+        ...state,
+        [listId]: { ...state[listId], title: listTitle, cards: [] }
+      };
+    }
     case "EDIT_LIST_TITLE": {
       const { listId, listTitle } = action.payload;
       return {
@@ -140,6 +148,16 @@ const lists = (state: ListState = initialListState, action: Action) => {
 
 const boards = (state: BoardState = initialBoardState, action: Action) => {
   switch (action.type) {
+    case "ADD_LIST": {
+      const { boardId, listId } = action.payload;
+      return {
+        ...state,
+        [boardId]: {
+          ...state[boardId],
+          lists: [...state[boardId].lists, listId]
+        }
+      };
+    }
     case "REORDER_BOARD": {
       const { sourceIndex, destinationIndex, sourceId } = action.payload;
       const newLists = Array.from(state[sourceId].lists);

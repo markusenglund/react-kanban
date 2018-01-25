@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -15,7 +15,7 @@ type Props = {
   dispatch: ({ type: string }) => void
 };
 
-class Board extends Component<Props> {
+class Board extends React.Component<Props> {
   handleDragEnd = ({ source, destination, type }) => {
     // dropped outside the list
     if (!destination) {
@@ -62,7 +62,7 @@ class Board extends Component<Props> {
               <div className="lists" ref={droppableProvided.innerRef}>
                 {lists.map((list, index) => (
                   <Draggable key={list.id} draggableId={list.id} index={index}>
-                    {(provided, snapshot) => (
+                    {provided => (
                       <>
                         <div
                           ref={provided.innerRef}
@@ -79,7 +79,7 @@ class Board extends Component<Props> {
                   </Draggable>
                 ))}
                 {droppableProvided.placeholder}
-                <ListAdder />
+                <ListAdder boardId={boardId} />
               </div>
             )}
           </Droppable>
