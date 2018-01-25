@@ -103,7 +103,7 @@ const lists = (state: ListState = initialListState, action: Action) => {
       const { listId, listTitle } = action.payload;
       return {
         ...state,
-        [listId]: { ...state[listId], title: listTitle, cards: [] }
+        [listId]: { id: listId, title: listTitle, cards: [] }
       };
     }
     case "EDIT_LIST_TITLE": {
