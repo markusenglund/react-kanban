@@ -10,6 +10,7 @@ import "./Board.scss";
 type Props = {
   lists: Array<{ id: string }>,
   boardTitle: string,
+  boardId: string,
   dispatch: ({ type: string }) => void
 };
 
@@ -19,11 +20,21 @@ class Board extends Component<Props> {
     if (!destination) {
       return;
     }
+    const { dispatch } = this.props;
+
     if (type === "COLUMN") {
+      dispatch({
+        type: "REORDER_BOARD",
+        payload: {
+          sourceId: source.droppableId,
+          destinationId: destination.droppableId,
+          sourceIndex: source.index,
+          destinationIndex: destination.index
+        }
+      });
       return;
     }
 
-    const { dispatch } = this.props;
     dispatch({
       type: "REORDER_LIST",
       payload: {
@@ -35,7 +46,7 @@ class Board extends Component<Props> {
     });
   };
   render = () => {
-    const { lists, boardTitle } = this.props;
+    const { lists, boardTitle, boardId } = this.props;
     return (
       <div className="board">
         <Helmet>
@@ -45,7 +56,7 @@ class Board extends Component<Props> {
           <h1 className="board-title">{boardTitle}</h1>
         </div>
         <DragDropContext onDragEnd={this.handleDragEnd}>
-          <Droppable droppableId="board" type="COLUMN" direction="horizontal">
+          <Droppable droppableId={boardId} type="COLUMN" direction="horizontal">
             {droppableProvided => (
               <div className="lists" ref={droppableProvided.innerRef}>
                 {lists.map((list, index) => (
@@ -81,7 +92,8 @@ const mapStateToProps = (state, ownProps) => {
   const board = state.boards[boardId];
   return {
     lists: board.lists.map(listId => state.lists[listId]),
-    boardTitle: board.title
+    boardTitle: board.title,
+    boardId
   };
 };
 
