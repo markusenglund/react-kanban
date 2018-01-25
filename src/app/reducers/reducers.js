@@ -29,7 +29,9 @@ type Action = {
     cardId: string,
     cardTitle: string,
     sourceIndex: number,
-    destinationIndex: number
+    destinationIndex: number,
+    sourceId: string,
+    destinationId: string
   }
 };
 
@@ -104,11 +106,32 @@ const lists = (state: ListState = initialListState, action: Action) => {
       };
     }
     case "REORDER_LIST": {
-      const { sourceIndex, destinationIndex, listId } = action.payload;
-      const newCards = Array.from(state[listId].cards);
-      const [removedCard] = newCards.splice(sourceIndex, 1);
-      newCards.splice(destinationIndex, 0, removedCard);
-      return { ...state, [listId]: { ...state[listId], cards: newCards } };
+      const {
+        sourceIndex,
+        destinationIndex,
+        sourceId,
+        destinationId
+      } = action.payload;
+      // Reorder within the same list
+      if (sourceId === destinationId) {
+        const newCards = Array.from(state[sourceId].cards);
+        const [removedCard] = newCards.splice(sourceIndex, 1);
+        newCards.splice(destinationIndex, 0, removedCard);
+        return {
+          ...state,
+          [sourceId]: { ...state[sourceId], cards: newCards }
+        };
+      }
+      // Switch card from one list to another
+      const sourceCards = Array.from(state[sourceId].cards);
+      const [removedCard] = sourceCards.splice(sourceIndex, 1);
+      const destinationCards = Array.from(state[destinationId].cards);
+      destinationCards.splice(destinationIndex, 0, removedCard);
+      return {
+        ...state,
+        [sourceId]: { ...state[sourceId], cards: sourceCards },
+        [destinationId]: { ...state[destinationId], cards: destinationCards }
+      };
     }
     default:
       return state;
