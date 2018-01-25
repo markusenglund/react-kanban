@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import List from "./List";
 // import DndExample from "./BeautifulDndExample";
 import "./Board.scss";
@@ -14,11 +14,15 @@ type Props = {
 };
 
 class Board extends Component<Props> {
-  handleDragEnd = ({ source, destination }) => {
+  handleDragEnd = ({ source, destination, type }) => {
     // dropped outside the list
     if (!destination) {
       return;
     }
+    if (type === "COLUMN") {
+      return;
+    }
+
     const { dispatch } = this.props;
     dispatch({
       type: "REORDER_LIST",
@@ -41,9 +45,31 @@ class Board extends Component<Props> {
           <h1 className="board-title">{boardTitle}</h1>
         </div>
         <DragDropContext onDragEnd={this.handleDragEnd}>
-          <div className="lists">
-            {lists.map(list => <List key={list.id} list={list} />)}
-          </div>
+          <Droppable droppableId="board" type="COLUMN" direction="horizontal">
+            {droppableProvided => (
+              <div className="lists" ref={droppableProvided.innerRef}>
+                {lists.map((list, index) => (
+                  <Draggable key={list.id} draggableId={list.id} index={index}>
+                    {(provided, snapshot) => (
+                      <>
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          data-react-beautiful-dnd-draggable="0"
+                          data-react-beautiful-dnd-drag-handle="0"
+                        >
+                          <List list={list} />
+                        </div>
+                        {provided.placeholder}
+                      </>
+                    )}
+                  </Draggable>
+                ))}
+                {droppableProvided.placeholder}
+              </div>
+            )}
+          </Droppable>
         </DragDropContext>
       </div>
     );
