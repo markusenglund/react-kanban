@@ -104,6 +104,22 @@ $list-margin: 8px;
 .edit-card-button:hover {
   opacity: 1;
 }
+.delete-card-button {
+  position: absolute;
+  right: 28px;
+  top: 2px;
+  border: 0;
+  padding: 4px 6px 7px 6px;
+  border-radius: 3px;
+  opacity: 0;
+  color: $fg-black;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete-card-button:hover {
+  opacity: 1;
+}
 
 .open-composer-button {
   display: flex;

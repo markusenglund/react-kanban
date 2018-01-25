@@ -5,6 +5,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import shortid from "shortid";
 import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
+import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import ClickOutside from "./ClickOutside";
 
 type Props = {
@@ -97,6 +98,11 @@ class List extends React.Component<Props, State> {
     this.setState({ editableCardTitle: "", cardInEdit: null });
   };
 
+  deleteCard = cardId => {
+    const { dispatch, list } = this.props;
+    dispatch({ type: "DELETE_CARD", payload: { cardId, listId: list.id } });
+  };
+
   openTitleEditor = () => {
     this.setState({
       isListTitleInEdit: true,
@@ -187,6 +193,12 @@ class List extends React.Component<Props, State> {
                           data-react-beautiful-dnd-drag-handle="0"
                         >
                           <span>{card.title}</span>
+                          <button
+                            onClick={() => this.deleteCard(card.id)}
+                            className="delete-card-button"
+                          >
+                            <FaTimesCircle />
+                          </button>
                           <button
                             onClick={() => this.openCardEditor(card)}
                             className="edit-card-button"

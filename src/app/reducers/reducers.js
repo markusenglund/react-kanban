@@ -84,7 +84,11 @@ const cards = (state: CardState = initialCardState, action: Action) => {
       const { cardTitle, cardId } = action.payload;
       return { ...state, [cardId]: { title: cardTitle, id: cardId } };
     }
-
+    case "DELETE_CARD": {
+      const { cardId } = action.payload;
+      const { [cardId]: deletedCard, ...restOfCards } = state;
+      return restOfCards;
+    }
     default:
       return state;
   }
@@ -97,6 +101,16 @@ const lists = (state: ListState = initialListState, action: Action) => {
       return {
         ...state,
         [listId]: { ...state[listId], cards: [...state[listId].cards, cardId] }
+      };
+    }
+    case "DELETE_CARD": {
+      const { cardId: newCardId, listId } = action.payload;
+      return {
+        ...state,
+        [listId]: {
+          ...state[listId],
+          cards: state[listId].cards.filter(cardId => cardId !== newCardId)
+        }
       };
     }
     case "ADD_LIST": {
