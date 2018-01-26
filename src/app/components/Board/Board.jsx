@@ -61,19 +61,25 @@ class Board extends React.Component<Props> {
             {droppableProvided => (
               <div className="lists" ref={droppableProvided.innerRef}>
                 {lists.map((list, index) => (
-                  <Draggable key={list.id} draggableId={list.id} index={index}>
+                  <Draggable
+                    key={list.id}
+                    draggableId={list.id}
+                    index={index}
+                    disableInteractiveElementBlocking
+                  >
                     {provided => (
                       <>
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          {...provided.dragHandleProps}
                           data-react-beautiful-dnd-draggable="0"
-                          data-react-beautiful-dnd-drag-handle="0"
-                          // style={{ height: "100%" }}
                           className="list-wrapper"
                         >
-                          <List list={list} boardId={boardId} />
+                          <List
+                            list={list}
+                            boardId={boardId}
+                            dragHandleProps={provided.dragHandleProps}
+                          />
                         </div>
                         {provided.placeholder}
                       </>

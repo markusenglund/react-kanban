@@ -153,7 +153,7 @@ class List extends React.Component<Props, State> {
   };
 
   render = () => {
-    const { cards, list } = this.props;
+    const { cards, list, dragHandleProps } = this.props;
     const {
       cardComposerIsOpen,
       newCardTitle,
@@ -177,9 +177,18 @@ class List extends React.Component<Props, State> {
             />
           </div>
         ) : (
-          <div className="list-title">
+          <div
+            className="list-title"
+            {...dragHandleProps}
+            data-react-beautiful-dnd-drag-handle="0"
+          >
             <button
-              onFocus={this.openTitleEditor}
+              onKeyDown={event => {
+                if (event.keyCode === 13) {
+                  event.preventDefault();
+                  this.openTitleEditor();
+                }
+              }}
               onClick={this.openTitleEditor}
               className="list-title-button"
             >
