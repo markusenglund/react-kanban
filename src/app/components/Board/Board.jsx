@@ -70,7 +70,8 @@ class Board extends React.Component<Props> {
                           {...provided.dragHandleProps}
                           data-react-beautiful-dnd-draggable="0"
                           data-react-beautiful-dnd-drag-handle="0"
-                          style={{ height: "100%" }}
+                          // style={{ height: "100%" }}
+                          className="list-wrapper"
                         >
                           <List list={list} boardId={boardId} />
                         </div>
