@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import List from "./List";
 import ListAdder from "./ListAdder";
-// import DndExample from "./BeautifulDndExample";
 import "./Board.scss";
 
 type Props = {
