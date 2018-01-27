@@ -11,16 +11,6 @@ type BoardState = {
   [string]: { title: string, id: string, lists: Array<string> }
 };
 
-// type AddCardAction = {
-//   type: string,
-//   payload: { listId: string, cardId: string, cardTitle: string }
-// };
-
-// type EditListTitleAction = {
-//   type: string,
-//   payload: { listId: string, listTitle: string }
-// };
-
 type Action = {
   type: string,
   payload: {
@@ -61,12 +51,12 @@ const initialListState = {
   lgrnrirgi: {
     title: "TODO Big picture",
     id: "lgrnrirgi",
-    cards: ["qwer", "asdf"]
+    cards: ["asdfasdf", "hello123"]
   },
   ogtpokpr: {
     title: "TODO details",
     id: "ogtpokpr",
-    cards: ["zxcv", "lkjhag"]
+    cards: ["oijoijlkj", "whatsup"]
   }
 };
 

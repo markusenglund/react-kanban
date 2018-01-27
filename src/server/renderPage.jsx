@@ -8,7 +8,8 @@ import App from "../app/components/App";
 import reducers from "../app/reducers/reducers";
 
 export default function renderPage(req, res) {
-  const store = createStore(combineReducers(reducers), { counter: 5 });
+  console.log("renderpage");
+  const store = createStore(combineReducers(reducers), req.initialState);
 
   const context = {};
 

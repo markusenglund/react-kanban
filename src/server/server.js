@@ -7,19 +7,29 @@ import renderPage from "./renderPage";
 
 dotenv.config();
 
-const client = new Client();
+const getData = (req, res, next) => {
+  const client = new Client();
 
-client.connect();
+  client.connect();
 
-client.query("SELECT $1::text as message", ["Hello world!"], (err, res) => {
-  console.log(err ? err.stack : res.rows[0].message); // Hello World!
-  client.end();
-});
+  client.query("SELECT * FROM cards", (err, cardData) => {
+    // console.log(err ? err.stack : res.rows[0]); // Hello World!
+    console.log("getdata");
+    const cards = cardData.rows.reduce((acc, card) => {
+      acc[card.id] = card;
+      return acc;
+    }, {});
+    req.initialState = { cards };
+    client.end();
+    next();
+  });
+};
 
 const app = express();
 
 app.use(compression());
 app.use("/public", express.static(path.join("dist/public")));
+app.use(getData);
 app.get("*", renderPage);
 
 const port = process.env.PORT || "1337";
