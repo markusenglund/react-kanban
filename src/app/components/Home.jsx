@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
-import gandalfGif from "../assets/gandalf.gif";
+import gandalfGif from "../../assets/images/gandalf.gif";
 
 type Props = {
   boards: Array<{ title: string, id: string }>

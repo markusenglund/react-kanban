@@ -1,5 +1,6 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const DashboardPlugin = require("webpack-dashboard/plugin");
 const nodeExternals = require("webpack-node-externals");
 const autoprefixer = require("autoprefixer");
@@ -52,7 +53,7 @@ module.exports = [
               options: {
                 limit: 4096,
                 name: "[name].[ext]",
-                outputPath: "assets/"
+                outputPath: "images/"
               }
             },
             {
@@ -62,7 +63,11 @@ module.exports = [
         }
       ]
     },
-    plugins: [new ExtractTextPlugin("bundle.css"), new DashboardPlugin()],
+    plugins: [
+      new ExtractTextPlugin("bundle.css"),
+      new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
+      new DashboardPlugin()
+    ],
     resolve: {
       extensions: [".js", ".jsx"]
     }
@@ -99,7 +104,7 @@ module.exports = [
                 emitFile: false,
                 limit: 4096,
                 name: "[name].[ext]",
-                outputPath: "assets/",
+                outputPath: "images/",
                 publicPath: "/public/"
               }
             }
