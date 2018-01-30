@@ -12,7 +12,7 @@ module.exports = [
     entry: path.join(__dirname, "src/client.jsx"),
     output: {
       path: path.join(__dirname, "dist/public"),
-      publicPath: "/public/",
+      publicPath: "/static/",
       filename: "bundle.js"
     },
     module: {
@@ -105,7 +105,7 @@ module.exports = [
                 limit: 4096,
                 name: "[name].[ext]",
                 outputPath: "images/",
-                publicPath: "/public/"
+                publicPath: "/static/"
               }
             }
           ]

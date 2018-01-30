@@ -1,5 +1,6 @@
 import path from "path";
 import express from "express";
+import mysql from "mysql";
 import compression from "compression";
 import favicon from "serve-favicon";
 import dotenv from "dotenv";
@@ -7,11 +8,29 @@ import renderPage from "./renderPage";
 
 dotenv.config();
 
+const connection = mysql.createConnection({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE
+});
+
+const getData = (req, res, next) => {
+  connection.connect();
+
+  connection.query("SELECT * FROM cards", (error, results, fields) => {
+    if (error) console.log(error);
+    console.log(results, fields);
+  });
+  next();
+};
+
 const app = express();
 
 app.use(favicon(path.join("dist/public/favicons/favicon.ico")));
+app.use("/static", express.static("dist/public"));
 app.use(compression());
-app.use("/public", express.static(path.join("dist/public")));
+app.use(getData);
 app.get("*", renderPage);
 
 const port = process.env.PORT || "1337";

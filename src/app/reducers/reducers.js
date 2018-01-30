@@ -28,22 +28,22 @@ type Action = {
 };
 
 const initialCardState = {
-  qwer: {
+  asdfasdf: {
     title: "Inspect how trello deals with loading boards, images",
-    id: "qwer"
+    id: "asdfasdf"
   },
-  asdf: {
+  hello123: {
     title: "Make skeleton structure of whatever",
-    id: "asdf"
+    id: "hello123"
   },
-  zxcv: {
+  oijoijlkj: {
     title: "Do some stuff",
-    id: "zxcv"
+    id: "oijoijlkj"
   },
-  lkjhag: {
+  whatsup: {
     title:
       "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?",
-    id: "lkjhag"
+    id: "whatsup"
   }
 };
 

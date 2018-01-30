@@ -32,9 +32,9 @@ export default function renderPage(req, res) {
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="An open source kanban application created with React and Redux. ">
-        <link rel="icon" type="image/png" href="/public/favicons/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="/public/favicons/favicon-16x16.png" sizes="16x16" />
-        <link rel="stylesheet" href="/public/bundle.css">
+        <link rel="icon" type="image/png" href="/static/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/static/favicons/favicon-16x16.png" sizes="16x16" />
+        <link rel="stylesheet" href="/static/bundle.css">
         ${helmet.title.toString()}
       </head>
       <body>
@@ -43,7 +43,7 @@ export default function renderPage(req, res) {
       <script>
         window.PRELOADED_STATE = ${JSON.stringify(preloadedState)}
       </script>
-      <script src="/public/bundle.js"></script>
+      <script src="/static/bundle.js"></script>
     </html>
   `;
   res.send(html);
