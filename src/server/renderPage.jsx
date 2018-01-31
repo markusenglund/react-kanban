@@ -1,7 +1,8 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import { StaticRouter } from "react-router";
 import { Helmet } from "react-helmet";
 import App from "../app/components/App";
@@ -9,7 +10,11 @@ import reducers from "../app/reducers/reducers";
 
 export default function renderPage(req, res) {
   console.log("renderpage");
-  const store = createStore(combineReducers(reducers), req.initialState);
+  const store = createStore(
+    combineReducers(reducers),
+    req.initialState,
+    applyMiddleware(thunk)
+  );
   const context = {};
 
   const appString = renderToString(

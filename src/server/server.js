@@ -5,6 +5,7 @@ import compression from "compression";
 import favicon from "serve-favicon";
 import dotenv from "dotenv";
 import renderPage from "./renderPage";
+import api from "./api";
 import reorganizeData from "./reorganizeData";
 
 dotenv.config();
@@ -37,9 +38,12 @@ const getData = (req, res, next) => {
 
 const app = express();
 
+app.use(compression());
+app.use(express.json());
+app.use(express.urlencoded());
 app.use(favicon(path.join("dist/public/favicons/favicon.ico")));
 app.use("/static", express.static("dist/public"));
-app.use(compression());
+app.use("/api", api);
 app.use(getData);
 app.get("*", renderPage);
 

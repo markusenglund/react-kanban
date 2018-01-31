@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
-import shortid from "shortid";
+import { addList } from "../../actionCreators";
 
 type Props = {
   dispatch: ({ type: string }) => void,
@@ -36,10 +36,7 @@ class ListAdder extends Component<Props, State> {
   handleSubmit = () => {
     const { dispatch, boardId } = this.props;
     const { newListTitle } = this.state;
-    dispatch({
-      type: "ADD_LIST",
-      payload: { listTitle: newListTitle, listId: shortid.generate(), boardId }
-    });
+    dispatch(addList(newListTitle, boardId));
     this.setState({ isListInEdit: false, newListTitle: "" });
   };
   render = () => {

@@ -15,6 +15,7 @@
   "author": "Markus Englund <markus.s.englund@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
     "compression": "^1.7.1",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
@@ -31,6 +32,7 @@
     "react-textarea-autosize": "^5.2.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.2.0",
     "serve-favicon": "^2.4.5",
     "shortid": "^2.2.8",
     "slugify": "^1.2.9"
