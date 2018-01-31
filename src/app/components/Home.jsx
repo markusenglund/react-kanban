@@ -33,7 +33,7 @@ class Home extends Component<Props> {
 }
 
 const mapStateToProps = state => ({
-  boards: Object.values(state.boards)
+  boards: Object.values(state.boardsById)
 });
 
 export default connect(mapStateToProps)(Home);

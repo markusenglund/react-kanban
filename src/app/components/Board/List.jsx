@@ -295,7 +295,7 @@ class List extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  cards: ownProps.list.cards.map(cardId => state.cards[cardId])
+  cards: ownProps.list.cards.map(cardId => state.cardsById[cardId])
 });
 
 export default connect(mapStateToProps)(List);

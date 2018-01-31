@@ -68,7 +68,7 @@ const initialBoardState = {
   }
 };
 
-const cards = (state: CardState = initialCardState, action: Action) => {
+const cardsById = (state: CardState = initialCardState, action: Action) => {
   switch (action.type) {
     case "ADD_CARD":
     case "EDIT_CARD_TITLE": {
@@ -94,7 +94,7 @@ const cards = (state: CardState = initialCardState, action: Action) => {
   }
 };
 
-const lists = (state: ListState = initialListState, action: Action) => {
+const listsById = (state: ListState = initialListState, action: Action) => {
   switch (action.type) {
     case "ADD_CARD": {
       const { listId, cardId } = action.payload;
@@ -165,7 +165,7 @@ const lists = (state: ListState = initialListState, action: Action) => {
   }
 };
 
-const boards = (state: BoardState = initialBoardState, action: Action) => {
+const boardsById = (state: BoardState = initialBoardState, action: Action) => {
   switch (action.type) {
     case "ADD_LIST": {
       const { boardId, listId } = action.payload;
@@ -212,4 +212,4 @@ const counter = (state: number = 1, action: Action) => {
   }
 };
 
-export default { counter, cards, lists, boards };
+export default { counter, cardsById, listsById, boardsById };
