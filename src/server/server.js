@@ -39,10 +39,14 @@ const getData = (req, res, next) => {
 const app = express();
 
 app.use(compression());
-app.use(express.json());
-app.use(express.urlencoded());
 app.use(favicon(path.join("dist/public/favicons/favicon.ico")));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static("dist/public"));
+app.use((req, res, next) => {
+  req.connection = connection;
+  next();
+});
 app.use("/api", api);
 app.use(getData);
 app.get("*", renderPage);
