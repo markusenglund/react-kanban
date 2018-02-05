@@ -1,22 +1,20 @@
 import { Router } from "express";
 
-const router = Router();
+const api = db => {
+  const router = Router();
 
-router.post("/list", (req, res) => {
-  const { connection } = req;
-  const { listId, listTitle, listIndex, boardId } = req.body;
-  console.log(listTitle);
-  connection.query(
-    `INSERT INTO lists (list_id, list_title, list_order, board_id)
-      VALUES ('${listId}', '${listTitle}', '${listIndex}','${boardId}')`,
-    (error, result) => {
-      if (error) {
-        res.send({ success: false });
-      }
-      console.log(result);
-      res.send({ success: true });
-    }
-  );
-});
+  router.post("/list", (req, res) => {
+    const { listId, listTitle, boardId } = req.body;
+    db
+      .collection("boards")
+      .updateOne(
+        { _id: boardId },
+        { $push: { lists: { _id: listId, title: listTitle, cards: [] } } }
+      )
+      .then(result => res.send(result));
+  });
 
-export default router;
+  return router;
+};
+
+export default api;

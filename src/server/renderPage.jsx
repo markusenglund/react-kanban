@@ -9,7 +9,7 @@ import App from "../app/components/App";
 import reducers from "../app/reducers/reducers";
 
 export default function renderPage(req, res) {
-  console.log("renderpage", req.initialState);
+  console.log("renderpage");
   const store = createStore(
     combineReducers(reducers),
     req.initialState,
