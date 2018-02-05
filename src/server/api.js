@@ -14,6 +14,17 @@ const api = db => {
       .then(result => res.send(result));
   });
 
+  router.post("/card", (req, res) => {
+    const { cardTitle, cardId, listId, boardId } = req.body;
+    db
+      .collection("boards")
+      .updateOne(
+        { _id: boardId, "lists._id": listId },
+        { $push: { "lists.$.cards": { _id: cardId, title: cardTitle } } }
+      )
+      .then(result => res.send(result));
+  });
+
   return router;
 };
 

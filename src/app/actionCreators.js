@@ -13,4 +13,14 @@ export const addList = (listTitle, boardId) => dispatch => {
     .then(({ data }) => console.log(data));
 };
 
-export const deleteList = "hej";
+export const addCard = (cardTitle, listId, boardId) => dispatch => {
+  const cardId = shortid.generate();
+  dispatch({
+    type: "ADD_CARD",
+    payload: { cardTitle, cardId, listId }
+  });
+
+  axios
+    .post("/api/card", { cardTitle, cardId, listId, boardId })
+    .then(({ data }) => console.log(data));
+};
