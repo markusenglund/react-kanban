@@ -6,7 +6,7 @@ import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import ClickOutside from "./ClickOutside";
-import { addCard } from "../../actionCreators";
+import { addCard, editCardTitle } from "../../actionCreators";
 
 type Props = {
   boardId: string,
@@ -80,16 +80,12 @@ class List extends React.Component<Props, State> {
 
   handleSubmitCardEdit = () => {
     const { editableCardTitle, cardInEdit } = this.state;
-    const { list, dispatch } = this.props;
-    if (editableCardTitle === "") return;
-    dispatch({
-      type: "EDIT_CARD_TITLE",
-      payload: {
-        cardId: cardInEdit,
-        cardTitle: editableCardTitle,
-        listId: list._id
-      }
-    });
+    const { list, boardId, dispatch } = this.props;
+    if (editableCardTitle === "") {
+      this.deleteCard(cardInEdit);
+    } else {
+      dispatch(editCardTitle(editableCardTitle, cardInEdit, list, boardId));
+    }
     this.setState({ editableCardTitle: "", cardInEdit: null });
   };
 

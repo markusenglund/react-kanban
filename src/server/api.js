@@ -25,6 +25,18 @@ const api = db => {
       .then(result => res.send(result));
   });
 
+  router.put("/card", (req, res) => {
+    const { cardTitle, cardIndex, listId, boardId } = req.body;
+    const field = `lists.$.cards.${cardIndex}.title`;
+    db
+      .collection("boards")
+      .updateOne(
+        { _id: boardId, "lists._id": listId },
+        { $set: { [field]: cardTitle } }
+      )
+      .then(result => res.send(result));
+  });
+
   return router;
 };
 
