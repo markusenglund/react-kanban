@@ -7,7 +7,7 @@ import slugify from "slugify";
 import gandalfGif from "../../assets/images/gandalf.gif";
 
 type Props = {
-  boards: Array<{ title: string, id: string }>
+  boards: Array<{ title: string, _id: string }>
 };
 
 class Home extends Component<Props> {
@@ -21,8 +21,8 @@ class Home extends Component<Props> {
         <img src={gandalfGif} alt="laughing gandalf" />
         {boards.map(board => (
           <Link
-            key={board.id}
-            to={`/b/${board.id}/${slugify(board.title, { lower: true })}`}
+            key={board._id}
+            to={`/b/${board._id}/${slugify(board.title, { lower: true })}`}
           >
             {board.title}
           </Link>

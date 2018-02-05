@@ -8,7 +8,7 @@ import ListAdder from "./ListAdder";
 import "./Board.scss";
 
 type Props = {
-  lists: Array<{ id: string }>,
+  lists: Array<{ _id: string }>,
   boardTitle: string,
   boardId: string,
   dispatch: ({ type: string }) => void
@@ -61,8 +61,8 @@ class Board extends React.Component<Props> {
               <div className="lists" ref={droppableProvided.innerRef}>
                 {lists.map((list, index) => (
                   <Draggable
-                    key={list.id}
-                    draggableId={list.id}
+                    key={list._id}
+                    draggableId={list._id}
                     index={index}
                     disableInteractiveElementBlocking
                   >

@@ -12,10 +12,10 @@ type Props = {
   boardId: string,
   list: {
     title: string,
-    id: string,
+    _id: string,
     cards: Array<string>
   },
-  cards: Array<{ title: string, id: string }>,
+  cards: Array<{ title: string, _id: string }>,
   dispatch: ({ type: string }) => void
 };
 
@@ -64,14 +64,14 @@ class List extends React.Component<Props, State> {
       payload: {
         cardId: shortid.generate(),
         cardTitle: newCardTitle,
-        listId: list.id
+        listId: list._id
       }
     });
     this.setState({ newCardTitle: "", cardComposerIsOpen: false });
   };
 
   openCardEditor = card => {
-    this.setState({ cardInEdit: card.id, editableCardTitle: card.title });
+    this.setState({ cardInEdit: card._id, editableCardTitle: card.title });
   };
 
   handleCardEditorChange = (event: { target: { value: string } }) => {
@@ -94,7 +94,7 @@ class List extends React.Component<Props, State> {
       payload: {
         cardId: cardInEdit,
         cardTitle: editableCardTitle,
-        listId: list.id
+        listId: list._id
       }
     });
     this.setState({ editableCardTitle: "", cardInEdit: null });
@@ -102,7 +102,7 @@ class List extends React.Component<Props, State> {
 
   deleteCard = cardId => {
     const { dispatch, list } = this.props;
-    dispatch({ type: "DELETE_CARD", payload: { cardId, listId: list.id } });
+    dispatch({ type: "DELETE_CARD", payload: { cardId, listId: list._id } });
   };
 
   openTitleEditor = () => {
@@ -131,7 +131,7 @@ class List extends React.Component<Props, State> {
       type: "EDIT_LIST_TITLE",
       payload: {
         listTitle: newListTitle,
-        listId: list.id
+        listId: list._id
       }
     });
     this.setState({
@@ -145,7 +145,7 @@ class List extends React.Component<Props, State> {
     dispatch({
       type: "DELETE_LIST",
       payload: {
-        listId: list.id,
+        listId: list._id,
         boardId,
         cards: list.cards
       }
@@ -199,11 +199,11 @@ class List extends React.Component<Props, State> {
             </button>
           </div>
         )}
-        <Droppable droppableId={list.id}>
+        <Droppable droppableId={list._id}>
           {provided => (
             <div className="cards" ref={provided.innerRef}>
               {cards.map((card, index) => (
-                <Draggable key={card.id} draggableId={card.id} index={index}>
+                <Draggable key={card._id} draggableId={card._id} index={index}>
                   {({
                     innerRef,
                     draggableProps,
@@ -211,7 +211,7 @@ class List extends React.Component<Props, State> {
                     placeholder
                   }) => (
                     <div>
-                      {cardInEdit !== card.id ? (
+                      {cardInEdit !== card._id ? (
                         <div
                           className="card-title"
                           ref={innerRef}
@@ -222,7 +222,7 @@ class List extends React.Component<Props, State> {
                         >
                           <span>{card.title}</span>
                           <button
-                            onClick={() => this.deleteCard(card.id)}
+                            onClick={() => this.deleteCard(card._id)}
                             className="delete-card-button"
                           >
                             <FaTimesCircle />

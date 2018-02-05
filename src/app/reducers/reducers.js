@@ -1,14 +1,14 @@
 // @flow
 type CardState = {
-  [string]: { title: string, id: string }
+  [string]: { title: string, _id: string }
 };
 
 type ListState = {
-  [string]: { title: string, id: string, cards: Array<string> }
+  [string]: { title: string, _id: string, cards: Array<string> }
 };
 
 type BoardState = {
-  [string]: { title: string, id: string, lists: Array<string> }
+  [string]: { title: string, _id: string, lists: Array<string> }
 };
 
 type Action = {
@@ -30,32 +30,32 @@ type Action = {
 const initialCardState = {
   asdfasdf: {
     title: "Inspect how trello deals with loading boards, images",
-    id: "asdfasdf"
+    _id: "asdfasdf"
   },
   hello123: {
     title: "Make skeleton structure of whatever",
-    id: "hello123"
+    _id: "hello123"
   },
   oijoijlkj: {
     title: "Do some stuff",
-    id: "oijoijlkj"
+    _id: "oijoijlkj"
   },
   whatsup: {
     title:
       "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?",
-    id: "whatsup"
+    _id: "whatsup"
   }
 };
 
 const initialListState = {
   lgrnrirgi: {
     title: "TODO Big picture",
-    id: "lgrnrirgi",
+    _id: "lgrnrirgi",
     cards: ["asdfasdf", "hello123"]
   },
   ogtpokpr: {
     title: "TODO details",
-    id: "ogtpokpr",
+    _id: "ogtpokpr",
     cards: ["oijoijlkj", "whatsup"]
   }
 };
@@ -63,7 +63,7 @@ const initialListState = {
 const initialBoardState = {
   abc123: {
     title: "Test Board Hejsvejs",
-    id: "abc123",
+    _id: "abc123",
     lists: ["lgrnrirgi", "ogtpokpr"]
   }
 };
@@ -73,7 +73,7 @@ const cardsById = (state: CardState = initialCardState, action: Action) => {
     case "ADD_CARD":
     case "EDIT_CARD_TITLE": {
       const { cardTitle, cardId } = action.payload;
-      return { ...state, [cardId]: { title: cardTitle, id: cardId } };
+      return { ...state, [cardId]: { title: cardTitle, _id: cardId } };
     }
     case "DELETE_CARD": {
       const { cardId } = action.payload;
@@ -117,7 +117,7 @@ const listsById = (state: ListState = initialListState, action: Action) => {
       const { listId, listTitle } = action.payload;
       return {
         ...state,
-        [listId]: { id: listId, title: listTitle, cards: [] }
+        [listId]: { _id: listId, title: listTitle, cards: [] }
       };
     }
     case "DELETE_LIST": {
