@@ -6,7 +6,12 @@ import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import ClickOutside from "./ClickOutside";
-import { addCard, editCardTitle, deleteCard } from "../../actionCreators";
+import {
+  addCard,
+  editCardTitle,
+  deleteCard,
+  deleteList
+} from "../../actionCreators";
 
 type Props = {
   boardId: string,
@@ -131,14 +136,7 @@ class List extends React.Component<Props, State> {
 
   deleteList = () => {
     const { list, boardId, dispatch } = this.props;
-    dispatch({
-      type: "DELETE_LIST",
-      payload: {
-        listId: list._id,
-        boardId,
-        cards: list.cards
-      }
-    });
+    dispatch(deleteList(list.cards, list._id, boardId));
   };
 
   render = () => {

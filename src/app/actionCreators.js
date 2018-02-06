@@ -78,6 +78,16 @@ export const addList = (listTitle, boardId) => dispatch => {
     .then(({ data }) => console.log(data));
 };
 
+export const deleteList = (cards, listId, boardId) => dispatch => {
+  dispatch({
+    type: "DELETE_LIST",
+    payload: { cards, listId, boardId }
+  });
+  axios
+    .delete("/api/list", { data: { listId, boardId } })
+    .then(({ data }) => console.log(data));
+};
+
 export const reorderBoard = (
   listId,
   sourceId,
