@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import List from "./List";
 import ListAdder from "./ListAdder";
-import { reorderList } from "../../actionCreators";
+import { reorderList, reorderBoard } from "../../actionCreators";
 import "./Board.scss";
 
 type Props = {
@@ -24,15 +24,14 @@ class Board extends React.Component<Props> {
     const { dispatch, boardId } = this.props;
 
     if (type === "COLUMN") {
-      dispatch({
-        type: "REORDER_BOARD",
-        payload: {
-          sourceId: source.droppableId,
-          destinationId: destination.droppableId,
-          sourceIndex: source.index,
-          destinationIndex: destination.index
-        }
-      });
+      dispatch(
+        reorderBoard(
+          draggableId,
+          source.droppableId,
+          source.index,
+          destination.index
+        )
+      );
       return;
     }
     dispatch(

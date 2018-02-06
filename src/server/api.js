@@ -44,6 +44,29 @@ const api = db => {
       });
   });
 
+  router.put("/reorder-board", (req, res) => {
+    const { listId, sourceId, sourceIndex, destinationIndex } = req.body;
+
+    db
+      .collection("boards")
+      .findOneAndUpdate(
+        { _id: sourceId },
+        { $pull: { lists: { _id: listId } } }
+      )
+      .then(({ value }) => {
+        const list = value.lists[sourceIndex];
+        db.collection("boards").updateOne(
+          { _id: sourceId },
+          {
+            $push: {
+              lists: { $each: [list], $position: destinationIndex }
+            }
+          }
+        );
+        res.send({ value, list });
+      });
+  });
+
   router.post("/card", (req, res) => {
     const { cardTitle, cardId, listId, boardId } = req.body;
     db

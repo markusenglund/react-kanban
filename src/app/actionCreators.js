@@ -43,6 +43,31 @@ export const reorderList = (
     .then(({ data }) => console.log(data));
 };
 
+export const reorderBoard = (
+  listId,
+  sourceId,
+  sourceIndex,
+  destinationIndex
+) => dispatch => {
+  dispatch({
+    type: "REORDER_BOARD",
+    payload: {
+      sourceId,
+      sourceIndex,
+      destinationIndex
+    }
+  });
+
+  axios
+    .put("/api/reorder-board", {
+      listId,
+      sourceId,
+      sourceIndex,
+      destinationIndex
+    })
+    .then(({ data }) => console.log(data));
+};
+
 export const addCard = (cardTitle, listId, boardId) => dispatch => {
   const cardId = shortid.generate();
   dispatch({
