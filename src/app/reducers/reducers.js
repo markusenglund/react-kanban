@@ -1,74 +1,4 @@
-// @flow
-type CardState = {
-  [string]: { title: string, _id: string }
-};
-
-type ListState = {
-  [string]: { title: string, _id: string, cards: Array<string> }
-};
-
-type BoardState = {
-  [string]: { title: string, _id: string, lists: Array<string> }
-};
-
-type Action = {
-  type: string,
-  payload: {
-    listId: string,
-    listTitle: string,
-    cards: Array<string>,
-    cardId: string,
-    cardTitle: string,
-    boardId: string,
-    sourceIndex: number,
-    destinationIndex: number,
-    sourceId: string,
-    destinationId: string
-  }
-};
-
-const initialCardState = {
-  asdfasdf: {
-    title: "Inspect how trello deals with loading boards, images",
-    _id: "asdfasdf"
-  },
-  hello123: {
-    title: "Make skeleton structure of whatever",
-    _id: "hello123"
-  },
-  oijoijlkj: {
-    title: "Do some stuff",
-    _id: "oijoijlkj"
-  },
-  whatsup: {
-    title:
-      "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?",
-    _id: "whatsup"
-  }
-};
-
-const initialListState = {
-  lgrnrirgi: {
-    title: "TODO Big picture",
-    _id: "lgrnrirgi",
-    cards: ["asdfasdf", "hello123"]
-  },
-  ogtpokpr: {
-    title: "TODO details",
-    _id: "ogtpokpr",
-    cards: ["oijoijlkj", "whatsup"]
-  }
-};
-
-const initialBoardState = {
-  abc123: {
-    title: "Test Board Hejsvejs",
-    _id: "abc123",
-    lists: ["lgrnrirgi", "ogtpokpr"]
-  }
-};
-
-const cardsById = (state: CardState = initialCardState, action: Action) => {
+const cardsById = (state = {}, action) => {
   switch (action.type) {
     case "ADD_CARD":
     case "EDIT_CARD_TITLE": {
@@ -94,7 +24,7 @@ const cardsById = (state: CardState = initialCardState, action: Action) => {
   }
 };
 
-const listsById = (state: ListState = initialListState, action: Action) => {
+const listsById = (state = {}, action) => {
   switch (action.type) {
     case "ADD_CARD": {
       const { listId, cardId } = action.payload;
@@ -165,7 +95,7 @@ const listsById = (state: ListState = initialListState, action: Action) => {
   }
 };
 
-const boardsById = (state: BoardState = initialBoardState, action: Action) => {
+const boardsById = (state = {}, action) => {
   switch (action.type) {
     case "ADD_LIST": {
       const { boardId, listId } = action.payload;
@@ -202,14 +132,4 @@ const boardsById = (state: BoardState = initialBoardState, action: Action) => {
   }
 };
 
-const counter = (state: number = 1, action: Action) => {
-  switch (action.type) {
-    case "INCREMENT": {
-      return state + 2;
-    }
-    default:
-      return state;
-  }
-};
-
-export default { counter, cardsById, listsById, boardsById };
+export default { cardsById, listsById, boardsById };

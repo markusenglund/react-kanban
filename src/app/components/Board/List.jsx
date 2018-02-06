@@ -2,6 +2,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import type { DragHandleProps } from "react-beautiful-dnd";
 import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
@@ -22,7 +23,8 @@ type Props = {
     cards: Array<string>
   },
   cards: Array<{ title: string, _id: string }>,
-  dispatch: ({ type: string }) => void
+  dispatch: ({ type: string }) => void,
+  dragHandleProps: DragHandleProps
 };
 
 type State = {
@@ -189,7 +191,7 @@ class List extends React.Component<Props, State> {
                   {({
                     innerRef,
                     draggableProps,
-                    dragHandleProps,
+                    dragHandleProps: handleProps,
                     placeholder
                   }) => (
                     <div>
@@ -198,7 +200,7 @@ class List extends React.Component<Props, State> {
                           className="card-title"
                           ref={innerRef}
                           {...draggableProps}
-                          {...dragHandleProps}
+                          {...handleProps}
                           data-react-beautiful-dnd-draggable="0"
                           data-react-beautiful-dnd-drag-handle="0"
                         >

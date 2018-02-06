@@ -2,11 +2,11 @@ import { Router } from "express";
 
 const api = db => {
   const router = Router();
+  const boards = db.collection("boards");
 
   router.post("/card", (req, res) => {
     const { cardTitle, cardId, listId, boardId } = req.body;
-    db
-      .collection("boards")
+    boards
       .updateOne(
         { _id: boardId, "lists._id": listId },
         { $push: { "lists.$.cards": { _id: cardId, title: cardTitle } } }
@@ -17,8 +17,7 @@ const api = db => {
   router.put("/card", (req, res) => {
     const { cardTitle, cardIndex, listId, boardId } = req.body;
     const field = `lists.$.cards.${cardIndex}.title`;
-    db
-      .collection("boards")
+    boards
       .updateOne(
         { _id: boardId, "lists._id": listId },
         { $set: { [field]: cardTitle } }
@@ -28,8 +27,7 @@ const api = db => {
 
   router.delete("/card", (req, res) => {
     const { cardId, listId, boardId } = req.body;
-    db
-      .collection("boards")
+    boards
       .updateOne(
         { _id: boardId, "lists._id": listId },
         { $pull: { "lists.$.cards": { _id: cardId } } }
@@ -39,8 +37,7 @@ const api = db => {
 
   router.post("/list", (req, res) => {
     const { listId, listTitle, boardId } = req.body;
-    db
-      .collection("boards")
+    boards
       .updateOne(
         { _id: boardId },
         { $push: { lists: { _id: listId, title: listTitle, cards: [] } } }
@@ -50,17 +47,7 @@ const api = db => {
 
   router.put("/list", (req, res) => {
     const { listTitle, listId, boardId } = req.body;
-    // const field = `lists.$.cards.${cardIndex}.title`;
-    // db
-    //   .collection("boards")
-    //   .updateOne(
-    //     { _id: boardId, "lists._id": listId },
-    //     { $set: { [field]: cardTitle } }
-    //   )
-    //   .then(result => res.send(result));
-
-    db
-      .collection("boards")
+    boards
       .updateOne(
         { _id: boardId, "lists._id": listId },
         { $set: { "lists.$.title": listTitle } }
@@ -70,8 +57,7 @@ const api = db => {
 
   router.delete("/list", (req, res) => {
     const { listId, boardId } = req.body;
-    db
-      .collection("boards")
+    boards
       .updateOne({ _id: boardId }, { $pull: { lists: { _id: listId } } })
       .then(result => res.send(result));
   });
@@ -85,8 +71,7 @@ const api = db => {
       destinationIndex,
       boardId
     } = req.body;
-    db
-      .collection("boards")
+    boards
       .findOneAndUpdate(
         { _id: boardId, "lists._id": sourceId },
         { $pull: { "lists.$.cards": { _id: cardId } } },
@@ -109,8 +94,7 @@ const api = db => {
   router.put("/reorder-board", (req, res) => {
     const { listId, sourceId, sourceIndex, destinationIndex } = req.body;
 
-    db
-      .collection("boards")
+    boards
       .findOneAndUpdate(
         { _id: sourceId },
         { $pull: { lists: { _id: listId } } }

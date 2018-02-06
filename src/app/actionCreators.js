@@ -1,6 +1,6 @@
 import axios from "axios";
 import shortid from "shortid";
-
+/* eslint-disable no-console */
 export const addCard = (cardTitle, listId, boardId) => dispatch => {
   const cardId = shortid.generate();
   dispatch({
@@ -86,10 +86,7 @@ export const editListTitle = (listTitle, listId, boardId) => dispatch => {
       listId
     }
   });
-  // const cardIndex = list.cards.indexOf(cardId);
-  // axios
-  //   .put("/api/card", { cardTitle, cardIndex, listId: list._id, boardId })
-  //   .then(({ data }) => console.log(data));
+
   axios
     .put("/api/list", { listTitle, listId, boardId })
     .then(({ data }) => console.log(data));
