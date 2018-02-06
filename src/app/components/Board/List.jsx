@@ -6,7 +6,7 @@ import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import ClickOutside from "./ClickOutside";
-import { addCard, editCardTitle } from "../../actionCreators";
+import { addCard, editCardTitle, deleteCard } from "../../actionCreators";
 
 type Props = {
   boardId: string,
@@ -90,8 +90,8 @@ class List extends React.Component<Props, State> {
   };
 
   deleteCard = cardId => {
-    const { dispatch, list } = this.props;
-    dispatch({ type: "DELETE_CARD", payload: { cardId, listId: list._id } });
+    const { dispatch, list, boardId } = this.props;
+    dispatch(deleteCard(cardId, list._id, boardId));
   };
 
   openTitleEditor = () => {
