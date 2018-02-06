@@ -13,6 +13,36 @@ export const addList = (listTitle, boardId) => dispatch => {
     .then(({ data }) => console.log(data));
 };
 
+export const reorderList = (
+  cardId,
+  sourceId,
+  destinationId,
+  sourceIndex,
+  destinationIndex,
+  boardId
+) => dispatch => {
+  dispatch({
+    type: "REORDER_LIST",
+    payload: {
+      sourceId,
+      destinationId,
+      sourceIndex,
+      destinationIndex
+    }
+  });
+
+  axios
+    .put("/api/reorder-list", {
+      cardId,
+      sourceId,
+      destinationId,
+      sourceIndex,
+      destinationIndex,
+      boardId
+    })
+    .then(({ data }) => console.log(data));
+};
+
 export const addCard = (cardTitle, listId, boardId) => dispatch => {
   const cardId = shortid.generate();
   dispatch({
