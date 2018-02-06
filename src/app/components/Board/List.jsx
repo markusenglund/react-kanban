@@ -10,6 +10,7 @@ import {
   addCard,
   editCardTitle,
   deleteCard,
+  editListTitle,
   deleteList
 } from "../../actionCreators";
 
@@ -119,15 +120,9 @@ class List extends React.Component<Props, State> {
 
   handleSubmitListTitle = () => {
     const { newListTitle } = this.state;
-    const { list, dispatch } = this.props;
+    const { list, boardId, dispatch } = this.props;
     if (newListTitle === "") return;
-    dispatch({
-      type: "EDIT_LIST_TITLE",
-      payload: {
-        listTitle: newListTitle,
-        listId: list._id
-      }
-    });
+    dispatch(editListTitle(newListTitle, list._id, boardId));
     this.setState({
       isListTitleInEdit: false,
       newListTitle: ""
