@@ -57,7 +57,12 @@ module.exports = [
               }
             },
             {
-              loader: "image-webpack-loader"
+              loader: "image-webpack-loader",
+              options: {
+                mozjpeg: {
+                  enabled: false
+                }
+              }
             }
           ]
         }

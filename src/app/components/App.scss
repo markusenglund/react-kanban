@@ -11,3 +11,19 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.landing-page {
+  background-image: url("../../assets/images/businesswoman.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  height: 100%;
+}
+
+.landing-page-text {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 50px;
+}
