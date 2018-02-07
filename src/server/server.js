@@ -2,7 +2,9 @@ import path from "path";
 import express from "express";
 import { MongoClient } from "mongodb";
 import compression from "compression";
+import helmet from "helmet";
 import favicon from "serve-favicon";
+import logger from "morgan";
 import dotenv from "dotenv";
 import renderPage from "./renderPage";
 import api from "./api";
@@ -14,6 +16,8 @@ const app = express();
 MongoClient.connect(process.env.MONGODB_URL).then(client => {
   const db = client.db(process.env.MONGODB_NAME);
 
+  app.use(helmet());
+  app.use(logger("tiny"));
   app.use(compression());
   app.use(favicon(path.join("dist/public/favicons/favicon.ico")));
   app.use(express.json());
