@@ -3,7 +3,6 @@ import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import FaTwitter from "react-icons/lib/fa/twitter";
-import FaGoogle from "react-icons/lib/fa/google";
 import googleLogo from "../../assets/images/google-logo.svg";
 import "./LandingPage.scss";
 

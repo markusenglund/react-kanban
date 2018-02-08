@@ -22,7 +22,7 @@
   "rules": {
     "react/prefer-stateless-function": 0,
     "react/no-array-index-key": 0,
-    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "no-underscore-dangle": ["error", { "allow": ["_id", "_json"] }],
     "jsx-a11y/anchor-is-valid": [
       2,
       {

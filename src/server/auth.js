@@ -8,10 +8,18 @@ router.get(
   "/twitter/callback",
   passport.authenticate("twitter", { failureRedirect: "/login" }),
   (req, res) => {
-    const { _id } = req.user;
-    console.log("id", _id);
     res.redirect("/");
   }
 );
+
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile"]
+  })
+);
+router.get("/google/callback", passport.authenticate("google"), (req, res) => {
+  res.redirect("/");
+});
 
 export default router;

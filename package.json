@@ -26,6 +26,7 @@
     "morgan": "^1.9.0",
     "normalizr": "^3.2.4",
     "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "react": "^16.2.0",
     "react-beautiful-dnd": "^4.0.1",
