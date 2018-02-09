@@ -5,13 +5,13 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 export default function configurePassport(db) {
   const users = db.collection("users");
 
-  passport.serializeUser((user, done) => {
-    console.log("serialize user");
-    done(null, user);
+  passport.serializeUser((user, cb) => {
+    cb(null, user._id);
   });
-  passport.deserializeUser((id, done) => {
-    console.log("deserialize user");
-    users.findOne({ _id: id }).then(user => done(null, user));
+  passport.deserializeUser((id, cb) => {
+    users.findOne({ _id: id }).then(user => {
+      cb(null, user);
+    });
   });
 
   passport.use(

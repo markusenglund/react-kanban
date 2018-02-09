@@ -29,7 +29,13 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use("/static", express.static("dist/public"));
-  app.use(session({ secret: "asdf", resave: false, saveUninitialized: false }));
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false
+    })
+  );
   app.use(passport.initialize());
   app.use(passport.session());
   app.use("/auth", auth);
