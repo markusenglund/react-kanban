@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Header from "./Header";
 import Home from "./Home";
@@ -14,12 +14,16 @@ const App = ({ user }) => {
       <>
         <Header />
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={LandingPage} />
         <Route path="/b/:boardId" component={Board} />
       </>
     );
   }
-  return <LandingPage />;
+  return (
+    <>
+      <Route path="/" component={LandingPage} />
+      <Redirect to="/" />
+    </>
+  );
 };
 
 const mapStateToProps = state => ({ user: state.user });
