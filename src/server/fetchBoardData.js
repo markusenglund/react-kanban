@@ -22,7 +22,7 @@ const fetchBoardData = db => (req, res, next) => {
     .find({})
     .toArray()
     .then(boards => {
-      req.initialState = normalizeBoards(boards);
+      req.initialState = { ...normalizeBoards(boards), user: req.user };
       next();
     });
 };
