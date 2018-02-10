@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
+import ClickOutside from "./ClickOutside";
 import "./Home.scss";
 
 type Props = {
@@ -14,43 +15,72 @@ class Home extends Component<Props> {
   constructor() {
     super();
     this.state = {
-      isBoardAdderOpen: false
+      isBoardAdderOpen: false,
+      newBoardTitle: ""
     };
   }
 
-  openBoardAdder = () => {
-    this.setState({ isBoardAdderOpen: true });
+  toggleBoardAdder = () => {
+    this.setState({ isBoardAdderOpen: !this.state.isBoardAdderOpen });
+  };
+
+  handleBoardTitleChange = event => {
+    this.setState({ newBoardTitle: event.target.value });
+  };
+
+  handleSubmitBoard = event => {
+    event.preventDefault();
+
+    // Dispatch action to put new empty board in redux store and in db + push history to the board
+    this.setState({ isBoardAdderOpen: false, newBoardTitle: "" });
   };
 
   render = () => {
     const { boards } = this.props;
-    const { isBoardAdderOpen } = this.state;
+    const { isBoardAdderOpen, newBoardTitle } = this.state;
     return (
       <div className="home">
         <Helmet>
           <title>Home | Trello</title>
         </Helmet>
-        <div className="boards">
+        <div className="main-content">
           <h1>My boards</h1>
-          {boards.map(board => (
-            <Link
-              key={board._id}
-              className="board-link"
-              to={`/b/${board._id}/${slugify(board.title, { lower: true })}`}
-            >
-              {board.title}
-            </Link>
-          ))}
-          {isBoardAdderOpen ? (
-            <div>Board adder!</div>
-          ) : (
-            <button
-              onClick={this.openBoardAdder}
-              className="create-board-button"
-            >
-              Create a new board...
-            </button>
-          )}
+          <div className="boards">
+            {boards.map(board => (
+              <Link
+                key={board._id}
+                className="board-link"
+                to={`/b/${board._id}/${slugify(board.title, { lower: true })}`}
+              >
+                {board.title}
+              </Link>
+            ))}
+            {isBoardAdderOpen ? (
+              <ClickOutside handleClickOutside={this.toggleBoardAdder}>
+                <form onSubmit={this.handleSubmitBoard} className="board-adder">
+                  <input
+                    autoFocus
+                    className="submit-board-input"
+                    type="text"
+                    value={newBoardTitle}
+                    onChange={this.handleBoardTitleChange}
+                  />
+                  <input
+                    type="submit"
+                    value="Create board"
+                    className="submit-card-button"
+                  />
+                </form>
+              </ClickOutside>
+            ) : (
+              <button
+                onClick={this.toggleBoardAdder}
+                className="create-board-button"
+              >
+                Create a new board...
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );

@@ -5,8 +5,16 @@
   justify-content: center;
 }
 
-.boards {
+.main-content {
   width: 60%;
+}
+
+.main-content h1 {
+  margin: 20px 5px;
+}
+
+.boards {
+  display: flex;
 }
 
 .board-link {
@@ -52,4 +60,48 @@
 .create-board-button:hover,
 .create-board-button:focus {
   background: $bg-darker-grey;
+}
+
+.board-adder {
+  width: 280px;
+  height: 80px;
+  padding: 8px;
+  background: $bg-grey;
+  color: #444;
+  border-radius: 3px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
+.submit-board-button {
+  background: #5aac44;
+  color: yellow;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 12px 8px 12px;
+  margin: 5px 0 0 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.submit-board-button:focus,
+.submit-board-button:hover {
+  background: #4a9a34;
+}
+
+.submit-board-input {
+  border-radius: 3px;
+  padding: 4px;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  color: inherit;
+  resize: none;
 }

@@ -6,7 +6,7 @@ import type { DragHandleProps } from "react-beautiful-dnd";
 import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
-import ClickOutside from "./ClickOutside";
+import ClickOutside from "../ClickOutside";
 import {
   addCard,
   editCardTitle,
