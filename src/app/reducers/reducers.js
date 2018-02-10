@@ -1,5 +1,8 @@
 const user = (state = null, action) => {
-  return state;
+  switch (action.type) {
+    default:
+      return state;
+  }
 };
 
 const cardsById = (state = {}, action) => {
