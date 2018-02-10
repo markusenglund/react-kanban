@@ -10,7 +10,8 @@ import "./Home.scss";
 
 type Props = {
   boards: Array<{ title: string, _id: string }>,
-  dispatch: ({ type: string }) => void
+  dispatch: ({ type: string }) => void,
+  history: { push: ({ type: string }) => void }
 };
 
 class Home extends Component<Props> {

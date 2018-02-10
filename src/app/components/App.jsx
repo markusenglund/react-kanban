@@ -13,7 +13,7 @@ type Props = {
 };
 
 const App = ({ user }: Props) => {
-  if (true) {
+  if (user) {
     return (
       <>
         <Header />

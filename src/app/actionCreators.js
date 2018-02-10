@@ -128,8 +128,13 @@ export const reorderBoard = (
     .then(({ data }) => console.log(data));
 };
 
-export const addBoard = (boardTitle, history) => dispatch => {
+export const addBoard = (boardTitle, history) => (dispatch, getState) => {
   const boardId = shortid.generate();
+  const { user } = getState();
   dispatch({ type: "ADD_BOARD", payload: { boardTitle, boardId } });
   history.push(`/b/${boardId}/${slugify(boardTitle, { lower: true })}`);
+
+  axios
+    .post("/api/board", { boardId, boardTitle })
+    .then(({ data }) => console.log(data));
 };
