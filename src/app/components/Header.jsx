@@ -8,6 +8,7 @@ class Header extends Component {
       <Link to="/">
         <img src={trelloLogo} alt="Trello logo" />
       </Link>
+      <a href="/auth/signout">Sign out</a>
     </header>
   );
 }
