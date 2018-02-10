@@ -17,14 +17,19 @@ const normalizeBoards = boards => {
 };
 
 const fetchBoardData = db => (req, res, next) => {
-  const collection = db.collection("boards");
-  collection
-    .find({})
-    .toArray()
-    .then(boards => {
-      req.initialState = { ...normalizeBoards(boards), user: req.user };
-      next();
-    });
+  if (req.user) {
+    const collection = db.collection("boards");
+    collection
+      .find({})
+      .toArray()
+      .then(boards => {
+        req.initialState = { ...normalizeBoards(boards), user: req.user };
+        next();
+      });
+  } else {
+    req.initialState = {};
+    next();
+  }
 };
 
 export default fetchBoardData;
