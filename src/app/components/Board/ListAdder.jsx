@@ -36,6 +36,7 @@ class ListAdder extends Component<Props, State> {
   handleSubmit = () => {
     const { dispatch, boardId } = this.props;
     const { newListTitle } = this.state;
+    if (newListTitle === "") return;
     dispatch(addList(newListTitle, boardId));
     this.setState({ isListInEdit: false, newListTitle: "" });
   };
