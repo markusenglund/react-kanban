@@ -164,7 +164,7 @@ class List extends React.Component<Props, State> {
           <div
             className="list-title"
             {...dragHandleProps}
-            data-react-beautiful-dnd-drag-handle="0"
+            // data-react-beautiful-dnd-drag-handle="0"
           >
             <button
               onKeyDown={event => {

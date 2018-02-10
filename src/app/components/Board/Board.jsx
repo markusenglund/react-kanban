@@ -47,6 +47,7 @@ class Board extends React.Component<Props> {
   };
   render = () => {
     const { lists, boardTitle, boardId } = this.props;
+    console.log("lists: ", this.props);
     return (
       <div className="board">
         <Helmet>
@@ -71,7 +72,7 @@ class Board extends React.Component<Props> {
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          data-react-beautiful-dnd-draggable="0"
+                          // data-react-beautiful-dnd-draggable="0"
                           className="list-wrapper"
                         >
                           <List
