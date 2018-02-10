@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
 import ClickOutside from "./ClickOutside";
+import { addBoard } from "../actionCreators";
 import "./Home.scss";
 
 type Props = {
-  boards: Array<{ title: string, _id: string }>
+  boards: Array<{ title: string, _id: string }>,
+  dispatch: ({ type: string }) => void
 };
 
 class Home extends Component<Props> {
@@ -30,7 +32,9 @@ class Home extends Component<Props> {
 
   handleSubmitBoard = event => {
     event.preventDefault();
-
+    const { dispatch, history } = this.props;
+    const { newBoardTitle } = this.state;
+    dispatch(addBoard(newBoardTitle, history));
     // Dispatch action to put new empty board in redux store and in db + push history to the board
     this.setState({ isBoardAdderOpen: false, newBoardTitle: "" });
   };

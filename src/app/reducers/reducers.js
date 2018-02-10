@@ -134,6 +134,13 @@ const boardsById = (state = {}, action) => {
         [sourceId]: { ...state[sourceId], lists: newLists }
       };
     }
+    case "ADD_BOARD": {
+      const { boardTitle, boardId } = action.payload;
+      return {
+        ...state,
+        [boardId]: { _id: boardId, title: boardTitle, lists: [] }
+      };
+    }
     default:
       return state;
   }

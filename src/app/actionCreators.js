@@ -1,5 +1,6 @@
 import axios from "axios";
 import shortid from "shortid";
+import slugify from "slugify";
 /* eslint-disable no-console */
 export const addCard = (cardTitle, listId, boardId) => dispatch => {
   const cardId = shortid.generate();
@@ -125,4 +126,10 @@ export const reorderBoard = (
       destinationIndex
     })
     .then(({ data }) => console.log(data));
+};
+
+export const addBoard = (boardTitle, history) => dispatch => {
+  const boardId = shortid.generate();
+  dispatch({ type: "ADD_BOARD", payload: { boardTitle, boardId } });
+  history.push(`/b/${boardId}/${slugify(boardTitle, { lower: true })}`);
 };
