@@ -131,10 +131,13 @@ export const reorderBoard = (
 export const addBoard = (boardTitle, history) => (dispatch, getState) => {
   const boardId = shortid.generate();
   const { user } = getState();
-  dispatch({ type: "ADD_BOARD", payload: { boardTitle, boardId } });
+  dispatch({
+    type: "ADD_BOARD",
+    payload: { boardTitle, boardId, userId: user._id }
+  });
   history.push(`/b/${boardId}/${slugify(boardTitle, { lower: true })}`);
 
   axios
-    .post("/api/board", { boardId, boardTitle })
+    .post("/api/board", { boardId, boardTitle, userId: user._id })
     .then(({ data }) => console.log(data));
 };

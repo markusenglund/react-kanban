@@ -113,6 +113,18 @@ const api = db => {
       });
   });
 
+  router.post("/board", (req, res) => {
+    const { boardTitle, boardId, userId } = req.body;
+    boards
+      .insertOne({
+        _id: boardId,
+        title: boardTitle,
+        lists: [],
+        users: [userId]
+      })
+      .then(result => res.send(result));
+  });
+
   return router;
 };
 
