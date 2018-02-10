@@ -6,7 +6,7 @@ $list-margin: 8px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  // overflow: auto;
+  background: $bg-blue;
 }
 
 .board-header {

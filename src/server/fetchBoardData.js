@@ -17,7 +17,8 @@ const normalizeBoards = boards => {
 };
 
 const fetchBoardData = db => (req, res, next) => {
-  if (req.user) {
+  // if (req.user) {
+  if (true) {
     const collection = db.collection("boards");
     collection
       .find({})

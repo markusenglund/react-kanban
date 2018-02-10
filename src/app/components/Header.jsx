@@ -4,7 +4,7 @@ import trelloLogo from "../../assets/images/trello-logo.png";
 
 class Header extends Component {
   render = () => (
-    <header style={{ background: "#026aa7", padding: 5 }}>
+    <header>
       <Link to="/">
         <img src={trelloLogo} alt="Trello logo" />
       </Link>

@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  background: $bg-blue;
+  // background: $bg-blue;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
@@ -10,4 +10,9 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+header {
+  background: $bg-dark-blue;
+  padding: 5px;
 }
