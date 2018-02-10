@@ -18,6 +18,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "compression": "^1.7.1",
+    "connect-mongo": "^2.0.1",
     "dotenv": "^5.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",

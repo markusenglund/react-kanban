@@ -3,6 +3,7 @@ import express from "express";
 import { MongoClient } from "mongodb";
 import passport from "passport";
 import session from "express-session";
+import connectMongo from "connect-mongo";
 import compression from "compression";
 import helmet from "helmet";
 import favicon from "serve-favicon";
@@ -16,6 +17,8 @@ import fetchBoardData from "./fetchBoardData";
 
 dotenv.config();
 const app = express();
+
+const MongoStore = connectMongo(session);
 
 MongoClient.connect(process.env.MONGODB_URL).then(client => {
   const db = client.db(process.env.MONGODB_NAME);
@@ -31,6 +34,7 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use("/static", express.static("dist/public"));
   app.use(
     session({
+      store: new MongoStore({ db }),
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false
