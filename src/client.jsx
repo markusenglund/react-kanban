@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { BrowserRouter } from "react-router-dom";
 import reducers from "./app/reducers/reducers";
+import persistMiddleware from "./persistMiddleware";
 import App from "./app/components/App";
 
 const preloadedState = window.PRELOADED_STATE;
@@ -15,7 +16,7 @@ delete window.PRELOADED_STATE;
 const store = createStore(
   combineReducers(reducers),
   preloadedState,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk, persistMiddleware))
 );
 const render = () => {
   ReactDOM.hydrate(
