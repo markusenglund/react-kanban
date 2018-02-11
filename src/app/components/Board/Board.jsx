@@ -15,7 +15,13 @@ type Props = {
   dispatch: ({ type: string }) => void
 };
 
+let i = 0;
+
 class Board extends React.Component<Props> {
+  componentWillUnmount = () => {
+    i += 1;
+  };
+
   handleDragEnd = ({ draggableId, source, destination, type }) => {
     // dropped outside the list
     if (!destination) {
@@ -45,9 +51,9 @@ class Board extends React.Component<Props> {
       )
     );
   };
+
   render = () => {
     const { lists, boardTitle, boardId } = this.props;
-    console.log("lists: ", this.props);
     return (
       <div className="board">
         <Helmet>
@@ -72,13 +78,14 @@ class Board extends React.Component<Props> {
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          // data-react-beautiful-dnd-draggable="0"
+                          data-react-beautiful-dnd-draggable={i}
                           className="list-wrapper"
                         >
                           <List
                             list={list}
                             boardId={boardId}
                             dragHandleProps={provided.dragHandleProps}
+                            i={i}
                           />
                         </div>
                         {provided.placeholder}
