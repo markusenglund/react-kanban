@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import List from "./List";
 import ListAdder from "./ListAdder";
-import { reorderList, reorderBoard } from "../../actionCreators";
 import "./Board.scss";
 
 type Props = {
@@ -22,7 +21,7 @@ class Board extends React.Component<Props> {
     i += 1;
   };
 
-  handleDragEnd = ({ draggableId, source, destination, type }) => {
+  handleDragEnd = ({ source, destination, type }) => {
     // dropped outside the list
     if (!destination) {
       return;
@@ -30,27 +29,27 @@ class Board extends React.Component<Props> {
     const { dispatch, boardId } = this.props;
 
     if (type === "COLUMN") {
-      dispatch(
-        reorderBoard(
-          draggableId,
-          source.droppableId,
-          source.index,
-          destination.index
-        )
-      );
+      dispatch({
+        type: "REORDER_LISTS",
+        payload: {
+          oldListIndex: source.index,
+          newListIndex: destination.index,
+          boardId: source.droppableId
+        }
+      });
       return;
     }
-    console.log(destination.index);
-    dispatch(
-      reorderList(
-        draggableId,
-        source.droppableId,
-        destination.droppableId,
-        source.index,
-        destination.index,
+
+    dispatch({
+      type: "REORDER_CARDS",
+      payload: {
+        sourceListId: source.droppableId,
+        destListId: destination.droppableId,
+        oldCardIndex: source.index,
+        newCardIndex: destination.index,
         boardId
-      )
-    );
+      }
+    });
   };
 
   render = () => {

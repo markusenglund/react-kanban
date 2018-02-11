@@ -3,17 +3,11 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import type { DragHandleProps } from "react-beautiful-dnd";
+import shortid from "shortid";
 import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import ClickOutside from "../ClickOutside";
-import {
-  addCard,
-  editCardTitle,
-  deleteCard,
-  editListTitle,
-  deleteList
-} from "../../actionCreators";
 
 type Props = {
   boardId: string,
@@ -68,7 +62,12 @@ class List extends React.Component<Props, State> {
     const { newCardTitle } = this.state;
     const { list, boardId, dispatch } = this.props;
     if (newCardTitle === "") return;
-    dispatch(addCard(newCardTitle, list._id, boardId));
+
+    const cardId = shortid.generate();
+    dispatch({
+      type: "ADD_CARD",
+      payload: { cardTitle: newCardTitle, cardId, listId: list._id, boardId }
+    });
     this.setState({ newCardTitle: "", cardComposerIsOpen: false });
   };
 
@@ -93,14 +92,25 @@ class List extends React.Component<Props, State> {
     if (editableCardTitle === "") {
       this.deleteCard(cardInEdit);
     } else {
-      dispatch(editCardTitle(editableCardTitle, cardInEdit, list, boardId));
+      dispatch({
+        type: "EDIT_CARD_TITLE",
+        payload: {
+          cardTitle: editableCardTitle,
+          cardId: cardInEdit,
+          listId: list._id,
+          boardId
+        }
+      });
     }
     this.setState({ editableCardTitle: "", cardInEdit: null });
   };
 
   deleteCard = cardId => {
     const { dispatch, list, boardId } = this.props;
-    dispatch(deleteCard(cardId, list._id, boardId));
+    dispatch({
+      type: "DELETE_CARD",
+      payload: { cardId, listId: list._id, boardId }
+    });
   };
 
   openTitleEditor = () => {
@@ -125,7 +135,10 @@ class List extends React.Component<Props, State> {
     const { newListTitle } = this.state;
     const { list, boardId, dispatch } = this.props;
     if (newListTitle === "") return;
-    dispatch(editListTitle(newListTitle, list._id, boardId));
+    dispatch({
+      type: "EDIT_LIST_TITLE",
+      payload: { listTitle: newListTitle, listId: list._id, boardId }
+    });
     this.setState({
       isListTitleInEdit: false,
       newListTitle: ""
@@ -134,7 +147,10 @@ class List extends React.Component<Props, State> {
 
   deleteList = () => {
     const { list, boardId, dispatch } = this.props;
-    dispatch(deleteList(list.cards, list._id, boardId));
+    dispatch({
+      type: "DELETE_LIST",
+      payload: { cards: list.cards, listId: list._id, boardId }
+    });
   };
 
   render = () => {

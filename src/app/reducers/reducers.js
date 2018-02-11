@@ -69,32 +69,32 @@ const listsById = (state = {}, action) => {
         [listId]: { ...state[listId], title: listTitle }
       };
     }
-    case "REORDER_LIST": {
+    case "REORDER_CARDS": {
       const {
-        sourceIndex,
-        destinationIndex,
-        sourceId,
-        destinationId
+        oldCardIndex,
+        newCardIndex,
+        sourceListId,
+        destListId
       } = action.payload;
       // Reorder within the same list
-      if (sourceId === destinationId) {
-        const newCards = Array.from(state[sourceId].cards);
-        const [removedCard] = newCards.splice(sourceIndex, 1);
-        newCards.splice(destinationIndex, 0, removedCard);
+      if (sourceListId === destListId) {
+        const newCards = Array.from(state[sourceListId].cards);
+        const [removedCard] = newCards.splice(oldCardIndex, 1);
+        newCards.splice(newCardIndex, 0, removedCard);
         return {
           ...state,
-          [sourceId]: { ...state[sourceId], cards: newCards }
+          [sourceListId]: { ...state[sourceListId], cards: newCards }
         };
       }
       // Switch card from one list to another
-      const sourceCards = Array.from(state[sourceId].cards);
-      const [removedCard] = sourceCards.splice(sourceIndex, 1);
-      const destinationCards = Array.from(state[destinationId].cards);
-      destinationCards.splice(destinationIndex, 0, removedCard);
+      const sourceCards = Array.from(state[sourceListId].cards);
+      const [removedCard] = sourceCards.splice(oldCardIndex, 1);
+      const destinationCards = Array.from(state[destListId].cards);
+      destinationCards.splice(newCardIndex, 0, removedCard);
       return {
         ...state,
-        [sourceId]: { ...state[sourceId], cards: sourceCards },
-        [destinationId]: { ...state[destinationId], cards: destinationCards }
+        [sourceListId]: { ...state[sourceListId], cards: sourceCards },
+        [destListId]: { ...state[destListId], cards: destinationCards }
       };
     }
     default:
@@ -124,14 +124,14 @@ const boardsById = (state = {}, action) => {
         }
       };
     }
-    case "REORDER_BOARD": {
-      const { sourceIndex, destinationIndex, sourceId } = action.payload;
-      const newLists = Array.from(state[sourceId].lists);
-      const [removedList] = newLists.splice(sourceIndex, 1);
-      newLists.splice(destinationIndex, 0, removedList);
+    case "REORDER_LISTS": {
+      const { oldListIndex, newListIndex, boardId } = action.payload;
+      const newLists = Array.from(state[boardId].lists);
+      const [removedList] = newLists.splice(oldListIndex, 1);
+      newLists.splice(newListIndex, 0, removedList);
       return {
         ...state,
-        [sourceId]: { ...state[sourceId], lists: newLists }
+        [boardId]: { ...state[boardId], lists: newLists }
       };
     }
     case "ADD_BOARD": {

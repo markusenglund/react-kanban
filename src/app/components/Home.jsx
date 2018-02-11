@@ -4,12 +4,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
+import shortid from "shortid";
 import ClickOutside from "./ClickOutside";
-import { addBoard } from "../actionCreators";
 import "./Home.scss";
 
 type Props = {
   boards: Array<{ title: string, _id: string }>,
+  userId: string,
   dispatch: ({ type: string }) => void,
   history: { push: ({ type: string }) => void }
 };
@@ -37,8 +38,18 @@ class Home extends Component<Props> {
     if (newBoardTitle === "") {
       return;
     }
-    const { dispatch, history } = this.props;
-    dispatch(addBoard(newBoardTitle, history));
+    const { dispatch, history, userId } = this.props;
+    const boardId = shortid.generate();
+    dispatch({
+      type: "ADD_BOARD",
+      payload: {
+        boardTitle: newBoardTitle,
+        boardId,
+        userId
+      }
+    });
+    history.push(`/b/${boardId}/${slugify(newBoardTitle, { lower: true })}`);
+
     // Dispatch action to put new empty board in redux store and in db + push history to the board
     this.setState({ isBoardAdderOpen: false, newBoardTitle: "" });
   };
@@ -97,7 +108,8 @@ class Home extends Component<Props> {
 }
 
 const mapStateToProps = state => ({
-  boards: Object.values(state.boardsById)
+  boards: Object.values(state.boardsById),
+  userId: state.user._id
 });
 
 export default connect(mapStateToProps)(Home);
