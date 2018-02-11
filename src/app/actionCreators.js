@@ -54,6 +54,7 @@ export const reorderList = (
       destinationIndex
     }
   });
+  console.log(destinationIndex);
 
   axios
     .put("/api/reorder-list", {

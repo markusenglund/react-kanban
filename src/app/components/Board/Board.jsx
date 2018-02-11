@@ -40,6 +40,7 @@ class Board extends React.Component<Props> {
       );
       return;
     }
+    console.log(destination.index);
     dispatch(
       reorderList(
         draggableId,

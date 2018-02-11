@@ -83,15 +83,17 @@ const api = db => {
       )
       .then(({ value }) => {
         const card = value.lists[0].cards[sourceIndex];
-        db.collection("boards").updateOne(
-          { _id: boardId, users: req.user._id, "lists._id": destinationId },
-          {
-            $push: {
-              "lists.$.cards": { $each: [card], $position: destinationIndex }
+        db
+          .collection("boards")
+          .updateOne(
+            { _id: boardId, users: req.user._id, "lists._id": destinationId },
+            {
+              $push: {
+                "lists.$.cards": { $each: [card], $position: destinationIndex }
+              }
             }
-          }
-        );
-        res.send({ value, card });
+          )
+          .then(result => res.send(result));
       });
   });
 
@@ -105,15 +107,17 @@ const api = db => {
       )
       .then(({ value }) => {
         const list = value.lists[sourceIndex];
-        db.collection("boards").updateOne(
-          { _id: sourceId, users: req.user._id },
-          {
-            $push: {
-              lists: { $each: [list], $position: destinationIndex }
+        db
+          .collection("boards")
+          .updateOne(
+            { _id: sourceId, users: req.user._id },
+            {
+              $push: {
+                lists: { $each: [list], $position: destinationIndex }
+              }
             }
-          }
-        );
-        res.send({ value, list });
+          )
+          .then(result => res.send(result));
       });
   });
 
