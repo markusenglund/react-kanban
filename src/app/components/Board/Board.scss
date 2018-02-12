@@ -49,15 +49,16 @@ $list-margin: 8px;
 }
 
 .list-title-button {
+  overflow-wrap: break-word;
   flex-grow: 1;
   padding: 10px;
   font-weight: 700;
-  display: flex;
   background: $bg-grey;
   color: $fg-black;
   font-size: 14px;
   border: none;
   cursor: pointer;
+  min-width: 50%;
   border-top-left-radius: 3px;
 }
 

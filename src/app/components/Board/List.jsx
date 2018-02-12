@@ -183,18 +183,20 @@ class List extends React.Component<Props, State> {
             {...dragHandleProps}
             data-react-beautiful-dnd-drag-handle={i}
           >
-            <button
+            <div
               onKeyDown={event => {
                 if (event.keyCode === 13) {
                   event.preventDefault();
                   this.openTitleEditor();
                 }
               }}
+              role="button"
+              tabIndex={0}
               onClick={this.openTitleEditor}
               className="list-title-button"
             >
               {list.title}
-            </button>
+            </div>
             <button onClick={this.deleteList} className="delete-list-button">
               <FaTimesCircle />
             </button>
