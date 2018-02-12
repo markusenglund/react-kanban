@@ -1,4 +1,7 @@
 @import "../variables.scss";
+$board-width: 280px;
+$board-margin: 5px;
+$main-margin: 30px;
 
 .home {
   display: flex;
@@ -6,7 +9,25 @@
 }
 
 .main-content {
-  width: 60%;
+  width: 4 * $board-width + 8 * $board-margin;
+  margin: $main-margin;
+}
+
+@media (max-width: 4 * $board-width + 8 * $board-margin + 2 * $main-margin) {
+  .main-content {
+    width: 3 * $board-width + 6 * $board-margin;
+  }
+}
+
+@media (max-width: 3 * $board-width + 6 * $board-margin + 2 * $main-margin) {
+  .main-content {
+    width: 2 * $board-width + 4 * $board-margin;
+  }
+}
+@media (max-width: 2 * $board-width + 4 * $board-margin + 2 * $main-margin) {
+  .main-content {
+    width: $board-width + 2 * $board-margin;
+  }
 }
 
 .main-content h1 {
@@ -15,10 +36,12 @@
 
 .boards {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .board-link {
-  width: 280px;
+  width: $board-width;
+  margin: $board-margin;
   height: 80px;
   padding: 10px;
   background: $bg-blue;
@@ -32,7 +55,6 @@
   align-self: flex-start;
   box-sizing: border-box;
   text-decoration: none;
-  margin: 5px;
   transition: background 0.1s;
 }
 
@@ -43,7 +65,8 @@
 
 .create-board-button {
   border: 0;
-  width: 280px;
+  width: $board-width;
+  margin: $board-margin;
   height: 80px;
   padding: 10px;
   background: $bg-grey;
@@ -53,7 +76,6 @@
   font-size: 16px;
   flex-shrink: 1;
   box-sizing: border-box;
-  margin: 5px;
   transition: background 0.1s;
 }
 
@@ -63,7 +85,8 @@
 }
 
 .board-adder {
-  width: 280px;
+  width: $board-width;
+  margin: $board-margin;
   height: 80px;
   padding: 8px;
   background: $bg-grey;
@@ -71,7 +94,6 @@
   border-radius: 3px;
   font-size: 16px;
   box-sizing: border-box;
-  margin: 5px;
 }
 
 .submit-board-button {
