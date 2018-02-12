@@ -38,6 +38,7 @@
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-scroll": "^1.7.6",
     "react-textarea-autosize": "^5.2.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",

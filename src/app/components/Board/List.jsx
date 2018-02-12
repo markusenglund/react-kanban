@@ -3,11 +3,11 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import type { DragHandleProps } from "react-beautiful-dnd";
-import shortid from "shortid";
 import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import ClickOutside from "../ClickOutside";
+import CardComposer from "./CardComposer";
 
 type Props = {
   boardId: string,
@@ -24,7 +24,6 @@ type Props = {
 
 type State = {
   cardComposerIsOpen: boolean,
-  newCardTitle: string,
   cardInEdit: ?string,
   editableCardTitle: string,
   isListTitleInEdit: boolean,
@@ -36,7 +35,6 @@ class List extends React.Component<Props, State> {
     super();
     this.state = {
       cardComposerIsOpen: false,
-      newCardTitle: "",
       cardInEdit: null,
       editableCardTitle: "",
       isListTitleInEdit: false,
@@ -46,30 +44,6 @@ class List extends React.Component<Props, State> {
 
   toggleCardComposer = () =>
     this.setState({ cardComposerIsOpen: !this.state.cardComposerIsOpen });
-
-  handleCardComposerChange = (event: { target: { value: string } }) => {
-    this.setState({ newCardTitle: event.target.value });
-  };
-
-  handleKeyDown = (event: SyntheticEvent<>) => {
-    if (event.keyCode === 13) {
-      this.handleSubmitCard(event);
-    }
-  };
-
-  handleSubmitCard = event => {
-    event.preventDefault();
-    const { newCardTitle } = this.state;
-    const { list, boardId, dispatch } = this.props;
-    if (newCardTitle === "") return;
-
-    const cardId = shortid.generate();
-    dispatch({
-      type: "ADD_CARD",
-      payload: { cardTitle: newCardTitle, cardId, listId: list._id, boardId }
-    });
-    this.setState({ newCardTitle: "", cardComposerIsOpen: false });
-  };
 
   openCardEditor = card => {
     this.setState({ cardInEdit: card._id, editableCardTitle: card.title });
@@ -154,10 +128,9 @@ class List extends React.Component<Props, State> {
   };
 
   render = () => {
-    const { cards, list, dragHandleProps, i } = this.props;
+    const { cards, list, boardId, dragHandleProps, i } = this.props;
     const {
       cardComposerIsOpen,
-      newCardTitle,
       cardInEdit,
       editableCardTitle,
       isListTitleInEdit,
@@ -264,26 +237,11 @@ class List extends React.Component<Props, State> {
                 {provided.placeholder}
                 {cardComposerIsOpen && (
                   <ClickOutside handleClickOutside={this.toggleCardComposer}>
-                    <form
-                      onSubmit={this.handleSubmitCard}
-                      className="textarea-wrapper"
-                    >
-                      <Textarea
-                        autoFocus
-                        useCacheForDOMMeasurements
-                        minRows={3}
-                        onChange={this.handleCardComposerChange}
-                        onKeyDown={this.handleKeyDown}
-                        value={newCardTitle}
-                        className="list-textarea"
-                      />
-                      <input
-                        type="submit"
-                        value="Add"
-                        className="submit-card-button"
-                        disabled={newCardTitle === ""}
-                      />
-                    </form>
+                    <CardComposer
+                      toggleCardComposer={this.toggleCardComposer}
+                      boardId={boardId}
+                      list={list}
+                    />
                   </ClickOutside>
                 )}
               </div>
