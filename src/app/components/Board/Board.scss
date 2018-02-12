@@ -93,13 +93,26 @@ $list-margin: 8px;
 .cards {
   overflow-y: auto;
   overflow-x: hidden;
+  margin: 0 3px;
+}
+
+.cards::-webkit-scrollbar {
+  width: 8px;
+  padding: 14px;
+  background-color: $bg-darker-grey;
+  border-radius: 4px;
+}
+
+.cards::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
 }
 
 .card-title {
   background: white;
   border-radius: 3px;
   padding: 8px;
-  margin: 0 $list-margin $list-margin $list-margin;
+  margin: 0 5px $list-margin 5px;
   position: relative;
   overflow-wrap: break-word;
   user-select: none;
