@@ -220,7 +220,7 @@ class List extends React.Component<Props, State> {
                             <Textarea
                               autoFocus
                               useCacheForDOMMeasurements
-                              minRows={3}
+                              // minRows={3}
                               value={editableCardTitle}
                               onChange={this.handleCardEditorChange}
                               onKeyDown={this.handleEditKeyDown}
