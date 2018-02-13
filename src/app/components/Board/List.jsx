@@ -175,87 +175,90 @@ class List extends React.Component<Props, State> {
             </button>
           </div>
         )}
-        <Droppable droppableId={list._id}>
-          {provided => (
-            <>
-              <div className="cards" ref={provided.innerRef}>
-                {cards.map((card, index) => (
-                  <Draggable
-                    key={card._id}
-                    draggableId={card._id}
-                    index={index}
-                  >
-                    {({
-                      innerRef,
-                      draggableProps,
-                      dragHandleProps: handleProps,
-                      placeholder
-                    }) => (
-                      <div>
-                        {cardInEdit !== card._id ? (
-                          <div
-                            className="card-title"
-                            ref={innerRef}
-                            {...draggableProps}
-                            {...handleProps}
-                            data-react-beautiful-dnd-draggable={i}
-                            data-react-beautiful-dnd-drag-handle={i}
-                          >
-                            <span>{card.title}</span>
-                            <button
-                              onClick={() => this.deleteCard(card._id)}
-                              className="delete-card-button"
+        <div className="cards-wrapper">
+          <Droppable droppableId={list._id}>
+            {provided => (
+              <>
+                <div className="cards" ref={provided.innerRef}>
+                  {cards.map((card, index) => (
+                    <Draggable
+                      key={card._id}
+                      draggableId={card._id}
+                      index={index}
+                    >
+                      {({
+                        innerRef,
+                        draggableProps,
+                        dragHandleProps: handleProps,
+                        placeholder
+                      }) => (
+                        <div>
+                          {cardInEdit !== card._id ? (
+                            <div
+                              className="card-title"
+                              ref={innerRef}
+                              {...draggableProps}
+                              {...handleProps}
+                              data-react-beautiful-dnd-draggable={i}
+                              data-react-beautiful-dnd-drag-handle={i}
                             >
-                              <FaTimesCircle />
-                            </button>
-                            <button
-                              onClick={() => this.openCardEditor(card)}
-                              className="edit-card-button"
-                            >
-                              <FaPencil />
-                            </button>
-                          </div>
-                        ) : (
-                          <div className="textarea-wrapper">
-                            <Textarea
-                              autoFocus
-                              useCacheForDOMMeasurements
-                              // minRows={3}
-                              value={editableCardTitle}
-                              onChange={this.handleCardEditorChange}
-                              onKeyDown={this.handleEditKeyDown}
-                              className="list-textarea"
-                              onBlur={this.handleSubmitCardEdit}
-                            />
-                          </div>
-                        )}
-                        {placeholder}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-                {cardComposerIsOpen && (
-                  <ClickOutside handleClickOutside={this.toggleCardComposer}>
-                    <CardComposer
-                      toggleCardComposer={this.toggleCardComposer}
-                      boardId={boardId}
-                      list={list}
-                    />
-                  </ClickOutside>
-                )}
-              </div>
-              {cardComposerIsOpen || (
-                <button
-                  onClick={this.toggleCardComposer}
-                  className="open-composer-button"
-                >
-                  Add a card...
-                </button>
-              )}
-            </>
-          )}
-        </Droppable>
+                              <span>{card.title}</span>
+                              <button
+                                onClick={() => this.deleteCard(card._id)}
+                                className="delete-card-button"
+                              >
+                                <FaTimesCircle />
+                              </button>
+                              <button
+                                onClick={() => this.openCardEditor(card)}
+                                className="edit-card-button"
+                              >
+                                <FaPencil />
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="textarea-wrapper">
+                              <Textarea
+                                autoFocus
+                                useCacheForDOMMeasurements
+                                // minRows={3}
+                                value={editableCardTitle}
+                                onChange={this.handleCardEditorChange}
+                                onKeyDown={this.handleEditKeyDown}
+                                className="list-textarea"
+                                onBlur={this.handleSubmitCardEdit}
+                              />
+                            </div>
+                          )}
+                          {placeholder}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                  <div style={{ padding: "6px" }} />
+                  {cardComposerIsOpen && (
+                    <ClickOutside handleClickOutside={this.toggleCardComposer}>
+                      <CardComposer
+                        toggleCardComposer={this.toggleCardComposer}
+                        boardId={boardId}
+                        list={list}
+                      />
+                    </ClickOutside>
+                  )}
+                </div>
+              </>
+            )}
+          </Droppable>
+        </div>
+        {cardComposerIsOpen || (
+          <button
+            onClick={this.toggleCardComposer}
+            className="open-composer-button"
+          >
+            Add a card...
+          </button>
+        )}
       </div>
     );
   };

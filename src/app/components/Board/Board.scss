@@ -108,19 +108,30 @@ $list-margin: 8px;
   resize: none;
 }
 
-.cards {
+.cards-wrapper {
+  height: 100%;
+  // display: inline-flex;
+  // flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  margin: 0 3px 4px 3px;
+  // padding: 5px;
+  // overflow-x: auto;
 }
 
-.cards::-webkit-scrollbar {
+.cards {
+  min-height: 26px;
+  // overflow-y: auto;
+  // overflow-x: hidden;
+  margin: 0 3px 0 3px;
+}
+
+.cards-wrapper::-webkit-scrollbar {
   width: 8px;
   background-color: $bg-darker-grey;
   border-radius: 4px;
 }
 
-.cards::-webkit-scrollbar-thumb {
+.cards-wrapper::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 4px;
 }
