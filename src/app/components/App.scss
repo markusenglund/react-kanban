@@ -13,7 +13,8 @@ body {
 
 #app {
   height: 100%;
-  display: inline-flex;
+  display: flex;
+  min-width: 100vw;
   flex-direction: column;
 }
 

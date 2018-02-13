@@ -4,7 +4,8 @@ $list-margin: 8px;
 
 .board {
   height: 100%;
-  display: inline-flex;
+  // display: inline-flex;
+  display: flex;
   flex-direction: column;
   background: $bg-blue;
 }
@@ -19,10 +20,16 @@ $list-margin: 8px;
   margin: 0 0 0 8px;
 }
 
+.lists-wrapper {
+  height: 100%;
+  display: flex;
+  padding: 5px;
+  overflow-x: auto;
+}
+
 .lists {
   display: inline-flex;
   align-items: flex-start;
-  margin: 5px;
   height: 100%;
 }
 
