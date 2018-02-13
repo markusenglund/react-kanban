@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import List from "./List";
 import ListAdder from "./ListAdder";
+import Header from "../Header";
 import "./Board.scss";
 
 type Props = {
@@ -59,6 +60,7 @@ class Board extends React.Component<Props> {
         <Helmet>
           <title>{boardTitle} | Trello</title>
         </Helmet>
+        <Header />
         <div className="board-header">
           <h1 className="board-title">{boardTitle}</h1>
         </div>

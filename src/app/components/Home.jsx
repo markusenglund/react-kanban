@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
 import shortid from "shortid";
+import Header from "./Header";
 import ClickOutside from "./ClickOutside";
 import "./Home.scss";
 
@@ -58,51 +59,59 @@ class Home extends Component<Props> {
     const { boards } = this.props;
     const { isBoardAdderOpen, newBoardTitle } = this.state;
     return (
-      <div className="home">
-        <Helmet>
-          <title>Home | Trello</title>
-        </Helmet>
-        <div className="main-content">
-          <h1>My boards</h1>
-          <div className="boards">
-            {boards.map(board => (
-              <Link
-                key={board._id}
-                className="board-link"
-                to={`/b/${board._id}/${slugify(board.title, { lower: true })}`}
-              >
-                {board.title}
-              </Link>
-            ))}
-            {isBoardAdderOpen ? (
-              <ClickOutside handleClickOutside={this.toggleBoardAdder}>
-                <form onSubmit={this.handleSubmitBoard} className="board-adder">
-                  <input
-                    autoFocus
-                    className="submit-board-input"
-                    type="text"
-                    value={newBoardTitle}
-                    onChange={this.handleBoardTitleChange}
-                  />
-                  <input
-                    type="submit"
-                    value="Create board"
-                    className="submit-board-button"
-                    disabled={newBoardTitle === ""}
-                  />
-                </form>
-              </ClickOutside>
-            ) : (
-              <button
-                onClick={this.toggleBoardAdder}
-                className="create-board-button"
-              >
-                Create a new board...
-              </button>
-            )}
+      <>
+        <Header />
+        <div className="home">
+          <Helmet>
+            <title>Home | Trello</title>
+          </Helmet>
+          <div className="main-content">
+            <h1>My boards</h1>
+            <div className="boards">
+              {boards.map(board => (
+                <Link
+                  key={board._id}
+                  className="board-link"
+                  to={`/b/${board._id}/${slugify(board.title, {
+                    lower: true
+                  })}`}
+                >
+                  {board.title}
+                </Link>
+              ))}
+              {isBoardAdderOpen ? (
+                <ClickOutside handleClickOutside={this.toggleBoardAdder}>
+                  <form
+                    onSubmit={this.handleSubmitBoard}
+                    className="board-adder"
+                  >
+                    <input
+                      autoFocus
+                      className="submit-board-input"
+                      type="text"
+                      value={newBoardTitle}
+                      onChange={this.handleBoardTitleChange}
+                    />
+                    <input
+                      type="submit"
+                      value="Create board"
+                      className="submit-board-button"
+                      disabled={newBoardTitle === ""}
+                    />
+                  </form>
+                </ClickOutside>
+              ) : (
+                <button
+                  onClick={this.toggleBoardAdder}
+                  className="create-board-button"
+                >
+                  Create a new board...
+                </button>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   };
 }
