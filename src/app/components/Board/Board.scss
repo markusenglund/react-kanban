@@ -20,7 +20,7 @@ $list-margin: 8px;
 }
 
 .lists {
-  display: flex;
+  display: inline-flex;
   align-items: flex-start;
   margin: 5px;
   height: 100%;
@@ -230,6 +230,6 @@ $list-margin: 8px;
 }
 
 .add-list-button:hover,
-add-list-button:focus {
+.add-list-button:focus {
   background: rgba(0, 0, 0, 0.25);
 }
