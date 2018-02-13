@@ -4,7 +4,7 @@ $board-margin: 5px;
 $main-margin: 30px;
 
 .home {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
 }
 
@@ -35,7 +35,7 @@ $main-margin: 30px;
 }
 
 .boards {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
 }
 
@@ -50,7 +50,7 @@ $main-margin: 30px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-  display: flex;
+  display: inline-flex;
   flex-shrink: 1;
   align-self: flex-start;
   box-sizing: border-box;

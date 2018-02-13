@@ -4,7 +4,7 @@ $list-margin: 8px;
 
 .board {
   height: 100%;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   background: $bg-blue;
 }
@@ -38,13 +38,13 @@ $list-margin: 8px;
   box-sizing: border-box;
   font-size: 14px;
   margin: 0 5px 0 5px;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   max-height: 100%;
 }
 
 .list-title {
-  display: flex;
+  display: inline-flex;
   flex-shrink: 0;
 }
 
@@ -156,7 +156,7 @@ $list-margin: 8px;
 }
 
 .open-composer-button {
-  display: flex;
+  display: inline-flex;
   flex-shrink: 0;
   background: $bg-grey;
   color: #838c91;
@@ -218,7 +218,7 @@ $list-margin: 8px;
   background: rgba(0, 0, 0, 0.15);
   color: #ddd;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   width: $list-width;
   font-size: 14px;
   padding: 10px;
