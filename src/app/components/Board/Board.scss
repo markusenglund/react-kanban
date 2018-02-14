@@ -147,11 +147,13 @@ $list-margin: 8px;
   user-select: none;
   box-sizing: border-box;
   transition: background 1s;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 // .card-title:hover,
 .card-title-drag {
-  background: #ddd;
+  // background: #ddd;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .edit-card-button {
