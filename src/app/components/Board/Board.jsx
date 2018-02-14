@@ -18,6 +18,10 @@ type Props = {
 let i = 0;
 
 class Board extends React.Component<Props> {
+  constructor() {
+    super();
+    this.state = { startX: null, startScrollLeft: null };
+  }
   componentWillUnmount = () => {
     i += 1;
   };
@@ -53,6 +57,34 @@ class Board extends React.Component<Props> {
     });
   };
 
+  handleMouseDown = ({ target, clientX }) => {
+    if (target.className !== "list-wrapper") return;
+    window.addEventListener("mousemove", this.handleMouseMove);
+    window.addEventListener("mouseup", this.handleMouseUp);
+    this.setState({
+      startX: clientX,
+      startScrollLeft: this.backgroundEl.scrollLeft
+    });
+  };
+
+  handleMouseMove = ({ clientX }) => {
+    const { startX, startScrollLeft } = this.state;
+    const scrollLeft = startScrollLeft - clientX + startX;
+    this.backgroundEl.scrollLeft = scrollLeft;
+    if (scrollLeft !== this.backgroundEl.scrollLeft) {
+      this.setState({
+        startX: clientX + this.backgroundEl.scrollLeft - startScrollLeft
+      });
+    }
+  };
+
+  handleMouseUp = () => {
+    if (this.state.startX) {
+      window.removeEventListener("mousemove", this.handleMouseMove);
+      window.removeEventListener("mouseup", this.handleMouseUp);
+      this.setState({ startX: null, startScrollLeft: null });
+    }
+  };
   render = () => {
     const { lists, boardTitle, boardId } = this.props;
     return (
@@ -64,7 +96,15 @@ class Board extends React.Component<Props> {
         <div className="board-header">
           <h1 className="board-title">{boardTitle}</h1>
         </div>
-        <div className="lists-wrapper">
+        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+        <div
+          ref={el => {
+            this.backgroundEl = el;
+          }}
+          className="lists-wrapper"
+          onMouseDown={this.handleMouseDown}
+        >
+          {/* eslint-enable jsx-a11y/no-static-element-interactions */}
           <DragDropContext onDragEnd={this.handleDragEnd}>
             <Droppable
               droppableId={boardId}

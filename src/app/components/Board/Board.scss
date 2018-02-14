@@ -46,6 +46,7 @@ $list-margin: 8px;
 
 .list-wrapper {
   height: 100%;
+  user-select: none;
 }
 
 .list {
