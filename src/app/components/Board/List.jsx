@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
 import { connect } from "react-redux";
-import { Droppable, Draggable } from "react-beautiful-dnd";
-import type { DragHandleProps } from "react-beautiful-dnd";
 import Textarea from "react-textarea-autosize";
-import FaPencil from "react-icons/lib/fa/pencil";
+import { Droppable } from "react-beautiful-dnd";
+import type { DragHandleProps } from "react-beautiful-dnd";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
+import Card from "./Card";
 import ClickOutside from "../ClickOutside";
 import CardComposer from "./CardComposer";
 
@@ -180,61 +180,25 @@ class List extends React.Component<Props, State> {
             {provided => (
               <>
                 <div className="cards" ref={provided.innerRef}>
-                  {cards.map((card, index) => (
-                    <Draggable
-                      key={card._id}
-                      draggableId={card._id}
-                      index={index}
-                    >
-                      {({
-                        innerRef,
-                        draggableProps,
-                        dragHandleProps: handleProps,
-                        placeholder
-                      }) => (
-                        <div>
-                          {cardInEdit !== card._id ? (
-                            <div
-                              className="card-title"
-                              ref={innerRef}
-                              {...draggableProps}
-                              {...handleProps}
-                              data-react-beautiful-dnd-draggable={i}
-                              data-react-beautiful-dnd-drag-handle={i}
-                            >
-                              <span>{card.title}</span>
-                              <button
-                                onClick={() => this.deleteCard(card._id)}
-                                className="delete-card-button"
-                              >
-                                <FaTimesCircle />
-                              </button>
-                              <button
-                                onClick={() => this.openCardEditor(card)}
-                                className="edit-card-button"
-                              >
-                                <FaPencil />
-                              </button>
-                            </div>
-                          ) : (
-                            <div className="textarea-wrapper">
-                              <Textarea
-                                autoFocus
-                                useCacheForDOMMeasurements
-                                // minRows={3}
-                                value={editableCardTitle}
-                                onChange={this.handleCardEditorChange}
-                                onKeyDown={this.handleEditKeyDown}
-                                className="list-textarea"
-                                onBlur={this.handleSubmitCardEdit}
-                              />
-                            </div>
-                          )}
-                          {placeholder}
+                  {cards.map(
+                    (card, index) =>
+                      cardInEdit !== card._id ? (
+                        <Card key={card._id} card={card} index={index} i={i} />
+                      ) : (
+                        <div key={card._id} className="textarea-wrapper">
+                          <Textarea
+                            autoFocus
+                            useCacheForDOMMeasurements
+                            // minRows={3}
+                            value={editableCardTitle}
+                            onChange={this.handleCardEditorChange}
+                            onKeyDown={this.handleEditKeyDown}
+                            className="list-textarea"
+                            onBlur={this.handleSubmitCardEdit}
+                          />
                         </div>
-                      )}
-                    </Draggable>
-                  ))}
+                      )
+                  )}
                   {provided.placeholder}
                   <div style={{ padding: "6px" }} />
                   {cardComposerIsOpen && (

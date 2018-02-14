@@ -146,9 +146,11 @@ $list-margin: 8px;
   overflow-wrap: break-word;
   user-select: none;
   box-sizing: border-box;
+  transition: background 1s;
 }
 
-.card-title:hover {
+// .card-title:hover,
+.card-title-drag {
   background: #ddd;
 }
 
