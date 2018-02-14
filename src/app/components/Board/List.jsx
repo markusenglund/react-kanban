@@ -183,7 +183,14 @@ class List extends React.Component<Props, State> {
                   {cards.map(
                     (card, index) =>
                       cardInEdit !== card._id ? (
-                        <Card key={card._id} card={card} index={index} i={i} />
+                        <Card
+                          key={card._id}
+                          card={card}
+                          index={index}
+                          i={i}
+                          deleteCard={this.deleteCard}
+                          openCardEditor={this.openCardEditor}
+                        />
                       ) : (
                         <div key={card._id} className="textarea-wrapper">
                           <Textarea

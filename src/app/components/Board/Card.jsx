@@ -7,7 +7,9 @@ import FaTimesCircle from "react-icons/lib/fa/times-circle";
 type Props = {
   card: { _id: string, title: string },
   index: number,
-  i: number
+  i: number,
+  deleteCard: () => void,
+  openCardEditor: () => void
 };
 
 class Card extends Component<Props> {
@@ -19,7 +21,7 @@ class Card extends Component<Props> {
   }
 
   render() {
-    const { card, index, i } = this.props;
+    const { card, index, i, deleteCard, openCardEditor } = this.props;
     return (
       <Draggable draggableId={card._id} index={index}>
         {({
@@ -44,13 +46,13 @@ class Card extends Component<Props> {
             >
               <span>{card.title}</span>
               <button
-                onClick={() => this.deleteCard(card._id)}
+                onClick={() => deleteCard(card._id)}
                 className="delete-card-button"
               >
                 <FaTimesCircle />
               </button>
               <button
-                onClick={() => this.openCardEditor(card)}
+                onClick={() => openCardEditor(card)}
                 className="edit-card-button"
               >
                 <FaPencil />
