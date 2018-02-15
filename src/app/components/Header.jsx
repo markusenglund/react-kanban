@@ -27,8 +27,8 @@ class Header extends Component<Props> {
             &#9662;
           </Button>
           <Menu className="dropdown-menu">
-            {name}
-            <br />
+            <div className="dropdown-header">{name}</div>
+            <hr />
             <MenuItem
               tag="a"
               rel="noopener noreferrer"
