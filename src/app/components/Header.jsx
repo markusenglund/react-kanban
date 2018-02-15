@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
-import trelloLogo from "../../assets/images/trello-logo.png";
 import "./Header.scss";
 
 type Props = {
@@ -18,8 +17,8 @@ class Header extends Component<Props> {
     const { name, imageUrl } = this.props.user;
     return (
       <header>
-        <Link to="/">
-          <img src={trelloLogo} alt="Trello logo" className="profile-image" />
+        <Link to="/" className="header-title">
+          kanban live
         </Link>
         <Wrapper className="dropdown-wrapper">
           <Button className="dropdown-button">

@@ -7,6 +7,8 @@ $transparent-black: rgba(0, 0, 0, 0.4);
 $transparent-white: rgba(255, 255, 255, 0.4);
 $white: #fbfbfb;
 
+$list-radius: 6px;
+
 .board {
   height: 100%;
   display: flex;
@@ -56,7 +58,7 @@ $white: #fbfbfb;
 .list {
   width: $list-width;
   background: $transparent-grey;
-  border-radius: 3px;
+  border-radius: $list-radius;
   box-sizing: border-box;
   font-size: 14px;
   margin: 0 5px 0 5px;
@@ -69,8 +71,8 @@ $white: #fbfbfb;
   display: inline-flex;
   flex-shrink: 0;
   font-size: 18px;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  border-top-right-radius: $list-radius;
+  border-top-left-radius: $list-radius;
 }
 
 .list-title-button {
@@ -252,7 +254,7 @@ $white: #fbfbfb;
   font-size: 14px;
   padding: 10px;
   border: none;
-  border-radius: 3px;
+  border-radius: $list-radius;
   margin: 0 5px 0 5px;
   transition: background 0.2s;
   flex-shrink: 0;
