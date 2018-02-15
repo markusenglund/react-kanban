@@ -1,16 +1,21 @@
 @import "../../variables.scss";
 $list-width: 320px;
 $list-margin: 8px;
+$black: #272727;
+$transparent-grey: rgba(100, 100, 100, 0.55);
+$transparent-black: rgba(0, 0, 0, 0.4);
+$transparent-white: rgba(255, 255, 255, 0.4);
+$white: #fbfbfb;
 
 .board {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: $bg-blue;
+  background: $black;
 }
 
 .board-header {
-  color: white;
+  color: $white;
   margin: 12px 12px 9px 12px;
 }
 
@@ -24,17 +29,16 @@ $list-margin: 8px;
   display: flex;
   padding: 5px;
   overflow-x: auto;
-  // margin: 4px;
 }
 
 .lists-wrapper::-webkit-scrollbar {
   height: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background: $transparent-black;
   border-radius: 1px;
 }
 
 .lists-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.4);
+  background: $transparent-white;
   border-radius: 1px;
 }
 
@@ -51,8 +55,7 @@ $list-margin: 8px;
 
 .list {
   width: $list-width;
-  background: $bg-grey;
-  color: $fg-black;
+  background: $transparent-grey;
   border-radius: 3px;
   box-sizing: border-box;
   font-size: 14px;
@@ -66,6 +69,8 @@ $list-margin: 8px;
   display: inline-flex;
   flex-shrink: 0;
   font-size: 18px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
 }
 
 .list-title-button {
@@ -73,26 +78,25 @@ $list-margin: 8px;
   flex-grow: 1;
   padding: 10px;
   font-weight: 700;
-  background: $bg-grey;
-  color: $fg-black;
+  color: $white;
   border: none;
   cursor: pointer;
   min-width: 50%;
-  border-top-left-radius: 3px;
+  border-top-left-radius: inherit;
 }
 
 .delete-list-button {
   border: 0;
   padding: 4px 6px 7px 6px;
-  border-radius: 3px;
-  color: $fg-black;
-  background: $bg-grey;
+  border-top-right-radius: inherit;
+  color: $white;
+  background: rgba(0, 0, 0, 0);
   cursor: pointer;
   font-size: 16px;
 }
 
 .list-title-textarea-wrapper {
-  margin: 4px 4px 1px 4px;
+  margin: 4px 5px 1px 5px;
 }
 
 .list-title-textarea {
@@ -105,30 +109,20 @@ $list-margin: 8px;
   font-family: inherit;
   font-size: 18px;
   font-weight: 700;
-  color: inherit;
+  color: $black;
   resize: none;
 }
 
 .cards-wrapper {
   height: 100%;
-  // display: inline-flex;
-  // flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  // padding: 5px;
-  // overflow-x: auto;
   margin: 0 3px 0 3px;
-}
-
-.cards {
-  min-height: 26px;
-  // overflow-y: auto;
-  // overflow-x: hidden;
 }
 
 .cards-wrapper::-webkit-scrollbar {
   width: 8px;
-  background-color: $bg-darker-grey;
+  background-color: $black;
   border-radius: 4px;
 }
 
@@ -136,25 +130,25 @@ $list-margin: 8px;
   background: #888;
   border-radius: 4px;
 }
+.cards {
+  min-height: 26px;
+}
 
 .card-title {
-  background: white;
+  background: $white;
   border-radius: 3px;
   margin: 0 5px $list-margin 5px;
   position: relative;
   overflow-wrap: break-word;
   user-select: none;
   box-sizing: border-box;
-  transition: background 1s;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   font-size: 16px;
   padding: 12px 10px;
 }
 
-// .card-title:hover,
 .card-title-drag {
-  // background: #ddd;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 5px rgb(0, 180, 255);
 }
 
 .edit-card-button {
@@ -165,7 +159,8 @@ $list-margin: 8px;
   padding: 4px 6px 7px 6px;
   border-radius: 3px;
   opacity: 0;
-  color: $fg-black;
+  color: $white;
+  background: $transparent-black;
   cursor: pointer;
 }
 
@@ -192,8 +187,8 @@ $list-margin: 8px;
 .open-composer-button {
   display: inline-flex;
   flex-shrink: 0;
-  background: $bg-grey;
-  color: #838c91;
+  background: $transparent-white;
+  color: black;
   width: 100%;
   font-size: 14px;
   padding: 10px;
