@@ -31,6 +31,7 @@
     "passport-google-oauth20": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "react": "^16.2.0",
+    "react-aria-menubutton": "^5.1.1",
     "react-beautiful-dnd": "^4.0.1",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",

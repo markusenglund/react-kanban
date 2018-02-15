@@ -1,0 +1,53 @@
+@import "../variables.scss";
+$header-height: 40px;
+
+header {
+  background: $bg-dark-blue;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  height: $header-height;
+}
+
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-button {
+  display: flex;
+  height: 100%;
+  width: 50px;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: white;
+}
+
+.dropdown-button img {
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  margin-top: 3px;
+  top: 100%;
+  background: white;
+  right: 0;
+  width: 200px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+  padding: 4px 20px 0 20px;
+  text-decoration: none;
+}
