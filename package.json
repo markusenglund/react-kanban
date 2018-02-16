@@ -24,6 +24,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "helmet": "^3.10.0",
+    "marked": "^0.3.12",
     "mongodb": "^3.0.2",
     "morgan": "^1.9.0",
     "normalizr": "^3.2.4",
