@@ -54,7 +54,7 @@ class List extends React.Component<Props, State> {
   };
 
   handleEditKeyDown = (event: SyntheticEvent<>) => {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && event.shiftKey === false) {
       event.preventDefault();
       this.handleSubmitCardEdit();
     }
@@ -196,7 +196,6 @@ class List extends React.Component<Props, State> {
                           <Textarea
                             autoFocus
                             useCacheForDOMMeasurements
-                            // minRows={3}
                             value={editableCardTitle}
                             onChange={this.handleCardEditorChange}
                             onKeyDown={this.handleEditKeyDown}

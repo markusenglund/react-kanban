@@ -159,17 +159,27 @@ $list-radius: 6px;
 //   object-fit: contain;
 //   background: red;
 // }
+.card-title-html {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
 
-.card-title-html img {
-  max-width: 100%;
-}
+  img {
+    max-width: 100%;
+  }
 
-.card-title-html p {
-  margin: 4px 0;
-}
+  p {
+    margin: 4px 0;
+  }
 
-.card-title-html code {
-  white-space: pre-wrap;
+  code {
+    white-space: pre-wrap;
+  }
 }
 
 .edit-card-button {
