@@ -3,7 +3,7 @@ $header-height: 40px;
 
 header {
   box-sizing: border-box;
-  background: #032;
+  background: #444;
   padding: 5px;
   flex-shrink: 0;
   display: flex;
@@ -48,7 +48,7 @@ header {
   // display: block;
   // height: 0;
   // width: 0;
-  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #fff rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #444 rgba(0, 0, 0, 0);
   position: absolute;
   top: -12px;
   right: 10px;
@@ -60,7 +60,7 @@ header {
   margin-top: 8px;
   padding-bottom: 6px;
   top: 100%;
-  background: #032;
+  background: #444;
   right: 0;
   width: 200px;
   border-radius: 3px;
@@ -95,5 +95,5 @@ header {
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-  background: #021;
+  background: #333;
 }
