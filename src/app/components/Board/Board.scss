@@ -127,12 +127,12 @@ $list-radius: 6px;
 .cards-wrapper::-webkit-scrollbar {
   width: 8px;
   background-color: $black;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .cards-wrapper::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+  background: $transparent-white;
+  border-radius: 2px;
 }
 .cards {
   min-height: 26px;
