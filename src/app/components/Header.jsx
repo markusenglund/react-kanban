@@ -20,7 +20,7 @@ class Header extends Component<Props> {
       <header>
         <Link to="/" className="header-title">
           <img src={kanbanLogo} alt="kanban live logo" style={{ height: 30 }} />
-          &nbsp;kanban live
+          &nbsp;kanban.live
         </Link>
         <Wrapper className="dropdown-wrapper">
           <Button className="dropdown-button">
