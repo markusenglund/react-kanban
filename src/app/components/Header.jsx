@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import "./Header.scss";
+import kanbanLogo from "../../assets/images/kanban-logo.svg";
 
 type Props = {
   user: {
@@ -18,7 +19,8 @@ class Header extends Component<Props> {
     return (
       <header>
         <Link to="/" className="header-title">
-          kanban live
+          <img src={kanbanLogo} alt="kanban live logo" style={{ height: 30 }} />
+          &nbsp;kanban live
         </Link>
         <Wrapper className="dropdown-wrapper">
           <Button className="dropdown-button">
