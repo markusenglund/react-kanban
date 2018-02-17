@@ -31,6 +31,8 @@ class ListAdder extends Component<Props, State> {
     if (event.keyCode === 13) {
       event.preventDefault();
       this.handleSubmit();
+    } else if (event.keyCode === 27) {
+      this.setState({ isListInEdit: false });
     }
   };
   handleSubmit = () => {

@@ -30,6 +30,8 @@ class CardComposer extends Component<Props> {
   handleKeyDown = (event: SyntheticEvent<>) => {
     if (event.keyCode === 13 && event.shiftKey === false) {
       this.handleSubmitCard(event);
+    } else if (event.keyCode === 27) {
+      this.props.toggleCardComposer();
     }
   };
 
