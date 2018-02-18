@@ -133,25 +133,27 @@ class Board extends React.Component<Props> {
         </Helmet>
         <Header />
         <div className="board-header">
-          {isTitleInEdit ? (
-            <input
-              autoFocus
-              value={newTitle}
-              type="text"
-              onKeyDown={this.handleTitleKeyDown}
-              onChange={this.handleTitleChange}
-              onBlur={this.submitTitle}
-              className="board-title-input"
-              spellCheck={false}
-            />
-          ) : (
-            <button
-              className="board-title-button"
-              onClick={this.handleTitleClick}
-            >
-              <h1 className="board-title">{boardTitle}</h1>
-            </button>
-          )}
+          <div className="board-title-wrapper">
+            {isTitleInEdit ? (
+              <input
+                autoFocus
+                value={newTitle}
+                type="text"
+                onKeyDown={this.handleTitleKeyDown}
+                onChange={this.handleTitleChange}
+                onBlur={this.submitTitle}
+                className="board-title-input"
+                spellCheck={false}
+              />
+            ) : (
+              <button
+                className="board-title-button"
+                onClick={this.handleTitleClick}
+              >
+                <h1 className="board-title">{boardTitle}</h1>
+              </button>
+            )}
+          </div>
         </div>
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         <div

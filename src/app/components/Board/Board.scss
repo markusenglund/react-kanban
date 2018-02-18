@@ -21,6 +21,12 @@ $list-radius: 6px;
 .board-header {
   color: $white;
   margin: 8px 10px 5px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.board-title-wrapper {
+  min-width: 270px;
 }
 
 .board-title-button {
