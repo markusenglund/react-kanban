@@ -38,7 +38,8 @@ $list-radius: 6px;
   transition: background 0.1s;
 }
 
-.board-title-button:hover {
+.board-title-button:hover,
+.board-title-button:focus {
   background: $transparent-black;
 }
 
@@ -57,10 +58,48 @@ $list-radius: 6px;
   border: 0;
 }
 
+.color-picker-wrapper {
+  position: relative;
+  font-size: 16px;
+  z-index: 1;
+}
+
 .color-picker {
   display: flex;
-  background: white;
+  align-items: center;
+  color: $white;
+  border-radius: 3px;
+  padding: 8px 10px 8px 10px;
+  width: 45px;
+  justify-content: space-around;
+  transition: background 0.1s;
+  cursor: pointer;
+}
+
+.color-picker:hover,
+.color-picker:focus {
+  background: $transparent-black;
+}
+
+.color-picker-menu {
+  position: absolute;
+  margin-top: 8px;
+  top: 100%;
+  background: #777;
+  // width: 90px;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+  color: white;
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.color-picker-item {
+  width: 80px;
+  height: 40px;
+  margin: 5px;
+  // border-radius: 6px;
 }
 
 .lists-wrapper {
