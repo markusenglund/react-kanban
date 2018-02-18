@@ -1,14 +1,16 @@
 {
-  "name": "trello-clone",
+  "name": "kanban.live",
   "version": "0.1.0",
-  "description": "A Trello clone built with React",
+  "description":
+    "An open source kanban application created with React and Redux.",
   "main": "dist/server.js",
   "scripts": {
     "build": "webpack-dashboard -- webpack --watch",
     "build:prod": "webpack -p",
     "serve": "nodemon dist/server.js",
     "serve:prod": "NODE_ENV=production node dist/server.js",
-    "analyze-bundle": "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
+    "analyze-bundle":
+      "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/",
     "format": "prettier --write '**/*.{js,jsx,css,scss,json,md}'",
     "flow": "flow"

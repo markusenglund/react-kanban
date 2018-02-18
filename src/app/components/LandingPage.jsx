@@ -12,7 +12,7 @@ class LandingPage extends Component<{}> {
     return (
       <div className="landing-page">
         <Helmet>
-          <title>Landing page | Trello</title>
+          <title>Sign in | kanban.live</title>
         </Helmet>
         <div className="landing-page-text">
           <div className="landing-page-heading">

@@ -129,7 +129,7 @@ class Board extends React.Component<Props> {
     return (
       <div className="board">
         <Helmet>
-          <title>{boardTitle} | Trello</title>
+          <title>{boardTitle} | kanban.live</title>
         </Helmet>
         <Header />
         <div className="board-header">

@@ -69,7 +69,7 @@ class Home extends Component<Props> {
         <Header />
         <div className="home">
           <Helmet>
-            <title>Home | Trello</title>
+            <title>Home | kanban.live</title>
           </Helmet>
           <div className="main-content">
             <h1>My boards</h1>
