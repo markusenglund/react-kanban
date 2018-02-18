@@ -6,6 +6,8 @@ $main-margin: 30px;
 .home {
   display: inline-flex;
   justify-content: center;
+  height: 100%;
+  background: #eee;
 }
 
 .main-content {
@@ -46,7 +48,7 @@ $main-margin: 30px;
   padding: 10px;
   background: $bg-blue;
   color: white;
-  border-radius: 3px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;

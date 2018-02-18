@@ -20,10 +20,46 @@ let i = 0;
 class Board extends React.Component<Props> {
   constructor() {
     super();
-    this.state = { startX: null, startScrollLeft: null };
+    this.state = {
+      startX: null,
+      startScrollLeft: null,
+      newTitle: "",
+      isTitleInEdit: false
+    };
   }
   componentWillUnmount = () => {
     i += 1;
+  };
+
+  handleTitleClick = () => {
+    this.setState({ isTitleInEdit: true, newTitle: this.props.boardTitle });
+  };
+
+  handleTitleChange = event => {
+    this.setState({ newTitle: event.target.value });
+  };
+
+  submitTitle = () => {
+    const { dispatch, boardId } = this.props;
+    const { newTitle } = this.state;
+    if (newTitle === "") return;
+    dispatch({
+      type: "EDIT_BOARD_TITLE",
+      payload: {
+        boardTitle: newTitle,
+        boardId
+      }
+    });
+    this.setState({
+      isTitleInEdit: false,
+      newTitle: ""
+    });
+  };
+
+  handleTitleKeyDown = event => {
+    if (event.keyCode === 13) {
+      this.submitTitle();
+    }
   };
 
   handleDragEnd = ({ source, destination, type }) => {
@@ -87,6 +123,7 @@ class Board extends React.Component<Props> {
   };
   render = () => {
     const { lists, boardTitle, boardId } = this.props;
+    const { isTitleInEdit, newTitle } = this.state;
     return (
       <div className="board">
         <Helmet>
@@ -94,7 +131,22 @@ class Board extends React.Component<Props> {
         </Helmet>
         <Header />
         <div className="board-header">
-          <h1 className="board-title">{boardTitle}</h1>
+          {isTitleInEdit ? (
+            <input
+              autoFocus
+              value={newTitle}
+              type="text"
+              onKeyDown={this.handleTitleKeyDown}
+              onChange={this.handleTitleChange}
+            />
+          ) : (
+            <button
+              className="board-title-button"
+              onClick={this.handleTitleClick}
+            >
+              <h1 className="board-title">{boardTitle}</h1>
+            </button>
+          )}
         </div>
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         <div

@@ -20,12 +20,25 @@ $list-radius: 6px;
 
 .board-header {
   color: $white;
-  margin: 12px 12px 9px 12px;
+  margin: 8px 10px 5px 10px;
+}
+
+.board-title-button {
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 6px 10px 6px 10px;
+}
+
+.board-title-button:hover {
+  background: $transparent-black;
 }
 
 .board-title {
   font-size: 20px;
-  margin: 0 0 0 8px;
+  margin: 0;
+  color: $white;
 }
 
 .lists-wrapper {

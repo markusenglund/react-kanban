@@ -146,6 +146,16 @@ const boardsById = (state = {}, action) => {
         }
       };
     }
+    case "EDIT_BOARD_TITLE": {
+      const { boardTitle, boardId } = action.payload;
+      return {
+        ...state,
+        [boardId]: {
+          ...state[boardId],
+          title: boardTitle
+        }
+      };
+    }
     default:
       return state;
   }
