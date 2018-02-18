@@ -57,6 +57,12 @@ $list-radius: 6px;
   border: 0;
 }
 
+.color-picker {
+  display: flex;
+  background: white;
+  padding: 5px;
+}
+
 .lists-wrapper {
   height: 100%;
   display: flex;
