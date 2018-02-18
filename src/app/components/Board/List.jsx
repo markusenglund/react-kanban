@@ -53,19 +53,19 @@ class List extends React.Component<Props, State> {
     this.setState({ editableCardTitle: event.target.value });
   };
 
-  handleEditKeyDown = (event: SyntheticEvent<>) => {
+  handleEditKeyDown = (event: SyntheticEvent<>, cardTitle) => {
     if (event.keyCode === 13 && event.shiftKey === false) {
       event.preventDefault();
-      this.handleSubmitCardEdit();
+      this.handleSubmitCardEdit(cardTitle);
     }
   };
 
-  handleSubmitCardEdit = () => {
+  handleSubmitCardEdit = cardTitle => {
     const { editableCardTitle, cardInEdit } = this.state;
     const { list, boardId, dispatch } = this.props;
     if (editableCardTitle === "") {
       this.deleteCard(cardInEdit);
-    } else {
+    } else if (editableCardTitle !== cardTitle) {
       dispatch({
         type: "EDIT_CARD_TITLE",
         payload: {
@@ -109,10 +109,12 @@ class List extends React.Component<Props, State> {
     const { newListTitle } = this.state;
     const { list, boardId, dispatch } = this.props;
     if (newListTitle === "") return;
-    dispatch({
-      type: "EDIT_LIST_TITLE",
-      payload: { listTitle: newListTitle, listId: list._id, boardId }
-    });
+    if (newListTitle !== list.title) {
+      dispatch({
+        type: "EDIT_LIST_TITLE",
+        payload: { listTitle: newListTitle, listId: list._id, boardId }
+      });
+    }
     this.setState({
       isListTitleInEdit: false,
       newListTitle: ""
@@ -199,9 +201,11 @@ class List extends React.Component<Props, State> {
                             useCacheForDOMMeasurements
                             value={editableCardTitle}
                             onChange={this.handleCardEditorChange}
-                            onKeyDown={this.handleEditKeyDown}
+                            onKeyDown={event =>
+                              this.handleEditKeyDown(event, card.title)
+                            }
                             className="list-textarea"
-                            onBlur={this.handleSubmitCardEdit}
+                            onBlur={() => this.handleSubmitCardEdit(card.title)}
                             spellCheck={false}
                           />
                         </div>
