@@ -29,6 +29,7 @@ $list-radius: 6px;
   border-radius: 3px;
   cursor: pointer;
   padding: 6px 10px 6px 10px;
+  transition: background 0.1s;
 }
 
 .board-title-button:hover {
@@ -39,6 +40,15 @@ $list-radius: 6px;
   font-size: 20px;
   margin: 0;
   color: $white;
+}
+
+.board-title-input {
+  font-size: 20px;
+  font-weight: 700;
+  color: inherit;
+  background: inherit;
+  padding: 6px 10px 6px 10px;
+  border: 0;
 }
 
 .lists-wrapper {

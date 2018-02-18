@@ -148,6 +148,7 @@ class List extends React.Component<Props, State> {
               onKeyDown={this.handleListTitleKeyDown}
               className="list-title-textarea"
               onBlur={this.handleSubmitListTitle}
+              spellCheck={false}
             />
           </div>
         ) : (
@@ -201,6 +202,7 @@ class List extends React.Component<Props, State> {
                             onKeyDown={this.handleEditKeyDown}
                             className="list-textarea"
                             onBlur={this.handleSubmitCardEdit}
+                            spellCheck={false}
                           />
                         </div>
                       )

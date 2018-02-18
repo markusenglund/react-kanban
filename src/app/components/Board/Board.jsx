@@ -40,16 +40,18 @@ class Board extends React.Component<Props> {
   };
 
   submitTitle = () => {
-    const { dispatch, boardId } = this.props;
+    const { dispatch, boardId, boardTitle } = this.props;
     const { newTitle } = this.state;
     if (newTitle === "") return;
-    dispatch({
-      type: "EDIT_BOARD_TITLE",
-      payload: {
-        boardTitle: newTitle,
-        boardId
-      }
-    });
+    if (boardTitle !== newTitle) {
+      dispatch({
+        type: "EDIT_BOARD_TITLE",
+        payload: {
+          boardTitle: newTitle,
+          boardId
+        }
+      });
+    }
     this.setState({
       isTitleInEdit: false,
       newTitle: ""
@@ -138,6 +140,9 @@ class Board extends React.Component<Props> {
               type="text"
               onKeyDown={this.handleTitleKeyDown}
               onChange={this.handleTitleChange}
+              onBlur={this.submitTitle}
+              className="board-title-input"
+              spellCheck={false}
             />
           ) : (
             <button

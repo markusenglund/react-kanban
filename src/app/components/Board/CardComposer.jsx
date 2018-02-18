@@ -62,6 +62,7 @@ class CardComposer extends Component<Props> {
           onKeyDown={this.handleKeyDown}
           value={newCardTitle}
           className="list-textarea"
+          spellCheck={false}
         />
         <input
           ref={el => {

@@ -98,6 +98,7 @@ class Home extends Component<Props> {
                       value={newBoardTitle}
                       onKeyDown={this.handleKeyDown}
                       onChange={this.handleBoardTitleChange}
+                      spellCheck={false}
                     />
                     <input
                       type="submit"
