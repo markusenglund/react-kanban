@@ -75,7 +75,18 @@ $main-margin: 30px;
 
 .board-link:hover,
 .board-link:focus {
-  background: $bg-dark-blue;
+  &.green {
+    background: $dark-green;
+  }
+  &.blue {
+    background: $dark-blue;
+  }
+  &.pink {
+    background: $dark-pink;
+  }
+  &.red {
+    background: $dark-red;
+  }
 }
 
 .create-board-button {

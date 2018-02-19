@@ -111,6 +111,18 @@ $list-radius: 6px;
   align-items: center;
   cursor: pointer;
   // border-radius: 6px;
+  &.blue {
+    background: $blue;
+  }
+  &.green {
+    background: $green;
+  }
+  &.red {
+    background: $red;
+  }
+  &.pink {
+    background: $pink;
+  }
 }
 
 .lists-wrapper {
@@ -224,7 +236,7 @@ $list-radius: 6px;
 
 .cards-wrapper::-webkit-scrollbar {
   width: 8px;
-  background-color: $black;
+  background-color: $transparent-black;
   border-radius: 2px;
 }
 
