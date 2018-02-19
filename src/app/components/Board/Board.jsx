@@ -6,7 +6,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import List from "./List";
 import ListAdder from "./ListAdder";
-import Header from "../Header";
+import Header from "../Header/Header";
 import ColorPicker from "./ColorPicker";
 import "./Board.scss";
 

@@ -1,0 +1,38 @@
+@import "../../variables.scss";
+
+header {
+  box-sizing: border-box;
+  background: #555;
+  padding: 5px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  height: 40px;
+}
+
+.green header {
+  background: $transparent-green;
+}
+.blue header {
+  background: $transparent-blue;
+}
+.red header {
+  background: $transparent-red;
+}
+.pink header {
+  background: $transparent-pink;
+}
+
+.header-title {
+  color: white;
+  text-decoration: none;
+  font-size: 28px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.header-title img {
+  height: 30px;
+}

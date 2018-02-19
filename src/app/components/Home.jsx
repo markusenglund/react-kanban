@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import slugify from "slugify";
 import shortid from "shortid";
 import classnames from "classnames";
-import Header from "./Header";
+import Header from "./Header/Header";
 import ClickOutside from "./ClickOutside";
 import "./Home.scss";
 
