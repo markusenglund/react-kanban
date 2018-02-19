@@ -156,7 +156,9 @@ class Board extends React.Component<Props> {
               </button>
             )}
           </div>
+          <div className="vertical-line" />
           <ColorPicker boardId={boardId} />
+          <div className="vertical-line" />
         </div>
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         <div
