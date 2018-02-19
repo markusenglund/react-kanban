@@ -4,7 +4,7 @@ $list-margin: 8px;
 // $black: #272727;
 $black: #032;
 // $transparent-grey: rgba(100, 100, 100, 0.55);
-$transparent-grey: rgba(80, 100, 100, 0.55);
+$transparent-grey: rgba(80, 100, 100, 0.4);
 $transparent-black: rgba(0, 0, 0, 0.4);
 $transparent-white: rgba(255, 255, 255, 0.4);
 $white: #fbfbfb;
@@ -99,6 +99,10 @@ $list-radius: 6px;
   width: 80px;
   height: 40px;
   margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
   // border-radius: 6px;
 }
 

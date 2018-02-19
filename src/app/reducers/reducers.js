@@ -156,6 +156,16 @@ const boardsById = (state = {}, action) => {
         }
       };
     }
+    case "CHANGE_BOARD_COLOR": {
+      const { boardId, color } = action.payload;
+      return {
+        ...state,
+        [boardId]: {
+          ...state[boardId],
+          color
+        }
+      };
+    }
     default:
       return state;
   }
