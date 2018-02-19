@@ -6,8 +6,8 @@ import { Helmet } from "react-helmet";
 import slugify from "slugify";
 import shortid from "shortid";
 import classnames from "classnames";
-import Header from "./Header/Header";
-import ClickOutside from "./ClickOutside";
+import Header from "../Header/Header";
+import ClickOutside from "../ClickOutside";
 import "./Home.scss";
 
 type Props = {
