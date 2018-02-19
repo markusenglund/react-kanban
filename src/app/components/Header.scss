@@ -14,16 +14,16 @@ header {
 }
 
 .green header {
-  background: #143;
+  background: $transparent-green;
 }
 .blue header {
-  background: #047;
+  background: $transparent-blue;
 }
 .red header {
-  background: #620;
+  background: $transparent-red;
 }
 .pink header {
-  background: #a04;
+  background: $transparent-pink;
 }
 
 .header-title {
