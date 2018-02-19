@@ -58,6 +58,19 @@ $main-margin: 30px;
   box-sizing: border-box;
   text-decoration: none;
   transition: background 0.1s;
+
+  &.green {
+    background: $green;
+  }
+  &.blue {
+    background: $blue;
+  }
+  &.red {
+    background: $red;
+  }
+  &.pink {
+    background: $pink;
+  }
 }
 
 .board-link:hover,
