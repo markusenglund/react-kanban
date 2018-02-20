@@ -16,7 +16,7 @@ type Props = {
 
 class Card extends Component<Props> {
   render() {
-    const { card, index, i, deleteCard, openCardEditor } = this.props;
+    const { card, index, i, deleteCard, toggleCardEditor } = this.props;
     return (
       <Draggable draggableId={card._id} index={index}>
         {(provided, snapshot) => (
@@ -39,16 +39,10 @@ class Card extends Component<Props> {
                   __html: marked(card.title, { sanitize: true })
                 }}
               />
-              <button
-                onClick={() => deleteCard(card._id)}
-                className="delete-card-button"
-              >
+              <button onClick={deleteCard} className="delete-card-button">
                 <FaTimesCircle />
               </button>
-              <button
-                onClick={() => openCardEditor(card)}
-                className="edit-card-button"
-              >
+              <button onClick={toggleCardEditor} className="edit-card-button">
                 <FaPencil />
               </button>
             </div>
