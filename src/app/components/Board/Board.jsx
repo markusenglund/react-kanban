@@ -7,7 +7,7 @@ import classnames from "classnames";
 import List from "./List";
 import ListAdder from "./ListAdder";
 import Header from "../Header/Header";
-import ColorPicker from "./ColorPicker";
+import BoardHeader from "./BoardHeader/BoardHeader";
 import "./Board.scss";
 
 type Props = {
@@ -31,39 +31,6 @@ class Board extends React.Component<Props> {
   }
   componentWillUnmount = () => {
     i += 1;
-  };
-
-  handleTitleClick = () => {
-    this.setState({ isTitleInEdit: true, newTitle: this.props.boardTitle });
-  };
-
-  handleTitleChange = event => {
-    this.setState({ newTitle: event.target.value });
-  };
-
-  submitTitle = () => {
-    const { dispatch, boardId, boardTitle } = this.props;
-    const { newTitle } = this.state;
-    if (newTitle === "") return;
-    if (boardTitle !== newTitle) {
-      dispatch({
-        type: "EDIT_BOARD_TITLE",
-        payload: {
-          boardTitle: newTitle,
-          boardId
-        }
-      });
-    }
-    this.setState({
-      isTitleInEdit: false,
-      newTitle: ""
-    });
-  };
-
-  handleTitleKeyDown = event => {
-    if (event.keyCode === 13) {
-      this.submitTitle();
-    }
   };
 
   handleDragEnd = ({ source, destination, type }) => {
@@ -134,32 +101,7 @@ class Board extends React.Component<Props> {
           <title>{boardTitle} | kanban.live</title>
         </Helmet>
         <Header />
-        <div className="board-header">
-          <div className="board-title-wrapper">
-            {isTitleInEdit ? (
-              <input
-                autoFocus
-                value={newTitle}
-                type="text"
-                onKeyDown={this.handleTitleKeyDown}
-                onChange={this.handleTitleChange}
-                onBlur={this.submitTitle}
-                className="board-title-input"
-                spellCheck={false}
-              />
-            ) : (
-              <button
-                className="board-title-button"
-                onClick={this.handleTitleClick}
-              >
-                <h1 className="board-title">{boardTitle}</h1>
-              </button>
-            )}
-          </div>
-          <div className="vertical-line" />
-          <ColorPicker boardId={boardId} />
-          <div className="vertical-line" />
-        </div>
+        <BoardHeader />
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         <div
           ref={el => {

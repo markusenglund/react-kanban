@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import classnames from "classnames";
 import FaCheck from "react-icons/lib/fa/check";
@@ -39,10 +40,11 @@ class ColorPicker extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { boardId } = ownProps;
+  const { boardId } = ownProps.match.params;
   return {
-    boardColor: state.boardsById[boardId].color
+    boardColor: state.boardsById[boardId].color,
+    boardId
   };
 };
 
-export default connect(mapStateToProps)(ColorPicker);
+export default withRouter(connect(mapStateToProps)(ColorPicker));
