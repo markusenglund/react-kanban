@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
+import ClickOutside from "../../ClickOutside";
 
 type Props = {
   boardId: string,
@@ -19,8 +20,10 @@ class CardComposer extends Component<Props> {
     };
   }
 
-  componentDidMount = () => {
-    setTimeout(() => this.el.scrollIntoView());
+  componentDidUpdate = prevProps => {
+    if (!prevProps.isOpen && this.props.isOpen) {
+      setTimeout(() => this.el.scrollIntoView());
+    }
   };
 
   handleChange = event => {
@@ -46,34 +49,39 @@ class CardComposer extends Component<Props> {
       type: "ADD_CARD",
       payload: { cardTitle: newCardTitle, cardId, listId: list._id, boardId }
     });
-    this.setState({ newCardTitle: "" });
     toggleCardComposer();
+    this.setState({ newCardTitle: "" });
   };
 
   render() {
     const { newCardTitle } = this.state;
+    const { isOpen, toggleCardComposer } = this.props;
     return (
-      <form onSubmit={this.handleSubmit} className="textarea-wrapper">
-        <Textarea
-          autoFocus
-          useCacheForDOMMeasurements
-          minRows={3}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          value={newCardTitle}
-          className="list-textarea"
-          spellCheck={false}
-        />
-        <input
-          ref={el => {
-            this.el = el;
-          }}
-          type="submit"
-          value="Add"
-          className="submit-card-button"
-          disabled={newCardTitle === ""}
-        />
-      </form>
+      isOpen && (
+        <ClickOutside handleClickOutside={toggleCardComposer}>
+          <form onSubmit={this.handleSubmit} className="textarea-wrapper">
+            <Textarea
+              autoFocus
+              useCacheForDOMMeasurements
+              minRows={3}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+              value={newCardTitle}
+              className="list-textarea"
+              spellCheck={false}
+            />
+            <input
+              ref={el => {
+                this.el = el;
+              }}
+              type="submit"
+              value="Add"
+              className="submit-card-button"
+              disabled={newCardTitle === ""}
+            />
+          </form>
+        </ClickOutside>
+      )
     );
   }
 }

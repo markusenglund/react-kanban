@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Droppable } from "react-beautiful-dnd";
-import ClickOutside from "../../ClickOutside";
 import CardComposer from "./CardComposer";
 import CardWrapper from "./CardWrapper";
 
@@ -31,15 +30,12 @@ class Cards extends Component {
               ))}
               {provided.placeholder}
               <div style={{ padding: "6px" }} />
-              {cardComposerIsOpen && (
-                <ClickOutside handleClickOutside={toggleCardComposer}>
-                  <CardComposer
-                    toggleCardComposer={toggleCardComposer}
-                    boardId={boardId}
-                    list={list}
-                  />
-                </ClickOutside>
-              )}
+              <CardComposer
+                isOpen={cardComposerIsOpen}
+                toggleCardComposer={toggleCardComposer}
+                boardId={boardId}
+                list={list}
+              />
             </div>
           </>
         )}
