@@ -4,74 +4,25 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
-import shortid from "shortid";
 import classnames from "classnames";
 import Header from "../Header/Header";
-import ClickOutside from "../ClickOutside";
+import BoardAdder from "./BoardAdder";
 import "./Home.scss";
 
 type Props = {
-  boards: Array<{ title: string, _id: string }>,
-  userId: string,
-  dispatch: ({ type: string }) => void,
-  history: { push: ({ type: string }) => void }
+  boards: Array<{ title: string, _id: string }>
 };
 
 class Home extends Component<Props> {
-  constructor() {
-    super();
-    this.state = {
-      isBoardAdderOpen: false,
-      newBoardTitle: ""
-    };
-  }
-
-  toggleBoardAdder = () => {
-    this.setState({ isBoardAdderOpen: !this.state.isBoardAdderOpen });
-  };
-
-  handleBoardTitleChange = event => {
-    this.setState({ newBoardTitle: event.target.value });
-  };
-
-  handleSubmitBoard = event => {
-    event.preventDefault();
-    const { newBoardTitle } = this.state;
-    if (newBoardTitle === "") {
-      return;
-    }
-    const { dispatch, history, userId } = this.props;
-    const boardId = shortid.generate();
-    dispatch({
-      type: "ADD_BOARD",
-      payload: {
-        boardTitle: newBoardTitle,
-        boardId,
-        userId
-      }
-    });
-    history.push(`/b/${boardId}/${slugify(newBoardTitle, { lower: true })}`);
-
-    // Dispatch action to put new empty board in redux store and in db + push history to the board
-    this.setState({ isBoardAdderOpen: false, newBoardTitle: "" });
-  };
-
-  handleKeyDown = event => {
-    if (event.keyCode === 27) {
-      this.setState({ isBoardAdderOpen: false });
-    }
-  };
-
   render = () => {
     const { boards } = this.props;
-    const { isBoardAdderOpen, newBoardTitle } = this.state;
     return (
       <>
+        <Helmet>
+          <title>Home | kanban.live</title>
+        </Helmet>
         <Header />
         <div className="home">
-          <Helmet>
-            <title>Home | kanban.live</title>
-          </Helmet>
           <div className="main-content">
             <h1>My boards</h1>
             <div className="boards">
@@ -86,37 +37,7 @@ class Home extends Component<Props> {
                   {board.title}
                 </Link>
               ))}
-              {isBoardAdderOpen ? (
-                <ClickOutside handleClickOutside={this.toggleBoardAdder}>
-                  <form
-                    onSubmit={this.handleSubmitBoard}
-                    className="board-adder"
-                  >
-                    <input
-                      autoFocus
-                      className="submit-board-input"
-                      type="text"
-                      value={newBoardTitle}
-                      onKeyDown={this.handleKeyDown}
-                      onChange={this.handleBoardTitleChange}
-                      spellCheck={false}
-                    />
-                    <input
-                      type="submit"
-                      value="Create board"
-                      className="submit-board-button"
-                      disabled={newBoardTitle === ""}
-                    />
-                  </form>
-                </ClickOutside>
-              ) : (
-                <button
-                  onClick={this.toggleBoardAdder}
-                  className="create-board-button"
-                >
-                  Create a new board...
-                </button>
-              )}
+              <BoardAdder />
             </div>
           </div>
         </div>
@@ -126,8 +47,7 @@ class Home extends Component<Props> {
 }
 
 const mapStateToProps = state => ({
-  boards: Object.values(state.boardsById),
-  userId: state.user._id
+  boards: Object.values(state.boardsById)
 });
 
 export default connect(mapStateToProps)(Home);
