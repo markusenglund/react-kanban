@@ -23,19 +23,19 @@ class CardComposer extends Component<Props> {
     setTimeout(() => this.el.scrollIntoView());
   };
 
-  handleCardComposerChange = event => {
+  handleChange = event => {
     this.setState({ newCardTitle: event.target.value });
   };
 
   handleKeyDown = (event: SyntheticEvent<>) => {
     if (event.keyCode === 13 && event.shiftKey === false) {
-      this.handleSubmitCard(event);
+      this.handleSubmit(event);
     } else if (event.keyCode === 27) {
       this.props.toggleCardComposer();
     }
   };
 
-  handleSubmitCard = event => {
+  handleSubmit = event => {
     event.preventDefault();
     const { newCardTitle } = this.state;
     const { list, boardId, dispatch, toggleCardComposer } = this.props;
@@ -53,12 +53,12 @@ class CardComposer extends Component<Props> {
   render() {
     const { newCardTitle } = this.state;
     return (
-      <form onSubmit={this.handleSubmitCard} className="textarea-wrapper">
+      <form onSubmit={this.handleSubmit} className="textarea-wrapper">
         <Textarea
           autoFocus
           useCacheForDOMMeasurements
           minRows={3}
-          onChange={this.handleCardComposerChange}
+          onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
           value={newCardTitle}
           className="list-textarea"

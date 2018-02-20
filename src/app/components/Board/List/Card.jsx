@@ -19,24 +19,16 @@ class Card extends Component<Props> {
     const { card, index, i, deleteCard, openCardEditor } = this.props;
     return (
       <Draggable draggableId={card._id} index={index}>
-        {(
-          {
-            innerRef,
-            draggableProps,
-            dragHandleProps: handleProps,
-            placeholder
-          },
-          { isDragging }
-        ) => (
+        {(provided, snapshot) => (
           <div>
             {/* eslint-disable jsx-a11y/no-static-element-interactions */}
             <div
               className={classnames("card-title", {
-                "card-title-drag": isDragging
+                "card-title-drag": snapshot.isDragging
               })}
-              ref={innerRef}
-              {...draggableProps}
-              {...handleProps}
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
               data-react-beautiful-dnd-draggable={i}
               data-react-beautiful-dnd-drag-handle={i}
             >
@@ -60,7 +52,7 @@ class Card extends Component<Props> {
                 <FaPencil />
               </button>
             </div>
-            {placeholder}
+            {provided.placeholder}
           </div>
         )}
       </Draggable>

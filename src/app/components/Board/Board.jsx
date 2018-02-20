@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
-import List from "./List";
+import List from "./List/List";
 import ListAdder from "./ListAdder";
 import Header from "../Header/Header";
 import BoardHeader from "./BoardHeader/BoardHeader";
