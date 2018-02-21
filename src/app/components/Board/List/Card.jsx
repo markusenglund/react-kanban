@@ -20,6 +20,7 @@ class Card extends Component {
 
   render() {
     const { card, index, i, deleteCard, toggleCardEditor } = this.props;
+    console.log("CARD", this.props);
     return (
       <Draggable draggableId={card._id} index={index}>
         {(provided, snapshot) => (

@@ -10,8 +10,8 @@ class List extends Component {
     i: PropTypes.number.isRequired,
     boardId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
-    list: PropTypes.shape({ _id: PropTypes.string.isRequired }).isRequired,
-    cards: PropTypes.arrayOf(PropTypes.object)
+    list: PropTypes.shape({ _id: PropTypes.string.isRequired }).isRequired
+    // cards: PropTypes.arrayOf(PropTypes.object)
   };
 
   constructor() {
@@ -25,8 +25,9 @@ class List extends Component {
     this.setState({ cardComposerIsOpen: !this.state.cardComposerIsOpen });
 
   render = () => {
-    const { cards, list, boardId, i, index } = this.props;
+    const { list, boardId, i, index } = this.props;
     const { cardComposerIsOpen } = this.state;
+    console.log("LIST", this.props);
     return (
       <Draggable
         draggableId={list._id}
@@ -53,7 +54,7 @@ class List extends Component {
                 <div className="cards-wrapper">
                   <Cards
                     listId={list._id}
-                    cards={cards}
+                    // cards={list.cards}
                     cardComposerIsOpen={cardComposerIsOpen}
                     toggleCardComposer={this.toggleCardComposer}
                     i={i}
@@ -78,8 +79,8 @@ class List extends Component {
   };
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  cards: ownProps.list.cards.map(cardId => state.cardsById[cardId])
-});
+// const mapStateToProps = (state, ownProps) => ({
+//   cards: ownProps.list.cards.map(cardId => state.cardsById[cardId])
+// });
 
-export default connect(mapStateToProps)(List);
+export default connect()(List);
