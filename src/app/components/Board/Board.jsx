@@ -42,27 +42,33 @@ class Board extends Component {
     const { dispatch, boardId } = this.props;
 
     if (type === "COLUMN") {
-      dispatch({
-        type: "REORDER_LISTS",
-        payload: {
-          oldListIndex: source.index,
-          newListIndex: destination.index,
-          boardId: source.droppableId
-        }
-      });
+      if (source.index !== destination.index) {
+        dispatch({
+          type: "REORDER_LISTS",
+          payload: {
+            oldListIndex: source.index,
+            newListIndex: destination.index,
+            boardId: source.droppableId
+          }
+        });
+      }
       return;
     }
-
-    dispatch({
-      type: "REORDER_CARDS",
-      payload: {
-        sourceListId: source.droppableId,
-        destListId: destination.droppableId,
-        oldCardIndex: source.index,
-        newCardIndex: destination.index,
-        boardId
-      }
-    });
+    if (
+      source.index !== destination.index ||
+      source.droppableId !== destination.droppableId
+    ) {
+      dispatch({
+        type: "REORDER_CARDS",
+        payload: {
+          sourceListId: source.droppableId,
+          destListId: destination.droppableId,
+          oldCardIndex: source.index,
+          newCardIndex: destination.index,
+          boardId
+        }
+      });
+    }
   };
 
   handleMouseDown = ({ target, clientX }) => {
