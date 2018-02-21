@@ -2,9 +2,12 @@
   background-image: url("../../assets/images/postit-notes.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center bottom;
+  background-position: 60% 20%;
   color: white;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .landing-page-heading {

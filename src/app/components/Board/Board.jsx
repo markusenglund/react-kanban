@@ -41,7 +41,9 @@ class Board extends Component {
     }
     const { dispatch, boardId } = this.props;
 
+    // Move list
     if (type === "COLUMN") {
+      // Prevent update if nothing has changed
       if (source.index !== destination.index) {
         dispatch({
           type: "REORDER_LISTS",
@@ -54,6 +56,7 @@ class Board extends Component {
       }
       return;
     }
+    // Move card
     if (
       source.index !== destination.index ||
       source.droppableId !== destination.droppableId
