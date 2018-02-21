@@ -5,13 +5,7 @@ import slugify from "slugify";
 import shortid from "shortid";
 import ClickOutside from "../ClickOutside";
 
-// type Props = {
-//   userId: string,
-//   dispatch: ({ type: string }) => void,
-//   history: { push: ({ type: string }) => void }
-// };
-
-class Home extends Component {
+class BoardAdder extends Component {
   static propTypes = {
     userId: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
@@ -94,4 +88,4 @@ const mapStateToProps = state => ({
   userId: state.user._id
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(BoardAdder);

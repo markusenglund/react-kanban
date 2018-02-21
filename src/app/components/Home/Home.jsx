@@ -17,10 +17,11 @@ class Home extends Component {
         color: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired
       }).isRequired
-    ).isRequired
+    ).isRequired,
+    history: PropTypes.object.isRequired
   };
   render = () => {
-    const { boards } = this.props;
+    const { boards, history } = this.props;
     return (
       <>
         <Helmet>
@@ -42,7 +43,7 @@ class Home extends Component {
                   {board.title}
                 </Link>
               ))}
-              <BoardAdder />
+              <BoardAdder history={history} />
             </div>
           </div>
         </div>

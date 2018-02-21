@@ -112,6 +112,14 @@ module.exports = [
                 outputPath: "images/",
                 publicPath: "/static/"
               }
+            },
+            {
+              loader: "image-webpack-loader",
+              options: {
+                mozjpeg: {
+                  enabled: false
+                }
+              }
             }
           ]
         }
