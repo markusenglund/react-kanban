@@ -1,16 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import "./UserDropdown.scss";
 
-// type Props = {
-//   user: {
-//     name: string,
-//     imageUrl: string
-//   }
-// };
-
 class UserDropdown extends Component {
+  static propTypes = {
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired
+    }).isRequired
+  };
   render = () => {
     const { name, imageUrl } = this.props.user;
     return (

@@ -29,7 +29,7 @@ class CardComposer extends Component {
     this.setState({ newCardTitle: event.target.value });
   };
 
-  handleKeyDown = (event: SyntheticEvent<>) => {
+  handleKeyDown = event => {
     if (event.keyCode === 13 && event.shiftKey === false) {
       this.handleSubmit(event);
     } else if (event.keyCode === 27) {

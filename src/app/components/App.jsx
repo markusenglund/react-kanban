@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Home from "./Home/Home";
@@ -26,6 +27,8 @@ const App = ({ user }) => {
     </Switch>
   );
 };
+
+App.propTypes = { user: PropTypes.object };
 
 const mapStateToProps = state => ({ user: state.user });
 

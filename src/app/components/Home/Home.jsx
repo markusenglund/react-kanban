@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -8,11 +9,16 @@ import Header from "../Header/Header";
 import BoardAdder from "./BoardAdder";
 import "./Home.scss";
 
-// type Props = {
-//   boards: Array<{ title: string, _id: string }>
-// };
-
 class Home extends Component {
+  static propTypes = {
+    boards: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired
+      }).isRequired
+    ).isRequired
+  };
   render = () => {
     const { boards } = this.props;
     return (

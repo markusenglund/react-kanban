@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import slugify from "slugify";
 import shortid from "shortid";
@@ -11,6 +12,11 @@ import ClickOutside from "../ClickOutside";
 // };
 
 class Home extends Component {
+  static propTypes = {
+    userId: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
   constructor() {
     super();
     this.state = { isOpen: false, title: "" };
