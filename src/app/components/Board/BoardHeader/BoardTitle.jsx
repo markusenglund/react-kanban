@@ -51,6 +51,10 @@ class BoardTitle extends Component<Props> {
     }
   };
 
+  handleFocus = event => {
+    event.target.select();
+  };
+
   render() {
     const { isOpen, newTitle } = this.state;
     const { boardTitle } = this.props;
@@ -64,6 +68,7 @@ class BoardTitle extends Component<Props> {
             onKeyDown={this.handleKeyDown}
             onChange={this.handleChange}
             onBlur={this.revertTitle}
+            onFocus={this.handleFocus}
             className="board-title-input"
             spellCheck={false}
           />
