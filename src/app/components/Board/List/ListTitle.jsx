@@ -91,16 +91,17 @@ class ListTitle extends Component {
             />
           </div>
         ) : (
-          <div
-            className="list-title"
-            {...dragHandleProps}
-            data-react-beautiful-dnd-drag-handle={i}
-          >
+          <div className="list-title">
             <div
+              {...dragHandleProps}
+              data-react-beautiful-dnd-drag-handle={i}
               role="button"
               tabIndex={0}
               onClick={this.openTitleEditor}
-              onKeyDown={this.handleButtonKeyDown}
+              onKeyDown={event => {
+                this.handleButtonKeyDown(event);
+                dragHandleProps.onKeyDown(event);
+              }}
               className="list-title-button"
             >
               {listTitle}
