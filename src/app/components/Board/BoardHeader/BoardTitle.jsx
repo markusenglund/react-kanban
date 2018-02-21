@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 class BoardTitle extends Component {
+  static propTypes = {
+    boardTitle: PropTypes.string.isRequired,
+    boardId: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {

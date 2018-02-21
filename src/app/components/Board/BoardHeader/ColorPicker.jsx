@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
@@ -6,6 +7,12 @@ import classnames from "classnames";
 import FaCheck from "react-icons/lib/fa/check";
 
 class ColorPicker extends Component {
+  static propTypes = {
+    boardId: PropTypes.string.isRequired,
+    boardColor: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+
   handleSelection = color => {
     const { dispatch, boardId, boardColor } = this.props;
     // Dispatch update only if selected color is not the same as current board color.

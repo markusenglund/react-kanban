@@ -1,9 +1,22 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Card from "./Card";
 
 class CardWrapper extends Component {
+  static propTypes = {
+    card: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired
+    }).isRequired,
+    listId: PropTypes.string.isRequired,
+    boardId: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    i: PropTypes.number.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {

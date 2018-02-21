@@ -1,26 +1,19 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import ListTitle from "./ListTitle";
 import Cards from "./Cards";
 
-// type Props = {
-//   boardId: string,
-//   list: {
-//     title: string,
-//     _id: string,
-//     cards: Array<string>
-//   },
-//   cards: Array<{ title: string, _id: string }>,
-//   dragHandleProps: DragHandleProps,
-//   i: number
-// };
-
-// type State = {
-//   cardComposerIsOpen: boolean
-// };
-
 class List extends Component {
+  static propTypes = {
+    i: PropTypes.number.isRequired,
+    boardId: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    list: PropTypes.shape({ _id: PropTypes.string.isRequired }).isRequired,
+    cards: PropTypes.arrayOf(PropTypes.object)
+  };
+
   constructor() {
     super();
     this.state = {
@@ -59,7 +52,7 @@ class List extends Component {
                 />
                 <div className="cards-wrapper">
                   <Cards
-                    list={list}
+                    listId={list._id}
                     cards={cards}
                     cardComposerIsOpen={cardComposerIsOpen}
                     toggleCardComposer={this.toggleCardComposer}

@@ -1,12 +1,22 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Droppable } from "react-beautiful-dnd";
 import CardComposer from "./CardComposer";
 import CardWrapper from "./CardWrapper";
 
 class Cards extends Component {
+  static propTypes = {
+    i: PropTypes.number.isRequired,
+    boardId: PropTypes.string.isRequired,
+    cardComposerIsOpen: PropTypes.bool.isRequired,
+    toggleCardComposer: PropTypes.func.isRequired,
+    listId: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.object).isRequired
+  };
+
   render() {
     const {
-      list,
+      listId,
       cards,
       i,
       cardComposerIsOpen,
@@ -14,7 +24,7 @@ class Cards extends Component {
       boardId
     } = this.props;
     return (
-      <Droppable droppableId={list._id}>
+      <Droppable droppableId={listId}>
         {provided => (
           <>
             <div className="cards" ref={provided.innerRef}>
@@ -24,7 +34,7 @@ class Cards extends Component {
                   card={card}
                   index={index}
                   i={i}
-                  listId={list._id}
+                  listId={listId}
                   boardId={boardId}
                 />
               ))}
@@ -34,7 +44,7 @@ class Cards extends Component {
                 isOpen={cardComposerIsOpen}
                 toggleCardComposer={toggleCardComposer}
                 boardId={boardId}
-                list={list}
+                listId={listId}
               />
             </div>
           </>

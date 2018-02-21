@@ -1,9 +1,20 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 
 class ListTitle extends Component {
+  static propTypes = {
+    listTitle: PropTypes.string.isRequired,
+    listId: PropTypes.string.isRequired,
+    boardId: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.string).isRequired,
+    i: PropTypes.number.isRequired,
+    dragHandleProps: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {

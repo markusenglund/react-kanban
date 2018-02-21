@@ -1,17 +1,19 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
 import ClickOutside from "../../ClickOutside";
 
-// type Props = {
-//   boardId: string,
-//   list: { _id: string },
-//   toggleCardComposer: () => void,
-//   dispatch: () => void
-// };
-
 class CardComposer extends Component {
+  static propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    listId: PropTypes.string.isRequired,
+    boardId: PropTypes.string.isRequired,
+    toggleCardComposer: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor() {
     super();
     this.state = {
@@ -40,13 +42,13 @@ class CardComposer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { newCardTitle } = this.state;
-    const { list, boardId, dispatch, toggleCardComposer } = this.props;
+    const { listId, boardId, dispatch, toggleCardComposer } = this.props;
     if (newCardTitle === "") return;
 
     const cardId = shortid.generate();
     dispatch({
       type: "ADD_CARD",
-      payload: { cardTitle: newCardTitle, cardId, listId: list._id, boardId }
+      payload: { cardTitle: newCardTitle, cardId, listId, boardId }
     });
     toggleCardComposer();
     this.setState({ newCardTitle: "" });

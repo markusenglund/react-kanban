@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -9,23 +10,24 @@ import Header from "../Header/Header";
 import BoardHeader from "./BoardHeader/BoardHeader";
 import "./Board.scss";
 
-// type Props = {
-//   lists: Array<{ _id: string }>,
-//   boardTitle: string,
-//   boardId: string,
-//   dispatch: ({ type: string }) => void
-// };
-
 let i = 0;
 
 class Board extends Component {
+  static propTypes = {
+    lists: PropTypes.arrayOf(
+      PropTypes.shape({ _id: PropTypes.string.isRequired })
+    ).isRequired,
+    boardId: PropTypes.string.isRequired,
+    boardTitle: PropTypes.string.isRequired,
+    boardColor: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor() {
     super();
     this.state = {
       startX: null,
-      startScrollLeft: null,
-      newTitle: "",
-      isTitleInEdit: false
+      startScrollLeft: null
     };
   }
   componentWillUnmount = () => {
@@ -93,7 +95,6 @@ class Board extends Component {
   };
   render = () => {
     const { lists, boardTitle, boardId, boardColor } = this.props;
-    const { isTitleInEdit, newTitle } = this.state;
     return (
       <div className={classnames("board", boardColor)}>
         <Helmet>
