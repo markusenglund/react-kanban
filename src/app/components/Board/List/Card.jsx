@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
@@ -6,15 +5,15 @@ import marked from "marked";
 import FaPencil from "react-icons/lib/fa/pencil";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 
-type Props = {
-  card: { _id: string, title: string },
-  index: number,
-  i: number,
-  deleteCard: () => void,
-  openCardEditor: () => void
-};
+// type Props = {
+//   card: { _id: string, title: string },
+//   index: number,
+//   i: number,
+//   deleteCard: () => void,
+//   openCardEditor: () => void
+// };
 
-class Card extends Component<Props> {
+class Card extends Component {
   render() {
     const { card, index, i, deleteCard, toggleCardEditor } = this.props;
     return (

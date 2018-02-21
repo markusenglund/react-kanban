@@ -1,11 +1,8 @@
-// @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-type Props = {};
-
-class BoardTitle extends Component<Props> {
+class BoardTitle extends Component {
   constructor(props) {
     super(props);
     this.state = {

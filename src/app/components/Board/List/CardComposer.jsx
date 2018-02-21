@@ -1,18 +1,17 @@
-// @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
 import ClickOutside from "../../ClickOutside";
 
-type Props = {
-  boardId: string,
-  list: { _id: string },
-  toggleCardComposer: () => void,
-  dispatch: () => void
-};
+// type Props = {
+//   boardId: string,
+//   list: { _id: string },
+//   toggleCardComposer: () => void,
+//   dispatch: () => void
+// };
 
-class CardComposer extends Component<Props> {
+class CardComposer extends Component {
   constructor() {
     super();
     this.state = {

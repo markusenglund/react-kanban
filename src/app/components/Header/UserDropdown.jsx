@@ -1,17 +1,16 @@
-// @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import "./UserDropdown.scss";
 
-type Props = {
-  user: {
-    name: string,
-    imageUrl: string
-  }
-};
+// type Props = {
+//   user: {
+//     name: string,
+//     imageUrl: string
+//   }
+// };
 
-class UserDropdown extends Component<Props> {
+class UserDropdown extends Component {
   render = () => {
     const { name, imageUrl } = this.props.user;
     return (

@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -9,11 +8,11 @@ import Header from "../Header/Header";
 import BoardAdder from "./BoardAdder";
 import "./Home.scss";
 
-type Props = {
-  boards: Array<{ title: string, _id: string }>
-};
+// type Props = {
+//   boards: Array<{ title: string, _id: string }>
+// };
 
-class Home extends Component<Props> {
+class Home extends Component {
   render = () => {
     const { boards } = this.props;
     return (

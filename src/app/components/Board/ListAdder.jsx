@@ -1,19 +1,18 @@
-// @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
 
-type Props = {
-  dispatch: ({ type: string }) => void,
-  boardId: string
-};
-type State = {
-  isListInEdit: boolean,
-  newListTitle: string
-};
+// type Props = {
+//   dispatch: ({ type: string }) => void,
+//   boardId: string
+// };
+// type State = {
+//   isListInEdit: boolean,
+//   newListTitle: string
+// };
 
-class ListAdder extends Component<Props, State> {
+class ListAdder extends Component {
   constructor() {
     super();
     this.state = {
