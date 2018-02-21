@@ -1,0 +1,39 @@
+@import "../../../variables.scss";
+
+.add-list-button {
+  background: rgba(0, 0, 0, 0.15);
+  color: #ddd;
+  cursor: pointer;
+  display: inline-flex;
+  width: $list-width;
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  border-radius: $list-radius;
+  margin: 0 5px 0 5px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.add-list-button:hover,
+.add-list-button:focus {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.list-title-textarea-wrapper {
+  margin: 4px 5px 1px 5px;
+}
+
+.list-title-textarea {
+  border-radius: 3px;
+  padding: 6px;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  color: $black;
+  resize: none;
+}

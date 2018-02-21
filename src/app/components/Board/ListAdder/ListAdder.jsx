@@ -2,15 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
-
-// type Props = {
-//   dispatch: ({ type: string }) => void,
-//   boardId: string
-// };
-// type State = {
-//   isListInEdit: boolean,
-//   newListTitle: string
-// };
+import "./ListAdder.scss";
 
 class ListAdder extends Component {
   constructor() {
