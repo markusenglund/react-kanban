@@ -2,7 +2,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import List from "./List/List";
 import ListAdder from "./ListAdder";
@@ -117,36 +117,18 @@ class Board extends React.Component<Props> {
               type="COLUMN"
               direction="horizontal"
             >
-              {droppableProvided => (
-                <div className="lists" ref={droppableProvided.innerRef}>
+              {provided => (
+                <div className="lists" ref={provided.innerRef}>
                   {lists.map((list, index) => (
-                    <Draggable
-                      key={list._id}
-                      draggableId={list._id}
+                    <List
+                      list={list}
+                      boardId={boardId}
+                      i={i}
                       index={index}
-                      disableInteractiveElementBlocking
-                    >
-                      {provided => (
-                        <>
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            data-react-beautiful-dnd-draggable={i}
-                            className="list-wrapper"
-                          >
-                            <List
-                              list={list}
-                              boardId={boardId}
-                              dragHandleProps={provided.dragHandleProps}
-                              i={i}
-                            />
-                          </div>
-                          {provided.placeholder}
-                        </>
-                      )}
-                    </Draggable>
+                      key={list._id}
+                    />
                   ))}
-                  {droppableProvided.placeholder}
+                  {provided.placeholder}
                   <ListAdder boardId={boardId} />
                 </div>
               )}
