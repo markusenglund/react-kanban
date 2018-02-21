@@ -1,0 +1,38 @@
+.textarea-wrapper {
+  margin: 0 5px 5px 5px;
+}
+
+.list-textarea {
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 16px 10px;
+  color: inherit;
+  outline: none;
+  resize: none;
+}
+
+.submit-card-button {
+  background: #5aac44;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 18px 10px 18px;
+  margin: 5px 0 0 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.submit-card-button:hover {
+  background: #4a9a34;
+}
+
+.submit-card-button:focus {
+  background: #3a8a24;
+}

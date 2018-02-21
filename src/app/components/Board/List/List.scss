@@ -1,0 +1,102 @@
+@import "../../../variables.scss";
+
+.list-wrapper {
+  height: 100%;
+  user-select: none;
+}
+
+.list {
+  width: $list-width;
+  background: $transparent-grey;
+  border-radius: $list-radius;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin: 0 5px 0 5px;
+  display: inline-flex;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+.blue .list {
+  background: $transparent-blue;
+}
+.green .list {
+  background: $transparent-green;
+}
+.red .list {
+  background: $transparent-red;
+}
+.pink .list {
+  background: $transparent-pink;
+}
+
+.list-title {
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 18px;
+  border-top-right-radius: $list-radius;
+  border-top-left-radius: $list-radius;
+}
+
+.list-title-button {
+  overflow-wrap: break-word;
+  flex-grow: 1;
+  padding: 10px;
+  font-weight: 700;
+  color: $white;
+  border: none;
+  cursor: pointer;
+  min-width: 50%;
+  border-top-left-radius: inherit;
+}
+
+.delete-list-button {
+  border: 0;
+  padding: 4px 6px 7px 6px;
+  border-top-right-radius: inherit;
+  color: $white;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cards-wrapper {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 3px 0 3px;
+}
+
+.cards-wrapper::-webkit-scrollbar {
+  width: 8px;
+  background-color: $transparent-black;
+  border-radius: 2px;
+}
+
+.cards-wrapper::-webkit-scrollbar-thumb {
+  background: $transparent-white;
+  border-radius: 2px;
+}
+.cards {
+  min-height: 26px;
+}
+
+.open-composer-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  background: $transparent-white;
+  color: black;
+  width: 100%;
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.open-composer-button:hover {
+  color: $fg-black;
+  background: $bg-darker-grey;
+  text-decoration: underline;
+}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Card from "./Card";
+import "./Card.scss";
 
 class CardWrapper extends Component {
   static propTypes = {

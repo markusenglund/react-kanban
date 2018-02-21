@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
-import ClickOutside from "../../ClickOutside";
+import ClickOutside from "../../../ClickOutside";
+import "./CardComposer.scss";
 
 class CardComposer extends Component {
   static propTypes = {

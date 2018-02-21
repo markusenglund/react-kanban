@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import ListTitle from "./ListTitle";
 import Cards from "./Cards";
+import "./List.scss";
 
 class List extends Component {
   static propTypes = {
@@ -11,7 +12,6 @@ class List extends Component {
     boardId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     list: PropTypes.shape({ _id: PropTypes.string.isRequired }).isRequired
-    // cards: PropTypes.arrayOf(PropTypes.object)
   };
 
   constructor() {
@@ -78,9 +78,5 @@ class List extends Component {
     );
   };
 }
-
-// const mapStateToProps = (state, ownProps) => ({
-//   cards: ownProps.list.cards.map(cardId => state.cardsById[cardId])
-// });
 
 export default connect()(List);
