@@ -1,48 +1,54 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
 import "./ListAdder.scss";
 
 class ListAdder extends Component {
+  static propTypes = {
+    boardId: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor() {
     super();
     this.state = {
-      isListInEdit: false,
-      newListTitle: ""
+      isOpen: false,
+      listTitle: ""
     };
   }
   handleBlur = () => {
-    this.setState({ isListInEdit: false });
+    this.setState({ isOpen: false });
   };
   handleChange = event => {
-    this.setState({ newListTitle: event.target.value });
+    this.setState({ listTitle: event.target.value });
   };
   handleKeyDown = event => {
     if (event.keyCode === 13) {
       event.preventDefault();
       this.handleSubmit();
     } else if (event.keyCode === 27) {
-      this.setState({ isListInEdit: false });
+      this.setState({ isOpen: false, listTitle: "" });
     }
   };
   handleSubmit = () => {
     const { dispatch, boardId } = this.props;
-    const { newListTitle } = this.state;
+    const { listTitle } = this.state;
     const listId = shortid.generate();
-    if (newListTitle === "") return;
+    if (listTitle === "") return;
     dispatch({
       type: "ADD_LIST",
-      payload: { listTitle: newListTitle, listId, boardId }
+      payload: { listTitle, listId, boardId }
     });
-    this.setState({ isListInEdit: false, newListTitle: "" });
+    this.setState({ isOpen: false, listTitle: "" });
   };
   render = () => {
-    const { isListInEdit, newListTitle } = this.state;
-    if (!isListInEdit) {
+    const { isOpen, listTitle } = this.state;
+    if (!isOpen) {
       return (
         <button
-          onClick={() => this.setState({ isListInEdit: true })}
+          onClick={() => this.setState({ isOpen: true })}
           className="add-list-button"
         >
           Add a list...
@@ -55,7 +61,7 @@ class ListAdder extends Component {
           <Textarea
             autoFocus
             useCacheForDOMMeasurements
-            value={newListTitle}
+            value={listTitle}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             className="list-title-textarea"
