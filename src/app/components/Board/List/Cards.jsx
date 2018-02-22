@@ -7,7 +7,6 @@ import CardWrapper from "./Card/CardWrapper";
 
 class Cards extends Component {
   static propTypes = {
-    i: PropTypes.number.isRequired,
     boardId: PropTypes.string.isRequired,
     cardComposerIsOpen: PropTypes.bool.isRequired,
     toggleCardComposer: PropTypes.func.isRequired,
@@ -19,7 +18,6 @@ class Cards extends Component {
     const {
       listId,
       cards,
-      i,
       cardComposerIsOpen,
       toggleCardComposer,
       boardId
@@ -35,7 +33,6 @@ class Cards extends Component {
                   key={cardId}
                   cardId={cardId}
                   index={index}
-                  i={i}
                   listId={listId}
                   boardId={boardId}
                 />

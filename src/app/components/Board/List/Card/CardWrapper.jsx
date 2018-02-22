@@ -14,7 +14,6 @@ class CardWrapper extends Component {
     listId: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
-    i: PropTypes.number.isRequired,
     dispatch: PropTypes.func.isRequired
   };
 
@@ -69,7 +68,7 @@ class CardWrapper extends Component {
   };
 
   render() {
-    const { card, index, i } = this.props;
+    const { card, index } = this.props;
     const { isOpen, newTitle } = this.state;
     console.log("CARD WRAPPER", this.props);
     return !isOpen ? (
@@ -77,7 +76,6 @@ class CardWrapper extends Component {
         key={card._id}
         card={card}
         index={index}
-        i={i}
         deleteCard={this.deleteCard}
         toggleCardEditor={this.toggleCardEditor}
       />

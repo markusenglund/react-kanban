@@ -13,13 +13,12 @@ class Card extends Component {
       title: PropTypes.string.isRequired
     }).isRequired,
     index: PropTypes.number.isRequired,
-    i: PropTypes.number.isRequired,
     deleteCard: PropTypes.func.isRequired,
     toggleCardEditor: PropTypes.func.isRequired
   };
 
   render() {
-    const { card, index, i, deleteCard, toggleCardEditor } = this.props;
+    const { card, index, deleteCard, toggleCardEditor } = this.props;
     console.log("CARD", this.props);
     return (
       <Draggable draggableId={card._id} index={index}>
@@ -33,8 +32,6 @@ class Card extends Component {
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              data-react-beautiful-dnd-draggable={i}
-              data-react-beautiful-dnd-drag-handle={i}
             >
               {/* eslint-enable */}
               {/* eslint-disable react/no-danger */}

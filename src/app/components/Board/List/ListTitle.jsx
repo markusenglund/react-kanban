@@ -10,7 +10,6 @@ class ListTitle extends Component {
     listId: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
     cards: PropTypes.arrayOf(PropTypes.string).isRequired,
-    i: PropTypes.number.isRequired,
     dragHandleProps: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
   };
@@ -74,7 +73,7 @@ class ListTitle extends Component {
 
   render() {
     const { isOpen, newTitle } = this.state;
-    const { dragHandleProps, i, listTitle } = this.props;
+    const { dragHandleProps, listTitle } = this.props;
     return (
       <>
         {isOpen ? (
@@ -94,7 +93,6 @@ class ListTitle extends Component {
           <div className="list-title">
             <div
               {...dragHandleProps}
-              data-react-beautiful-dnd-drag-handle={i}
               role="button"
               tabIndex={0}
               onClick={this.openTitleEditor}

@@ -4,12 +4,15 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router";
 import { Helmet } from "react-helmet";
+import { resetContext } from "react-beautiful-dnd";
 import App from "../app/components/App";
 import reducers from "../app/reducers/reducers";
 
 export default function renderPage(req, res) {
   const store = createStore(combineReducers(reducers), req.initialState);
   const context = {};
+
+  resetContext();
 
   const appString = renderToString(
     <Provider store={store}>

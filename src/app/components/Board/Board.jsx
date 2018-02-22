@@ -10,8 +10,6 @@ import Header from "../Header/Header";
 import BoardHeader from "./BoardHeader/BoardHeader";
 import "./Board.scss";
 
-let i = 0;
-
 class Board extends Component {
   static propTypes = {
     lists: PropTypes.arrayOf(
@@ -30,9 +28,6 @@ class Board extends Component {
       startScrollLeft: null
     };
   }
-  componentWillUnmount = () => {
-    i += 1;
-  };
 
   handleDragEnd = ({ source, destination, type }) => {
     // dropped outside the list
@@ -132,7 +127,6 @@ class Board extends Component {
                     <List
                       list={list}
                       boardId={boardId}
-                      i={i}
                       index={index}
                       key={list._id}
                     />

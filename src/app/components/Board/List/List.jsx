@@ -8,7 +8,6 @@ import "./List.scss";
 
 class List extends Component {
   static propTypes = {
-    i: PropTypes.number.isRequired,
     boardId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     list: PropTypes.shape({ _id: PropTypes.string.isRequired }).isRequired
@@ -25,7 +24,7 @@ class List extends Component {
     this.setState({ cardComposerIsOpen: !this.state.cardComposerIsOpen });
 
   render = () => {
-    const { list, boardId, i, index } = this.props;
+    const { list, boardId, index } = this.props;
     const { cardComposerIsOpen } = this.state;
     console.log("LIST", this.props);
     return (
@@ -39,13 +38,11 @@ class List extends Component {
             <div
               ref={provided.innerRef}
               {...provided.draggableProps}
-              data-react-beautiful-dnd-draggable={i}
               className="list-wrapper"
             >
               <div className="list">
                 <ListTitle
                   dragHandleProps={provided.dragHandleProps}
-                  i={i}
                   listTitle={list.title}
                   listId={list._id}
                   cards={list.cards}
@@ -57,7 +54,6 @@ class List extends Component {
                     // cards={list.cards}
                     cardComposerIsOpen={cardComposerIsOpen}
                     toggleCardComposer={this.toggleCardComposer}
-                    i={i}
                     boardId={boardId}
                   />
                 </div>
