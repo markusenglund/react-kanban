@@ -25,7 +25,7 @@ class Board extends Component {
     super();
     this.state = {
       startX: null,
-      startScrollLeft: null
+      startScrollX: null
     };
   }
 
@@ -75,17 +75,17 @@ class Board extends Component {
     window.addEventListener("mouseup", this.handleMouseUp);
     this.setState({
       startX: clientX,
-      startScrollLeft: this.backgroundEl.scrollLeft
+      startScrollX: window.scrollX
     });
   };
 
   handleMouseMove = ({ clientX }) => {
-    const { startX, startScrollLeft } = this.state;
-    const scrollLeft = startScrollLeft - clientX + startX;
-    this.backgroundEl.scrollLeft = scrollLeft;
-    if (scrollLeft !== this.backgroundEl.scrollLeft) {
+    const { startX, startScrollX } = this.state;
+    const scrollLeft = startScrollX - clientX + startX;
+    window.scroll(scrollLeft, 0);
+    if (scrollLeft !== window.scrollX) {
       this.setState({
-        startX: clientX + this.backgroundEl.scrollLeft - startScrollLeft
+        startX: clientX + window.scrollX - startScrollX
       });
     }
   };
@@ -94,7 +94,7 @@ class Board extends Component {
     if (this.state.startX) {
       window.removeEventListener("mousemove", this.handleMouseMove);
       window.removeEventListener("mouseup", this.handleMouseUp);
-      this.setState({ startX: null, startScrollLeft: null });
+      this.setState({ startX: null, startScrollX: null });
     }
   };
   render = () => {
@@ -107,15 +107,15 @@ class Board extends Component {
         <Header />
         <BoardHeader />
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-        <div
-          ref={el => {
-            this.backgroundEl = el;
-          }}
-          className="lists-wrapper"
-          onMouseDown={this.handleMouseDown}
-        >
-          {/* eslint-enable jsx-a11y/no-static-element-interactions */}
-          <DragDropContext onDragEnd={this.handleDragEnd}>
+        <DragDropContext onDragEnd={this.handleDragEnd}>
+          <div
+            // ref={el => {
+            //   this.backgroundEl = el;
+            // }}
+            className="lists-wrapper"
+            onMouseDown={this.handleMouseDown}
+          >
+            {/* eslint-enable jsx-a11y/no-static-element-interactions */}
             <Droppable
               droppableId={boardId}
               type="COLUMN"
@@ -136,8 +136,8 @@ class Board extends Component {
                 </div>
               )}
             </Droppable>
-          </DragDropContext>
-        </div>
+          </div>
+        </DragDropContext>
       </div>
     );
   };

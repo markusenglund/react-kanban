@@ -1,8 +1,14 @@
 @import "../../../variables.scss";
 
-.board-header {
-  color: $white;
+.board-header-wrapper {
+  position: relative;
+  height: 40px;
   margin: 8px 10px 5px 10px;
+}
+
+.board-header {
+  position: fixed;
+  color: $white;
   display: flex;
   align-items: center;
 }

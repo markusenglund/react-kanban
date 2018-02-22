@@ -4,6 +4,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   background: $black;
 
   &.green {
@@ -22,19 +23,19 @@
 
 .lists-wrapper {
   height: 100%;
-  display: flex;
+  display: inline-flex;
   padding: 5px;
-  overflow-x: auto;
+  background: inherit;
 }
 
-.lists-wrapper::-webkit-scrollbar {
+::-webkit-scrollbar {
   height: 10px;
-  background: $transparent-black;
+  background: #666;
   border-radius: 1px;
 }
 
-.lists-wrapper::-webkit-scrollbar-thumb {
-  background: $transparent-white;
+::-webkit-scrollbar-thumb {
+  background: #777;
   border-radius: 1px;
 }
 

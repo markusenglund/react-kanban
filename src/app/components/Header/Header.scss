@@ -1,6 +1,13 @@
 @import "../../variables.scss";
 
+.header-wrapper {
+  position: relative;
+  height: 40px;
+}
+
 header {
+  position: fixed;
+  width: 100%;
   box-sizing: border-box;
   background: #555;
   padding: 5px;
