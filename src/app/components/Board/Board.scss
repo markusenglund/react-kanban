@@ -1,11 +1,9 @@
 @import "../../variables.scss";
 
-.board {
-  height: 100%;
+.board-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background: $black;
+  height: 100%;
+  // align-items: flex-start;
 
   &.green {
     background: $green;
@@ -19,6 +17,25 @@
   &.pink {
     background: $pink;
   }
+}
+
+.board {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.green .board {
+  background: $green;
+}
+.blue .board {
+  background: $blue;
+}
+.red .board {
+  background: $red;
+}
+.pink .board {
+  background: $pink;
 }
 
 .lists-wrapper {
