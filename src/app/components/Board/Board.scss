@@ -1,9 +1,10 @@
 @import "../../variables.scss";
 
-.board-wrapper {
-  display: flex;
+.board {
   height: 100%;
-  // align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  background: $black;
 
   &.green {
     background: $green;
@@ -19,40 +20,21 @@
   }
 }
 
-.board {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.green .board {
-  background: $green;
-}
-.blue .board {
-  background: $blue;
-}
-.red .board {
-  background: $red;
-}
-.pink .board {
-  background: $pink;
-}
-
 .lists-wrapper {
   height: 100%;
-  display: inline-flex;
+  display: flex;
   padding: 5px;
-  background: inherit;
+  overflow-x: auto;
 }
 
-::-webkit-scrollbar {
+.lists-wrapper::-webkit-scrollbar {
   height: 10px;
-  background: #666;
+  background: $transparent-black;
   border-radius: 1px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #777;
+.lists-wrapper::-webkit-scrollbar-thumb {
+  background: $transparent-white;
   border-radius: 1px;
 }
 

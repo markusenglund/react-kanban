@@ -6,15 +6,13 @@ import "./Header.scss";
 
 class Header extends Component {
   render = () => (
-    <div className="header-wrapper">
-      <header>
-        <Link to="/" className="header-title">
-          <img src={kanbanLogo} alt="kanban live logo" />
-          &nbsp;kanban.live
-        </Link>
-        <UserDropdown />
-      </header>
-    </div>
+    <header>
+      <Link to="/" className="header-title">
+        <img src={kanbanLogo} alt="kanban live logo" />
+        &nbsp;kanban.live
+      </Link>
+      <UserDropdown />
+    </header>
   );
 }
 
