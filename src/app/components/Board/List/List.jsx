@@ -51,7 +51,6 @@ class List extends Component {
                 <div className="cards-wrapper">
                   <Cards
                     listId={list._id}
-                    // cards={list.cards}
                     cardComposerIsOpen={cardComposerIsOpen}
                     toggleCardComposer={this.toggleCardComposer}
                     boardId={boardId}

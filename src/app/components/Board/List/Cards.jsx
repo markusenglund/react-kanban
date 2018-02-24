@@ -38,7 +38,6 @@ class Cards extends Component {
                 />
               ))}
               {provided.placeholder}
-              <div style={{ padding: "6px" }} />
               <CardComposer
                 isOpen={cardComposerIsOpen}
                 toggleCardComposer={toggleCardComposer}
