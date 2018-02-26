@@ -1,6 +1,8 @@
 @import "../../../variables.scss";
 
 .board-header {
+  top: 40px;
+  position: fixed;
   color: $white;
   margin: 8px 10px 5px 10px;
   display: flex;

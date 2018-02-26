@@ -2,8 +2,8 @@
 
 .board {
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  min-width: 100%;
+  display: inline-flex;
   background: $black;
 
   &.green {
@@ -21,10 +21,10 @@
 }
 
 .lists-wrapper {
+  padding: 85px 5px 5px 5px;
+  box-sizing: border-box;
   height: 100%;
-  display: flex;
-  padding: 5px;
-  overflow-x: auto;
+  display: inline-flex;
 }
 
 .lists-wrapper::-webkit-scrollbar {

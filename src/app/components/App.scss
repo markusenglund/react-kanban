@@ -5,13 +5,11 @@ html {
 body {
   margin: 0;
   height: 100%;
-  // background: $bg-blue;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
 #app {
   height: 100%;
-  display: flex;
+  display: inline-flex;
   min-width: 100vw;
-  flex-direction: column;
 }

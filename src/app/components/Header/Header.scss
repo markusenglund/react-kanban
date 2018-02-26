@@ -1,6 +1,8 @@
 @import "../../variables.scss";
 
 header {
+  position: fixed;
+  width: 100%;
   box-sizing: border-box;
   background: #555;
   padding: 5px;
