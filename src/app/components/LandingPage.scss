@@ -26,9 +26,19 @@
   color: white;
 }
 
+.signin-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
 .signin-button {
+  width: 210px;
+  height: 40px;
   border: 0;
-  padding: 6px 12px 4px 8px;
+  // padding: 6px 12px 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   border-radius: 3px;
   cursor: pointer;
@@ -59,6 +69,16 @@
 
 .google-button:hover,
 .google-button:focus {
+  background: #eee;
+}
+
+.guest-button {
+  background: #fff;
+  color: #222;
+}
+
+.guest-button:hover,
+.guest-button:focus {
   background: #eee;
 }
 
