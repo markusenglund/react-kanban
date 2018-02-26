@@ -21,21 +21,10 @@
 }
 
 .lists-wrapper {
-  padding: 85px 5px 5px 5px;
+  padding: 85px 5px 15px 5px;
   box-sizing: border-box;
   height: 100%;
   display: inline-flex;
-}
-
-.lists-wrapper::-webkit-scrollbar {
-  height: 10px;
-  background: $transparent-black;
-  border-radius: 1px;
-}
-
-.lists-wrapper::-webkit-scrollbar-thumb {
-  background: $transparent-white;
-  border-radius: 1px;
 }
 
 .lists {

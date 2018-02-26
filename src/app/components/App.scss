@@ -13,3 +13,13 @@ body {
   display: inline-flex;
   min-width: 100vw;
 }
+
+::-webkit-scrollbar {
+  height: 10px;
+  background: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 3px;
+}
