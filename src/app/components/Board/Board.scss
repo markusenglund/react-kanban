@@ -21,7 +21,7 @@
 }
 
 .lists-wrapper {
-  padding: 85px 5px 15px 5px;
+  padding: 85px 5px 8px 5px;
   box-sizing: border-box;
   height: 100%;
   display: inline-flex;
@@ -31,4 +31,5 @@
   display: inline-flex;
   align-items: flex-start;
   height: 100%;
+  user-select: none;
 }

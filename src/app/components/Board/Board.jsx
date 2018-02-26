@@ -25,7 +25,7 @@ class Board extends Component {
     super();
     this.state = {
       startX: null,
-      startScrollLeft: null
+      startScrollX: null
     };
   }
 
@@ -70,22 +70,24 @@ class Board extends Component {
   };
 
   handleMouseDown = ({ target, clientX }) => {
-    if (target.className !== "list-wrapper") return;
+    if (target.className !== "list-wrapper" && target.className !== "lists")
+      return;
     window.addEventListener("mousemove", this.handleMouseMove);
     window.addEventListener("mouseup", this.handleMouseUp);
     this.setState({
       startX: clientX,
-      startScrollLeft: this.backgroundEl.scrollLeft
+      startScrollX: window.scrollX
     });
   };
 
   handleMouseMove = ({ clientX }) => {
-    const { startX, startScrollLeft } = this.state;
-    const scrollLeft = startScrollLeft - clientX + startX;
-    this.backgroundEl.scrollLeft = scrollLeft;
-    if (scrollLeft !== this.backgroundEl.scrollLeft) {
+    const { startX, startScrollX } = this.state;
+    const scrollX = startScrollX - clientX + startX;
+    window.scrollTo(scrollX, 0);
+    const windowScrollX = window.scrollX;
+    if (scrollX !== windowScrollX) {
       this.setState({
-        startX: clientX + this.backgroundEl.scrollLeft - startScrollLeft
+        startX: clientX + windowScrollX - startScrollX
       });
     }
   };
@@ -94,7 +96,7 @@ class Board extends Component {
     if (this.state.startX) {
       window.removeEventListener("mousemove", this.handleMouseMove);
       window.removeEventListener("mouseup", this.handleMouseUp);
-      this.setState({ startX: null, startScrollLeft: null });
+      this.setState({ startX: null, startScrollX: null });
     }
   };
   render = () => {
@@ -107,13 +109,7 @@ class Board extends Component {
         <Header />
         <BoardHeader />
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-        <div
-          ref={el => {
-            this.backgroundEl = el;
-          }}
-          className="lists-wrapper"
-          onMouseDown={this.handleMouseDown}
-        >
+        <div className="lists-wrapper" onMouseDown={this.handleMouseDown}>
           {/* eslint-enable jsx-a11y/no-static-element-interactions */}
           <DragDropContext onDragEnd={this.handleDragEnd}>
             <Droppable
