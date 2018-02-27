@@ -109,8 +109,7 @@ module.exports = [
                 emitFile: false,
                 limit: 4096,
                 name: "[name].[ext]",
-                outputPath: "images/",
-                publicPath: "/static/"
+                publicPath: "/static/images/"
               }
             },
             {
