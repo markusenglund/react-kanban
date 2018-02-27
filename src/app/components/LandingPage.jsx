@@ -4,6 +4,7 @@ import FaTwitter from "react-icons/lib/fa/twitter";
 import FaUserSecret from "react-icons/lib/fa/user-secret";
 import googleLogo from "../../assets/images/google-logo.svg";
 import kanbanLogo from "../../assets/images/kanban-logo.svg";
+import backgroundImg from "../../assets/images/postit-notes.jpg";
 import "./LandingPage.scss";
 
 class LandingPage extends Component {
