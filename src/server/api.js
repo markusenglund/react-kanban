@@ -15,6 +15,13 @@ const api = db => {
       });
   });
 
+  router.delete("/board", (req, res) => {
+    const { boardId } = req.body;
+    boards.deleteOne({ _id: boardId }).then(result => {
+      res.send(result);
+    });
+  });
+
   return router;
 };
 
