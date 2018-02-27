@@ -1,13 +1,22 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import FaTwitter from "react-icons/lib/fa/twitter";
 import FaUserSecret from "react-icons/lib/fa/user-secret";
 import googleLogo from "../../assets/images/google-logo.svg";
 import kanbanLogo from "../../assets/images/kanban-logo.svg";
-import backgroundImg from "../../assets/images/postit-notes.jpg";
 import "./LandingPage.scss";
 
 class LandingPage extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired
+  };
+
+  enterAsGuest = () => {
+    this.props.dispatch({ type: "ENTER_AS_GUEST" });
+  };
+
   render = () => (
     <div className="landing-page">
       <Helmet>
@@ -28,13 +37,16 @@ class LandingPage extends Component {
             <img className="google-logo" src={googleLogo} alt="google logo" />
             &nbsp;Sign in with Google
           </a>
-          <a href="/?guest=true" className="signin-button guest-button">
+          <button
+            onClick={this.enterAsGuest}
+            className="signin-button guest-button"
+          >
             <FaUserSecret className="logo-icon" /> &nbsp;Enter as guest
-          </a>
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-export default LandingPage;
+export default connect()(LandingPage);

@@ -85,7 +85,7 @@ class BoardAdder extends Component {
 }
 
 const mapStateToProps = state => ({
-  userId: state.user._id
+  userId: state.user ? state.user._id : "guest"
 });
 
 export default connect(mapStateToProps)(BoardAdder);

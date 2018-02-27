@@ -1,45 +1,30 @@
 import React from "react";
-import { renderToString, renderToStaticMarkup } from "react-dom/server";
+import { renderToString } from "react-dom/server";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router";
 import { Helmet } from "react-helmet";
 import { resetContext } from "react-beautiful-dnd";
 import App from "../app/components/App";
-import LandingPage from "../app/components/LandingPage";
 import reducers from "../app/reducers/reducers";
 
 export default function renderPage(req, res) {
-  let appString;
-  let scriptString = "";
+  const store = createStore(combineReducers(reducers), req.initialState);
+  const context = {};
 
-  if (req.user) {
-    const store = createStore(combineReducers(reducers), req.initialState);
-    const context = {};
+  resetContext();
 
-    resetContext();
-
-    appString = renderToString(
-      <Provider store={store}>
-        <StaticRouter location={req.url} context={context}>
-          <App />
-        </StaticRouter>
-      </Provider>
-    );
-    const preloadedState = store.getState();
-
-    scriptString = `
-    <script>
-      window.PRELOADED_STATE = ${JSON.stringify(preloadedState)}
-    </script>
-    <script src="/static/bundle.js"></script>
-    `;
-  } else {
-    // Landing page doesn't include any javascript so we only render the html string
-    appString = renderToStaticMarkup(<LandingPage />);
-  }
+  const appString = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    </Provider>
+  );
+  const preloadedState = store.getState();
 
   const helmet = Helmet.renderStatic();
+
   const html = `
     <!DOCTYPE html>
     <html>
@@ -61,7 +46,10 @@ export default function renderPage(req, res) {
       <body>
         <div id="app">${appString}</div>
       </body>
-      ${scriptString}
+      <script>
+        window.PRELOADED_STATE = ${JSON.stringify(preloadedState)}
+      </script>
+      <script src="/static/bundle.js"></script>
     </html>
   `;
   res.send(html);

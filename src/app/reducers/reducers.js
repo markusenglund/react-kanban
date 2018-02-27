@@ -5,6 +5,16 @@ const user = (state = null, action) => {
   }
 };
 
+const isGuest = (state = false, action) => {
+  switch (action.type) {
+    case "ENTER_AS_GUEST": {
+      return true;
+    }
+    default:
+      return state;
+  }
+};
+
 const cardsById = (state = {}, action) => {
   switch (action.type) {
     case "ADD_CARD":
@@ -172,4 +182,4 @@ const boardsById = (state = {}, action) => {
   }
 };
 
-export default { user, cardsById, listsById, boardsById };
+export default { user, isGuest, cardsById, listsById, boardsById };

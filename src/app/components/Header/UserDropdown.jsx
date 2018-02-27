@@ -2,21 +2,20 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
+import FaUserSecret from "react-icons/lib/fa/user-secret";
 import "./UserDropdown.scss";
 
 class UserDropdown extends Component {
   static propTypes = {
-    user: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired
-    }).isRequired
+    name: PropTypes.string.isRequired,
+    thumbnail: PropTypes.element.isRequired
   };
   render = () => {
-    const { name, imageUrl } = this.props.user;
+    const { name, thumbnail } = this.props;
     return (
       <Wrapper className="user-dropdown-wrapper">
         <Button className="user-dropdown-button">
-          <img src={imageUrl} alt={name} />
+          {thumbnail}
           &#9662;
         </Button>
         <Menu className="user-dropdown-menu">
@@ -36,6 +35,13 @@ class UserDropdown extends Component {
   };
 }
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user }) => ({
+  name: user ? user.name : "Guest",
+  thumbnail: user ? (
+    <img src={user.imageUrl} alt={user.name} />
+  ) : (
+    <FaUserSecret style={{ fontSize: 26 }} />
+  )
+});
 
 export default connect(mapStateToProps)(UserDropdown);

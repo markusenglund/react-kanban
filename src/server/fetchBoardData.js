@@ -27,7 +27,17 @@ const fetchBoardData = db => (req, res, next) => {
         next();
       });
   } else {
-    req.initialState = {};
+    req.initialState = {
+      boardsById: {
+        "123456": {
+          _id: "123456",
+          title: "Welcome to kanban.live!",
+          lists: [],
+          users: [],
+          color: "blue"
+        }
+      }
+    };
     next();
   }
 };

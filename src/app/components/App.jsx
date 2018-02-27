@@ -11,8 +11,8 @@ import "./App.scss";
 //   user: { _id: string, name: string, imageUrl: string }
 // };
 
-const App = ({ user }) => {
-  if (user) {
+const App = ({ user, isGuest }) => {
+  if (user || isGuest) {
     return (
       <>
         <Route exact path="/" component={Home} />
@@ -30,6 +30,6 @@ const App = ({ user }) => {
 
 App.propTypes = { user: PropTypes.object };
 
-const mapStateToProps = state => ({ user: state.user });
+const mapStateToProps = state => ({ user: state.user, isGuest: state.isGuest });
 
 export default withRouter(connect(mapStateToProps)(App));
