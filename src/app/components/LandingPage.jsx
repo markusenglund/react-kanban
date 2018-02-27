@@ -37,12 +37,15 @@ class LandingPage extends Component {
             <img className="google-logo" src={googleLogo} alt="google logo" />
             &nbsp;Sign in with Google
           </a>
-          <button
-            onClick={this.enterAsGuest}
-            className="signin-button guest-button"
-          >
-            <FaUserSecret className="logo-icon" /> &nbsp;Enter as guest
-          </button>
+          <div className="guest-button-wrapper">
+            <button
+              onClick={this.enterAsGuest}
+              className="signin-button guest-button"
+            >
+              <FaUserSecret className="logo-icon" /> &nbsp;Enter as guest
+            </button>
+            <div className="warning-message">(Boards will not be saved)</div>
+          </div>
         </div>
       </div>
     </div>

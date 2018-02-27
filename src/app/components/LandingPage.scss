@@ -73,6 +73,18 @@
   background: #eee;
 }
 
+.logo-icon {
+  font-size: 30px;
+}
+
+.google-logo {
+  height: 30px;
+}
+
+.guest-button-wrapper {
+  position: relative;
+}
+
 .guest-button {
   background: #fff;
   color: #222;
@@ -82,11 +94,11 @@
 .guest-button:focus {
   background: #eee;
 }
-
-.logo-icon {
-  font-size: 30px;
-}
-
-.google-logo {
-  height: 30px;
+.warning-message {
+  position: absolute;
+  top: 100%;
+  margin-top: 2px;
+  text-align: center;
+  color: white;
+  width: 100%;
 }
