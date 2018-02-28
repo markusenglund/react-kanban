@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
+import Modal from "react-aria-modal";
 
 class CardEditor extends Component {
   static propTypes = {
@@ -63,20 +64,29 @@ class CardEditor extends Component {
 
   render() {
     const { newTitle } = this.state;
-    const { card, isOpen } = this.props;
+    const { card, isOpen, toggleCardEditor } = this.props;
     return isOpen ? (
-      <div key={card._id} className="textarea-wrapper">
-        <Textarea
-          autoFocus
-          useCacheForDOMMeasurements
-          value={newTitle}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          className="list-textarea"
-          onBlur={this.submitCard}
-          spellCheck={false}
-        />
-      </div>
+      <Modal
+        onExit={toggleCardEditor}
+        titleText="card-editor"
+        underlayClass="modal-underlay"
+        dialogClass="card-editor-modal"
+        dialogStyle={{ top: 200, right: 200 }}
+        includeDefaultStyles={false}
+      >
+        <div>
+          <Textarea
+            autoFocus
+            useCacheForDOMMeasurements
+            value={newTitle}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            className="list-textarea"
+            onBlur={this.submitCard}
+            spellCheck={false}
+          />
+        </div>
+      </Modal>
     ) : null;
   }
 }
