@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Droppable } from "react-beautiful-dnd";
 import CardComposer from "./CardComposer/CardComposer";
-import CardWrapper from "./Card/CardWrapper";
+import Card from "./Card/Card";
 
 class Cards extends Component {
   static propTypes = {
@@ -29,7 +29,7 @@ class Cards extends Component {
           <>
             <div className="cards" ref={provided.innerRef}>
               {cards.map((cardId, index) => (
-                <CardWrapper
+                <Card
                   key={cardId}
                   cardId={cardId}
                   index={index}
