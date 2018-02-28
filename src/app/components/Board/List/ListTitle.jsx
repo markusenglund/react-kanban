@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
+import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 
 class ListTitle extends Component {
@@ -104,9 +105,21 @@ class ListTitle extends Component {
             >
               {listTitle}
             </div>
-            <button onClick={this.deleteList} className="delete-list-button">
+            {/* <button onClick={this.deleteList} className="delete-list-button">
               <FaTimesCircle />
-            </button>
+            </button> */}
+            <Wrapper
+              className="delete-list-wrapper"
+              onSelection={this.deleteList}
+            >
+              <Button className="delete-list-button">
+                <FaTimesCircle />
+              </Button>
+              <Menu className="delete-list-menu">
+                <div className="delete-list-header">Are you sure?</div>
+                <MenuItem className="delete-list-confirm">Delete</MenuItem>
+              </Menu>
+            </Wrapper>
           </div>
         )}
       </>

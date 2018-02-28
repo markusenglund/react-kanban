@@ -50,16 +50,6 @@
   border-top-left-radius: inherit;
 }
 
-.delete-list-button {
-  border: 0;
-  padding: 4px 6px 7px 6px;
-  border-top-right-radius: inherit;
-  color: $white;
-  background: rgba(0, 0, 0, 0);
-  cursor: pointer;
-  font-size: 16px;
-}
-
 .cards-wrapper {
   height: 100%;
   overflow-y: auto;
@@ -100,4 +90,62 @@
   color: $fg-black;
   background: $bg-darker-grey;
   text-decoration: underline;
+}
+
+.delete-list-wrapper {
+  position: relative;
+  align-self: flex-start;
+}
+
+.delete-list-button {
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: $list-radius;
+  color: $white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete-list-button:hover,
+.delete-list-button:focus {
+  background: $transparent-black;
+}
+
+.delete-list-button {
+  cursor: pointer;
+}
+
+.delete-list-menu {
+  z-index: 1;
+  background: $white;
+  color: black;
+  position: absolute;
+  margin-top: 4px;
+  top: 100%;
+  left: -60px;
+  right: -60px;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  text-align: center;
+}
+
+.delete-list-confirm {
+  background: red;
+  color: white;
+  cursor: pointer;
+  padding: 8px 30px;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.delete-list-confirm:hover,
+.delete-list-confirm:focus {
+  background: darkred;
 }
