@@ -22,7 +22,6 @@ class Cards extends Component {
       toggleCardComposer,
       boardId
     } = this.props;
-    console.log("CARDS", this.props);
     return (
       <Droppable droppableId={listId}>
         {provided => (

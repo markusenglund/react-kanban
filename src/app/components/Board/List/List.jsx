@@ -26,7 +26,6 @@ class List extends Component {
   render = () => {
     const { list, boardId, index } = this.props;
     const { cardComposerIsOpen } = this.state;
-    console.log("LIST", this.props);
     return (
       <Draggable
         draggableId={list._id}

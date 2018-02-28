@@ -12,6 +12,10 @@ class CardEditor extends Component {
     }).isRequired,
     listId: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
+    boundingRect: PropTypes.shape({
+      left: PropTypes.number,
+      top: PropTypes.number
+    }).isRequired,
     toggleCardEditor: PropTypes.func.isRequired,
     deleteCard: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired
@@ -63,14 +67,15 @@ class CardEditor extends Component {
 
   render() {
     const { newTitle } = this.state;
-    const { card, toggleCardEditor } = this.props;
+    const { card, toggleCardEditor, boundingRect } = this.props;
+    console.log(boundingRect);
     return (
       <Modal
         onExit={toggleCardEditor}
         titleText="card-editor"
         underlayClass="modal-underlay"
         dialogClass="card-editor-modal"
-        dialogStyle={{ top: 200, right: 200 }}
+        dialogStyle={{ top: boundingRect.top, left: boundingRect.left }}
         includeDefaultStyles={false}
       >
         <div>

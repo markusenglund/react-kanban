@@ -47,7 +47,11 @@ class Card extends Component {
       <>
         <Draggable draggableId={card._id} index={index}>
           {(provided, snapshot) => (
-            <div>
+            <div
+              ref={ref => {
+                this.ref = ref;
+              }}
+            >
               {/* eslint-disable jsx-a11y/no-static-element-interactions */}
               <div
                 className={classnames("card-title", {
@@ -85,6 +89,7 @@ class Card extends Component {
         </Draggable>
         {isOpen && (
           <CardEditor
+            boundingRect={this.ref.getBoundingClientRect()}
             card={card}
             listId={listId}
             boardId={boardId}
