@@ -1,16 +1,14 @@
 {
   "name": "kanban.live",
   "version": "0.1.0",
-  "description":
-    "An open source kanban application created with React and Redux.",
+  "description": "An open source kanban application created with React and Redux.",
   "main": "dist/server.js",
   "scripts": {
     "build": "webpack-dashboard -- webpack --watch --mode development",
     "build:prod": "webpack --mode production",
     "serve": "nodemon dist/server.js",
     "serve:prod": "NODE_ENV=production node dist/server.js",
-    "analyze-bundle":
-      "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
+    "analyze-bundle": "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/",
     "format": "prettier --write '**/*.{js,jsx,css,scss,json,md}'"
   },
@@ -35,8 +33,8 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-aria-menubutton": "^5.1.1",
-    "react-beautiful-dnd":
-      "github:yogaboll/react-beautiful-dnd#include-generated",
+    "react-aria-modal": "^2.12.1",
+    "react-beautiful-dnd": "github:yogaboll/react-beautiful-dnd#include-generated",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
