@@ -24,11 +24,12 @@ class Cards extends Component {
     } = this.props;
     return (
       <Droppable droppableId={listId}>
-        {provided => (
+        {(provided, { isDraggingOver }) => (
           <>
             <div className="cards" ref={provided.innerRef}>
               {cards.map((cardId, index) => (
                 <Card
+                  isDraggingOver={isDraggingOver}
                   key={cardId}
                   cardId={cardId}
                   index={index}

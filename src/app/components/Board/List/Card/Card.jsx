@@ -16,6 +16,7 @@ class Card extends Component {
     }).isRequired,
     listId: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
+    isDraggingOver: PropTypes.bool.isRequired,
     index: PropTypes.number.isRequired,
     dispatch: PropTypes.func.isRequired
   };
@@ -32,7 +33,7 @@ class Card extends Component {
   };
 
   render() {
-    const { card, index, listId, boardId } = this.props;
+    const { card, index, listId, boardId, isDraggingOver } = this.props;
     const { isOpen } = this.state;
     return (
       <>
@@ -67,7 +68,16 @@ class Card extends Component {
                   <FaPencil />
                 </button>
               </div>
-              {provided.placeholder}
+              {provided.placeholder && (
+                <div
+                  style={{
+                    height: isDraggingOver ? this.ref.offsetHeight + 8 : 0,
+                    transition: "all 200ms"
+                  }}
+                >
+                  {provided.placeholder}
+                </div>
+              )}
             </div>
           )}
         </Draggable>
