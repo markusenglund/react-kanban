@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
-import Modal from "react-aria-modal";
+// import Modal from "react-aria-modal";
+import Modal from "react-modal";
 
 class CardEditor extends Component {
   static propTypes = {
@@ -26,6 +27,7 @@ class CardEditor extends Component {
     this.state = {
       newTitle: props.card.title
     };
+    Modal.setAppElement("#app");
   }
 
   handleKeyDown = event => {
@@ -69,18 +71,27 @@ class CardEditor extends Component {
     const { newTitle } = this.state;
     const { card, toggleCardEditor, boundingRect } = this.props;
     console.log(boundingRect);
+    console.log(window.innerHeight, boundingRect.height + boundingRect.top);
+    const top = Math.min(
+      boundingRect.top,
+      window.innerHeight - boundingRect.height - 18
+    );
+    const style = {
+      content: {
+        top,
+        left: boundingRect.left,
+        width: boundingRect.width
+      }
+    };
     return (
       <Modal
-        onExit={toggleCardEditor}
-        titleText="card-editor"
-        // underlayClass="modal-underlay"
-        // dialogClass="card-editor-modal"
-        // dialogStyle={{
-        //   top: boundingRect.top,
-        //   left: boundingRect.left,
-        //   width: boundingRect.width
-        // }}
-        // includeDefaultStyles={false}
+        isOpen
+        onRequestClose={toggleCardEditor}
+        contentLabel="Card editor"
+        overlayClassName="modal-underlay"
+        className="card-editor-modal"
+        style={style}
+        includeDefaultStyles={false}
       >
         <div className="modal-textarea-wrapper">
           <Textarea

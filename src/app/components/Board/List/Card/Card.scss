@@ -76,7 +76,7 @@
 .modal-underlay {
   background: rgba(0, 0, 0, 0.6);
   z-index: 1;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -84,7 +84,7 @@
 }
 
 .card-editor-modal {
-  display: inline-block;
+  // display: inline-block;
   position: absolute;
 }
 
