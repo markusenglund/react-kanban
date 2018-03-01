@@ -47,17 +47,16 @@ class Card extends Component {
       <>
         <Draggable draggableId={card._id} index={index}>
           {(provided, snapshot) => (
-            <div
-              ref={ref => {
-                this.ref = ref;
-              }}
-            >
+            <div>
               {/* eslint-disable jsx-a11y/no-static-element-interactions */}
               <div
                 className={classnames("card-title", {
                   "card-title-drag": snapshot.isDragging
                 })}
-                ref={provided.innerRef}
+                ref={ref => {
+                  provided.innerRef(ref);
+                  this.ref = ref;
+                }}
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
               >

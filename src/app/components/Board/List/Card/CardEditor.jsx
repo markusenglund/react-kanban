@@ -15,7 +15,9 @@ class CardEditor extends Component {
     boardId: PropTypes.string.isRequired,
     boundingRect: PropTypes.shape({
       left: PropTypes.number,
-      top: PropTypes.number
+      top: PropTypes.number,
+      width: PropTypes.number,
+      height: PropTypes.number
     }).isRequired,
     toggleCardEditor: PropTypes.func.isRequired,
     deleteCard: PropTypes.func.isRequired,
@@ -69,9 +71,7 @@ class CardEditor extends Component {
 
   render() {
     const { newTitle } = this.state;
-    const { card, toggleCardEditor, boundingRect } = this.props;
-    console.log(boundingRect);
-    console.log(window.innerHeight, boundingRect.height + boundingRect.top);
+    const { toggleCardEditor, boundingRect } = this.props;
     const top = Math.min(
       boundingRect.top,
       window.innerHeight - boundingRect.height - 18
@@ -79,8 +79,7 @@ class CardEditor extends Component {
     const style = {
       content: {
         top,
-        left: boundingRect.left,
-        width: boundingRect.width
+        left: boundingRect.left
       }
     };
     return (
@@ -95,7 +94,10 @@ class CardEditor extends Component {
       >
         <div className="modal-textarea-wrapper">
           <Textarea
-            style={{ minHeight: boundingRect.height }}
+            style={{
+              minHeight: boundingRect.height,
+              width: boundingRect.width
+            }}
             autoFocus
             useCacheForDOMMeasurements
             value={newTitle}
@@ -105,6 +107,9 @@ class CardEditor extends Component {
             onBlur={this.submitCard}
             spellCheck={false}
           />
+        </div>
+        <div className="options-list">
+          <button>Delete card</button>
         </div>
       </Modal>
     );
