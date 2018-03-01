@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
-// import Modal from "react-aria-modal";
 import Modal from "react-modal";
+import FaTimesCircle from "react-icons/lib/fa/times-circle";
 
 class CardEditor extends Component {
   static propTypes = {
@@ -20,7 +20,6 @@ class CardEditor extends Component {
       height: PropTypes.number
     }).isRequired,
     toggleCardEditor: PropTypes.func.isRequired,
-    deleteCard: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired
   };
 
@@ -41,16 +40,9 @@ class CardEditor extends Component {
 
   submitCard = () => {
     const { newTitle } = this.state;
-    const {
-      card,
-      listId,
-      boardId,
-      dispatch,
-      toggleCardEditor,
-      deleteCard
-    } = this.props;
+    const { card, listId, boardId, dispatch, toggleCardEditor } = this.props;
     if (newTitle === "") {
-      deleteCard();
+      this.deleteCard();
     } else if (newTitle !== card.title) {
       dispatch({
         type: "EDIT_CARD_TITLE",
@@ -67,6 +59,14 @@ class CardEditor extends Component {
 
   handleChange = event => {
     this.setState({ newTitle: event.target.value });
+  };
+
+  deleteCard = () => {
+    const { dispatch, listId, boardId, card } = this.props;
+    dispatch({
+      type: "DELETE_CARD",
+      payload: { cardId: card._id, listId, boardId }
+    });
   };
 
   render() {
@@ -104,12 +104,13 @@ class CardEditor extends Component {
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             className="list-textarea"
-            onBlur={this.submitCard}
             spellCheck={false}
           />
         </div>
         <div className="options-list">
-          <button>Delete card</button>
+          <button onClick={this.deleteCard}>
+            <FaTimesCircle /> Delete card
+          </button>
         </div>
       </Modal>
     );

@@ -5,7 +5,6 @@ import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import marked from "marked";
 import FaPencil from "react-icons/lib/fa/pencil";
-import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import CardEditor from "./CardEditor";
 import "./Card.scss";
 
@@ -30,14 +29,6 @@ class Card extends Component {
 
   toggleCardEditor = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  };
-
-  deleteCard = () => {
-    const { dispatch, listId, boardId, card } = this.props;
-    dispatch({
-      type: "DELETE_CARD",
-      payload: { cardId: card._id, listId, boardId }
-    });
   };
 
   render() {
@@ -70,12 +61,6 @@ class Card extends Component {
                 />
                 {/* eslint-enable */}
                 <button
-                  onClick={this.deleteCard}
-                  className="delete-card-button"
-                >
-                  <FaTimesCircle />
-                </button>
-                <button
                   onClick={this.toggleCardEditor}
                   className="edit-card-button"
                 >
@@ -93,7 +78,6 @@ class Card extends Component {
             listId={listId}
             boardId={boardId}
             toggleCardEditor={this.toggleCardEditor}
-            deleteCard={this.deleteCard}
           />
         )}
       </>
