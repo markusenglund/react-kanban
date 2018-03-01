@@ -73,13 +73,18 @@ class CardEditor extends Component {
       <Modal
         onExit={toggleCardEditor}
         titleText="card-editor"
-        underlayClass="modal-underlay"
-        dialogClass="card-editor-modal"
-        dialogStyle={{ top: boundingRect.top, left: boundingRect.left }}
-        includeDefaultStyles={false}
+        // underlayClass="modal-underlay"
+        // dialogClass="card-editor-modal"
+        // dialogStyle={{
+        //   top: boundingRect.top,
+        //   left: boundingRect.left,
+        //   width: boundingRect.width
+        // }}
+        // includeDefaultStyles={false}
       >
-        <div>
+        <div className="modal-textarea-wrapper">
           <Textarea
+            style={{ minHeight: boundingRect.height }}
             autoFocus
             useCacheForDOMMeasurements
             value={newTitle}
