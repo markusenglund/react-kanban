@@ -68,16 +68,7 @@ class Card extends Component {
                   <FaPencil />
                 </button>
               </div>
-              {provided.placeholder && (
-                <div
-                  style={{
-                    height: isDraggingOver ? this.ref.offsetHeight + 8 : 0,
-                    transition: "all 200ms"
-                  }}
-                >
-                  {provided.placeholder}
-                </div>
-              )}
+              {isDraggingOver && provided.placeholder}
             </div>
           )}
         </Draggable>
