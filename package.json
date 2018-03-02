@@ -19,6 +19,7 @@
     "classnames": "^2.2.5",
     "compression": "^1.7.2",
     "connect-mongo": "^2.0.1",
+    "date-fns": "^1.29.0",
     "dotenv": "^5.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",

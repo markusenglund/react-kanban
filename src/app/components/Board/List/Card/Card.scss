@@ -42,6 +42,7 @@
 }
 
 .card-details {
+  font-size: 13px;
   padding: 0 10px 12px 10px;
 }
 
@@ -103,9 +104,17 @@
   background: white;
 }
 
-.options-list-button-icon {
+.modal-icon {
   margin-bottom: 2px;
   flex-shrink: 0;
+}
+
+.due-date {
+  color: darkorange;
+}
+
+.due-date-icon {
+  margin-bottom: 2px;
 }
 
 .calendar {

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
+import format from "date-fns/format";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
@@ -131,7 +132,10 @@ class CardEditor extends Component {
           />
           {selectedDay && (
             <div className="card-details">
-              {selectedDay.toLocaleDateString()}
+              <div className="due-date">
+                <MdAlarm className="due-date-icon" />&nbsp;
+                {format(selectedDay, "D MMM")}
+              </div>
             </div>
           )}
         </div>
@@ -142,7 +146,7 @@ class CardEditor extends Component {
             </div>&nbsp;Delete
           </button>
           <button onClick={this.openDatePicker} className="options-list-button">
-            <div className="options-list-button-icon">
+            <div className="modal-icon">
               <MdAlarm />
             </div>&nbsp;Due date
           </button>
