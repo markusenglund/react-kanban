@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
+import MdAlarm from "react-icons/lib/md/access-alarm";
 
 class CardEditor extends Component {
   static propTypes = {
@@ -118,6 +119,11 @@ class CardEditor extends Component {
             <div className="options-list-button-icon">
               <FaTimesCircle />
             </div>&nbsp;Delete
+          </button>
+          <button onClick={this.openDatePicker} className="options-list-button">
+            <div className="options-list-button-icon">
+              <MdAlarm />
+            </div>&nbsp;Due date
           </button>
         </div>
       </Modal>

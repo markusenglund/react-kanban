@@ -54,10 +54,7 @@
 .card-editor-modal {
   display: flex;
   position: absolute;
-}
-
-.modal-textarea-wrapper {
-  margin: 0 0 $list-margin 0;
+  outline: 0;
 }
 
 .options-list {
@@ -74,6 +71,7 @@
   cursor: pointer;
   padding: 6px;
   border-radius: 3px;
+  margin-bottom: 4px;
 }
 
 .options-list-button:hover,

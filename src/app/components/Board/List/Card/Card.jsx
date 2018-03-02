@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import marked from "marked";
-import FaPencil from "react-icons/lib/fa/pencil";
 import CardEditor from "./CardEditor";
 import "./Card.scss";
 
@@ -78,6 +77,7 @@ class Card extends Component {
             </div>
           )}
         </Draggable>
+
         {isOpen && (
           <CardEditor
             boundingRect={this.ref.getBoundingClientRect()}
