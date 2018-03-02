@@ -14,7 +14,7 @@ class CardEditor extends Component {
     card: PropTypes.shape({
       title: PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date)
+      date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
     }).isRequired,
     listId: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
@@ -75,7 +75,7 @@ class CardEditor extends Component {
     });
   };
 
-  toggleCalender = () => {
+  toggleCalendar = () => {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
 
@@ -137,15 +137,19 @@ class CardEditor extends Component {
               <FaTimesCircle />
             </div>&nbsp;Delete
           </button>
-          <button onClick={this.toggleCalender} className="options-list-button">
+          <button onClick={this.toggleCalendar} className="options-list-button">
             <div className="modal-icon">
               <MdAlarm />
             </div>&nbsp;Due date
           </button>
         </div>
         {isCalendarOpen && (
-          <ClickOutside handleClickOutside={this.toggleCalender}>
-            <Calendar boardId={boardId} cardId={card._id} />
+          <ClickOutside handleClickOutside={this.toggleCalendar}>
+            <Calendar
+              boardId={boardId}
+              cardId={card._id}
+              toggleCalendar={this.toggleCalendar}
+            />
           </ClickOutside>
         )}
       </Modal>

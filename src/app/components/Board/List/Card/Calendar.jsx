@@ -8,7 +8,8 @@ class Calendar extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     cardId: PropTypes.string.isRequired,
-    boardId: PropTypes.string.isRequired
+    boardId: PropTypes.string.isRequired,
+    toggleCalendar: PropTypes.func.isRequired
   };
 
   constructor() {
@@ -29,17 +30,19 @@ class Calendar extends Component {
 
   handleSave = () => {
     const { selectedDay } = this.state;
-    const { dispatch, cardId, boardId } = this.props;
+    const { dispatch, cardId, boardId, toggleCalendar } = this.props;
     if (selectedDay) {
       dispatch({
         type: "EDIT_CARD_DATE",
         payload: { date: selectedDay, cardId, boardId }
       });
+      toggleCalendar();
     }
   };
 
   render() {
     const { selectedDay } = this.state;
+    const { toggleCalendar } = this.props;
     return (
       <div className="calendar">
         <DayPicker
@@ -47,7 +50,10 @@ class Calendar extends Component {
           selectedDays={selectedDay}
           disabledDays={{ before: new Date() }}
         />
-        <button onClick={this.handleSave}>Save</button>
+        <div className="calendar-buttons">
+          <button onClick={this.handleSave}>Save</button>
+          <button onClick={toggleCalendar}>Cancel</button>
+        </div>
       </div>
     );
   }

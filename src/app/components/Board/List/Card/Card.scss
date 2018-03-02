@@ -119,4 +119,14 @@
 
 .calendar {
   background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-buttons {
+  display: flex;
+
+  button {
+    flex-grow: 1;
+  }
 }
