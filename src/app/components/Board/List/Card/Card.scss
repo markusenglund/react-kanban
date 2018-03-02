@@ -13,8 +13,32 @@
   padding: 12px 10px;
 }
 
+.card-title:hover {
+  .edit-card-button {
+    opacity: 1;
+  }
+}
+
 .card-title-drag {
   box-shadow: 0px 0px 5px rgb(0, 180, 255);
+}
+
+.edit-card-button {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  border: 0;
+  padding: 4px 6px 7px 6px;
+  border-radius: 3px;
+  opacity: 0;
+  color: $white;
+  background: $transparent-black;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.edit-card-button:hover {
+  background: $less-transparent-black;
 }
 
 .card-title-html {
@@ -38,39 +62,6 @@
   code {
     white-space: pre-wrap;
   }
-}
-
-.edit-card-button {
-  position: absolute;
-  right: 3px;
-  top: 3px;
-  border: 0;
-  padding: 4px 6px 7px 6px;
-  border-radius: 3px;
-  opacity: 0;
-  color: $white;
-  background: $transparent-black;
-  cursor: pointer;
-}
-
-.edit-card-button:hover {
-  opacity: 1;
-}
-.delete-card-button {
-  position: absolute;
-  right: 28px;
-  top: 2px;
-  border: 0;
-  padding: 4px 6px 7px 6px;
-  border-radius: 3px;
-  opacity: 0;
-  color: $fg-black;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.delete-card-button:hover {
-  opacity: 1;
 }
 
 .modal-underlay {
