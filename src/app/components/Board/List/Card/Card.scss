@@ -86,3 +86,20 @@
 .options-list {
   margin-left: 8px;
 }
+
+.options-list-button {
+  display: flex;
+  align-items: center;
+  font-size: inherit;
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  border: 0;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+.options-list-button:hover,
+.options-list-button:focus {
+  background: white;
+}
