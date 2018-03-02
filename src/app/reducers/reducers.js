@@ -17,15 +17,22 @@ const isGuest = (state = false, action) => {
 
 const cardsById = (state = {}, action) => {
   switch (action.type) {
-    case "ADD_CARD":
-    case "EDIT_CARD_TITLE": {
+    case "ADD_CARD": {
       const { cardTitle, cardId } = action.payload;
       return { ...state, [cardId]: { title: cardTitle, _id: cardId } };
+    }
+    case "EDIT_CARD_TITLE": {
+      const { cardTitle, cardId } = action.payload;
+      return { ...state, [cardId]: { ...state[cardId], title: cardTitle } };
     }
     case "DELETE_CARD": {
       const { cardId } = action.payload;
       const { [cardId]: deletedCard, ...restOfCards } = state;
       return restOfCards;
+    }
+    case "EDIT_CARD_DATE": {
+      const { date, cardId } = action.payload;
+      return { ...state, [cardId]: { ...state[cardId], date } };
     }
     case "DELETE_LIST": {
       const { cards: cardIds } = action.payload;

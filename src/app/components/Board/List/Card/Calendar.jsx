@@ -1,26 +1,56 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import DayPicker from "react-day-picker";
 import "./ReactDayPicker.css";
 
 class Calendar extends Component {
   static propTypes = {
-    selectedDay: PropTypes.instanceOf(Date),
-    handleDayClick: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    cardId: PropTypes.string.isRequired,
+    boardId: PropTypes.string.isRequired
+  };
+
+  constructor() {
+    super();
+    this.state = {
+      selectedDay: null
+    };
+  }
+
+  handleDayClick = (selectedDay, { selected }) => {
+    if (selected) {
+      // Unselect the day if already selected
+      this.setState({ selectedDay: undefined });
+      return;
+    }
+    this.setState({ selectedDay });
+  };
+
+  handleSave = () => {
+    const { selectedDay } = this.state;
+    const { dispatch, cardId, boardId } = this.props;
+    if (selectedDay) {
+      dispatch({
+        type: "EDIT_CARD_DATE",
+        payload: { date: selectedDay, cardId, boardId }
+      });
+    }
   };
 
   render() {
-    const { selectedDay, handleDayClick } = this.props;
+    const { selectedDay } = this.state;
     return (
       <div className="calendar">
         <DayPicker
-          onDayClick={handleDayClick}
+          onDayClick={this.handleDayClick}
           selectedDays={selectedDay}
           disabledDays={{ before: new Date() }}
         />
+        <button onClick={this.handleSave}>Save</button>
       </div>
     );
   }
 }
 
-export default Calendar;
+export default connect()(Calendar);

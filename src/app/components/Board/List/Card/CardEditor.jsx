@@ -7,12 +7,14 @@ import format from "date-fns/format";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
+import ClickOutside from "../../../ClickOutside";
 
 class CardEditor extends Component {
   static propTypes = {
     card: PropTypes.shape({
       title: PropTypes.string.isRequired,
-      _id: PropTypes.string.isRequired
+      _id: PropTypes.string.isRequired,
+      date: PropTypes.instanceOf(Date)
     }).isRequired,
     listId: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
@@ -30,8 +32,7 @@ class CardEditor extends Component {
     super(props);
     this.state = {
       newTitle: props.card.title,
-      isCalendarOpen: false,
-      selectedDay: null
+      isCalendarOpen: false
     };
     Modal.setAppElement("#app");
   }
@@ -74,22 +75,13 @@ class CardEditor extends Component {
     });
   };
 
-  openDatePicker = () => {
-    this.setState({ isCalendarOpen: true });
-  };
-
-  handleDayClick = (selectedDay, { selected }) => {
-    if (selected) {
-      // Unselect the day if already selected
-      this.setState({ selectedDay: undefined });
-      return;
-    }
-    this.setState({ selectedDay });
+  toggleCalender = () => {
+    this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
 
   render() {
-    const { newTitle, isCalendarOpen, selectedDay } = this.state;
-    const { toggleCardEditor, boundingRect } = this.props;
+    const { newTitle, isCalendarOpen } = this.state;
+    const { toggleCardEditor, boundingRect, card, boardId } = this.props;
     const isCardNearRightBorder = boundingRect.right + 90 > window.innerWidth;
 
     const top = Math.min(
@@ -130,11 +122,11 @@ class CardEditor extends Component {
             className="modal-textarea"
             spellCheck={false}
           />
-          {selectedDay && (
+          {card.date && (
             <div className="card-details">
               <div className="due-date">
                 <MdAlarm className="due-date-icon" />&nbsp;
-                {format(selectedDay, "D MMM")}
+                {format(card.date, "D MMM")}
               </div>
             </div>
           )}
@@ -145,17 +137,16 @@ class CardEditor extends Component {
               <FaTimesCircle />
             </div>&nbsp;Delete
           </button>
-          <button onClick={this.openDatePicker} className="options-list-button">
+          <button onClick={this.toggleCalender} className="options-list-button">
             <div className="modal-icon">
               <MdAlarm />
             </div>&nbsp;Due date
           </button>
         </div>
         {isCalendarOpen && (
-          <Calendar
-            selectedDay={selectedDay}
-            handleDayClick={this.handleDayClick}
-          />
+          <ClickOutside handleClickOutside={this.toggleCalender}>
+            <Calendar boardId={boardId} cardId={card._id} />
+          </ClickOutside>
         )}
       </Modal>
     );
