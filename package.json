@@ -35,6 +35,7 @@
     "react-aria-menubutton": "^5.1.1",
     "react-aria-modal": "^2.12.1",
     "react-beautiful-dnd": "github:yogaboll/react-beautiful-dnd#include-generated",
+    "react-day-picker": "^7.0.7",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
