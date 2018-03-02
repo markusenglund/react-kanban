@@ -29,7 +29,8 @@ class CardEditor extends Component {
     super(props);
     this.state = {
       newTitle: props.card.title,
-      isCalendarOpen: false
+      isCalendarOpen: false,
+      selectedDay: null
     };
     Modal.setAppElement("#app");
   }
@@ -76,8 +77,17 @@ class CardEditor extends Component {
     this.setState({ isCalendarOpen: true });
   };
 
+  handleDayClick = (selectedDay, { selected }) => {
+    if (selected) {
+      // Unselect the day if already selected
+      this.setState({ selectedDay: undefined });
+      return;
+    }
+    this.setState({ selectedDay });
+  };
+
   render() {
-    const { newTitle, isCalendarOpen } = this.state;
+    const { newTitle, isCalendarOpen, selectedDay } = this.state;
     const { toggleCardEditor, boundingRect } = this.props;
     const isCardNearRightBorder = boundingRect.right + 90 > window.innerWidth;
 
@@ -119,6 +129,11 @@ class CardEditor extends Component {
             className="list-textarea"
             spellCheck={false}
           />
+          {selectedDay && (
+            <div className="card-details">
+              Helloasdfsd {selectedDay.toLocaleDateString()}
+            </div>
+          )}
         </div>
         <div className="options-list">
           <button onClick={this.deleteCard} className="options-list-button">
@@ -132,7 +147,12 @@ class CardEditor extends Component {
             </div>&nbsp;Due date
           </button>
         </div>
-        {isCalendarOpen && <Calendar />}
+        {isCalendarOpen && (
+          <Calendar
+            selectedDay={selectedDay}
+            handleDayClick={this.handleDayClick}
+          />
+        )}
       </Modal>
     );
   }
