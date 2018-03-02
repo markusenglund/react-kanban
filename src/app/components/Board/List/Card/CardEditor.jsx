@@ -109,7 +109,9 @@ class CardEditor extends Component {
         </div>
         <div className="options-list">
           <button onClick={this.deleteCard} className="options-list-button">
-            <FaTimesCircle style={{ marginBottom: 2 }} />&nbsp;Delete card
+            <div className="options-list-button-icon">
+              <FaTimesCircle />
+            </div>&nbsp;Delete card
           </button>
         </div>
       </Modal>

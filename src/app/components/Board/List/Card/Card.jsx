@@ -32,6 +32,12 @@ class Card extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+  handleKeyDown = event => {
+    if (event.keyCode === 13) {
+      this.toggleCardEditor();
+    }
+  };
+
   render() {
     const { card, index, listId, boardId, isDraggingOver } = this.props;
     const { isOpen } = this.state;
@@ -40,7 +46,7 @@ class Card extends Component {
         <Draggable draggableId={card._id} index={index}>
           {(provided, snapshot) => (
             <div>
-              {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+              {/* eslint-disable */}
               <div
                 className={classnames("card-title", {
                   "card-title-drag": snapshot.isDragging
@@ -51,9 +57,15 @@ class Card extends Component {
                 }}
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
+                onClick={event => {
+                  provided.dragHandleProps.onClick(event);
+                  this.toggleCardEditor();
+                }}
+                onKeyDown={event => {
+                  provided.dragHandleProps.onKeyDown(event);
+                  this.handleKeyDown(event);
+                }}
               >
-                {/* eslint-enable */}
-                {/* eslint-disable react/no-danger */}
                 <div
                   className="card-title-html"
                   dangerouslySetInnerHTML={{
@@ -61,12 +73,6 @@ class Card extends Component {
                   }}
                 />
                 {/* eslint-enable */}
-                <button
-                  onClick={this.toggleCardEditor}
-                  className="edit-card-button"
-                >
-                  <FaPencil />
-                </button>
               </div>
               {isDraggingOver && provided.placeholder}
             </div>

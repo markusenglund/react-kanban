@@ -11,34 +11,11 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   font-size: 16px;
   padding: 12px 10px;
-}
-
-.card-title:hover {
-  .edit-card-button {
-    opacity: 1;
-  }
+  cursor: pointer !important;
 }
 
 .card-title-drag {
   box-shadow: 0px 0px 5px rgb(0, 180, 255);
-}
-
-.edit-card-button {
-  position: absolute;
-  right: 3px;
-  top: 3px;
-  border: 0;
-  padding: 4px 6px 7px 6px;
-  border-radius: 3px;
-  opacity: 0;
-  color: $white;
-  background: $transparent-black;
-  cursor: pointer;
-  transition: background 0.1s;
-}
-
-.edit-card-button:hover {
-  background: $less-transparent-black;
 }
 
 .card-title-html {
@@ -102,4 +79,9 @@
 .options-list-button:hover,
 .options-list-button:focus {
   background: white;
+}
+
+.options-list-button-icon {
+  margin-bottom: 2px;
+  flex-shrink: 0;
 }
