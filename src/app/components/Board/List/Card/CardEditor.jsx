@@ -72,6 +72,8 @@ class CardEditor extends Component {
   render() {
     const { newTitle } = this.state;
     const { toggleCardEditor, boundingRect } = this.props;
+    const isCardNearRightBorder = boundingRect.right + 90 > window.innerWidth;
+
     const top = Math.min(
       boundingRect.top,
       window.innerHeight - boundingRect.height - 18
@@ -79,7 +81,11 @@ class CardEditor extends Component {
     const style = {
       content: {
         top,
-        left: boundingRect.left
+        left: isCardNearRightBorder ? null : boundingRect.left,
+        right: isCardNearRightBorder
+          ? window.innerWidth - boundingRect.right
+          : null,
+        flexDirection: isCardNearRightBorder ? "row-reverse" : "row"
       }
     };
     return (
@@ -111,7 +117,7 @@ class CardEditor extends Component {
           <button onClick={this.deleteCard} className="options-list-button">
             <div className="options-list-button-icon">
               <FaTimesCircle />
-            </div>&nbsp;Delete card
+            </div>&nbsp;Delete
           </button>
         </div>
       </Modal>
