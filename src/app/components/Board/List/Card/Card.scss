@@ -41,6 +41,10 @@
   }
 }
 
+.card-details {
+  padding: 0 10px 12px 10px;
+}
+
 .modal-underlay {
   background: rgba(0, 0, 0, 0.6);
   z-index: 1;
@@ -51,10 +55,30 @@
   bottom: 0;
 }
 
-.card-editor-modal {
+.modal {
   display: flex;
   position: absolute;
   outline: 0;
+  align-items: flex-start;
+}
+
+.modal-textarea-wrapper {
+  background: white;
+  border-radius: 3px;
+}
+
+.modal-textarea {
+  border-radius: inherit;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 16px 10px;
+  color: inherit;
+  resize: none;
+  outline: none;
 }
 
 .options-list {

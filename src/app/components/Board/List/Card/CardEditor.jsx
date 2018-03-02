@@ -111,7 +111,7 @@ class CardEditor extends Component {
         onRequestClose={toggleCardEditor}
         contentLabel="Card editor"
         overlayClassName="modal-underlay"
-        className="card-editor-modal"
+        className="modal"
         style={style}
         includeDefaultStyles={false}
       >
@@ -126,12 +126,12 @@ class CardEditor extends Component {
             value={newTitle}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
-            className="list-textarea"
+            className="modal-textarea"
             spellCheck={false}
           />
           {selectedDay && (
             <div className="card-details">
-              Helloasdfsd {selectedDay.toLocaleDateString()}
+              {selectedDay.toLocaleDateString()}
             </div>
           )}
         </div>
