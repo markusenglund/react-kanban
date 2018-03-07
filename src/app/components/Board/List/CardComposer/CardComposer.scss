@@ -1,3 +1,5 @@
+@import "../../../../variables.scss";
+
 .textarea-wrapper {
   margin: 0 5px 5px 5px;
 }
@@ -16,7 +18,7 @@
 }
 
 .submit-card-button {
-  background: #5aac44;
+  background: $success-button-color;
   color: white;
   font-size: 14px;
   font-weight: 700;
@@ -29,9 +31,5 @@
 }
 
 .submit-card-button:hover {
-  background: #4a9a34;
-}
-
-.submit-card-button:focus {
-  background: #3a8a24;
+  background: $success-button-color-hover;
 }

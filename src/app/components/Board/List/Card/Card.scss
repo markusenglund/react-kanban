@@ -130,8 +130,30 @@
 
 .calendar-buttons {
   display: flex;
-
+  justify-content: space-around;
+  margin-bottom: 8px;
   button {
-    flex-grow: 1;
+    width: 120px;
+    height: 30px;
+    border: 0;
+    border-radius: 3px;
+
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background: #bbb;
+  }
+
+  .calendar-save-button {
+    background: $success-button-color;
+    color: white;
+  }
+
+  .calendar-save-button:hover {
+    background: $success-button-color-hover;
   }
 }

@@ -51,7 +51,9 @@ class Calendar extends Component {
           disabledDays={{ before: new Date() }}
         />
         <div className="calendar-buttons">
-          <button onClick={this.handleSave}>Save</button>
+          <button onClick={this.handleSave} className="calendar-save-button">
+            Save
+          </button>
           <button onClick={toggleCalendar}>Cancel</button>
         </div>
       </div>
