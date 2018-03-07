@@ -150,6 +150,7 @@ class CardEditor extends Component {
             <Calendar
               boardId={boardId}
               cardId={card._id}
+              date={card.date}
               toggleCalendar={this.toggleCalendar}
             />
           </ClickOutside>
