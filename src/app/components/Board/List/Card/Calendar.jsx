@@ -39,8 +39,6 @@ class Calendar extends Component {
       type: "EDIT_CARD_DATE",
       payload: { date: selectedDay, cardId, boardId }
     });
-    console.log(selectedDay, typeof selectedDay);
-
     toggleCalendar();
   };
 

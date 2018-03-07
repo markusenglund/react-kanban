@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
-import format from "date-fns/format";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
+import CardDetails from "./CardDetails";
 import ClickOutside from "../../../ClickOutside";
 
 class CardEditor extends Component {
@@ -99,6 +99,7 @@ class CardEditor extends Component {
         flexDirection: isCardNearRightBorder ? "row-reverse" : "row"
       }
     };
+
     return (
       <Modal
         isOpen
@@ -130,14 +131,7 @@ class CardEditor extends Component {
             onFocus={() => this.setState({ isTextareaFocused: true })}
             onBlur={() => this.setState({ isTextareaFocused: false })}
           />
-          {card.date && (
-            <div className="card-details">
-              <div className="due-date">
-                <MdAlarm className="due-date-icon" />&nbsp;
-                {format(card.date, "D MMM")}
-              </div>
-            </div>
-          )}
+          {card.date && <CardDetails date={card.date} />}
         </div>
         <div className="options-list">
           <button onClick={this.deleteCard} className="options-list-button">
