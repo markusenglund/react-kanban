@@ -16,7 +16,7 @@ class Calendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedDay: new Date(props.date)
+      selectedDay: props.date ? new Date(props.date) : undefined
     };
   }
 
@@ -39,6 +39,8 @@ class Calendar extends Component {
       type: "EDIT_CARD_DATE",
       payload: { date: selectedDay, cardId, boardId }
     });
+    console.log(selectedDay, typeof selectedDay);
+
     toggleCalendar();
   };
 

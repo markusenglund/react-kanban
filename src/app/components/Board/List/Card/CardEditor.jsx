@@ -32,7 +32,8 @@ class CardEditor extends Component {
     super(props);
     this.state = {
       newTitle: props.card.title,
-      isCalendarOpen: false
+      isCalendarOpen: false,
+      isTextareaFocused: true
     };
     Modal.setAppElement("#app");
   }
@@ -80,7 +81,7 @@ class CardEditor extends Component {
   };
 
   render() {
-    const { newTitle, isCalendarOpen } = this.state;
+    const { newTitle, isCalendarOpen, isTextareaFocused } = this.state;
     const { toggleCardEditor, boundingRect, card, boardId } = this.props;
     const isCardNearRightBorder = boundingRect.right + 90 > window.innerWidth;
 
@@ -112,7 +113,10 @@ class CardEditor extends Component {
           className="modal-textarea-wrapper"
           style={{
             minHeight: boundingRect.height,
-            width: boundingRect.width
+            width: boundingRect.width,
+            boxShadow: isTextareaFocused
+              ? "0px 0px 3px 2px rgb(0, 180, 255)"
+              : null
           }}
         >
           <Textarea
@@ -123,6 +127,8 @@ class CardEditor extends Component {
             onKeyDown={this.handleKeyDown}
             className="modal-textarea"
             spellCheck={false}
+            onFocus={() => this.setState({ isTextareaFocused: true })}
+            onBlur={() => this.setState({ isTextareaFocused: false })}
           />
           {card.date && (
             <div className="card-details">
