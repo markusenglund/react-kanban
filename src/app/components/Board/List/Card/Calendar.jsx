@@ -20,7 +20,10 @@ class Calendar extends Component {
     };
   }
 
-  handleDayClick = (selectedDay, { selected }) => {
+  handleDayClick = (selectedDay, { selected, disabled }) => {
+    if (disabled) {
+      return;
+    }
     if (selected) {
       // Unselect the day if already selected
       this.setState({ selectedDay: undefined });
