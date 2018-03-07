@@ -8,6 +8,7 @@ import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
 import ClickOutside from "../../../ClickOutside";
+import colorIcon from "../../../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
   static propTypes = {
@@ -135,7 +136,7 @@ class CardEditor extends Component {
         </div>
         <div className="options-list">
           <button onClick={this.deleteCard} className="options-list-button">
-            <div className="options-list-button-icon">
+            <div className="modal-icon">
               <FaTimesCircle />
             </div>&nbsp;Delete
           </button>
@@ -143,6 +144,10 @@ class CardEditor extends Component {
             <div className="modal-icon">
               <MdAlarm />
             </div>&nbsp;Due date
+          </button>
+          <button className="options-list-button" onClick={() => {}}>
+            <img src={colorIcon} alt="colorwheel" className="modal-icon" />
+            &nbsp;Color
           </button>
         </div>
         {isCalendarOpen && (
