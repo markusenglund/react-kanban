@@ -67,15 +67,13 @@ class Card extends Component {
                   this.handleKeyDown(event);
                 }}
               >
-                <div>
-                  <div
-                    className="card-title-html"
-                    dangerouslySetInnerHTML={{
-                      __html: marked(card.title, { sanitize: true })
-                    }}
-                  />
-                  {/* eslint-enable */}
-                </div>
+                <div
+                  className="card-title-html"
+                  dangerouslySetInnerHTML={{
+                    __html: marked(card.title, { sanitize: true })
+                  }}
+                />
+                {/* eslint-enable */}
                 {card.date && (
                   <div className="card-details">
                     <div className="due-date">

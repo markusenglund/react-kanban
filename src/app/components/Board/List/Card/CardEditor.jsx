@@ -108,12 +108,14 @@ class CardEditor extends Component {
         style={style}
         includeDefaultStyles={false}
       >
-        <div className="modal-textarea-wrapper">
+        <div
+          className="modal-textarea-wrapper"
+          style={{
+            minHeight: boundingRect.height,
+            width: boundingRect.width
+          }}
+        >
           <Textarea
-            style={{
-              minHeight: boundingRect.height,
-              width: boundingRect.width
-            }}
             autoFocus
             useCacheForDOMMeasurements
             value={newTitle}
