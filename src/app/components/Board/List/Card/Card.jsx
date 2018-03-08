@@ -12,7 +12,8 @@ class Card extends Component {
   static propTypes = {
     card: PropTypes.shape({
       _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
+      color: PropTypes.string
     }).isRequired,
     listId: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
@@ -64,6 +65,10 @@ class Card extends Component {
                 onKeyDown={event => {
                   provided.dragHandleProps.onKeyDown(event);
                   this.handleKeyDown(event);
+                }}
+                style={{
+                  ...provided.draggableProps.style,
+                  background: card.color
                 }}
               >
                 <div

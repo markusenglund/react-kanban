@@ -34,6 +34,10 @@ const cardsById = (state = {}, action) => {
       const { date, cardId } = action.payload;
       return { ...state, [cardId]: { ...state[cardId], date } };
     }
+    case "EDIT_CARD_COLOR": {
+      const { color, cardId } = action.payload;
+      return { ...state, [cardId]: { ...state[cardId], color } };
+    }
     case "DELETE_LIST": {
       const { cards: cardIds } = action.payload;
       return Object.keys(state)
