@@ -23,7 +23,7 @@
   border-radius: 15px;
   padding: 40px;
   background: rgba(0, 0, 0, 0.6);
-  margin: 50px;
+  margin: 50px 10px;
   color: white;
 }
 
@@ -36,7 +36,6 @@
   width: 210px;
   height: 40px;
   border: 0;
-  // padding: 6px 12px 4px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,4 +100,24 @@
   text-align: center;
   color: white;
   width: 100%;
+}
+
+@media (max-width: 800px) {
+  .signin-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .signin-button {
+    width: 320px;
+  }
+}
+
+@media (max-width: 440px) {
+  .signin-button {
+    width: 210px;
+  }
+
+  .landing-page-text {
+    padding: 40px 10px;
+  }
 }

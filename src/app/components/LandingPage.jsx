@@ -30,13 +30,17 @@ class LandingPage extends Component {
         </div>
         <h2>An open source kanban application built with React and Redux</h2>
         <div className="signin-buttons">
-          <a href="/auth/twitter" className="signin-button twitter-button">
-            <FaTwitter className="logo-icon" /> &nbsp;Sign in with Twitter
-          </a>
-          <a href="/auth/google" className="signin-button google-button">
-            <img className="google-logo" src={googleLogo} alt="google logo" />
-            &nbsp;Sign in with Google
-          </a>
+          <div>
+            <a href="/auth/twitter" className="signin-button twitter-button">
+              <FaTwitter className="logo-icon" /> &nbsp;Sign in with Twitter
+            </a>
+          </div>
+          <div>
+            <a href="/auth/google" className="signin-button google-button">
+              <img className="google-logo" src={googleLogo} alt="google logo" />
+              &nbsp;Sign in with Google
+            </a>
+          </div>
           <div className="guest-button-wrapper">
             <button
               onClick={this.enterAsGuest}
