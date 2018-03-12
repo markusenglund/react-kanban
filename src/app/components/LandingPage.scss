@@ -1,35 +1,46 @@
 .landing-page {
-  background-color: #300;
-  background-image: url("../../assets/images/postit-notes.jpg");
+  background-color: #300; // is shown before image loads
+  background-image: url("../../assets/images/postits-1920.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 60% 20%;
+  background-position: 50% 100%;
   color: white;
   height: 100%;
   width: 100%;
+}
+
+.landing-page-info-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.landing-page-info {
+  padding: 100px 30px;
 }
 
 .landing-page-heading {
   display: flex;
   align-items: center;
-  justify-content: center;
+  h1 {
+    font-size: 40px;
+  }
 }
 
-.landing-page-text {
-  display: inline-block;
-  border-radius: 15px;
-  padding: 40px;
-  background: rgba(0, 0, 0, 0.6);
-  margin: 50px 10px;
-  color: white;
+.landing-page-logo {
+  height: 55px;
+}
+
+.landing-page-description {
+  margin: 10px 0;
+  font-size: 19px;
 }
 
 .signin-buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 650px;
 }
 
 .signin-button {
@@ -50,7 +61,7 @@
   align-items: center;
   box-sizing: border-box;
   text-decoration: none;
-  margin: 5px;
+  margin-top: 10px;
 }
 
 .twitter-button {
@@ -103,9 +114,28 @@
 }
 
 @media (max-width: 800px) {
+  .landing-page-info-wrapper {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .landing-page-info {
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .landing-page-heading {
+    justify-content: center;
+  }
+
+  .landing-page-description {
+    text-align: center;
+  }
+
   .signin-buttons {
     flex-direction: column;
     align-items: center;
+    width: auto;
   }
   .signin-button {
     width: 320px;
@@ -114,10 +144,12 @@
 
 @media (max-width: 440px) {
   .signin-button {
-    width: 210px;
+    width: 240px;
   }
+}
 
-  .landing-page-text {
-    padding: 40px 10px;
+@media (max-height: 350px) {
+  .landing-page-heading h1 {
+    font-size: 30px;
   }
 }

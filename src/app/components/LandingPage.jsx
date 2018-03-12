@@ -22,33 +22,45 @@ class LandingPage extends Component {
       <Helmet>
         <title>Sign in | kanban.live</title>
       </Helmet>
-      <div className="landing-page-text">
-        <div className="landing-page-heading">
-          <img src={kanbanLogo} alt="kanban live logo" style={{ height: 50 }} />
-          &nbsp;
-          <h1>kanban.live</h1>
-        </div>
-        <h2>An open source kanban application built with React and Redux</h2>
-        <div className="signin-buttons">
-          <div>
-            <a href="/auth/twitter" className="signin-button twitter-button">
-              <FaTwitter className="logo-icon" /> &nbsp;Sign in with Twitter
-            </a>
+      <div className="landing-page-info-wrapper">
+        <div className="landing-page-info">
+          <div className="landing-page-heading">
+            <img
+              src={kanbanLogo}
+              alt="kanban live logo"
+              className="landing-page-logo"
+            />
+            &nbsp;
+            <h1>kanban.live</h1>
           </div>
-          <div>
-            <a href="/auth/google" className="signin-button google-button">
-              <img className="google-logo" src={googleLogo} alt="google logo" />
-              &nbsp;Sign in with Google
-            </a>
-          </div>
-          <div className="guest-button-wrapper">
-            <button
-              onClick={this.enterAsGuest}
-              className="signin-button guest-button"
-            >
-              <FaUserSecret className="logo-icon" /> &nbsp;Enter as guest
-            </button>
-            <div className="warning-message">(Boards will not be saved)</div>
+          <h2 className="landing-page-description">
+            An open source kanban application built with React and Redux
+          </h2>
+          <div className="signin-buttons">
+            <div>
+              <a href="/auth/twitter" className="signin-button twitter-button">
+                <FaTwitter className="logo-icon" /> &nbsp;Sign in with Twitter
+              </a>
+            </div>
+            <div>
+              <a href="/auth/google" className="signin-button google-button">
+                <img
+                  className="google-logo"
+                  src={googleLogo}
+                  alt="google logo"
+                />
+                &nbsp;Sign in with Google
+              </a>
+            </div>
+            <div className="guest-button-wrapper">
+              <button
+                onClick={this.enterAsGuest}
+                className="signin-button guest-button"
+              >
+                <FaUserSecret className="logo-icon" /> &nbsp;Enter as guest
+              </button>
+              <div className="warning-message">(Boards will not be saved)</div>
+            </div>
           </div>
         </div>
       </div>
