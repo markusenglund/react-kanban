@@ -1,20 +1,23 @@
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
   margin: 0;
   height: 100%;
+  width: 100%;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
 #app {
   height: 100%;
   display: inline-flex;
-  min-width: 100vw;
+  min-width: 100%;
 }
 
 ::-webkit-scrollbar {
+  width: 10px;
   height: 10px;
   background: #ddd;
 }

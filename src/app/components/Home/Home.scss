@@ -1,7 +1,7 @@
 @import "../../variables.scss";
 $board-width: 280px;
 $board-margin: 5px;
-$main-margin: 30px;
+$main-margin: 40px;
 
 @mixin board-button {
   width: $board-width;
@@ -19,6 +19,7 @@ $main-margin: 30px;
 }
 
 .home {
+  overflow: auto;
   display: inline-flex;
   justify-content: center;
   height: 100%;
@@ -29,6 +30,8 @@ $main-margin: 30px;
 .main-content {
   width: 4 * $board-width + 8 * $board-margin;
   margin: $main-margin;
+  display: inline-flex;
+  flex-direction: column;
 }
 
 @media (max-width: 4 * $board-width + 8 * $board-margin + 2 * $main-margin) {
@@ -45,11 +48,13 @@ $main-margin: 30px;
 @media (max-width: 2 * $board-width + 4 * $board-margin + 2 * $main-margin) {
   .main-content {
     width: $board-width + 2 * $board-margin;
+    margin: $main-margin 0;
   }
 }
 
 .main-content h1 {
   margin: 20px 5px;
+  font-size: 28px;
 }
 
 .boards {
@@ -99,6 +104,7 @@ $main-margin: 30px;
   background: $bg-grey;
   color: #444;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .create-board-button:hover,
