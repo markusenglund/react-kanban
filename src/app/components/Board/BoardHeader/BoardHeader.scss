@@ -4,10 +4,14 @@
   top: 40px;
   position: fixed;
   color: $white;
-  margin: 8px 10px 5px 10px;
+  padding: 8px 10px 5px 10px;
+  box-sizing: border-box;
   display: flex;
+  // flex-wrap: wrap;
   align-items: center;
   z-index: 1;
+  height: 40px;
+  width: 100%;
 }
 
 .board-title-wrapper {
