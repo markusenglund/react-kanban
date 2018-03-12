@@ -7,10 +7,11 @@ import "./BoardHeader.scss";
 const BoardHeader = () => (
   <div className="board-header">
     <BoardTitle />
-    <div className="vertical-line" />
-    <ColorPicker />
-    <div className="vertical-line" />
-    <BoardDeleter />
+    <div className="board-header-right">
+      <ColorPicker />
+      <div className="vertical-line" />
+      <BoardDeleter />
+    </div>
   </div>
 );
 

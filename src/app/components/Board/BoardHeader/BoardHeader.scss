@@ -7,15 +7,15 @@
   padding: 8px 10px 5px 10px;
   box-sizing: border-box;
   display: flex;
-  // flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   z-index: 1;
   height: 40px;
   width: 100%;
 }
 
 .board-title-wrapper {
-  min-width: 270px;
+  flex-shrink: 0;
 }
 
 .board-title-button {
@@ -47,6 +47,11 @@
   border: 0;
 }
 
+.board-header-right {
+  display: flex;
+  align-items: center;
+}
+
 .color-picker-wrapper {
   position: relative;
   font-size: 16px;
@@ -58,7 +63,7 @@
   color: $white;
   border-radius: 3px;
   padding: 8px 10px 8px 10px;
-  width: 45px;
+  // width: 45px;
   justify-content: space-around;
   transition: background 0.1s;
   cursor: pointer;
@@ -118,7 +123,7 @@
   color: $white;
   border-radius: 3px;
   padding: 8px 10px 8px 10px;
-  width: 100px;
+  // width: 100px;
   justify-content: space-around;
   transition: background 0.1s;
   cursor: pointer;

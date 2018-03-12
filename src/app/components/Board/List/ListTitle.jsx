@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
-import FaTimesCircle from "react-icons/lib/fa/times-circle";
+import FaTrash from "react-icons/lib/fa/trash";
 
 class ListTitle extends Component {
   static propTypes = {
@@ -106,14 +106,14 @@ class ListTitle extends Component {
               {listTitle}
             </div>
             {/* <button onClick={this.deleteList} className="delete-list-button">
-              <FaTimesCircle />
+              <FaTrash />
             </button> */}
             <Wrapper
               className="delete-list-wrapper"
               onSelection={this.deleteList}
             >
               <Button className="delete-list-button">
-                <FaTimesCircle />
+                <FaTrash />
               </Button>
               <Menu className="delete-list-menu">
                 <div className="delete-list-header">Are you sure?</div>
