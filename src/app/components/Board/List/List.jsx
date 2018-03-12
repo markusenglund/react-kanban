@@ -55,15 +55,15 @@ class List extends Component {
                     boardId={boardId}
                   />
                 </div>
-                {cardComposerIsOpen || (
-                  <button
-                    onClick={this.toggleCardComposer}
-                    className="open-composer-button"
-                  >
-                    Add a card...
-                  </button>
-                )}
               </div>
+              {cardComposerIsOpen || (
+                <button
+                  onClick={this.toggleCardComposer}
+                  className="open-composer-button"
+                >
+                  +
+                </button>
+              )}
             </div>
             {provided.placeholder}
           </>

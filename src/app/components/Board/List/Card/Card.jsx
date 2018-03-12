@@ -47,7 +47,7 @@ class Card extends Component {
       <>
         <Draggable draggableId={card._id} index={index}>
           {(provided, snapshot) => (
-            <div>
+            <>
               {/* eslint-disable */}
               <div
                 className={classnames("card-title", {
@@ -82,7 +82,7 @@ class Card extends Component {
                 {card.date && <CardDetails date={card.date} />}
               </div>
               {isDraggingOver && provided.placeholder}
-            </div>
+            </>
           )}
         </Draggable>
 

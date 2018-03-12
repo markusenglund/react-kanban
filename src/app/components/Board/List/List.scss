@@ -3,6 +3,8 @@
 .list-wrapper {
   height: 100%;
   user-select: none;
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .list {
@@ -54,8 +56,7 @@
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  margin: 0 3px 0 3px;
-  margin-bottom: 6px;
+  margin: 0 3px $list-margin 3px;
 }
 
 .cards-wrapper::-webkit-scrollbar {
@@ -70,26 +71,28 @@
 }
 .cards {
   min-height: 1px;
-  margin-top: 3px;
 }
 
 .open-composer-button {
+  margin-top: 6px;
   display: inline-flex;
+  justify-content: center;
+  align-self: center;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
-  background: $transparent-white;
-  color: black;
-  width: 100%;
-  font-size: 14px;
-  padding: 10px;
+  background: $transparent-black;
+  color: $white;
+  font-size: 28px;
   border: none;
   cursor: pointer;
-  border-bottom-left-radius: inherit;
-  border-bottom-right-radius: inherit;
+  border-radius: $list-radius;
+  transition: background 0.1s;
 }
 
 .open-composer-button:hover,
 .open-composer-button:focus {
-  text-decoration: underline;
+  background: $less-transparent-black;
 }
 
 .delete-list-wrapper {

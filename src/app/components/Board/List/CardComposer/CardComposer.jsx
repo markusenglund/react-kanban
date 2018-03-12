@@ -24,7 +24,7 @@ class CardComposer extends Component {
 
   componentDidUpdate = prevProps => {
     if (!prevProps.isOpen && this.props.isOpen) {
-      setTimeout(() => this.el.scrollIntoView());
+      setTimeout(() => this.el.scrollIntoView(), 200);
     }
   };
 

@@ -3,7 +3,7 @@
 .card-title {
   background: $white;
   border-radius: 3px;
-  margin: 0 5px $list-margin 5px;
+  margin: $list-margin 5px 0 5px;
   position: relative;
   overflow-wrap: break-word;
   user-select: none;
