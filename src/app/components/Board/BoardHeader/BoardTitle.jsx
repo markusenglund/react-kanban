@@ -62,26 +62,22 @@ class BoardTitle extends Component {
   render() {
     const { isOpen, newTitle } = this.state;
     const { boardTitle } = this.props;
-    return (
-      <div className="board-title-wrapper">
-        {isOpen ? (
-          <input
-            autoFocus
-            value={newTitle}
-            type="text"
-            onKeyDown={this.handleKeyDown}
-            onChange={this.handleChange}
-            onBlur={this.revertTitle}
-            onFocus={this.handleFocus}
-            className="board-title-input"
-            spellCheck={false}
-          />
-        ) : (
-          <button className="board-title-button" onClick={this.handleClick}>
-            <h1 className="board-title">{boardTitle}</h1>
-          </button>
-        )}
-      </div>
+    return isOpen ? (
+      <input
+        autoFocus
+        value={newTitle}
+        type="text"
+        onKeyDown={this.handleKeyDown}
+        onChange={this.handleChange}
+        onBlur={this.revertTitle}
+        onFocus={this.handleFocus}
+        className="board-title-input"
+        spellCheck={false}
+      />
+    ) : (
+      <button className="board-title-button" onClick={this.handleClick}>
+        <h1 className="board-title">{boardTitle}</h1>
+      </button>
     );
   }
 }
