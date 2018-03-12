@@ -105,9 +105,6 @@ class ListTitle extends Component {
             >
               {listTitle}
             </div>
-            {/* <button onClick={this.deleteList} className="delete-list-button">
-              <FaTrash />
-            </button> */}
             <Wrapper
               className="delete-list-wrapper"
               onSelection={this.deleteList}

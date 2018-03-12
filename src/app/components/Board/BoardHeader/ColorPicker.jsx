@@ -32,7 +32,9 @@ class ColorPicker extends Component {
       >
         <Button className="color-picker">
           <img src={colorIcon} alt="colorwheel" className="modal-icon" />
-          &nbsp;Color&nbsp;&#9662;
+          <div className="board-header-right-text">
+            &nbsp;Color &nbsp;&#9662;
+          </div>
         </Button>
         <Menu className="color-picker-menu">
           {colors.map(color => (

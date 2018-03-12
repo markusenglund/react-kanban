@@ -30,7 +30,8 @@ class BoardDeleter extends Component {
         <Button className="board-deleter-button">
           <div className="modal-icon">
             <FaTrash />
-          </div>&nbsp;Delete board
+          </div>
+          <div className="board-header-right-text">&nbsp;Delete board</div>
         </Button>
         <Menu className="board-deleter-menu">
           <div className="board-deleter-header">Are you sure?</div>
