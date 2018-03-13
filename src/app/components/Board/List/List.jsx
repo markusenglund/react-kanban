@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import ListTitle from "./ListTitle";
 import Cards from "./Cards";
+import CardComposer from "./CardComposer/CardComposer";
 import "./List.scss";
 
 class List extends Component {
@@ -56,7 +57,14 @@ class List extends Component {
                   />
                 </div>
               </div>
-              {cardComposerIsOpen || (
+              {cardComposerIsOpen ? (
+                <CardComposer
+                  isOpen={cardComposerIsOpen}
+                  toggleCardComposer={this.toggleCardComposer}
+                  boardId={boardId}
+                  listId={list._id}
+                />
+              ) : (
                 <button
                   onClick={this.toggleCardComposer}
                   className="open-composer-button"

@@ -22,11 +22,11 @@ class CardComposer extends Component {
     };
   }
 
-  componentDidUpdate = prevProps => {
-    if (!prevProps.isOpen && this.props.isOpen) {
-      setTimeout(() => this.el.scrollIntoView(), 200);
-    }
-  };
+  // componentDidUpdate = prevProps => {
+  //   if (!prevProps.isOpen && this.props.isOpen) {
+  //     setTimeout(() => this.el.scrollIntoView(), 200);
+  //   }
+  // };
 
   handleChange = event => {
     this.setState({ newCardTitle: event.target.value });
@@ -73,9 +73,9 @@ class CardComposer extends Component {
               spellCheck={false}
             />
             <input
-              ref={el => {
-                this.el = el;
-              }}
+              // ref={el => {
+              //   this.el = el;
+              // }}
               type="submit"
               value="Add"
               className="submit-card-button"

@@ -14,6 +14,20 @@ class Cards extends Component {
     cards: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
+  componentDidUpdate = prevProps => {
+    // Scroll to bottom of list if a new card has been added
+    if (
+      this.props.cards[this.props.cards.length - 1] !==
+      prevProps.cards[prevProps.cards.length - 1]
+    ) {
+      this.scrollToBottom();
+    }
+  };
+
+  scrollToBottom = () => {
+    this.listEnd.scrollIntoView();
+  };
+
   render() {
     const {
       listId,
@@ -38,11 +52,17 @@ class Cards extends Component {
                 />
               ))}
               {provided.placeholder}
-              <CardComposer
+              {/* <CardComposer
                 isOpen={cardComposerIsOpen}
                 toggleCardComposer={toggleCardComposer}
                 boardId={boardId}
                 listId={listId}
+              /> */}
+              <div
+                style={{ float: "left", clear: "both" }}
+                ref={el => {
+                  this.listEnd = el;
+                }}
               />
             </div>
           </>
