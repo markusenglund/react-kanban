@@ -1,20 +1,23 @@
 @import "../../../../variables.scss";
 
 .textarea-wrapper {
-  margin: 0 5px 5px 5px;
+  margin: 6px 13px 0 13px;
 }
 
 .list-textarea {
+  // margin: 6px 8px 0 8px;
   border-radius: 3px;
-  overflow: hidden;
+  // overflow: hidden;
   width: 100%;
   border: 0;
   box-sizing: border-box;
   font-family: inherit;
   font-size: 16px;
-  padding: 16px 10px;
+  padding: 10px 8px;
   color: inherit;
   resize: none;
+  float: right;
+  // vertical-align: hidden;
 }
 
 .submit-card-button {

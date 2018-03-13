@@ -65,14 +65,15 @@ class CardComposer extends Component {
             <Textarea
               autoFocus
               useCacheForDOMMeasurements
-              minRows={3}
+              minRows={1}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               value={newCardTitle}
               className="list-textarea"
+              placeholder="Create new card..."
               spellCheck={false}
             />
-            <input
+            {/* <input
               // ref={el => {
               //   this.el = el;
               // }}
@@ -80,7 +81,7 @@ class CardComposer extends Component {
               value="Add"
               className="submit-card-button"
               disabled={newCardTitle === ""}
-            />
+            /> */}
           </form>
         </ClickOutside>
       )
