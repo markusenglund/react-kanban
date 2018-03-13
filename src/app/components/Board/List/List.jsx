@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
+import classnames from "classnames";
 import ListTitle from "./ListTitle";
 import Cards from "./Cards";
 import CardComposer from "./CardComposer/CardComposer";
@@ -33,14 +34,18 @@ class List extends Component {
         index={index}
         disableInteractiveElementBlocking
       >
-        {provided => (
+        {(provided, snapshot) => (
           <>
             <div
               ref={provided.innerRef}
               {...provided.draggableProps}
               className="list-wrapper"
             >
-              <div className="list">
+              <div
+                className={classnames("list", {
+                  "list--drag": snapshot.isDragging
+                })}
+              >
                 <ListTitle
                   dragHandleProps={provided.dragHandleProps}
                   listTitle={list.title}
