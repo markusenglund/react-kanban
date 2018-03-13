@@ -12,14 +12,21 @@
   font-size: 16px;
   padding: 6px 8px;
   cursor: pointer !important;
+  z-index: 3;
+}
+
+// .card-title:focus,
+.card-title:hover {
+  opacity: 0.8;
 }
 
 .card-title:focus {
-  box-shadow: 0px 0px 1px 3px rgb(0, 120, 200);
+  box-shadow: 0px 0px 1px 3px rgb(0, 180, 255);
 }
 
 .card-title--drag {
   box-shadow: 1px 9px 8px 1px rgba(0, 0, 0, 0.3) !important;
+  opacity: 1 !important;
 }
 
 .card-title-html {
