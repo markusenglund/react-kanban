@@ -14,7 +14,7 @@ class Cards extends Component {
   componentDidUpdate = prevProps => {
     // Scroll to bottom of list if a new card has been added
     if (
-      this.props.cards[this.props.cards.length - 1] !==
+      this.props.cards[this.props.cards.length - 2] ===
       prevProps.cards[prevProps.cards.length - 1]
     ) {
       this.scrollToBottom();

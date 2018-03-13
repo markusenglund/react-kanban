@@ -72,16 +72,8 @@ class CardComposer extends Component {
               className="list-textarea"
               placeholder="Create new card..."
               spellCheck={false}
+              onBlur={toggleCardComposer}
             />
-            {/* <input
-              // ref={el => {
-              //   this.el = el;
-              // }}
-              type="submit"
-              value="Add"
-              className="submit-card-button"
-              disabled={newCardTitle === ""}
-            /> */}
           </form>
         </ClickOutside>
       )

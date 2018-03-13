@@ -51,7 +51,7 @@ class Card extends Component {
               {/* eslint-disable */}
               <div
                 className={classnames("card-title", {
-                  "card-title-drag": snapshot.isDragging
+                  "card-title--drag": snapshot.isDragging
                 })}
                 ref={ref => {
                   provided.innerRef(ref);
