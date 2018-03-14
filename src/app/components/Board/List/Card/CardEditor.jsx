@@ -8,7 +8,7 @@ import FaTrash from "react-icons/lib/fa/trash";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
-import ClickOutside from "../../../ClickOutside";
+// import ClickOutside from "../../../ClickOutside";
 import colorIcon from "../../../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
@@ -125,6 +125,21 @@ class CardEditor extends Component {
       }
     };
 
+    const calendarStyle = {
+      content: {
+        top: Math.min(boundingRect.bottom + 10, window.innerHeight - 300),
+        left: boundingRect.left
+      }
+    };
+
+    const calendarMobileStyle = {
+      content: {
+        top: 110,
+        left: "50%",
+        transform: "translateX(-50%)"
+      }
+    };
+
     return (
       <Modal
         isOpen
@@ -160,16 +175,6 @@ class CardEditor extends Component {
           {card.date && <CardDetails date={card.date} />}
         </div>
         <div className="options-list">
-          <button onClick={this.deleteCard} className="options-list-button">
-            <div className="modal-icon">
-              <FaTrash />
-            </div>&nbsp;Delete
-          </button>
-          <button onClick={this.toggleCalendar} className="options-list-button">
-            <div className="modal-icon">
-              <MdAlarm />
-            </div>&nbsp;Due date
-          </button>
           <Wrapper className="modal-color-picker-wrapper" id="color-picker">
             <Button className="options-list-button">
               <img src={colorIcon} alt="colorwheel" className="modal-icon" />
@@ -193,17 +198,31 @@ class CardEditor extends Component {
               ))}
             </Menu>
           </Wrapper>
+          <button onClick={this.deleteCard} className="options-list-button">
+            <div className="modal-icon">
+              <FaTrash />
+            </div>&nbsp;Delete
+          </button>
+          <button onClick={this.toggleCalendar} className="options-list-button">
+            <div className="modal-icon">
+              <MdAlarm />
+            </div>&nbsp;Due date
+          </button>
         </div>
-        {isCalendarOpen && (
-          <ClickOutside handleClickOutside={this.toggleCalendar}>
-            <Calendar
-              boardId={boardId}
-              cardId={card._id}
-              date={card.date}
-              toggleCalendar={this.toggleCalendar}
-            />
-          </ClickOutside>
-        )}
+        <Modal
+          isOpen={isCalendarOpen}
+          onRequestClose={this.toggleCalendar}
+          overlayClassName="modal-underlay"
+          className="calendar-modal"
+          style={isThinDisplay ? calendarMobileStyle : calendarStyle}
+        >
+          <Calendar
+            boardId={boardId}
+            cardId={card._id}
+            date={card.date}
+            toggleCalendar={this.toggleCalendar}
+          />
+        </Modal>
       </Modal>
     );
   }
