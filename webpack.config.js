@@ -9,7 +9,7 @@ module.exports = [
   {
     name: "client",
     target: "web",
-    entry: path.join(__dirname, "src/client.jsx"),
+    entry: [path.join(__dirname, "src/client.jsx")],
     output: {
       path: path.join(__dirname, "dist/public"),
       publicPath: "/static/",
