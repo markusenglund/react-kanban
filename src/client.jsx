@@ -1,3 +1,7 @@
+// Required polyfills
+import "core-js/fn/array/values";
+import "core-js/fn/object/values";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, combineReducers, applyMiddleware } from "redux";

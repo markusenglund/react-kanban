@@ -15,11 +15,11 @@
   "author": "Markus Englund <markus.s.englund@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.41",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "compression": "^1.7.2",
     "connect-mongo": "^2.0.1",
+    "core-js": "^2.5.3",
     "date-fns": "^1.29.0",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
