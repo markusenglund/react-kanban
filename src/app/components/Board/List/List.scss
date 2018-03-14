@@ -8,6 +8,7 @@
 }
 
 .list {
+  min-height: 0px; // fix flexbox browser incostiency
   width: $list-width;
   background: $transparent-grey;
   border-radius: $list-radius;
