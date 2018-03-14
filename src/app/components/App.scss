@@ -18,6 +18,7 @@ body {
   height: 100%;
   width: 100%;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+  line-height: 1;
 }
 
 #app {
@@ -26,6 +27,18 @@ body {
   min-width: 100%;
 }
 
-button {
-  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+button,
+span,
+a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+ol,
+ul {
+  list-style: none;
 }
