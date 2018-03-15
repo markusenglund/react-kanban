@@ -19,7 +19,7 @@ export default function configurePassport(db) {
       {
         consumerKey: process.env.TWITTER_API_KEY,
         consumerSecret: process.env.TWITTER_API_SECRET,
-        callbackURL: "http://127.0.0.1:1337/auth/twitter/callback"
+        callbackURL: `${process.env.ROOT_URL}/auth/twitter/callback`
       },
       (token, tokenSecret, profile, cb) => {
         users.findOne({ _id: profile.id }).then(user => {
@@ -42,7 +42,7 @@ export default function configurePassport(db) {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://127.0.0.1:1337/auth/google/callback"
+        callbackURL: `${process.env.ROOT_URL}/auth/google/callback`
       },
       (accessToken, refreshToken, profile, cb) => {
         users.findOne({ _id: profile.id }).then(user => {
