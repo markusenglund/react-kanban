@@ -12,8 +12,6 @@ $main-margin: 40px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-  display: inline-flex;
-  flex-shrink: 1;
   box-sizing: border-box;
   transition: background 0.1s;
 }
@@ -65,7 +63,6 @@ $main-margin: 40px;
 .board-link {
   @include board-button;
   color: white;
-  align-self: flex-start;
   text-decoration: none;
 
   &.green {
@@ -103,7 +100,6 @@ $main-margin: 40px;
   border: 0;
   background: $bg-grey;
   color: #444;
-  justify-content: center;
   margin-bottom: 20px;
 }
 
