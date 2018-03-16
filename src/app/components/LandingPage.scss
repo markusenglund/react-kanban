@@ -7,6 +7,10 @@
   color: white;
   height: 100%;
   width: 100%;
+
+  @media (max-device-width: 1367px) {
+    background-image: url("../../assets/images/postits-1366.jpg");
+  }
 }
 
 // wrapper added as a hack to make background
