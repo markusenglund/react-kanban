@@ -34,7 +34,7 @@ class Card extends Component {
   };
 
   handleKeyDown = event => {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && event.target.tagName.toLowerCase() !== "a") {
       event.preventDefault();
       this.toggleCardEditor();
     }
@@ -61,7 +61,9 @@ class Card extends Component {
                 {...provided.dragHandleProps}
                 onClick={event => {
                   provided.dragHandleProps.onClick(event);
-                  this.toggleCardEditor();
+                  if (event.target.tagName.toLowerCase() !== "a") {
+                    this.toggleCardEditor(event);
+                  }
                 }}
                 onKeyDown={event => {
                   provided.dragHandleProps.onKeyDown(event);
