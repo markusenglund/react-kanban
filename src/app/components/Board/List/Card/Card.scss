@@ -184,14 +184,14 @@
   position: relative;
 }
 
-.color-picker-modal {
+.modal-color-picker {
   background: white;
   color: black;
   position: absolute;
   margin-top: 4px;
-  top: 50%;
+  top: 100%;
   // left: 0;
-  left: 50%;
+  // left: 50%;
   // transform: translateX(-50%);
   width: 120px;
   border-radius: 3px;

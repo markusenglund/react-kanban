@@ -7,6 +7,7 @@ import FaTrash from "react-icons/lib/fa/trash";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
+import ClickOutside from "../../../ClickOutside";
 import colorIcon from "../../../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
@@ -96,6 +97,20 @@ class CardEditor extends Component {
     this.setState({ isColorPickerOpen: !this.state.isColorPickerOpen });
   };
 
+  handleColorPickerKeyDown = event => {
+    if (event.keyCode === 27) {
+      this.setState({ isColorPickerOpen: false });
+    }
+  };
+
+  handleRequestClose = () => {
+    const { isCalendarOpen, isColorPickerOpen } = this.state;
+    const { toggleCardEditor } = this.props;
+    if (!isCalendarOpen && !isColorPickerOpen) {
+      toggleCardEditor();
+    }
+  };
+
   render() {
     const {
       newTitle,
@@ -103,7 +118,7 @@ class CardEditor extends Component {
       isColorPickerOpen,
       isTextareaFocused
     } = this.state;
-    const { toggleCardEditor, boundingRect, card, boardId } = this.props;
+    const { boundingRect, card, boardId } = this.props;
     // const distanceFromRightEdge
     const isCardNearRightBorder =
       window.innerWidth - boundingRect.right < boundingRect.left;
@@ -150,7 +165,7 @@ class CardEditor extends Component {
     return (
       <Modal
         isOpen
-        onRequestClose={toggleCardEditor}
+        onRequestClose={this.handleRequestClose}
         contentLabel="Card editor"
         overlayClassName="modal-underlay"
         className="modal"
@@ -181,58 +196,70 @@ class CardEditor extends Component {
           />
           {card.date && <CardDetails date={card.date} />}
         </div>
-        <div className="options-list">
-          <button onClick={this.deleteCard} className="options-list-button">
-            <div className="modal-icon">
-              <FaTrash />
-            </div>&nbsp;Delete
-          </button>
-          <button
-            ref={ref => {
-              this.colorPickerButton = ref;
-            }}
-            className="options-list-button"
-            onClick={this.toggleColorPicker}
-          >
-            <img src={colorIcon} alt="colorwheel" className="modal-icon" />
-            &nbsp;Color
-          </button>
-          {isColorPickerOpen && (
-            <Modal
-              isOpen
-              onRequestClose={this.toggleColorPicker}
-              overlayClassName="modal-underlay"
-              className="color-picker-modal"
-              style={{
-                content: {
-                  top: this.colorPickerButton.getBoundingClientRect().bottom,
-                  left: this.colorPickerButton.getBoundingClientRect().left
-                }
-              }}
+        <div
+          className="options-list"
+          style={{
+            alignItems: isCardNearRightBorder ? "flex-end" : "flex-start"
+          }}
+        >
+          <div>
+            <button onClick={this.deleteCard} className="options-list-button">
+              <div className="modal-icon">
+                <FaTrash />
+              </div>&nbsp;Delete
+            </button>
+          </div>
+          <div className="modal-color-picker-wrapper">
+            <button
+              className="options-list-button"
+              onClick={this.toggleColorPicker}
+              onKeyDown={this.handleColorPickerKeyDown}
+              aria-haspopup
+              aria-expanded={isColorPickerOpen}
             >
-              {[
-                "white",
-                "powderblue",
-                "pink",
-                "tomato",
-                "yellow",
-                "aquamarine"
-              ].map(color => (
-                <button
-                  key={color}
-                  style={{ background: color }}
-                  className="color-picker-color"
-                  onClick={() => this.editColor(color)}
-                />
-              ))}
-            </Modal>
-          )}
-
-          <button onClick={this.toggleCalendar} className="options-list-button">
-            <div className="modal-icon">
-              <MdAlarm />
-            </div>&nbsp;Due date
-          </button>
+              <img src={colorIcon} alt="colorwheel" className="modal-icon" />
+              &nbsp;Color
+            </button>
+            {isColorPickerOpen && (
+              <ClickOutside
+                eventTypes="click"
+                handleClickOutside={this.toggleColorPicker}
+              >
+                {/* eslint-disable */}
+                <div
+                  className="modal-color-picker"
+                  onKeyDown={this.handleColorPickerKeyDown}
+                >
+                  {/* eslint-enable */}
+                  {[
+                    "white",
+                    "powderblue",
+                    "pink",
+                    "tomato",
+                    "yellow",
+                    "aquamarine"
+                  ].map(color => (
+                    <button
+                      key={color}
+                      style={{ background: color }}
+                      className="color-picker-color"
+                      onClick={() => this.editColor(color)}
+                    />
+                  ))}
+                </div>
+              </ClickOutside>
+            )}
+          </div>
+          <div>
+            <button
+              onClick={this.toggleCalendar}
+              className="options-list-button"
+            >
+              <div className="modal-icon">
+                <MdAlarm />
+              </div>&nbsp;Due date
+            </button>
+          </div>
         </div>
         <Modal
           isOpen={isCalendarOpen}
