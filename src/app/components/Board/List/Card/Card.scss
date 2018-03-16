@@ -143,6 +143,15 @@
   // transform: translate(-50%, -50%);
 }
 
+.calendar-underlay {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .calendar {
   border-radius: 3px;
   background: white;
@@ -190,9 +199,8 @@
   position: absolute;
   margin-top: 4px;
   top: 100%;
-  // left: 0;
-  // left: 50%;
-  // transform: translateX(-50%);
+  left: 50%;
+  transform: translateX(-50%);
   width: 120px;
   border-radius: 3px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);

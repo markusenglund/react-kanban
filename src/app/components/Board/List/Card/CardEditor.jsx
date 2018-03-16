@@ -264,7 +264,7 @@ class CardEditor extends Component {
         <Modal
           isOpen={isCalendarOpen}
           onRequestClose={this.toggleCalendar}
-          overlayClassName="modal-underlay"
+          overlayClassName="calendar-underlay"
           className="calendar-modal"
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
