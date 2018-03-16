@@ -1,6 +1,8 @@
 import { normalize, schema } from "normalizr";
+import createWelcomeBoard from "./createWelcomeBoard";
 
 const normalizeBoards = boards => {
+  // console.log(boards);
   const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
   const list = new schema.Entity(
     "listsById",
@@ -27,17 +29,7 @@ const fetchBoardData = db => (req, res, next) => {
         next();
       });
   } else {
-    req.initialState = {
-      boardsById: {
-        "123456": {
-          _id: "123456",
-          title: "Welcome to kanban.live!",
-          lists: [],
-          users: [],
-          color: "blue"
-        }
-      }
-    };
+    req.initialState = normalizeBoards([createWelcomeBoard()]);
     next();
   }
 };
