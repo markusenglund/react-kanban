@@ -3,11 +3,30 @@ import shortid from "shortid";
 export default function createWelcomeBoard() {
   const welcomeCards = [
     {
-      color: "powderblue",
       title: `![Octocat](https://assets-cdn.github.com/images/modules/logos_page/Octocat.png)
-        Check out the source code on [GitHub](https://github.com/yogaboll/react-kanban-board)
-        `
+      Check out the [source code on GitHub](https://github.com/yogaboll/react-kanban-board)
+      `,
+      color: "powderblue"
     },
+    {
+      title: `## Supports GitHub flavored markdown
+* Headings
+* Links
+* Images
+* \`\`\`() => {
+    // Code blocks!
+}\`\`\`
+* *Italic* and **bold** text - Watch out, Netscape navigator 1.1!`
+    },
+    {
+      title:
+        "You can give your card a due date and a color because you're a busy business person but also a fun, approachable guy or girl who gives some but not all cards a vaguely green color.",
+      date: new Date(),
+      color: "aquamarine"
+    }
+  ].map(card => ({ color: "white", _id: shortid.generate(), ...card }));
+
+  const howToUseCards = [
     {
       title:
         "A board consists of multiple lists with cards. Cards can be moved within a list or between lists by dragging them"
@@ -17,10 +36,7 @@ export default function createWelcomeBoard() {
       title: "You can also give the cards a different color.",
       color: "yellow"
     },
-    { title: "You can also give them a deadline", date: new Date() }
-  ].map(card => ({ color: "white", _id: shortid.generate(), ...card }));
-
-  const howToUseCards = [
+    { title: "You can also give them a deadline", date: new Date() },
     { title: "The site supports markdown" },
     {
       title: `Check out the source code on [GitHub](https://github.com/yogaboll/react-kanban-board)`
