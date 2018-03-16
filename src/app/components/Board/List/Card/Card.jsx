@@ -77,7 +77,7 @@ class Card extends Component {
                 <div
                   className="card-title-html"
                   dangerouslySetInnerHTML={{
-                    __html: marked(card.title, { sanitize: true })
+                    __html: marked(card.title, { sanitize: true, gfm: true })
                   }}
                 />
                 {/* eslint-enable */}
