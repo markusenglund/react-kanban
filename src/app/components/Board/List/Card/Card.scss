@@ -184,15 +184,15 @@
   position: relative;
 }
 
-.modal-color-picker {
+.color-picker-modal {
   background: white;
   color: black;
   position: absolute;
   margin-top: 4px;
-  top: 100%;
+  top: 50%;
   // left: 0;
   left: 50%;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
   width: 120px;
   border-radius: 3px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);

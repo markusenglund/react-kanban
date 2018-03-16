@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
-import { Button, Wrapper, Menu, closeMenu } from "react-aria-menubutton";
 import FaTrash from "react-icons/lib/fa/trash";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
-// import ClickOutside from "../../../ClickOutside";
 import colorIcon from "../../../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
@@ -36,6 +34,7 @@ class CardEditor extends Component {
     this.state = {
       newTitle: props.card.title,
       isCalendarOpen: false,
+      isColorPickerOpen: false,
       isTextareaFocused: true
     };
     Modal.setAppElement("#app");
@@ -87,15 +86,23 @@ class CardEditor extends Component {
         payload: { color, cardId: card._id, boardId }
       });
     }
-    closeMenu("color-picker");
   };
 
   toggleCalendar = () => {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
 
+  toggleColorPicker = () => {
+    this.setState({ isColorPickerOpen: !this.state.isColorPickerOpen });
+  };
+
   render() {
-    const { newTitle, isCalendarOpen, isTextareaFocused } = this.state;
+    const {
+      newTitle,
+      isCalendarOpen,
+      isColorPickerOpen,
+      isTextareaFocused
+    } = this.state;
     const { toggleCardEditor, boundingRect, card, boardId } = this.props;
     // const distanceFromRightEdge
     const isCardNearRightBorder =
@@ -175,12 +182,34 @@ class CardEditor extends Component {
           {card.date && <CardDetails date={card.date} />}
         </div>
         <div className="options-list">
-          <Wrapper className="modal-color-picker-wrapper" id="color-picker">
-            <Button className="options-list-button">
-              <img src={colorIcon} alt="colorwheel" className="modal-icon" />
-              &nbsp;Color
-            </Button>
-            <Menu className="modal-color-picker">
+          <button onClick={this.deleteCard} className="options-list-button">
+            <div className="modal-icon">
+              <FaTrash />
+            </div>&nbsp;Delete
+          </button>
+          <button
+            ref={ref => {
+              this.colorPickerButton = ref;
+            }}
+            className="options-list-button"
+            onClick={this.toggleColorPicker}
+          >
+            <img src={colorIcon} alt="colorwheel" className="modal-icon" />
+            &nbsp;Color
+          </button>
+          {isColorPickerOpen && (
+            <Modal
+              isOpen
+              onRequestClose={this.toggleColorPicker}
+              overlayClassName="modal-underlay"
+              className="color-picker-modal"
+              style={{
+                content: {
+                  top: this.colorPickerButton.getBoundingClientRect().bottom,
+                  left: this.colorPickerButton.getBoundingClientRect().left
+                }
+              }}
+            >
               {[
                 "white",
                 "powderblue",
@@ -196,13 +225,9 @@ class CardEditor extends Component {
                   onClick={() => this.editColor(color)}
                 />
               ))}
-            </Menu>
-          </Wrapper>
-          <button onClick={this.deleteCard} className="options-list-button">
-            <div className="modal-icon">
-              <FaTrash />
-            </div>&nbsp;Delete
-          </button>
+            </Modal>
+          )}
+
           <button onClick={this.toggleCalendar} className="options-list-button">
             <div className="modal-icon">
               <MdAlarm />
