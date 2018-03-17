@@ -33,8 +33,9 @@ Watch out, Netscape navigator 2.0!`
 
   const howToUseCards = [
     {
-      title:
-        "A board consists of multiple lists with cards. Cards can be moved within a list or between lists by dragging them"
+      title: `- [ ] Empty box
+- [x] Checked checkbox
+- [ ] another empty one`
     },
     { title: "You can edit the contents of a card by clicking on it." },
     {

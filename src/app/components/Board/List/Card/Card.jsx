@@ -8,17 +8,21 @@ import CardEditor from "./CardEditor";
 import CardDetails from "./CardDetails";
 import "./Card.scss";
 
+// Create HTML string that identifies checkboxes by index
 function formatMarkdown(markdown) {
+  let i = 0;
   return marked(markdown, { sanitize: true, gfm: true })
     .replace(/<a/g, '<a target="_blank"')
-    .replace(
-      /<li>\[\s\]/g,
-      '<li class="check-box"><input onclick="return false" type="checkbox">'
-    )
-    .replace(
-      /<li>\[x\]/g,
-      '<li class="check-box"><input checked onclick="return false" type="checkbox">'
-    );
+    .replace(/<li>\[(\s|x)\]/g, match => {
+      let newString;
+      if (match === "<li>[ ]") {
+        newString = `<li class="checkbox"><input index=${i} onclick="return false" type="checkbox">`;
+      } else {
+        newString = `<li class="checkbox"><input index=${i} checked onclick="return false" type="checkbox">`;
+      }
+      i += 1;
+      return newString;
+    });
 }
 
 class Card extends Component {
