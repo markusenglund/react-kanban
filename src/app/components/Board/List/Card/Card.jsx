@@ -9,16 +9,10 @@ import CardDetails from "./CardDetails";
 import "./Card.scss";
 
 function formatMarkdown(markdown) {
-  return marked(markdown, { sanitize: true, gfm: true })
-    .replace(/<a/g, '<a target="_blank"')
-    .replace(
-      /<li>\[\s\]/g,
-      '<li class="check-box"><input onclick="return false" type="checkbox">'
-    )
-    .replace(
-      /<li>\[x\]/g,
-      '<li class="check-box"><input checked onclick="return false" type="checkbox">'
-    );
+  return marked(markdown, { sanitize: true, gfm: true }).replace(
+    /<a/g,
+    '<a target="_blank"'
+  );
 }
 
 class Card extends Component {
