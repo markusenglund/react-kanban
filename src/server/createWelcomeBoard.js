@@ -10,17 +10,22 @@ export default function createWelcomeBoard() {
     },
     {
       title: `## Supports GitHub flavored markdown
+Featuring cutting edge HTML features like
 * Headings
+* Bullet points
+* **Bold** and *italic* text
 * Links
 * Images
 * \`\`\`() => {
-    // Code blocks!
+    // Code blocks
 }\`\`\`
-* *Italic* and **bold** text - Watch out, Netscape navigator 1.1!`
+
+Watch out, Netscape navigator 2.0!`
     },
+    // OTHER FEATURES: Full mobile support and usable with keyboard. Suck on that, trello.
     {
       title:
-        "You can give your card a due date and a color because you're a busy business person but also a fun, approachable guy or girl who gives some but not all cards a vaguely green color.",
+        "Give your card a due date and a color because you're a busy business person but also a fun, approachable guy or girl who gives some cards a vaguely green color.",
       date: new Date(),
       color: "aquamarine"
     }
