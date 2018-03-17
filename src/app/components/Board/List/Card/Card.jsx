@@ -13,12 +13,12 @@ function formatMarkdown(markdown) {
   let i = 0;
   return marked(markdown, { sanitize: true, gfm: true })
     .replace(/<a/g, '<a target="_blank"')
-    .replace(/<li>\[(\s|x)\]/g, match => {
+    .replace(/\[(\s|x)\]/g, match => {
       let newString;
-      if (match === "<li>[ ]") {
-        newString = `<li class="checkbox"><input index=${i} onclick="return false" type="checkbox">`;
+      if (match === "[ ]") {
+        newString = `<input id=${i} onclick="return false" type="checkbox">`;
       } else {
-        newString = `<li class="checkbox"><input index=${i} checked onclick="return false" type="checkbox">`;
+        newString = `<input id=${i} checked onclick="return false" type="checkbox">`;
       }
       i += 1;
       return newString;
@@ -57,6 +57,27 @@ class Card extends Component {
     }
   };
 
+  // identify the clicked checkbox by its index and give it a new checked attribute
+  toggleCheckbox = (checked, i) => {
+    const { card, boardId, dispatch } = this.props;
+
+    let j = 0;
+    const newTitle = card.title.replace(/\[(\s|x)\]/g, match => {
+      let newString;
+      if (i === j) {
+        newString = checked ? "[x]" : "[ ]";
+      } else {
+        newString = match;
+      }
+      j += 1;
+      return newString;
+    });
+    dispatch({
+      type: "EDIT_CARD_TITLE",
+      payload: { cardId: card._id, cardTitle: newTitle, boardId }
+    });
+  };
+
   render() {
     const { card, index, listId, boardId, isDraggingOver } = this.props;
     const { isOpen } = this.state;
@@ -78,7 +99,10 @@ class Card extends Component {
                 {...provided.dragHandleProps}
                 onClick={event => {
                   provided.dragHandleProps.onClick(event);
-                  if (event.target.tagName.toLowerCase() !== "a") {
+                  const { tagName, checked, id } = event.target;
+                  if (tagName.toLowerCase() === "input") {
+                    this.toggleCheckbox(checked, parseInt(id));
+                  } else if (tagName.toLowerCase() !== "a") {
                     this.toggleCardEditor(event);
                   }
                 }}
