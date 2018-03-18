@@ -6,6 +6,7 @@ import classnames from "classnames";
 import marked from "marked";
 import CardEditor from "./CardEditor";
 import CardDetails from "./CardDetails";
+import findCheckboxes from "./findCheckboxes";
 import "./Card.scss";
 
 // Create HTML string that identifies checkboxes by index
@@ -81,6 +82,7 @@ class Card extends Component {
   render() {
     const { card, index, listId, boardId, isDraggingOver } = this.props;
     const { isOpen } = this.state;
+    const checkboxes = findCheckboxes(card.title);
     return (
       <>
         <Draggable draggableId={card._id} index={index}>
@@ -122,7 +124,10 @@ class Card extends Component {
                   }}
                 />
                 {/* eslint-enable */}
-                {card.date && <CardDetails date={card.date} />}
+                {/* {card.date && <CardDetails date={card.date} />} */}
+                {card.date || checkboxes.total > 0 ? (
+                  <CardDetails date={card.date} checkboxes={checkboxes} />
+                ) : null}
               </div>
               {isDraggingOver && provided.placeholder}
             </>
