@@ -11,7 +11,7 @@ import "./Card.scss";
 // Create HTML string that identifies checkboxes by index
 function formatMarkdown(markdown) {
   let i = 0;
-  return marked(markdown, { sanitize: true, gfm: true })
+  return marked(markdown, { sanitize: true, gfm: true, breaks: true })
     .replace(/<a/g, '<a target="_blank"')
     .replace(/\[(\s|x)\]/g, match => {
       let newString;
