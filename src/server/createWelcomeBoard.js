@@ -27,9 +27,11 @@ Featuring cutting edge HTML features like
 * **Bold** and *italic* text
 * Links
 * Images
-* \`\`\`() => {
+* \`\`\`
+() => {
     // Code blocks
-}\`\`\`
+}
+\`\`\`
 * [x] Checkboxes
 
 Watch out, Netscape navigator 2.0!`
@@ -65,7 +67,7 @@ You can edit the title of the board by clicking it. You can also change the colo
   if (!userId) {
     howToUseCards.unshift({
       title: `### Sign in to save changes
-Since you are signed in as a guest, your changes will not persist after you leave the website. Go back to the login screen by pressing the logout button in the top right corner.`
+Since you are not signed in, your changes will not persist after you leave the website. Go back to the login screen by pressing the 'Sign in' button in the top right corner.`
     });
   }
 

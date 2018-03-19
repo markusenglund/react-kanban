@@ -42,8 +42,14 @@
     margin: 4px 0;
   }
 
-  code {
+  code,
+  pre {
     white-space: pre-wrap;
+  }
+  pre {
+    background: #eee;
+    margin: 4px 0;
+    padding: 4px 2px;
   }
 }
 
