@@ -44,8 +44,8 @@ class CardDetails extends Component {
     }
 
     return (
-      <div className="due-date" style={{ background: dueDateColor }}>
-        <MdAlarm className="due-date-icon" />&nbsp;
+      <div className="badge" style={{ background: dueDateColor }}>
+        <MdAlarm className="badge-icon" />&nbsp;
         {dueDateString}
       </div>
     );
@@ -57,8 +57,11 @@ class CardDetails extends Component {
       return null;
     }
     return (
-      <div>
-        <MdDoneAll />
+      <div
+        className="badge"
+        style={{ background: checked === total ? "green" : "#444" }}
+      >
+        <MdDoneAll className="badge-icon" />&nbsp;
         {checked}/{total}
       </div>
     );
