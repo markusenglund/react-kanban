@@ -124,7 +124,6 @@ class Card extends Component {
                   }}
                 />
                 {/* eslint-enable */}
-                {/* {card.date && <CardDetails date={card.date} />} */}
                 {card.date || checkboxes.total > 0 ? (
                   <CardDetails date={card.date} checkboxes={checkboxes} />
                 ) : null}

@@ -38,7 +38,7 @@ class CardDetails extends Component {
     if (dueDateFromToday < 0) {
       dueDateColor = "red";
     } else if (dueDateFromToday === 0) {
-      dueDateColor = "darkorange";
+      dueDateColor = "#d60";
     } else {
       dueDateColor = "green";
     }
