@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import format from "date-fns/format";
 import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 import MdAlarm from "react-icons/lib/md/access-alarm";
+import MdDoneAll from "react-icons/lib/fa/check-square-o";
 
 class CardDetails extends Component {
   static propTypes = {
@@ -43,7 +44,7 @@ class CardDetails extends Component {
     }
 
     return (
-      <div className="due-date" style={{ color: dueDateColor }}>
+      <div className="due-date" style={{ background: dueDateColor }}>
         <MdAlarm className="due-date-icon" />&nbsp;
         {dueDateString}
       </div>
@@ -57,7 +58,8 @@ class CardDetails extends Component {
     }
     return (
       <div>
-        {checked} / {total}
+        <MdDoneAll />
+        {checked}/{total}
       </div>
     );
   };
