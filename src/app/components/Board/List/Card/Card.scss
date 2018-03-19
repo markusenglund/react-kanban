@@ -48,8 +48,21 @@
 }
 
 .card-details {
-  font-size: 13px;
+  font-size: 14px;
   padding-top: 5px;
+  display: flex;
+}
+
+.badge {
+  border-radius: 3px;
+  padding: 3px 4px 1px 3px;
+  color: white;
+  margin-right: 5px;
+  transition: background 0.15s;
+}
+
+.badge-icon {
+  margin-bottom: 2px;
 }
 
 .modal-underlay {
@@ -132,10 +145,6 @@
 .modal-icon {
   margin-bottom: 3px;
   flex-shrink: 0;
-}
-
-.due-date-icon {
-  margin-bottom: 3px;
 }
 
 .calendar-modal {

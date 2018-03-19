@@ -6,13 +6,24 @@ import classnames from "classnames";
 import marked from "marked";
 import CardEditor from "./CardEditor";
 import CardDetails from "./CardDetails";
+import findCheckboxes from "./findCheckboxes";
 import "./Card.scss";
 
+// Create HTML string that identifies checkboxes by index
 function formatMarkdown(markdown) {
-  return marked(markdown, { sanitize: true, gfm: true }).replace(
-    /<a/g,
-    '<a target="_blank"'
-  );
+  let i = 0;
+  return marked(markdown, { sanitize: true, gfm: true, breaks: true })
+    .replace(/<a/g, '<a target="_blank"')
+    .replace(/\[(\s|x)\]/g, match => {
+      let newString;
+      if (match === "[ ]") {
+        newString = `<input id=${i} onclick="return false" type="checkbox">`;
+      } else {
+        newString = `<input id=${i} checked onclick="return false" type="checkbox">`;
+      }
+      i += 1;
+      return newString;
+    });
 }
 
 class Card extends Component {
@@ -47,9 +58,31 @@ class Card extends Component {
     }
   };
 
+  // identify the clicked checkbox by its index and give it a new checked attribute
+  toggleCheckbox = (checked, i) => {
+    const { card, boardId, dispatch } = this.props;
+
+    let j = 0;
+    const newTitle = card.title.replace(/\[(\s|x)\]/g, match => {
+      let newString;
+      if (i === j) {
+        newString = checked ? "[x]" : "[ ]";
+      } else {
+        newString = match;
+      }
+      j += 1;
+      return newString;
+    });
+    dispatch({
+      type: "EDIT_CARD_TITLE",
+      payload: { cardId: card._id, cardTitle: newTitle, boardId }
+    });
+  };
+
   render() {
     const { card, index, listId, boardId, isDraggingOver } = this.props;
     const { isOpen } = this.state;
+    const checkboxes = findCheckboxes(card.title);
     return (
       <>
         <Draggable draggableId={card._id} index={index}>
@@ -68,7 +101,10 @@ class Card extends Component {
                 {...provided.dragHandleProps}
                 onClick={event => {
                   provided.dragHandleProps.onClick(event);
-                  if (event.target.tagName.toLowerCase() !== "a") {
+                  const { tagName, checked, id } = event.target;
+                  if (tagName.toLowerCase() === "input") {
+                    this.toggleCheckbox(checked, parseInt(id));
+                  } else if (tagName.toLowerCase() !== "a") {
                     this.toggleCardEditor(event);
                   }
                 }}
@@ -88,7 +124,9 @@ class Card extends Component {
                   }}
                 />
                 {/* eslint-enable */}
-                {card.date && <CardDetails date={card.date} />}
+                {card.date || checkboxes.total > 0 ? (
+                  <CardDetails date={card.date} checkboxes={checkboxes} />
+                ) : null}
               </div>
               {isDraggingOver && provided.placeholder}
             </>

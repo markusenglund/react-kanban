@@ -8,6 +8,7 @@ import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
 import ClickOutside from "../../../ClickOutside";
+import findCheckboxes from "./findCheckboxes";
 import colorIcon from "../../../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
@@ -119,7 +120,10 @@ class CardEditor extends Component {
       isTextareaFocused
     } = this.state;
     const { boundingRect, card, boardId } = this.props;
-    // const distanceFromRightEdge
+
+    const checkboxes = findCheckboxes(newTitle);
+    console.log("CHECKBOXES,", checkboxes);
+
     const isCardNearRightBorder =
       window.innerWidth - boundingRect.right < boundingRect.left;
     const isThinDisplay = window.innerWidth < 550;
@@ -194,7 +198,9 @@ class CardEditor extends Component {
             onFocus={() => this.setState({ isTextareaFocused: true })}
             onBlur={() => this.setState({ isTextareaFocused: false })}
           />
-          {card.date && <CardDetails date={card.date} />}
+          {card.date || checkboxes.total > 0 ? (
+            <CardDetails date={card.date} checkboxes={checkboxes} />
+          ) : null}
         </div>
         <div
           className="options-list"
