@@ -1,6 +1,6 @@
 import shortid from "shortid";
 
-export default function createWelcomeBoard() {
+export default function createWelcomeBoard(userId) {
   const welcomeCards = [
     {
       title: `![Octocat](https://assets-cdn.github.com/images/modules/logos_page/Octocat.png)
@@ -67,6 +67,6 @@ You can edit the title of the board by clicking it. You can also change the colo
       },
       { _id: shortid.generate(), title: "How to use", cards: howToUseCards }
     ],
-    users: []
+    users: userId ? [userId] : []
   };
 }
