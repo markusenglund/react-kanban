@@ -38,3 +38,47 @@ header {
 .header-title img {
   height: 30px;
 }
+
+.header-right-side {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  color: white;
+}
+
+.user-thumbnail {
+  height: 28px;
+  border-radius: 3px;
+}
+
+.signout-link {
+  background: $transparent-black;
+  border: 1px solid $less-transparent-black;
+  border-radius: 3px;
+  color: white;
+  padding: 3px 5px 1px 5px;
+  margin-left: 16px;
+  text-decoration: none;
+}
+
+.signout-link:focus,
+.signout-link:hover {
+  background: $less-transparent-black;
+}
+
+.signout-icon {
+  font-size: 22px;
+  padding-bottom: 2px;
+}
+
+@media (max-width: 700px) {
+  .user-thumbnail {
+    display: none;
+  }
+
+  .signout-link {
+    margin-left: 0px;
+  }
+}
