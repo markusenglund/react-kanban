@@ -9,7 +9,10 @@ export default function createWelcomeBoard() {
       color: "powderblue"
     },
     {
-      title: `## Supports GitHub flavored markdown
+      title: "### Full support for touch screens and keyboard navigation."
+    },
+    {
+      title: `### Supports GitHub flavored markdown
 Featuring cutting edge HTML features like
 * Headings
 * Bullet points
@@ -19,33 +22,36 @@ Featuring cutting edge HTML features like
 * \`\`\`() => {
     // Code blocks
 }\`\`\`
+* [x] Checkboxes
 
 Watch out, Netscape navigator 2.0!`
-    },
-    // OTHER FEATURES: Full mobile support and usable with keyboard. Suck on that, trello.
-    {
-      title:
-        "Give your card a due date and a color because you're a busy business person but also a fun, approachable guy or girl who gives some cards a vaguely green color.",
-      date: new Date(),
-      color: "aquamarine"
     }
   ].map(card => ({ color: "white", _id: shortid.generate(), ...card }));
 
   const howToUseCards = [
     {
-      title: `- [ ] Empty box
-- [x] Checked checkbox
-- [ ] another empty one`
+      title: `### Drag cards and lists
+Of course you can reposition both the cards and the lists by dragging them with a mouse or touch gesture, but you can also do it with just the keyboard. Try it out by focusing a card or list title, pressing Space bar and use the arrow keys to reposition the card or list`
     },
-    { title: "You can edit the contents of a card by clicking on it." },
     {
-      title: "You can also give the cards a different color.",
-      color: "yellow"
+      title: `### Create a card or list
+Add a new card to an existing list by clicking the + button below each list. You can add a new list by clicking the "Add a list"-button to the right`
     },
-    { title: "You can also give them a deadline", date: new Date() },
-    { title: "The site supports markdown" },
     {
-      title: `Check out the source code on [GitHub](https://github.com/yogaboll/react-kanban-board)`
+      title: `### Edit a card
+You can edit the contents of a card by clicking on it or focusing it and pressing the Enter key. From this menu you can also give your card a color and a due date, or delete the card.`,
+      color: "pink",
+      date: new Date()
+    },
+    {
+      title: `### Add a checklist
+For a task that has many sub-tasks, you can create a checklist with markdown.
+[ ] List this
+[x] And like this!`
+    },
+    {
+      title: `### Change the board
+You can edit the title of the board by clicking it. You can also change the color of the board by clicking the button in the top right corner.`
     }
   ].map(card => ({ color: "white", _id: shortid.generate(), ...card }));
 
@@ -56,7 +62,7 @@ Watch out, Netscape navigator 2.0!`
     lists: [
       {
         _id: shortid.generate(),
-        title: "A trello-like app built with React.js and friends",
+        title: "A trello-like app built with React",
         cards: welcomeCards
       },
       { _id: shortid.generate(), title: "How to use", cards: howToUseCards }
