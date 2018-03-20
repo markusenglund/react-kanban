@@ -53,6 +53,11 @@ header {
   border-radius: 3px;
 }
 
+.guest-icon {
+  font-size: 24px;
+  padding-top: 2px;
+}
+
 .signout-link {
   background: $transparent-black;
   border: 1px solid $less-transparent-black;
@@ -74,7 +79,8 @@ header {
 }
 
 @media (max-width: 700px) {
-  .user-thumbnail {
+  .user-thumbnail,
+  .guest-icon {
     display: none;
   }
 

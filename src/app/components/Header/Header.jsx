@@ -27,7 +27,7 @@ class Header extends Component {
               title={user.name}
             />
           ) : (
-            <FaUserSecret style={{ fontSize: 24, paddingTop: 2 }} />
+            <FaUserSecret className="guest-icon" />
           )}
           {user ? (
             <a className="signout-link" href="/auth/signout">
