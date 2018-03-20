@@ -18,6 +18,7 @@
   display: inline-flex;
   flex-direction: column;
   max-height: 100%;
+  transition: box-shadow 0.15s, background 0.3s;
 }
 
 .blue .list {
