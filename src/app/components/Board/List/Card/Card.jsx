@@ -133,15 +133,16 @@ class Card extends Component {
           )}
         </Draggable>
 
-        {isOpen && (
-          <CardEditor
-            boundingRect={this.ref.getBoundingClientRect()}
-            card={card}
-            listId={listId}
-            boardId={boardId}
-            toggleCardEditor={this.toggleCardEditor}
-          />
-        )}
+        {/* {isOpen && ( */}
+        <CardEditor
+          isOpen={isOpen}
+          cardElement={this.ref}
+          card={card}
+          listId={listId}
+          boardId={boardId}
+          toggleCardEditor={this.toggleCardEditor}
+        />
+        {/* )} */}
       </>
     );
   }

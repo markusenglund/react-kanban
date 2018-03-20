@@ -21,12 +21,10 @@ class CardEditor extends Component {
     }).isRequired,
     listId: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
-    boundingRect: PropTypes.shape({
-      left: PropTypes.number,
-      top: PropTypes.number,
-      width: PropTypes.number,
-      height: PropTypes.number
-    }).isRequired,
+    cardElement: PropTypes.shape({
+      getBoundingClientRect: PropTypes.func.isRequired
+    }),
+    isOpen: PropTypes.bool.isRequired,
     toggleCardEditor: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired
   };
@@ -39,8 +37,14 @@ class CardEditor extends Component {
       isColorPickerOpen: false,
       isTextareaFocused: true
     };
-    Modal.setAppElement("#app");
+    if (typeof document !== "undefined") {
+      Modal.setAppElement("#app");
+    }
   }
+
+  componentWillReceiveProps = nextProps => {
+    this.setState({ newTitle: nextProps.card.title });
+  };
 
   handleKeyDown = event => {
     if (event.keyCode === 13 && event.shiftKey === false) {
@@ -122,7 +126,11 @@ class CardEditor extends Component {
       isColorPickerOpen,
       isTextareaFocused
     } = this.state;
-    const { boundingRect, card, boardId } = this.props;
+    const { cardElement, card, boardId, isOpen } = this.props;
+    if (!cardElement) {
+      return null;
+    }
+    const boundingRect = cardElement.getBoundingClientRect();
 
     const checkboxes = findCheckboxes(newTitle);
 
@@ -170,7 +178,8 @@ class CardEditor extends Component {
 
     return (
       <Modal
-        isOpen
+        closeTimeoutMS={150}
+        isOpen={isOpen}
         onRequestClose={this.handleRequestClose}
         contentLabel="Card editor"
         overlayClassName="modal-underlay"
