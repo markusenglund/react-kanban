@@ -237,21 +237,16 @@ class CardEditor extends Component {
                   onKeyDown={this.handleColorPickerKeyDown}
                 >
                   {/* eslint-enable */}
-                  {[
-                    "white",
-                    "powderblue",
-                    "pink",
-                    "tomato",
-                    "yellow",
-                    "aquamarine"
-                  ].map(color => (
-                    <button
-                      key={color}
-                      style={{ background: color }}
-                      className="color-picker-color"
-                      onClick={() => this.editColor(color)}
-                    />
-                  ))}
+                  {["white", "#6df", "#6f6", "#ff6", "#fa4", "#f66"].map(
+                    color => (
+                      <button
+                        key={color}
+                        style={{ background: color }}
+                        className="color-picker-color"
+                        onClick={() => this.editColor(color)}
+                      />
+                    )
+                  )}
                 </div>
               </ClickOutside>
             )}
