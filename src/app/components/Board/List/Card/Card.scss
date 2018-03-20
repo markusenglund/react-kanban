@@ -10,7 +10,7 @@
   box-sizing: border-box;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   font-size: 16px;
-  padding: 6px 8px;
+  // padding: 6px 8px;
   cursor: pointer !important;
   color: #222;
 }
@@ -25,6 +25,8 @@
 }
 
 .card-title-html {
+  padding: 6px 8px;
+
   h1,
   h2,
   h3,
@@ -55,7 +57,8 @@
 
 .card-details {
   font-size: 14px;
-  padding-top: 5px;
+  // padding-top: 5px;
+  padding: 0px 8px 6px 8px;
   display: flex;
 }
 
@@ -93,7 +96,7 @@
   background: white;
   border-radius: 3px;
   box-sizing: border-box;
-  padding: 6px 8px;
+  // padding: 6px 8px;
   margin-bottom: 6px;
   display: flex;
   flex-shrink: 0;
@@ -102,6 +105,7 @@
 }
 
 .modal-textarea {
+  line-height: inherit;
   flex-grow: 1;
   border-radius: inherit;
   overflow: hidden;
@@ -110,7 +114,7 @@
   box-sizing: border-box;
   font-family: inherit;
   font-size: 16px;
-  padding: 4px 0;
+  padding: 10px 8px;
   color: inherit;
   background: inherit;
   resize: none;
