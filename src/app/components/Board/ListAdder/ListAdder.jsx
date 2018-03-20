@@ -57,14 +57,14 @@ class ListAdder extends Component {
     }
     return (
       <div className="list">
-        <div className="list-title-textarea-wrapper">
+        <div className="list-adder-textarea-wrapper">
           <Textarea
             autoFocus
             useCacheForDOMMeasurements
             value={listTitle}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
-            className="list-title-textarea"
+            className="list-adder-textarea"
             onBlur={this.handleBlur}
             spellCheck={false}
           />

@@ -76,7 +76,7 @@ class ListTitle extends Component {
     const { isOpen, newTitle } = this.state;
     const { dragHandleProps, listTitle } = this.props;
     return (
-      <>
+      <div className="list-title">
         {isOpen ? (
           <div className="list-title-textarea-wrapper">
             <Textarea
@@ -91,35 +91,30 @@ class ListTitle extends Component {
             />
           </div>
         ) : (
-          <div className="list-title">
-            <div
-              {...dragHandleProps}
-              role="button"
-              tabIndex={0}
-              onClick={this.openTitleEditor}
-              onKeyDown={event => {
-                this.handleButtonKeyDown(event);
-                dragHandleProps.onKeyDown(event);
-              }}
-              className="list-title-button"
-            >
-              {listTitle}
-            </div>
-            <Wrapper
-              className="delete-list-wrapper"
-              onSelection={this.deleteList}
-            >
-              <Button className="delete-list-button">
-                <FaTrash />
-              </Button>
-              <Menu className="delete-list-menu">
-                <div className="delete-list-header">Are you sure?</div>
-                <MenuItem className="delete-list-confirm">Delete</MenuItem>
-              </Menu>
-            </Wrapper>
+          <div
+            {...dragHandleProps}
+            role="button"
+            tabIndex={0}
+            onClick={this.openTitleEditor}
+            onKeyDown={event => {
+              this.handleButtonKeyDown(event);
+              dragHandleProps.onKeyDown(event);
+            }}
+            className="list-title-button"
+          >
+            {listTitle}
           </div>
         )}
-      </>
+        <Wrapper className="delete-list-wrapper" onSelection={this.deleteList}>
+          <Button className="delete-list-button">
+            <FaTrash />
+          </Button>
+          <Menu className="delete-list-menu">
+            <div className="delete-list-header">Are you sure?</div>
+            <MenuItem className="delete-list-confirm">Delete</MenuItem>
+          </Menu>
+        </Wrapper>
+      </div>
     );
   }
 }

@@ -52,9 +52,30 @@
   font-weight: 700;
   color: $white;
   border: none;
-  cursor: pointer;
+  cursor: pointer !important;
   min-width: 50%;
   border-top-left-radius: inherit;
+}
+
+.list-title-textarea-wrapper {
+  padding: 4px 4px 4px 4px;
+  width: 100%;
+}
+
+.list-title-textarea {
+  float: left;
+  border-radius: 3px;
+  padding: 6px;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  color: $black;
+  resize: none;
 }
 
 .cards-wrapper {
