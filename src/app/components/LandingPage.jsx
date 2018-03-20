@@ -59,7 +59,6 @@ class LandingPage extends Component {
               >
                 <FaUserSecret className="logo-icon" /> &nbsp;Enter as guest
               </button>
-              <div className="warning-message">(Boards will not be saved)</div>
             </div>
           </div>
         </div>

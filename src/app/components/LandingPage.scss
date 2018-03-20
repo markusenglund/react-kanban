@@ -109,21 +109,6 @@
 .guest-button:focus {
   background: #ddd;
 }
-.warning-message {
-  display: none;
-  position: absolute;
-  top: 100%;
-  margin-top: 2px;
-  text-align: center;
-  color: white;
-  width: 100%;
-}
-
-.guest-button-wrapper:hover {
-  .warning-message {
-    display: block;
-  }
-}
 
 @media (max-width: 800px) {
   .landing-page-info-wrapper {
