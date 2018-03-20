@@ -107,6 +107,9 @@ class CardEditor extends Component {
   handleRequestClose = () => {
     const { isCalendarOpen, isColorPickerOpen } = this.state;
     const { toggleCardEditor } = this.props;
+    if (isColorPickerOpen) {
+      this.colorPickerButton.focus();
+    }
     if (!isCalendarOpen && !isColorPickerOpen) {
       toggleCardEditor();
     }
@@ -122,7 +125,6 @@ class CardEditor extends Component {
     const { boundingRect, card, boardId } = this.props;
 
     const checkboxes = findCheckboxes(newTitle);
-    console.log("CHECKBOXES,", checkboxes);
 
     const isCardNearRightBorder =
       window.innerWidth - boundingRect.right < boundingRect.left;
@@ -220,6 +222,9 @@ class CardEditor extends Component {
               className="options-list-button"
               onClick={this.toggleColorPicker}
               onKeyDown={this.handleColorPickerKeyDown}
+              ref={ref => {
+                this.colorPickerButton = ref;
+              }}
               aria-haspopup
               aria-expanded={isColorPickerOpen}
             >
