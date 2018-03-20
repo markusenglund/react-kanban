@@ -119,43 +119,46 @@ class Board extends Component {
   render = () => {
     const { lists, boardTitle, boardId, boardColor } = this.props;
     return (
-      <div className={classnames("board", boardColor)}>
-        <Helmet>
-          <title>{boardTitle} | kanban.live</title>
-        </Helmet>
-        <Header />
-        <BoardHeader />
-        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-        <div
-          className="lists-wrapper"
-          onMouseDown={this.handleMouseDown}
-          onWheel={this.handleWheel}
-        >
-          {/* eslint-enable jsx-a11y/no-static-element-interactions */}
-          <DragDropContext onDragEnd={this.handleDragEnd}>
-            <Droppable
-              droppableId={boardId}
-              type="COLUMN"
-              direction="horizontal"
-            >
-              {provided => (
-                <div className="lists" ref={provided.innerRef}>
-                  {lists.map((list, index) => (
-                    <List
-                      list={list}
-                      boardId={boardId}
-                      index={index}
-                      key={list._id}
-                    />
-                  ))}
-                  {provided.placeholder}
-                  <ListAdder boardId={boardId} />
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+      <>
+        <div className={classnames("board", boardColor)}>
+          <Helmet>
+            <title>{boardTitle} | kanban.live</title>
+          </Helmet>
+          <Header />
+          <BoardHeader />
+          {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+          <div
+            className="lists-wrapper"
+            onMouseDown={this.handleMouseDown}
+            onWheel={this.handleWheel}
+          >
+            {/* eslint-enable jsx-a11y/no-static-element-interactions */}
+            <DragDropContext onDragEnd={this.handleDragEnd}>
+              <Droppable
+                droppableId={boardId}
+                type="COLUMN"
+                direction="horizontal"
+              >
+                {provided => (
+                  <div className="lists" ref={provided.innerRef}>
+                    {lists.map((list, index) => (
+                      <List
+                        list={list}
+                        boardId={boardId}
+                        index={index}
+                        key={list._id}
+                      />
+                    ))}
+                    {provided.placeholder}
+                    <ListAdder boardId={boardId} />
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+          </div>
+          <div className="board-underlay" />
         </div>
-      </div>
+      </>
     );
   };
 }
