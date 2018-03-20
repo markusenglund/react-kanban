@@ -164,7 +164,7 @@ const boardsById = (state = {}, action) => {
           title: boardTitle,
           lists: [],
           users: [userId],
-          color: "green"
+          color: "blue"
         }
       };
     }
