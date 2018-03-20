@@ -177,6 +177,7 @@ class CardEditor extends Component {
         className="modal"
         style={isThinDisplay ? mobileStyle : style}
         includeDefaultStyles={false}
+        onClick={this.handleRequestClose}
       >
         <div
           className="modal-textarea-wrapper"
