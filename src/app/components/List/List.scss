@@ -5,6 +5,9 @@
   user-select: none;
   display: inline-flex;
   flex-direction: column;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .list {
