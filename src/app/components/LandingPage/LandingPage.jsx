@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import FaTwitter from "react-icons/lib/fa/twitter";
 import FaUserSecret from "react-icons/lib/fa/user-secret";
-import googleLogo from "../../assets/images/google-logo.svg";
-import kanbanLogo from "../../assets/images/kanban-logo.svg";
+import googleLogo from "../../../assets/images/google-logo.svg";
+import kanbanLogo from "../../../assets/images/kanban-logo.svg";
 import "./LandingPage.scss";
 
 class LandingPage extends Component {

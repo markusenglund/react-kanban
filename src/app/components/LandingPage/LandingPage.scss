@@ -1,6 +1,6 @@
 .landing-page {
   background-color: #300; // is shown before image loads
-  background-image: url("../../assets/images/postits-1920.jpg");
+  background-image: url("../../../assets/images/postits-1920.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 100%;
@@ -9,7 +9,7 @@
   width: 100%;
 
   @media (max-device-width: 1367px) {
-    background-image: url("../../assets/images/postits-1366.jpg");
+    background-image: url("../../../assets/images/postits-1366.jpg");
   }
 }
 

@@ -7,9 +7,9 @@ import FaTrash from "react-icons/lib/fa/trash";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
-import ClickOutside from "../../../ClickOutside";
+import ClickOutside from "../ClickOutside";
 import findCheckboxes from "./findCheckboxes";
-import colorIcon from "../../../../../assets/images/color-icon.png";
+import colorIcon from "../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
   static propTypes = {

@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import classnames from "classnames";
-import List from "./List/List";
-import ListAdder from "./ListAdder/ListAdder";
+import List from "../List/List";
+import ListAdder from "../ListAdder/ListAdder";
 import Header from "../Header/Header";
-import BoardHeader from "./BoardHeader/BoardHeader";
+import BoardHeader from "../BoardHeader/BoardHeader";
 import "./Board.scss";
 
 class Board extends Component {

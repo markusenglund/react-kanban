@@ -4,7 +4,7 @@ import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Home from "./Home/Home";
 import Board from "./Board/Board";
-import LandingPage from "./LandingPage";
+import LandingPage from "./LandingPage/LandingPage";
 import "./App.scss";
 
 // type Props = {
