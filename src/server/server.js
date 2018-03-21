@@ -1,4 +1,3 @@
-import { readFileSync } from "fs";
 import express from "express";
 import { MongoClient } from "mongodb";
 import passport from "passport";
@@ -14,10 +13,6 @@ import configurePassport from "./passport";
 import api from "./routes/api";
 import auth from "./routes/auth";
 import fetchBoardData from "./fetchBoardData";
-
-const manifest = JSON.parse(
-  readFileSync(`./dist/public/manifest.json`, "utf8")
-);
 
 dotenv.config();
 const app = express();
@@ -49,7 +44,7 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use("/auth", auth);
   app.use("/api", api(db));
   app.use(fetchBoardData(db));
-  app.get("*", renderPage(manifest));
+  app.get("*", renderPage);
 
   const port = process.env.PORT || "1337";
   /* eslint-disable no-console */
