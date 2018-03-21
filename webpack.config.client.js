@@ -9,11 +9,11 @@ const autoprefixer = require("autoprefixer");
 module.exports = {
   name: "client",
   target: "web",
-  entry: [path.join(__dirname, "src/client.jsx")],
+  entry: "./src/client.jsx",
   output: {
     path: path.join(__dirname, "dist/public"),
     publicPath: "/static/",
-    filename: "bundle.[hash:4].js"
+    filename: "bundle.[hash:6].js"
   },
   module: {
     rules: [
@@ -52,7 +52,7 @@ module.exports = {
             loader: "url-loader",
             options: {
               limit: 4096,
-              name: "[name].[hash:4].[ext]",
+              name: "[name].[hash:6].[ext]",
               outputPath: "images/"
             }
           },
@@ -70,7 +70,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),
-    new ExtractTextPlugin("bundle.[contenthash:4].css"),
+    new ExtractTextPlugin("bundle.[contenthash:6].css"),
     new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
     new DashboardPlugin(),
     new ManifestPlugin()
