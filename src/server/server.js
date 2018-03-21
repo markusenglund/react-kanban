@@ -14,7 +14,9 @@ import api from "./routes/api";
 import auth from "./routes/auth";
 import fetchBoardData from "./fetchBoardData";
 
+// Load environment variables from .env file
 dotenv.config();
+
 const app = express();
 
 const MongoStore = connectMongo(session);
@@ -31,6 +33,8 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use("/static", express.static("dist/public"));
+
+  // Persist session in mongoDB
   app.use(
     session({
       store: new MongoStore({ db }),

@@ -3,7 +3,7 @@ import { Strategy as TwitterStrategy } from "passport-twitter";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import createWelcomeBoard from "./createWelcomeBoard";
 
-export default function configurePassport(db) {
+const configurePassport = db => {
   const users = db.collection("users");
   const boards = db.collection("boards");
 
@@ -33,7 +33,11 @@ export default function configurePassport(db) {
               name: profile.displayName,
               imageUrl: profile._json.profile_image_url
             };
-            users.insertOne(newUser).then(() => cb(null, newUser));
+            users.insertOne(newUser).then(() => {
+              boards
+                .insertOne(createWelcomeBoard(profile.id))
+                .then(() => cb(null, newUser));
+            });
           }
         });
       }
@@ -66,4 +70,6 @@ export default function configurePassport(db) {
       }
     )
   );
-}
+};
+
+export default configurePassport;
