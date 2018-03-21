@@ -11,8 +11,8 @@ import logger from "morgan";
 import dotenv from "dotenv";
 import renderPage from "./renderPage";
 import configurePassport from "./passport";
-import api from "./api";
-import auth from "./auth";
+import api from "./routes/api";
+import auth from "./routes/auth";
 import fetchBoardData from "./fetchBoardData";
 
 const manifest = JSON.parse(

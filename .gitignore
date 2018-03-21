@@ -2,3 +2,4 @@ node_modules
 dist
 stats.json
 .env
+README.md
