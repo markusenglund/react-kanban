@@ -1,4 +1,4 @@
-import path from "path";
+import { readFileSync } from "fs";
 import express from "express";
 import { MongoClient } from "mongodb";
 import passport from "passport";
@@ -15,6 +15,10 @@ import api from "./api";
 import auth from "./auth";
 import fetchBoardData from "./fetchBoardData";
 
+const manifest = JSON.parse(
+  readFileSync(`./dist/public/manifest.json`, "utf8")
+);
+
 dotenv.config();
 const app = express();
 
@@ -28,7 +32,7 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use(helmet());
   app.use(logger("tiny"));
   app.use(compression());
-  app.use(favicon(path.join("dist/public/favicons/favicon.ico")));
+  app.use(favicon("dist/public/favicons/favicon.ico"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use("/static", express.static("dist/public"));
@@ -45,7 +49,7 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use("/auth", auth);
   app.use("/api", api(db));
   app.use(fetchBoardData(db));
-  app.get("*", renderPage);
+  app.get("*", renderPage(manifest));
 
   const port = process.env.PORT || "1337";
   /* eslint-disable no-console */

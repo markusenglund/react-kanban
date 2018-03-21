@@ -8,7 +8,7 @@ import { resetContext } from "react-beautiful-dnd";
 import App from "../app/components/App";
 import reducers from "../app/reducers/reducers";
 
-export default function renderPage(req, res) {
+const renderPage = manifest => (req, res) => {
   const store = createStore(combineReducers(reducers), req.initialState);
   const context = {};
 
@@ -40,7 +40,7 @@ export default function renderPage(req, res) {
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
         <meta property="og:image" content="https://kanban.live/static/favicons/og-kanban-logo.png">
-        <link rel="stylesheet" href="/static/bundle.css">
+        <link rel="stylesheet" href=${manifest["main.css"]}>
         ${helmet.title.toString()}
       </head>
       <body>
@@ -49,8 +49,10 @@ export default function renderPage(req, res) {
       <script>
         window.PRELOADED_STATE = ${JSON.stringify(preloadedState)}
       </script>
-      <script src="/static/bundle.js"></script>
+      <script src=${manifest["main.js"]}></script>
     </html>
   `;
   res.send(html);
-}
+};
+
+export default renderPage;

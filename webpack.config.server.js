@@ -32,7 +32,7 @@ module.exports = {
             options: {
               emitFile: false,
               limit: 4096,
-              name: "[name].[ext]",
+              name: "[name].[hash].[ext]",
               publicPath: "/static/images/"
             }
           },

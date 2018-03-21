@@ -2,6 +2,8 @@ const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const DashboardPlugin = require("webpack-dashboard/plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist/public"),
     publicPath: "/static/",
-    filename: "bundle.js"
+    filename: "bundle.[hash:4].js"
   },
   module: {
     rules: [
@@ -50,7 +52,7 @@ module.exports = {
             loader: "url-loader",
             options: {
               limit: 4096,
-              name: "[name].[ext]",
+              name: "[name].[hash:4].[ext]",
               outputPath: "images/"
             }
           },
@@ -67,9 +69,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("bundle.css"),
+    new CleanWebpackPlugin(["dist"]),
+    new ExtractTextPlugin("bundle.[contenthash:4].css"),
     new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
-    new DashboardPlugin()
+    new DashboardPlugin(),
+    new ManifestPlugin()
   ],
   resolve: {
     extensions: [".js", ".jsx"]
