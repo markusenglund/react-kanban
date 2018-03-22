@@ -21,6 +21,7 @@ const cardsById = (state = {}, action) => {
       const { [cardId]: deletedCard, ...restOfCards } = state;
       return restOfCards;
     }
+    // Find every card from the deleted list and remove it (actually unnecessary since they will be removed from db on next write anyway)
     case "DELETE_LIST": {
       const { cards: cardIds } = action.payload;
       return Object.keys(state)

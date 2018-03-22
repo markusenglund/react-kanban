@@ -14,7 +14,7 @@ const listsById = (state = {}, action) => {
         sourceListId,
         destListId
       } = action.payload;
-      // Reorder within the same list
+      // Move within the same list
       if (sourceListId === destListId) {
         const newCards = Array.from(state[sourceListId].cards);
         const [removedCard] = newCards.splice(oldCardIndex, 1);
@@ -24,7 +24,7 @@ const listsById = (state = {}, action) => {
           [sourceListId]: { ...state[sourceListId], cards: newCards }
         };
       }
-      // Switch card from one list to another
+      // Move card from one list to another
       const sourceCards = Array.from(state[sourceListId].cards);
       const [removedCard] = sourceCards.splice(oldCardIndex, 1);
       const destinationCards = Array.from(state[destListId].cards);

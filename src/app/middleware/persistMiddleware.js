@@ -1,7 +1,7 @@
 import { denormalize, schema } from "normalizr";
 import axios from "axios";
 
-// Persist the board to the database after every action.
+// Persist the board to the database after almost every action.
 const persistMiddleware = store => next => action => {
   next(action);
   const {
