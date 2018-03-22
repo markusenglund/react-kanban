@@ -1,5 +1,8 @@
 @import "../../variables.scss";
 
+// Header position has to fixed as the user scrolls to the right. Because of a limitation in react-beautiful-dnd library
+// the drag-drop context can only have one scroll container so the entire board has to be scrolled. Therefore,
+// header has to be part of the page that is being scrolled and as a workaround we use position:fixed.
 header {
   position: fixed;
   width: 100%;
@@ -80,6 +83,7 @@ header {
   padding-bottom: 2px;
 }
 
+// Some things have to be removed for mobile layouts to avoid overflowing
 @media (max-width: 700px) {
   .user-thumbnail,
   .guest-icon {
