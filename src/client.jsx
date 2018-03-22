@@ -4,11 +4,11 @@ import "core-js/fn/object/values";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { BrowserRouter } from "react-router-dom";
-import reducers from "./app/reducers/reducers";
+import rootReducer from "./app/reducers";
 import persistMiddleware from "./app/middleware/persistMiddleware";
 import App from "./app/components/App";
 
@@ -17,7 +17,7 @@ const preloadedState = window.PRELOADED_STATE;
 delete window.PRELOADED_STATE;
 
 const store = createStore(
-  combineReducers(reducers),
+  rootReducer,
   preloadedState,
   composeWithDevTools(applyMiddleware(persistMiddleware))
 );

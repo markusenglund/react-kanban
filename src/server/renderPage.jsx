@@ -1,13 +1,13 @@
 import { readFileSync } from "fs";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { createStore, combineReducers } from "redux";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router";
 import { Helmet } from "react-helmet";
 import { resetContext } from "react-beautiful-dnd";
 import App from "../app/components/App";
-import reducers from "../app/reducers/reducers";
+import rootReducer from "../app/reducers";
 
 // Get the manifest which contains the names of the generated files. The files contain hashes
 // that change every time they are updated, which enables aggressive caching.
@@ -18,7 +18,7 @@ const manifest = JSON.parse(
 const renderPage = (req, res) => {
   // Put initialState (which contains board state) into a redux store that will be passed to the client
   // through the window object in the generated html string
-  const store = createStore(combineReducers(reducers), req.initialState);
+  const store = createStore(rootReducer, req.initialState);
 
   const context = {};
 

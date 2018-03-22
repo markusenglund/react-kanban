@@ -36,6 +36,7 @@ const persistMiddleware = store => next => action => {
 
       const boardData = denormalize(boardId, board, entities);
 
+      // TODO: Provide warning message to user when put request doesn't work for whatever reason
       axios.put("/api/board", boardData);
     }
   }
