@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import "./BoardTitle.scss";
 
 class BoardTitle extends Component {
   static propTypes = {
@@ -76,7 +77,7 @@ class BoardTitle extends Component {
       />
     ) : (
       <button className="board-title-button" onClick={this.handleClick}>
-        <h1 className="board-title">{boardTitle}</h1>
+        <h1 className="board-title-text">{boardTitle}</h1>
       </button>
     );
   }
