@@ -17,6 +17,8 @@ const App = ({ user, isGuest }) => {
       </Switch>
     );
   }
+
+  // If not logged in, always redirect to landing page
   return (
     <Switch>
       <Route exact path="/" component={LandingPage} />
