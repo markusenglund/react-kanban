@@ -14,10 +14,11 @@ import "./App.scss";
 const App = ({ user, isGuest }) => {
   if (user || isGuest) {
     return (
-      <>
+      <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/b/:boardId" component={Board} />
-      </>
+        <Redirect to="/" />
+      </Switch>
     );
   }
   return (

@@ -1,17 +1,12 @@
 const cardsById = (state = {}, action) => {
   switch (action.type) {
     case "ADD_CARD": {
-      const { cardTitle, cardId } = action.payload;
-      return { ...state, [cardId]: { title: cardTitle, _id: cardId } };
+      const { cardText, cardId } = action.payload;
+      return { ...state, [cardId]: { text: cardText, _id: cardId } };
     }
-    case "EDIT_CARD_TITLE": {
-      const { cardTitle, cardId } = action.payload;
-      return { ...state, [cardId]: { ...state[cardId], title: cardTitle } };
-    }
-    case "DELETE_CARD": {
-      const { cardId } = action.payload;
-      const { [cardId]: deletedCard, ...restOfCards } = state;
-      return restOfCards;
+    case "CHANGE_CARD_TEXT": {
+      const { cardText, cardId } = action.payload;
+      return { ...state, [cardId]: { ...state[cardId], text: cardText } };
     }
     case "EDIT_CARD_DATE": {
       const { date, cardId } = action.payload;
@@ -20,6 +15,11 @@ const cardsById = (state = {}, action) => {
     case "EDIT_CARD_COLOR": {
       const { color, cardId } = action.payload;
       return { ...state, [cardId]: { ...state[cardId], color } };
+    }
+    case "DELETE_CARD": {
+      const { cardId } = action.payload;
+      const { [cardId]: deletedCard, ...restOfCards } = state;
+      return restOfCards;
     }
     case "DELETE_LIST": {
       const { cards: cardIds } = action.payload;

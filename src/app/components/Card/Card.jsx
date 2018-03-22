@@ -30,7 +30,7 @@ class Card extends Component {
   static propTypes = {
     card: PropTypes.shape({
       _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
       color: PropTypes.string
     }).isRequired,
     listId: PropTypes.string.isRequired,
@@ -62,7 +62,7 @@ class Card extends Component {
     const { card, dispatch } = this.props;
 
     let j = 0;
-    const newTitle = card.title.replace(/\[(\s|x)\]/g, match => {
+    const newText = card.text.replace(/\[(\s|x)\]/g, match => {
       let newString;
       if (i === j) {
         newString = checked ? "[x]" : "[ ]";
@@ -73,15 +73,15 @@ class Card extends Component {
       return newString;
     });
     dispatch({
-      type: "EDIT_CARD_TITLE",
-      payload: { cardId: card._id, cardTitle: newTitle }
+      type: "CHANGE_CARD_TEXT",
+      payload: { cardId: card._id, cardText: newText }
     });
   };
 
   render() {
     const { card, index, listId, isDraggingOver } = this.props;
     const { isOpen } = this.state;
-    const checkboxes = findCheckboxes(card.title);
+    const checkboxes = findCheckboxes(card.text);
     return (
       <>
         <Draggable draggableId={card._id} index={index}>
@@ -119,7 +119,7 @@ class Card extends Component {
                 <div
                   className="card-title-html"
                   dangerouslySetInnerHTML={{
-                    __html: formatMarkdown(card.title)
+                    __html: formatMarkdown(card.text)
                   }}
                 />
                 {/* eslint-enable */}

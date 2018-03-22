@@ -14,7 +14,7 @@ import colorIcon from "../../../assets/images/color-icon.png";
 class CardEditor extends Component {
   static propTypes = {
     card: PropTypes.shape({
-      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
       date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
       color: PropTypes.string
@@ -31,7 +31,7 @@ class CardEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newTitle: props.card.title,
+      newText: props.card.text,
       isCalendarOpen: false,
       isColorPickerOpen: false,
       isTextareaFocused: true
@@ -42,7 +42,7 @@ class CardEditor extends Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    this.setState({ newTitle: nextProps.card.title });
+    this.setState({ newText: nextProps.card.text });
   };
 
   handleKeyDown = event => {
@@ -53,15 +53,15 @@ class CardEditor extends Component {
   };
 
   submitCard = () => {
-    const { newTitle } = this.state;
+    const { newText } = this.state;
     const { card, listId, dispatch, toggleCardEditor } = this.props;
-    if (newTitle === "") {
+    if (newText === "") {
       this.deleteCard();
-    } else if (newTitle !== card.title) {
+    } else if (newText !== card.text) {
       dispatch({
-        type: "EDIT_CARD_TITLE",
+        type: "CHANGE_CARD_TEXT",
         payload: {
-          cardTitle: newTitle,
+          cardText: newText,
           cardId: card._id,
           listId
         }
@@ -71,7 +71,7 @@ class CardEditor extends Component {
   };
 
   handleChange = event => {
-    this.setState({ newTitle: event.target.value });
+    this.setState({ newText: event.target.value });
   };
 
   deleteCard = () => {
@@ -119,7 +119,7 @@ class CardEditor extends Component {
 
   render() {
     const {
-      newTitle,
+      newText,
       isCalendarOpen,
       isColorPickerOpen,
       isTextareaFocused
@@ -130,7 +130,7 @@ class CardEditor extends Component {
     }
     const boundingRect = cardElement.getBoundingClientRect();
 
-    const checkboxes = findCheckboxes(newTitle);
+    const checkboxes = findCheckboxes(newText);
 
     const isCardNearRightBorder =
       window.innerWidth - boundingRect.right < boundingRect.left;
@@ -200,7 +200,7 @@ class CardEditor extends Component {
           <Textarea
             autoFocus
             useCacheForDOMMeasurements
-            value={newTitle}
+            value={newText}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             className="modal-textarea"
