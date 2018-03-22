@@ -21,13 +21,22 @@ class Board extends Component {
     dispatch: PropTypes.func.isRequired
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       startX: null,
       startScrollX: null
     };
   }
+
+  // boardId is stored in the redux store so that it is available inside middleware
+  componentDidMount = () => {
+    const { boardId, dispatch } = this.props;
+    dispatch({
+      type: "PUT_BOARD_ID_IN_REDUX",
+      payload: { boardId }
+    });
+  };
 
   handleDragEnd = ({ source, destination, type }) => {
     // dropped outside the list

@@ -15,6 +15,16 @@ const isGuest = (state = false, action) => {
   }
 };
 
+const currentBoardId = (state = null, action) => {
+  switch (action.type) {
+    case "PUT_BOARD_ID_IN_REDUX": {
+      return action.payload.boardId;
+    }
+    default:
+      return state;
+  }
+};
+
 const cardsById = (state = {}, action) => {
   switch (action.type) {
     case "ADD_CARD": {
@@ -198,4 +208,11 @@ const boardsById = (state = {}, action) => {
   }
 };
 
-export default { user, isGuest, cardsById, listsById, boardsById };
+export default {
+  user,
+  isGuest,
+  currentBoardId,
+  cardsById,
+  listsById,
+  boardsById
+};

@@ -20,7 +20,6 @@ class CardEditor extends Component {
       color: PropTypes.string
     }).isRequired,
     listId: PropTypes.string.isRequired,
-    boardId: PropTypes.string.isRequired,
     cardElement: PropTypes.shape({
       getBoundingClientRect: PropTypes.func.isRequired
     }),
@@ -55,7 +54,7 @@ class CardEditor extends Component {
 
   submitCard = () => {
     const { newTitle } = this.state;
-    const { card, listId, boardId, dispatch, toggleCardEditor } = this.props;
+    const { card, listId, dispatch, toggleCardEditor } = this.props;
     if (newTitle === "") {
       this.deleteCard();
     } else if (newTitle !== card.title) {
@@ -64,8 +63,7 @@ class CardEditor extends Component {
         payload: {
           cardTitle: newTitle,
           cardId: card._id,
-          listId,
-          boardId
+          listId
         }
       });
     }
@@ -77,19 +75,19 @@ class CardEditor extends Component {
   };
 
   deleteCard = () => {
-    const { dispatch, listId, boardId, card } = this.props;
+    const { dispatch, listId, card } = this.props;
     dispatch({
       type: "DELETE_CARD",
-      payload: { cardId: card._id, listId, boardId }
+      payload: { cardId: card._id, listId }
     });
   };
 
   editColor = color => {
-    const { dispatch, card, boardId } = this.props;
+    const { dispatch, card } = this.props;
     if (card.color !== color) {
       dispatch({
         type: "EDIT_CARD_COLOR",
-        payload: { color, cardId: card._id, boardId }
+        payload: { color, cardId: card._id }
       });
     }
   };
@@ -126,7 +124,7 @@ class CardEditor extends Component {
       isColorPickerOpen,
       isTextareaFocused
     } = this.state;
-    const { cardElement, card, boardId, isOpen } = this.props;
+    const { cardElement, card, isOpen } = this.props;
     if (!cardElement) {
       return null;
     }
@@ -285,7 +283,6 @@ class CardEditor extends Component {
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
           <Calendar
-            boardId={boardId}
             cardId={card._id}
             date={card.date}
             toggleCalendar={this.toggleCalendar}

@@ -8,7 +8,6 @@ class Calendar extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     cardId: PropTypes.string.isRequired,
-    boardId: PropTypes.string.isRequired,
     date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
     toggleCalendar: PropTypes.func.isRequired
   };
@@ -34,10 +33,10 @@ class Calendar extends Component {
 
   handleSave = () => {
     const { selectedDay } = this.state;
-    const { dispatch, cardId, boardId, toggleCalendar } = this.props;
+    const { dispatch, cardId, toggleCalendar } = this.props;
     dispatch({
       type: "EDIT_CARD_DATE",
-      payload: { date: selectedDay, cardId, boardId }
+      payload: { date: selectedDay, cardId }
     });
     toggleCalendar();
   };

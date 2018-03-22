@@ -4,12 +4,16 @@ import axios from "axios";
 // Persist the board to the database after every action.
 const persistMiddleware = store => next => action => {
   next(action);
-  const { user, boardsById, listsById, cardsById } = store.getState();
+  const {
+    user,
+    boardsById,
+    listsById,
+    cardsById,
+    currentBoardId: boardId
+  } = store.getState();
 
   // Nothing is persisted for guest users
   if (user) {
-    const { boardId } = action.payload;
-
     if (action.type === "DELETE_BOARD") {
       axios
         .delete("/api/board", { data: { boardId } })
@@ -17,7 +21,7 @@ const persistMiddleware = store => next => action => {
 
       // All action-types that are not DELETE_BOARD are currently modifying a board in a way that should
       // be persisted to db. If other types of actions are added, this logic has be get more specific.
-    } else {
+    } else if (action.type !== "PUT_BOARD_ID_IN_REDUX") {
       // Transform the flattened board state structure into the tree-shaped structure that the db uses.
       const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
       const list = new schema.Entity(

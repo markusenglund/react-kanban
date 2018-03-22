@@ -38,12 +38,12 @@ class ListTitle extends Component {
 
   handleSubmit = () => {
     const { newTitle } = this.state;
-    const { listTitle, listId, boardId, dispatch } = this.props;
+    const { listTitle, listId, dispatch } = this.props;
     if (newTitle === "") return;
     if (newTitle !== listTitle) {
       dispatch({
         type: "EDIT_LIST_TITLE",
-        payload: { listTitle: newTitle, listId, boardId }
+        payload: { listTitle: newTitle, listId }
       });
     }
     this.setState({ isOpen: false });

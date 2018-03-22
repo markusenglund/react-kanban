@@ -34,7 +34,6 @@ class Card extends Component {
       color: PropTypes.string
     }).isRequired,
     listId: PropTypes.string.isRequired,
-    boardId: PropTypes.string.isRequired,
     isDraggingOver: PropTypes.bool.isRequired,
     index: PropTypes.number.isRequired,
     dispatch: PropTypes.func.isRequired
@@ -60,7 +59,7 @@ class Card extends Component {
 
   // identify the clicked checkbox by its index and give it a new checked attribute
   toggleCheckbox = (checked, i) => {
-    const { card, boardId, dispatch } = this.props;
+    const { card, dispatch } = this.props;
 
     let j = 0;
     const newTitle = card.title.replace(/\[(\s|x)\]/g, match => {
@@ -75,12 +74,12 @@ class Card extends Component {
     });
     dispatch({
       type: "EDIT_CARD_TITLE",
-      payload: { cardId: card._id, cardTitle: newTitle, boardId }
+      payload: { cardId: card._id, cardTitle: newTitle }
     });
   };
 
   render() {
-    const { card, index, listId, boardId, isDraggingOver } = this.props;
+    const { card, index, listId, isDraggingOver } = this.props;
     const { isOpen } = this.state;
     const checkboxes = findCheckboxes(card.title);
     return (
@@ -139,7 +138,6 @@ class Card extends Component {
           cardElement={this.ref}
           card={card}
           listId={listId}
-          boardId={boardId}
           toggleCardEditor={this.toggleCardEditor}
         />
         {/* )} */}
