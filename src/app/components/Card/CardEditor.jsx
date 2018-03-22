@@ -82,11 +82,11 @@ class CardEditor extends Component {
     });
   };
 
-  editColor = color => {
+  changeColor = color => {
     const { dispatch, card } = this.props;
     if (card.color !== color) {
       dispatch({
-        type: "EDIT_CARD_COLOR",
+        type: "CHANGE_CARD_COLOR",
         payload: { color, cardId: card._id }
       });
     }
@@ -256,7 +256,7 @@ class CardEditor extends Component {
                         key={color}
                         style={{ background: color }}
                         className="color-picker-color"
-                        onClick={() => this.editColor(color)}
+                        onClick={() => this.changeColor(color)}
                       />
                     )
                   )}

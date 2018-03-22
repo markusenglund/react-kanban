@@ -35,7 +35,7 @@ class Calendar extends Component {
     const { selectedDay } = this.state;
     const { dispatch, cardId, toggleCalendar } = this.props;
     dispatch({
-      type: "EDIT_CARD_DATE",
+      type: "CHANGE_CARD_DATE",
       payload: { date: selectedDay, cardId }
     });
     toggleCalendar();

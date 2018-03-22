@@ -8,11 +8,11 @@ const cardsById = (state = {}, action) => {
       const { cardText, cardId } = action.payload;
       return { ...state, [cardId]: { ...state[cardId], text: cardText } };
     }
-    case "EDIT_CARD_DATE": {
+    case "CHANGE_CARD_DATE": {
       const { date, cardId } = action.payload;
       return { ...state, [cardId]: { ...state[cardId], date } };
     }
-    case "EDIT_CARD_COLOR": {
+    case "CHANGE_CARD_COLOR": {
       const { color, cardId } = action.payload;
       return { ...state, [cardId]: { ...state[cardId], color } };
     }

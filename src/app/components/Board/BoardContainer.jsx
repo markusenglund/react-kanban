@@ -14,9 +14,7 @@ BoardContainer.propTypes = { board: PropTypes.object };
 const mapStateToProps = (state, ownProps) => {
   const { boardId } = ownProps.match.params;
   const board = state.boardsById[boardId];
-  return {
-    board
-  };
+  return { board };
 };
 
 export default connect(mapStateToProps)(BoardContainer);
