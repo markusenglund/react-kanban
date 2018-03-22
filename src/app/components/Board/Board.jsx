@@ -50,7 +50,7 @@ class Board extends Component {
       // Prevent update if nothing has changed
       if (source.index !== destination.index) {
         dispatch({
-          type: "REORDER_LISTS",
+          type: "MOVE_LIST",
           payload: {
             oldListIndex: source.index,
             newListIndex: destination.index,
@@ -66,7 +66,7 @@ class Board extends Component {
       source.droppableId !== destination.droppableId
     ) {
       dispatch({
-        type: "REORDER_CARDS",
+        type: "MOVE_CARD",
         payload: {
           sourceListId: source.droppableId,
           destListId: destination.droppableId,

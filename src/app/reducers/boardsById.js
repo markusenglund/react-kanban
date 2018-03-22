@@ -10,6 +10,16 @@ const boardsById = (state = {}, action) => {
         }
       };
     }
+    case "MOVE_LIST": {
+      const { oldListIndex, newListIndex, boardId } = action.payload;
+      const newLists = Array.from(state[boardId].lists);
+      const [removedList] = newLists.splice(oldListIndex, 1);
+      newLists.splice(newListIndex, 0, removedList);
+      return {
+        ...state,
+        [boardId]: { ...state[boardId], lists: newLists }
+      };
+    }
     case "DELETE_LIST": {
       const { listId: newListId, boardId } = action.payload;
       return {
@@ -18,16 +28,6 @@ const boardsById = (state = {}, action) => {
           ...state[boardId],
           lists: state[boardId].lists.filter(listId => listId !== newListId)
         }
-      };
-    }
-    case "REORDER_LISTS": {
-      const { oldListIndex, newListIndex, boardId } = action.payload;
-      const newLists = Array.from(state[boardId].lists);
-      const [removedList] = newLists.splice(oldListIndex, 1);
-      newLists.splice(newListIndex, 0, removedList);
-      return {
-        ...state,
-        [boardId]: { ...state[boardId], lists: newLists }
       };
     }
     case "ADD_BOARD": {
@@ -43,12 +43,7 @@ const boardsById = (state = {}, action) => {
         }
       };
     }
-    case "DELETE_BOARD": {
-      const { boardId } = action.payload;
-      const { [boardId]: deletedBoard, ...restOfBoards } = state;
-      return restOfBoards;
-    }
-    case "EDIT_BOARD_TITLE": {
+    case "CHANGE_BOARD_TITLE": {
       const { boardTitle, boardId } = action.payload;
       return {
         ...state,
@@ -67,6 +62,11 @@ const boardsById = (state = {}, action) => {
           color
         }
       };
+    }
+    case "DELETE_BOARD": {
+      const { boardId } = action.payload;
+      const { [boardId]: deletedBoard, ...restOfBoards } = state;
+      return restOfBoards;
     }
     default:
       return state;

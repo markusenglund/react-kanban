@@ -32,7 +32,7 @@ class BoardTitle extends Component {
     if (newTitle === "") return;
     if (boardTitle !== newTitle) {
       dispatch({
-        type: "EDIT_BOARD_TITLE",
+        type: "CHANGE_BOARD_TITLE",
         payload: {
           boardTitle: newTitle,
           boardId

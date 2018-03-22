@@ -42,7 +42,7 @@ class ListTitle extends Component {
     if (newTitle === "") return;
     if (newTitle !== listTitle) {
       dispatch({
-        type: "EDIT_LIST_TITLE",
+        type: "CHANGE_LIST_TITLE",
         payload: { listTitle: newTitle, listId }
       });
     }
