@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import FaTrash from "react-icons/lib/fa/trash";
+import "./ListHeader.scss";
 
 class ListTitle extends Component {
   static propTypes = {
@@ -76,7 +77,7 @@ class ListTitle extends Component {
     const { isOpen, newTitle } = this.state;
     const { dragHandleProps, listTitle } = this.props;
     return (
-      <div className="list-title">
+      <div className="list-header">
         {isOpen ? (
           <div className="list-title-textarea-wrapper">
             <Textarea

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
-import ListTitle from "./ListTitle";
+import ListHeader from "./ListHeader";
 import Cards from "./Cards";
 import CardComposer from "./CardComposer/CardComposer";
 import "./List.scss";
@@ -46,7 +46,7 @@ class List extends Component {
                   "list--drag": snapshot.isDragging
                 })}
               >
-                <ListTitle
+                <ListHeader
                   dragHandleProps={provided.dragHandleProps}
                   listTitle={list.title}
                   listId={list._id}
