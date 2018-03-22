@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import marked from "marked";
-import CardEditor from "./CardEditor";
+import CardModal from "./CardModal";
 import CardDetails from "./CardDetails";
 import findCheckboxes from "./findCheckboxes";
 import "./Card.scss";
@@ -123,24 +123,21 @@ class Card extends Component {
                   }}
                 />
                 {/* eslint-enable */}
-                {card.date || checkboxes.total > 0 ? (
+                {(card.date || checkboxes.total > 0) && (
                   <CardDetails date={card.date} checkboxes={checkboxes} />
-                ) : null}
+                )}
               </div>
               {isDraggingOver && provided.placeholder}
             </>
           )}
         </Draggable>
-
-        {/* {isOpen && ( */}
-        <CardEditor
+        <CardModal
           isOpen={isOpen}
           cardElement={this.ref}
           card={card}
           listId={listId}
           toggleCardEditor={this.toggleCardEditor}
         />
-        {/* )} */}
       </>
     );
   }

@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
-import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
 import CardOptions from "./CardOptions";
 import findCheckboxes from "./findCheckboxes";
 
-class CardEditor extends Component {
+class CardModal extends Component {
   static propTypes = {
     card: PropTypes.shape({
       text: PropTypes.string.isRequired,
@@ -29,7 +28,6 @@ class CardEditor extends Component {
     super(props);
     this.state = {
       newText: props.card.text,
-      isCalendarOpen: false,
       isColorPickerOpen: false,
       isTextareaFocused: true
     };
@@ -71,29 +69,20 @@ class CardEditor extends Component {
     this.setState({ newText: event.target.value });
   };
 
-  toggleCalendar = () => {
-    this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
-  };
-
   toggleColorPicker = () => {
     this.setState({ isColorPickerOpen: !this.state.isColorPickerOpen });
   };
 
   handleRequestClose = () => {
-    const { isCalendarOpen, isColorPickerOpen } = this.state;
+    const { isColorPickerOpen } = this.state;
     const { toggleCardEditor } = this.props;
-    if (!isCalendarOpen && !isColorPickerOpen) {
+    if (!isColorPickerOpen) {
       toggleCardEditor();
     }
   };
 
   render() {
-    const {
-      newText,
-      isCalendarOpen,
-      isColorPickerOpen,
-      isTextareaFocused
-    } = this.state;
+    const { newText, isColorPickerOpen, isTextareaFocused } = this.state;
     const { cardElement, card, listId, isOpen } = this.props;
     if (!cardElement) {
       return null;
@@ -124,21 +113,6 @@ class CardEditor extends Component {
       content: {
         flexDirection: "column",
         top: 20,
-        left: "50%",
-        transform: "translateX(-50%)"
-      }
-    };
-
-    const calendarStyle = {
-      content: {
-        top: Math.min(boundingRect.bottom + 10, window.innerHeight - 300),
-        left: boundingRect.left
-      }
-    };
-
-    const calendarMobileStyle = {
-      content: {
-        top: 110,
         left: "50%",
         transform: "translateX(-50%)"
       }
@@ -178,34 +152,22 @@ class CardEditor extends Component {
             onFocus={() => this.setState({ isTextareaFocused: true })}
             onBlur={() => this.setState({ isTextareaFocused: false })}
           />
-          {card.date || checkboxes.total > 0 ? (
+          {(card.date || checkboxes.total > 0) && (
             <CardDetails date={card.date} checkboxes={checkboxes} />
-          ) : null}
+          )}
         </div>
         <CardOptions
           isColorPickerOpen={isColorPickerOpen}
           card={card}
           listId={listId}
+          boundingRect={boundingRect}
           isCardNearRightBorder={isCardNearRightBorder}
+          isThinDisplay={isThinDisplay}
           toggleColorPicker={this.toggleColorPicker}
-          toggleCalendar={this.toggleCalendar}
         />
-        <Modal
-          isOpen={isCalendarOpen}
-          onRequestClose={this.toggleCalendar}
-          overlayClassName="calendar-underlay"
-          className="calendar-modal"
-          style={isThinDisplay ? calendarMobileStyle : calendarStyle}
-        >
-          <Calendar
-            cardId={card._id}
-            date={card.date}
-            toggleCalendar={this.toggleCalendar}
-          />
-        </Modal>
       </Modal>
     );
   }
 }
 
-export default connect()(CardEditor);
+export default connect()(CardModal);
