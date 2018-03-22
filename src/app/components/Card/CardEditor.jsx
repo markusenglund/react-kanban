@@ -3,13 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
-import FaTrash from "react-icons/lib/fa/trash";
-import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
-import ClickOutside from "../ClickOutside";
+import CardOptions from "./CardOptions";
 import findCheckboxes from "./findCheckboxes";
-import colorIcon from "../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
   static propTypes = {
@@ -74,24 +71,6 @@ class CardEditor extends Component {
     this.setState({ newText: event.target.value });
   };
 
-  deleteCard = () => {
-    const { dispatch, listId, card } = this.props;
-    dispatch({
-      type: "DELETE_CARD",
-      payload: { cardId: card._id, listId }
-    });
-  };
-
-  changeColor = color => {
-    const { dispatch, card } = this.props;
-    if (card.color !== color) {
-      dispatch({
-        type: "CHANGE_CARD_COLOR",
-        payload: { color, cardId: card._id }
-      });
-    }
-  };
-
   toggleCalendar = () => {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
@@ -100,18 +79,9 @@ class CardEditor extends Component {
     this.setState({ isColorPickerOpen: !this.state.isColorPickerOpen });
   };
 
-  handleColorPickerKeyDown = event => {
-    if (event.keyCode === 27) {
-      this.setState({ isColorPickerOpen: false });
-    }
-  };
-
   handleRequestClose = () => {
     const { isCalendarOpen, isColorPickerOpen } = this.state;
     const { toggleCardEditor } = this.props;
-    if (isColorPickerOpen) {
-      this.colorPickerButton.focus();
-    }
     if (!isCalendarOpen && !isColorPickerOpen) {
       toggleCardEditor();
     }
@@ -124,7 +94,7 @@ class CardEditor extends Component {
       isColorPickerOpen,
       isTextareaFocused
     } = this.state;
-    const { cardElement, card, isOpen } = this.props;
+    const { cardElement, card, listId, isOpen } = this.props;
     if (!cardElement) {
       return null;
     }
@@ -212,69 +182,14 @@ class CardEditor extends Component {
             <CardDetails date={card.date} checkboxes={checkboxes} />
           ) : null}
         </div>
-        <div
-          className="options-list"
-          style={{
-            alignItems: isCardNearRightBorder ? "flex-end" : "flex-start"
-          }}
-        >
-          <div>
-            <button onClick={this.deleteCard} className="options-list-button">
-              <div className="modal-icon">
-                <FaTrash />
-              </div>&nbsp;Delete
-            </button>
-          </div>
-          <div className="modal-color-picker-wrapper">
-            <button
-              className="options-list-button"
-              onClick={this.toggleColorPicker}
-              onKeyDown={this.handleColorPickerKeyDown}
-              ref={ref => {
-                this.colorPickerButton = ref;
-              }}
-              aria-haspopup
-              aria-expanded={isColorPickerOpen}
-            >
-              <img src={colorIcon} alt="colorwheel" className="modal-icon" />
-              &nbsp;Color
-            </button>
-            {isColorPickerOpen && (
-              <ClickOutside
-                eventTypes="click"
-                handleClickOutside={this.toggleColorPicker}
-              >
-                {/* eslint-disable */}
-                <div
-                  className="modal-color-picker"
-                  onKeyDown={this.handleColorPickerKeyDown}
-                >
-                  {/* eslint-enable */}
-                  {["white", "#6df", "#6f6", "#ff6", "#fa4", "#f66"].map(
-                    color => (
-                      <button
-                        key={color}
-                        style={{ background: color }}
-                        className="color-picker-color"
-                        onClick={() => this.changeColor(color)}
-                      />
-                    )
-                  )}
-                </div>
-              </ClickOutside>
-            )}
-          </div>
-          <div>
-            <button
-              onClick={this.toggleCalendar}
-              className="options-list-button"
-            >
-              <div className="modal-icon">
-                <MdAlarm />
-              </div>&nbsp;Due date
-            </button>
-          </div>
-        </div>
+        <CardOptions
+          isColorPickerOpen={isColorPickerOpen}
+          card={card}
+          listId={listId}
+          isCardNearRightBorder={isCardNearRightBorder}
+          toggleColorPicker={this.toggleColorPicker}
+          toggleCalendar={this.toggleCalendar}
+        />
         <Modal
           isOpen={isCalendarOpen}
           onRequestClose={this.toggleCalendar}
