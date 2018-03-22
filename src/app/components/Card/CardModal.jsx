@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import CardDetails from "./CardDetails";
 import CardOptions from "./CardOptions";
 import findCheckboxes from "./findCheckboxes";
+import "./CardModal.scss";
 
 class CardModal extends Component {
   static propTypes = {

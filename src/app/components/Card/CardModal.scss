@@ -1,0 +1,57 @@
+.modal-underlay {
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  outline: 0;
+  height: 0;
+}
+
+.modal-textarea-wrapper {
+  background: white;
+  border-radius: 3px;
+  box-sizing: border-box;
+  // padding: 6px 8px;
+  margin-bottom: 6px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.2s;
+}
+
+.modal-textarea {
+  line-height: inherit;
+  flex-grow: 1;
+  border-radius: inherit;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px 8px;
+  color: inherit;
+  background: inherit;
+  resize: none;
+  outline: none;
+}
