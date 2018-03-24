@@ -2,13 +2,13 @@
 
 .board-title-button {
   display: flex;
-  background: transparent;
+  min-width: 0;
+  padding: 6px 10px 6px 10px;
   border: 0;
   border-radius: 3px;
-  cursor: pointer;
-  padding: 6px 10px 6px 10px;
+  background: transparent;
   transition: background 0.1s;
-  min-width: 0;
+  cursor: pointer;
 }
 
 .board-title-button:hover,
@@ -17,22 +17,22 @@
 }
 
 .board-title-text {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  overflow-wrap: break-word;
-  font-size: 20px;
   margin: 0;
   color: $white;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  white-space: nowrap;
 }
 
 .board-title-input {
+  width: 100%;
+  padding: 6px 10px 6px 10px;
+  border: 0;
+  color: inherit;
+  background: inherit;
   font-size: 20px;
   font-weight: 700;
   font-family: inherit;
-  color: inherit;
-  background: inherit;
-  padding: 6px 10px 6px 10px;
-  border: 0;
-  width: 100%;
 }

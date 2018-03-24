@@ -1,19 +1,19 @@
 @import "../../variables.scss";
 
 .add-list-button {
-  background: rgba(0, 0, 0, 0.15);
-  color: #ddd;
-  cursor: pointer;
   display: inline-flex;
+  flex-shrink: 0;
   width: $list-width;
-  font-size: 14px;
+  margin: 0 5px 0 5px;
   padding: 10px;
   border: none;
   border-radius: $list-radius;
-  margin: 0 5px 0 5px;
+  color: #ddd;
+  background: rgba(0, 0, 0, 0.15);
+  font-size: 14px;
   transition: background 0.2s;
-  flex-shrink: 0;
   user-select: none;
+  cursor: pointer;
 }
 
 .add-list-button:hover,
@@ -23,15 +23,15 @@
 
 .list-adder-textarea {
   float: left;
-  border-radius: 3px;
-  padding: 6px 10px;
-  overflow: hidden;
-  width: 100%;
-  border: 0;
   box-sizing: border-box;
+  width: 100%;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 3px;
+  color: $black-text;
   font-family: inherit;
   font-size: 18px;
   font-weight: 700;
-  color: $black-text;
+  overflow: hidden;
   resize: none;
 }

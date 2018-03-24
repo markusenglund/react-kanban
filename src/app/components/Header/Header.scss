@@ -5,16 +5,16 @@
 // header has to be part of the page that is being scrolled and as a workaround we use position:fixed.
 header {
   position: fixed;
-  width: 100%;
-  box-sizing: border-box;
-  background: #555;
-  padding: 5px;
-  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
   height: 40px;
+  padding: 5px;
+  background: #555;
+  z-index: 2;
   transition: background 0.3s;
 }
 
@@ -32,12 +32,12 @@ header {
 }
 
 .header-title {
-  color: white;
-  text-decoration: none;
-  font-size: 26px;
-  font-weight: 700;
   display: inline-flex;
   align-items: center;
+  color: white;
+  font-size: 26px;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .header-title img {
@@ -46,10 +46,10 @@ header {
 
 .header-right-side {
   display: flex;
-  height: 100%;
-  align-items: center;
   justify-content: space-around;
+  align-items: center;
   box-sizing: border-box;
+  height: 100%;
   color: white;
 }
 
@@ -59,17 +59,17 @@ header {
 }
 
 .guest-icon {
-  font-size: 24px;
   padding-top: 2px;
+  font-size: 24px;
 }
 
 .signout-link {
-  background: $transparent-black;
+  padding: 3px 5px 1px 5px;
+  margin-left: 12px;
   border: 1px solid $transparent-black;
   border-radius: 3px;
   color: white;
-  padding: 3px 5px 1px 5px;
-  margin-left: 12px;
+  background: $transparent-black;
   text-decoration: none;
 }
 
@@ -79,8 +79,8 @@ header {
 }
 
 .signout-icon {
-  font-size: 22px;
   padding-bottom: 2px;
+  font-size: 22px;
 }
 
 // Some things have to be removed for mobile layouts to avoid overflowing

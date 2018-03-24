@@ -1,25 +1,24 @@
 @import "../../variables.scss";
 
 .list-wrapper {
-  height: 100%;
-  user-select: none;
   display: inline-flex;
   flex-direction: column;
+  height: 100%;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
 
 .list {
-  min-height: 0px; // fix flexbox browser incostiency
-  width: $list-width;
-  border-radius: $list-radius;
-  box-sizing: border-box;
-  font-size: 14px;
-  margin: 0 5px 0 5px;
   display: inline-flex;
   flex-direction: column;
+  box-sizing: border-box;
+  width: $list-width;
+  min-height: 0px; // fix flexbox browser incostiency
   max-height: 100%;
+  margin: 0 5px 0 5px;
+  border-radius: $list-radius;
+  font-size: 14px;
   transition: box-shadow 0.15s, background 0.3s;
 }
 
@@ -42,20 +41,20 @@
 
 .cards-wrapper {
   height: 100%;
+  margin: 0 3px 6px 3px;
   overflow-y: auto;
   overflow-x: hidden;
-  margin: 0 3px 6px 3px;
 }
 
 .cards-wrapper::-webkit-scrollbar {
   width: 8px;
-  background-color: $transparent-black;
   border-radius: 2px;
+  background-color: $transparent-black;
 }
 
 .cards-wrapper::-webkit-scrollbar-thumb {
-  background: $transparent-white;
   border-radius: 2px;
+  background: $transparent-white;
 }
 .cards {
   min-height: 1px;
@@ -63,18 +62,18 @@
 }
 
 .open-composer-button {
-  margin-top: 6px;
   align-self: center;
+  flex-shrink: 0;
   width: 38px;
   height: 38px;
-  flex-shrink: 0;
-  background: $transparent-black;
-  color: $white;
-  font-size: 28px;
+  margin-top: 6px;
   border: none;
-  cursor: pointer;
   border-radius: $list-radius;
+  color: $white;
+  background: $transparent-black;
+  font-size: 28px;
   transition: background 0.1s;
+  cursor: pointer;
 }
 
 .open-composer-button:hover,

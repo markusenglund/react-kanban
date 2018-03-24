@@ -1,13 +1,16 @@
+@import "../../variables.scss";
+
 .landing-page {
+  height: 100%;
+  width: 100%;
+  color: white;
   background-color: #300; // is shown before image loads
   background-image: url("../../../assets/images/postits-1920.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 100%;
-  color: white;
-  height: 100%;
-  width: 100%;
 
+  // Smaller image for smaller screens
   @media (max-device-width: 1367px) {
     background-image: url("../../../assets/images/postits-1366.jpg");
   }
@@ -28,6 +31,7 @@
 .landing-page-heading {
   display: flex;
   align-items: center;
+
   h1 {
     font-size: 40px;
   }
@@ -49,38 +53,36 @@
 }
 
 .signin-button {
-  width: 210px;
-  height: 40px;
-  border: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
   display: inline-flex;
   flex-shrink: 1;
   align-self: flex-start;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
-  text-decoration: none;
+  width: 210px;
+  height: 40px;
   margin-top: 10px;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .twitter-button {
   background: #1da1f2;
-}
 
-.twitter-button:hover,
-.twitter-button:focus {
-  background: #0090e2;
+  &:hover,
+  &:focus {
+    background: #0090e2;
+  }
 }
 
 .google-button {
   background: white;
-  color: #222222;
+  color: $black-text;
 }
 
 .google-button:hover,
@@ -101,8 +103,8 @@
 }
 
 .guest-button {
-  background: #fff;
-  color: #222;
+  background: white;
+  color: $black-text;
 }
 
 .guest-button:hover,

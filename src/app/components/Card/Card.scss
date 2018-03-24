@@ -1,18 +1,18 @@
 @import "../../variables.scss";
 
 .card-title {
-  background: $white;
-  border-radius: 3px;
-  margin: 8px 5px 0 5px;
   position: relative;
-  overflow-wrap: break-word;
-  user-select: none;
   box-sizing: border-box;
+  margin: 8px 5px 0 5px;
+  border-radius: 3px;
+  color: $black-text;
+  background: $white;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   font-size: 16px;
-  cursor: pointer !important;
-  color: $black-text;
+  overflow-wrap: break-word;
   transition: box-shadow 0.15s;
+  user-select: none;
+  cursor: pointer !important;
 }
 
 .card-title:focus {
@@ -49,23 +49,23 @@
     white-space: pre-wrap;
   }
   pre {
-    background: rgba(100, 100, 100, 0.08);
     margin: 4px 0;
     padding: 4px 2px;
+    background: rgba(100, 100, 100, 0.08);
   }
 }
 
 .card-details {
-  font-size: 14px;
-  padding: 0px 8px 6px 8px;
   display: flex;
+  padding: 0px 8px 6px 8px;
+  font-size: 14px;
 }
 
 .badge {
-  border-radius: 3px;
-  padding: 3px 4px 1px 3px;
-  color: white;
   margin-right: 5px;
+  padding: 3px 4px 1px 3px;
+  border-radius: 3px;
+  color: white;
   transition: background 0.15s;
 }
 
