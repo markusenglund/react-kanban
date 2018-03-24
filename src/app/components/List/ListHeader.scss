@@ -37,7 +37,7 @@
   line-height: inherit;
   font-size: 18px;
   font-weight: 700;
-  color: $black;
+  color: $black-text;
   resize: none;
 }
 
@@ -69,7 +69,7 @@
 .delete-list-menu {
   z-index: 1;
   background: $white;
-  color: black;
+  color: $black-text;
   position: absolute;
   margin-top: 4px;
   top: 100%;

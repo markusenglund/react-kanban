@@ -2,6 +2,8 @@
 $board-width: 220px;
 $board-margin: 5px;
 $main-margin: 40px;
+$create-board-bg: #ddd;
+$create-board-focus-bg: #ccc;
 
 @mixin board-button {
   width: $board-width;
@@ -120,14 +122,14 @@ $main-margin: 40px;
 .create-board-button {
   @include board-button;
   border: 0;
-  background: $bg-grey;
+  background: $create-board-bg;
   color: #444;
   margin-bottom: 20px;
 }
 
 .create-board-button:hover,
 .create-board-button:focus {
-  background: $bg-darker-grey;
+  background: $create-board-focus-bg;
 }
 
 .board-adder {
@@ -135,7 +137,7 @@ $main-margin: 40px;
   margin: $board-margin;
   height: 80px;
   padding: 8px;
-  background: $bg-grey;
+  background: $create-board-bg;
   color: #444;
   border-radius: 3px;
   font-size: 16px;
