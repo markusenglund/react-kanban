@@ -9,7 +9,6 @@ const api = db => {
   // effectively prevents the db and client from ever getting out of sync
   router.put("/board", (req, res) => {
     const board = req.body;
-    console.log(board, "board");
     boards
       .replaceOne({ _id: board._id, users: req.user._id }, board, {
         upsert: true

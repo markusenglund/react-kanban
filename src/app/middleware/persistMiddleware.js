@@ -35,7 +35,6 @@ const persistMiddleware = store => next => action => {
       const entities = { cardsById, listsById, boardsById };
 
       const boardData = denormalize(boardId, board, entities);
-      console.log(boardData, "boardData");
 
       // TODO: Provide warning message to user when put request doesn't work for whatever reason
       axios.put("/api/board", boardData);
