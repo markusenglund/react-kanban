@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import CardModal from "../CardModal/CardModal";
-import CardDetails from "./CardDetails";
+import CardBadges from "./CardBadges";
 import findCheckboxes from "./findCheckboxes";
 import formatMarkdown from "./formatMarkdown";
 import "./Card.scss";
@@ -114,7 +114,7 @@ class Card extends Component {
                 />
                 {/* eslint-enable */}
                 {(card.date || checkboxes.total > 0) && (
-                  <CardDetails date={card.date} checkboxes={checkboxes} />
+                  <CardBadges date={card.date} checkboxes={checkboxes} />
                 )}
               </div>
               {/* Remove placeholder when not dragging over to reduce snapping */}

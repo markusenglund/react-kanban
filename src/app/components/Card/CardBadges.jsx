@@ -5,7 +5,7 @@ import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import MdDoneAll from "react-icons/lib/fa/check-square-o";
 
-class CardDetails extends Component {
+class CardBadges extends Component {
   static propTypes = {
     date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
     checkboxes: PropTypes.shape({
@@ -51,6 +51,7 @@ class CardDetails extends Component {
     );
   };
 
+  // Render badge showing amoung of checkboxes that are checked
   renderTaskProgress = () => {
     const { total, checked } = this.props.checkboxes;
     if (total === 0) {
@@ -77,4 +78,4 @@ class CardDetails extends Component {
   }
 }
 
-export default CardDetails;
+export default CardBadges;

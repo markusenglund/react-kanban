@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
-import CardDetails from "../Card/CardDetails";
+import CardBadges from "../Card/CardBadges";
 import CardOptions from "./CardOptions";
 import findCheckboxes from "../Card/findCheckboxes";
 import "./CardModal.scss";
@@ -88,14 +88,26 @@ class CardModal extends Component {
     if (!cardElement) {
       return null;
     }
-    const boundingRect = cardElement.getBoundingClientRect();
 
+    // Get number of checked and total checkboxes
     const checkboxes = findCheckboxes(newText);
 
+    /*
+    Create style of modal in order to not clip outside the edges no matter what device.
+    */
+
+    // Get dimensions of the card to calculate dimensions of cardModal.
+    const boundingRect = cardElement.getBoundingClientRect();
+
+    // Returns true if card is closer to right border than to the left
     const isCardNearRightBorder =
       window.innerWidth - boundingRect.right < boundingRect.left;
+
+    // Check if the display is so thin that we need to trigger a centered, vertical layout
+    // DO NOT CHANGE the number 550 without also changing related media-query in CardOptions.scss
     const isThinDisplay = window.innerWidth < 550;
 
+    // Position textarea at the same place as the card and position everything else away from closest edge
     const style = {
       content: {
         top: Math.min(
@@ -110,6 +122,7 @@ class CardModal extends Component {
       }
     };
 
+    // For layouts that are less wide than 550px, just center everything near the top to not clip outside anything
     const mobileStyle = {
       content: {
         flexDirection: "column",
@@ -154,7 +167,7 @@ class CardModal extends Component {
             onBlur={() => this.setState({ isTextareaFocused: false })}
           />
           {(card.date || checkboxes.total > 0) && (
-            <CardDetails date={card.date} checkboxes={checkboxes} />
+            <CardBadges date={card.date} checkboxes={checkboxes} />
           )}
         </div>
         <CardOptions
