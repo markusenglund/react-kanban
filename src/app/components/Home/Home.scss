@@ -1,12 +1,12 @@
 @import "../../variables.scss";
-$board-width: 280px;
+$board-width: 220px;
 $board-margin: 5px;
 $main-margin: 40px;
 
 @mixin board-button {
   width: $board-width;
   margin: $board-margin;
-  height: 80px;
+  height: 120px;
   padding: 10px;
   border-radius: 6px;
   cursor: pointer;
@@ -52,7 +52,7 @@ $main-margin: 40px;
 
 .main-content h1 {
   margin: 20px 5px;
-  font-size: 28px;
+  font-size: 22px;
 }
 
 .boards {
@@ -64,6 +64,9 @@ $main-margin: 40px;
   @include board-button;
   color: white;
   text-decoration: none;
+  display: inline-flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
 
   &.green {
     background: $green;
@@ -93,6 +96,25 @@ $main-margin: 40px;
   &.red {
     background: $dark-red;
   }
+}
+
+.board-link-title {
+  padding-bottom: 5px;
+}
+
+.mini-board {
+  display: flex;
+  height: 100%;
+}
+
+.mini-list {
+  background: rgba(255, 255, 255, 0.25);
+  width: 24px;
+  height: 100%;
+  border-radius: 3px;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-right: 6px;
 }
 
 .create-board-button {

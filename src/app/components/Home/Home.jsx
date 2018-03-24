@@ -21,7 +21,7 @@ class Home extends Component {
     history: PropTypes.object.isRequired
   };
   render = () => {
-    const { boards, history } = this.props;
+    const { boards, listsById, history } = this.props;
     return (
       <>
         <Helmet>
@@ -30,7 +30,7 @@ class Home extends Component {
         <Header />
         <div className="home">
           <div className="main-content">
-            <h1>My boards</h1>
+            <h1>Boards</h1>
             <div className="boards">
               {boards.map(board => (
                 <Link
@@ -40,7 +40,21 @@ class Home extends Component {
                     lower: true
                   })}`}
                 >
-                  {board.title}
+                  <div className="board-link-title">{board.title}</div>
+                  <div className="mini-board">
+                    {board.lists.map(listId => (
+                      <div
+                        key={listId}
+                        className="mini-list"
+                        style={{
+                          height: `${Math.min(
+                            (listsById[listId].cards.length + 1) * 18,
+                            100
+                          )}%`
+                        }}
+                      />
+                    ))}
+                  </div>
                 </Link>
               ))}
               <BoardAdder history={history} />
@@ -53,7 +67,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  boards: Object.values(state.boardsById)
+  boards: Object.values(state.boardsById),
+  listsById: state.listsById
 });
 
 export default connect(mapStateToProps)(Home);
