@@ -3,28 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
-import marked from "marked";
-import CardModal from "./CardModal";
+import CardModal from "../CardModal/CardModal";
 import CardDetails from "./CardDetails";
 import findCheckboxes from "./findCheckboxes";
+import formatMarkdown from "./formatMarkdown";
 import "./Card.scss";
-
-// Create HTML string that identifies checkboxes by index
-function formatMarkdown(markdown) {
-  let i = 0;
-  return marked(markdown, { sanitize: true, gfm: true, breaks: true })
-    .replace(/<a/g, '<a target="_blank"')
-    .replace(/\[(\s|x)\]/g, match => {
-      let newString;
-      if (match === "[ ]") {
-        newString = `<input id=${i} onclick="return false" type="checkbox">`;
-      } else {
-        newString = `<input id=${i} checked onclick="return false" type="checkbox">`;
-      }
-      i += 1;
-      return newString;
-    });
-}
 
 class Card extends Component {
   static propTypes = {
@@ -42,15 +25,26 @@ class Card extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      isModalOpen: false
     };
   }
 
   toggleCardEditor = () => {
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  };
+
+  handleClick = event => {
+    const { tagName, checked, id } = event.target;
+    if (tagName.toLowerCase() === "input") {
+      // The id is a string that describes which number in the order of checkboxes this particular checkbox has
+      this.toggleCheckbox(checked, parseInt(id, 10));
+    } else if (tagName.toLowerCase() !== "a") {
+      this.toggleCardEditor(event);
+    }
   };
 
   handleKeyDown = event => {
+    // Only open card on enter since spacebar is used by react-beautiful-dnd for keyboard dragging
     if (event.keyCode === 13 && event.target.tagName.toLowerCase() !== "a") {
       event.preventDefault();
       this.toggleCardEditor();
@@ -72,6 +66,7 @@ class Card extends Component {
       j += 1;
       return newString;
     });
+
     dispatch({
       type: "CHANGE_CARD_TEXT",
       payload: { cardId: card._id, cardText: newText }
@@ -80,7 +75,7 @@ class Card extends Component {
 
   render() {
     const { card, index, listId, isDraggingOver } = this.props;
-    const { isOpen } = this.state;
+    const { isModalOpen } = this.state;
     const checkboxes = findCheckboxes(card.text);
     return (
       <>
@@ -100,12 +95,7 @@ class Card extends Component {
                 {...provided.dragHandleProps}
                 onClick={event => {
                   provided.dragHandleProps.onClick(event);
-                  const { tagName, checked, id } = event.target;
-                  if (tagName.toLowerCase() === "input") {
-                    this.toggleCheckbox(checked, parseInt(id));
-                  } else if (tagName.toLowerCase() !== "a") {
-                    this.toggleCardEditor(event);
-                  }
+                  this.handleClick(event);
                 }}
                 onKeyDown={event => {
                   provided.dragHandleProps.onKeyDown(event);
@@ -127,12 +117,13 @@ class Card extends Component {
                   <CardDetails date={card.date} checkboxes={checkboxes} />
                 )}
               </div>
+              {/* Remove placeholder when not dragging over to reduce snapping */}
               {isDraggingOver && provided.placeholder}
             </>
           )}
         </Draggable>
         <CardModal
-          isOpen={isOpen}
+          isOpen={isModalOpen}
           cardElement={this.ref}
           card={card}
           listId={listId}

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
-import CardDetails from "./CardDetails";
+import CardDetails from "../Card/CardDetails";
 import CardOptions from "./CardOptions";
-import findCheckboxes from "./findCheckboxes";
+import findCheckboxes from "../Card/findCheckboxes";
 import "./CardModal.scss";
 
 class CardModal extends Component {
