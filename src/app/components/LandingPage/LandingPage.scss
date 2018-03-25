@@ -43,7 +43,11 @@
 
 .landing-page-description {
   margin: 10px 0;
-  font-size: 19px;
+  font-size: 18px;
+  font-weight: 700;
+  a {
+    color: white;
+  }
 }
 
 .signin-buttons {

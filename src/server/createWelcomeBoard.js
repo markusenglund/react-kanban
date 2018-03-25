@@ -13,7 +13,7 @@ const createWelcomeBoard = userId => {
   const list1 = [
     {
       text: `![Octocat](https://assets-cdn.github.com/images/modules/logos_page/Octocat.png)
-Check out the [source code on GitHub](https://github.com/yogaboll/react-kanban-board)
+Check out the [source code on GitHub](https://github.com/yogaboll/react-kanban)
 `,
       color: "#6df"
     },
