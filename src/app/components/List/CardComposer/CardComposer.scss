@@ -5,32 +5,29 @@
 }
 
 .list-textarea {
-  // margin: 6px 8px 0 8px;
-  border-radius: 3px;
-  // overflow: hidden;
-  width: 100%;
-  border: 0;
+  float: right; // removes mysterious empty space at the bottom of the textarea somehow
   box-sizing: border-box;
+  width: 100%;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 3px;
+  color: inherit;
   font-family: inherit;
   font-size: 16px;
-  padding: 10px 8px;
-  color: inherit;
   resize: none;
-  float: right;
-  // vertical-align: hidden;
 }
 
 .submit-card-button {
-  background: $success-button-color;
+  margin: 5px 0 0 0;
+  padding: 10px 18px 10px 18px;
+  border: none;
+  border-radius: 3px;
   color: white;
+  background: $success-button-color;
   font-size: 14px;
   font-weight: 700;
-  padding: 10px 18px 10px 18px;
-  margin: 5px 0 0 0;
-  border: none;
-  cursor: pointer;
-  border-radius: 3px;
   transition: background 0.2s;
+  cursor: pointer;
 }
 
 .submit-card-button:hover {
