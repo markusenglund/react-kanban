@@ -122,13 +122,13 @@ class CardModal extends Component {
       }
     };
 
-    // For layouts that are less wide than 550px, just center everything near the top to not clip outside anything
+    // For layouts that are less wide than 550px, let the modal take up the entire width at the top of the screen
     const mobileStyle = {
       content: {
         flexDirection: "column",
-        top: 20,
-        left: "50%",
-        transform: "translateX(-50%)"
+        top: 3,
+        left: 3,
+        right: 3
       }
     };
 
@@ -148,7 +148,7 @@ class CardModal extends Component {
           className="modal-textarea-wrapper"
           style={{
             minHeight: isThinDisplay ? "none" : boundingRect.height,
-            width: boundingRect.width,
+            width: isThinDisplay ? "100%" : boundingRect.width,
             boxShadow: isTextareaFocused
               ? "0px 0px 3px 2px rgb(0, 180, 255)"
               : null,
