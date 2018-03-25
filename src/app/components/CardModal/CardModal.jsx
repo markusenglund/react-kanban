@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
-import CardBadges from "../Card/CardBadges";
+import CardBadges from "../CardBadges/CardBadges";
 import CardOptions from "./CardOptions";
 import findCheckboxes from "../Card/findCheckboxes";
 import "./CardModal.scss";

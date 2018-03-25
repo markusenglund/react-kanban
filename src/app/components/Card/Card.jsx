@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import CardModal from "../CardModal/CardModal";
-import CardBadges from "./CardBadges";
+import CardBadges from "../CardBadges/CardBadges";
 import findCheckboxes from "./findCheckboxes";
 import formatMarkdown from "./formatMarkdown";
 import "./Card.scss";

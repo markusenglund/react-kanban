@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import FaTrash from "react-icons/lib/fa/trash";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
-import ClickOutside from "../ClickOutside";
+import ClickOutside from "../ClickOutside/ClickOutside";
 import colorIcon from "../../../assets/images/color-icon.png";
 import "./CardOptions.scss";
 

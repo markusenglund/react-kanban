@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import slugify from "slugify";
 import shortid from "shortid";
-import ClickOutside from "../ClickOutside";
+import ClickOutside from "../ClickOutside/ClickOutside";
 
 class BoardAdder extends Component {
   static propTypes = {
