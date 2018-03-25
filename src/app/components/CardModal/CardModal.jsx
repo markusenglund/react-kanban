@@ -5,7 +5,7 @@ import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
 import CardBadges from "../CardBadges/CardBadges";
 import CardOptions from "./CardOptions";
-import findCheckboxes from "../Card/findCheckboxes";
+import { findCheckboxes } from "../utils";
 import "./CardModal.scss";
 
 class CardModal extends Component {
