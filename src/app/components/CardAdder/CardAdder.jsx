@@ -55,7 +55,10 @@ class CardAdder extends Component {
     const { newText, isOpen } = this.state;
     return isOpen ? (
       <ClickOutside handleClickOutside={this.toggleCardComposer}>
-        <form onSubmit={this.handleSubmit} className="textarea-wrapper">
+        <form
+          onSubmit={this.handleSubmit}
+          className="card-adder-textarea-wrapper"
+        >
           <Textarea
             autoFocus
             useCacheForDOMMeasurements
@@ -63,18 +66,15 @@ class CardAdder extends Component {
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             value={newText}
-            className="list-textarea"
-            placeholder="Create new card..."
+            className="card-adder-textarea"
+            placeholder="Add a new card..."
             spellCheck={false}
             onBlur={this.toggleCardComposer}
           />
         </form>
       </ClickOutside>
     ) : (
-      <button
-        onClick={this.toggleCardComposer}
-        className="open-composer-button"
-      >
+      <button onClick={this.toggleCardComposer} className="add-card-button">
         +
       </button>
     );

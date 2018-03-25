@@ -70,15 +70,15 @@ class BoardAdder extends Component {
           />
           <input
             type="submit"
-            value="Create board"
+            value="Create"
             className="submit-board-button"
             disabled={title === ""}
           />
         </form>
       </ClickOutside>
     ) : (
-      <button onClick={this.toggleOpen} className="create-board-button">
-        Create a new board...
+      <button onClick={this.toggleOpen} className="add-board-button">
+        Add a new board...
       </button>
     );
   };

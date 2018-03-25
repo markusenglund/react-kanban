@@ -51,7 +51,7 @@ class ListAdder extends Component {
           onClick={() => this.setState({ isOpen: true })}
           className="add-list-button"
         >
-          Add a list...
+          Add a new list...
         </button>
       );
     }

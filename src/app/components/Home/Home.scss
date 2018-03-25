@@ -3,8 +3,8 @@ $board-width: 260px;
 $board-height: 140px;
 $board-margin: 5px;
 $main-margin: 40px;
-$create-board-bg: #ddd;
-$create-board-focus-bg: #ccc;
+$add-board-bg: #ddd;
+$add-board-focus-bg: #ccc;
 
 @mixin board-button {
   box-sizing: border-box;
@@ -120,17 +120,17 @@ $create-board-focus-bg: #ccc;
   background: rgba(255, 255, 255, 0.25);
 }
 
-.create-board-button {
+.add-board-button {
   @include board-button;
   margin-bottom: 20px;
   border: 0;
-  background: $create-board-bg;
+  background: $add-board-bg;
   color: #444;
 }
 
-.create-board-button:hover,
-.create-board-button:focus {
-  background: $create-board-focus-bg;
+.add-board-button:hover,
+.add-board-button:focus {
+  background: $add-board-focus-bg;
 }
 
 .board-adder {
@@ -141,7 +141,7 @@ $create-board-focus-bg: #ccc;
   margin-bottom: 20px;
   padding: 8px;
   border-radius: 3px;
-  background: $create-board-bg;
+  background: $add-board-bg;
   color: #444;
   font-size: 16px;
 }
