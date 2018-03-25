@@ -5,7 +5,7 @@ import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import ListHeader from "./ListHeader";
 import Cards from "./Cards";
-import CardComposer from "./CardComposer/CardComposer";
+import CardAdder from "../CardAdder/CardAdder";
 import "./List.scss";
 
 class List extends Component {
@@ -15,19 +15,8 @@ class List extends Component {
     list: PropTypes.shape({ _id: PropTypes.string.isRequired }).isRequired
   };
 
-  constructor() {
-    super();
-    this.state = {
-      cardComposerIsOpen: false
-    };
-  }
-
-  toggleCardComposer = () =>
-    this.setState({ cardComposerIsOpen: !this.state.cardComposerIsOpen });
-
   render = () => {
     const { list, boardId, index } = this.props;
-    const { cardComposerIsOpen } = this.state;
     return (
       <Draggable
         draggableId={list._id}
@@ -57,20 +46,7 @@ class List extends Component {
                   <Cards listId={list._id} />
                 </div>
               </div>
-              {cardComposerIsOpen ? (
-                <CardComposer
-                  isOpen={cardComposerIsOpen}
-                  toggleCardComposer={this.toggleCardComposer}
-                  listId={list._id}
-                />
-              ) : (
-                <button
-                  onClick={this.toggleCardComposer}
-                  className="open-composer-button"
-                >
-                  +
-                </button>
-              )}
+              <CardAdder listId={list._id} />
             </div>
             {provided.placeholder}
           </>

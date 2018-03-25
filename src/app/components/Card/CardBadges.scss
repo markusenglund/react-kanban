@@ -1,0 +1,17 @@
+.card-badges {
+  display: flex;
+  padding: 0px 8px 6px 8px;
+  font-size: 14px;
+}
+
+.badge {
+  margin-right: 5px;
+  padding: 3px 4px 1px 3px;
+  border-radius: 3px;
+  color: white;
+  transition: background 0.15s;
+}
+
+.badge-icon {
+  margin-bottom: 2px;
+}

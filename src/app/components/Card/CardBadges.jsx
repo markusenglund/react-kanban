@@ -4,6 +4,7 @@ import format from "date-fns/format";
 import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import MdDoneAll from "react-icons/lib/fa/check-square-o";
+import "./CardBadges.scss";
 
 class CardBadges extends Component {
   static propTypes = {
@@ -70,7 +71,7 @@ class CardBadges extends Component {
 
   render() {
     return (
-      <div className="card-details">
+      <div className="card-badges">
         {this.renderDueDate()}
         {this.renderTaskProgress()}
       </div>
