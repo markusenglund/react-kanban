@@ -20,18 +20,18 @@ class LandingPage extends Component {
   render = () => (
     <div className="landing-page">
       <Helmet>
-        <title>Sign in | kanban.live</title>
+        <title>Sign in | React Kanban</title>
       </Helmet>
       <div className="landing-page-info-wrapper">
         <div className="landing-page-info">
           <div className="landing-page-heading">
             <img
               src={kanbanLogo}
-              alt="kanban live logo"
+              alt="React Kanban logo"
               className="landing-page-logo"
             />
             &nbsp;
-            <h1>kanban.live</h1>
+            <h1>React Kanban</h1>
           </div>
           <h2 className="landing-page-description">
             An open source kanban application built with React and Redux

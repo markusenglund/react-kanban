@@ -25,7 +25,7 @@ class Home extends Component {
     return (
       <>
         <Helmet>
-          <title>Home | kanban.live</title>
+          <title>Home | React Kanban</title>
         </Helmet>
         <Header />
         <div className="home">

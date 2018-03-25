@@ -76,7 +76,7 @@ Since you are not signed in, your changes will not persist after you leave the w
 
   return {
     _id: shortid.generate(),
-    title: "Welcome to kanban.live!",
+    title: "Welcome to React Kanban!",
     color: "blue",
     lists: [
       {

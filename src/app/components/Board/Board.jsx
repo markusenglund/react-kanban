@@ -137,7 +137,7 @@ class Board extends Component {
       <>
         <div className={classnames("board", boardColor)}>
           <Helmet>
-            <title>{boardTitle} | kanban.live</title>
+            <title>{boardTitle} | React Kanban</title>
           </Helmet>
           <Header />
           <BoardHeader />
