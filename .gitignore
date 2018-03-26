@@ -3,3 +3,7 @@ dist
 stats.json
 .env
 README.md
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
