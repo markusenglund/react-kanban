@@ -18,6 +18,7 @@ class Home extends Component {
         title: PropTypes.string.isRequired
       }).isRequired
     ).isRequired,
+    listsById: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
   };
   render = () => {
