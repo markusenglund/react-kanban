@@ -1,8 +1,0 @@
-node_modules
-src
-.eslintrc
-.gitignore
-.prettierignore
-README.md
-stats.json
-webpack.**
