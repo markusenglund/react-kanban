@@ -34,7 +34,7 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use(favicon("dist/public/favicons/favicon.ico"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use("/static", express.static("dist/public"));
+  app.use("/static", express.static("dist/public", { maxAge: 31536000 }));
 
   // Persist session in mongoDB
   app.use(
