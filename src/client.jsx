@@ -12,7 +12,7 @@ import rootReducer from "./app/reducers";
 import persistMiddleware from "./app/middleware/persistMiddleware";
 import App from "./app/components/App";
 
-// Hydrate redux state received from the server
+// Extract initial redux state received from the server
 const preloadedState = window.PRELOADED_STATE;
 delete window.PRELOADED_STATE;
 

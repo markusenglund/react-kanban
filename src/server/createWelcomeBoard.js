@@ -11,7 +11,7 @@ const appendAttributes = list =>
 // Generate the initial showcase board that every user and guest gets when they first log in
 const createWelcomeBoard = userId => {
   const list1 = [
-    { text: "### An open source kanban application inspired by Trello" },
+    { text: "### An open source application inspired by Trello" },
     {
       text: `![Octocat](https://assets-cdn.github.com/images/modules/logos_page/Octocat.png)
 Check out the [source code on GitHub](https://github.com/yogaboll/react-kanban)
@@ -22,7 +22,7 @@ Check out the [source code on GitHub](https://github.com/yogaboll/react-kanban)
 
   const list2 = [
     {
-      text: `### GitHub flavored markdown
+      text: `### Supports GitHub flavored markdown
 Featuring cutting edge HTML features like
 * Headings
 * Bullet points

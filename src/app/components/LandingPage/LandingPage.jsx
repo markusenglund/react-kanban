@@ -42,7 +42,7 @@ class LandingPage extends Component {
               rel="noopener noreferrer"
             >
               GitHub
-            </a>
+            </a>.
           </p>
           <div className="signin-buttons">
             <div>

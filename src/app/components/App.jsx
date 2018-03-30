@@ -8,6 +8,7 @@ import LandingPage from "./LandingPage/LandingPage";
 import "./App.scss";
 
 const App = ({ user, isGuest }) => {
+  // Serve different pages depending on if user is logged in or not
   if (user || isGuest) {
     return (
       <Switch>
@@ -31,4 +32,6 @@ App.propTypes = { user: PropTypes.object, isGuest: PropTypes.bool.isRequired };
 
 const mapStateToProps = state => ({ user: state.user, isGuest: state.isGuest });
 
+// Use withRouter to prevent strange glitch where other components
+// lower down in the component tree wouldn't update from URL changes
 export default withRouter(connect(mapStateToProps)(App));
