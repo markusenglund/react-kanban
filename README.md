@@ -2,7 +2,7 @@
 
 # React Kanban
 
-A Trello-like application built with React and Redux.
+A server-rendered React app inspired by Trello.
 
 ![react kanban](https://media.giphy.com/media/9D32lbXFhlqAxBhgAT/giphy.gif)
 
