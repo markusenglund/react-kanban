@@ -2,11 +2,11 @@
 
 # React Kanban
 
-A server-rendered React app inspired by Trello.
+A server-rendered React app inspired by [Trello](https://trello.com/home).
 
 ![react kanban example](https://github.com/yogaboll/react-kanban/blob/master/example.gif?raw=true)
 
-Check out the live website at https://www.reactkanban.com
+[Check out the live website](https://www.reactkanban.com)
 
 ### Features
 
@@ -16,15 +16,16 @@ Check out the live website at https://www.reactkanban.com
 
 ### Tech stack
 
-* React
-* Redux
-* React-beautiful-dnd
-* Sass
-* Webpack
-* Babel
-* Express
-* MongoDB
-* Passport
+* [React](https://github.com/facebook/react)
+* [Redux](https://github.com/reactjs/redux)
+* [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
+* [Sass](https://github.com/sass/sass)
+* [Webpack](https://github.com/webpack/webpack)
+* [Babel](https://github.com/babel/babel)
+* [Express](https://github.com/expressjs/express)
+* [MongoDB](https://github.com/mongodb/mongo)
+* [Passport](https://github.com/jaredhanson/passport)
+
 
 ### Development
 
