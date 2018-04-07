@@ -70,7 +70,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),
-    new ExtractTextPlugin("bundle.[contenthash:6].css"),
+    new ExtractTextPlugin("bundle.[hash:6].css"),
     new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
     new DashboardPlugin(),
     new ManifestPlugin()
