@@ -15,6 +15,8 @@ const manifest = JSON.parse(
   readFileSync(`./dist/public/manifest.json`, "utf8")
 );
 
+const css = readFileSync("./dist/public/main.css", "utf8");
+
 const renderPage = (req, res) => {
   // Put initialState (which contains board state) into a redux store that will be passed to the client
   // through the window object in the generated html string
@@ -53,7 +55,7 @@ const renderPage = (req, res) => {
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
         <meta property="og:image" content="https://reactkanban.com/static/favicons/og-kanban-logo.png">
-        <link rel="stylesheet" href=${manifest["main.css"]}>
+        <style>${css}</style>
         ${helmet.title.toString()}
       </head>
       <body>

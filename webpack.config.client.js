@@ -1,9 +1,9 @@
 const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const DashboardPlugin = require("webpack-dashboard/plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
 
 module.exports = {
@@ -26,11 +26,13 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: ExtractTextPlugin.extract([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
-              importLoaders: 1
+              importLoaders: 1,
+              minimize: true
             }
           },
           {
@@ -43,7 +45,7 @@ module.exports = {
           {
             loader: "sass-loader"
           }
-        ])
+        ]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -70,10 +72,10 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),
-    new ExtractTextPlugin("bundle.[hash:6].css"),
     new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
     new DashboardPlugin(),
-    new ManifestPlugin()
+    new ManifestPlugin(),
+    new MiniCssExtractPlugin()
   ],
   resolve: {
     extensions: [".js", ".jsx"]

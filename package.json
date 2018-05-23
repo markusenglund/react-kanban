@@ -27,6 +27,7 @@
     "express-sslify": "^1.2.0",
     "helmet": "^3.12.1",
     "marked": "^0.3.19",
+    "mini-css-extract-plugin": "^0.4.0",
     "mongodb": "^3.1.0-beta4",
     "morgan": "^1.9.0",
     "normalizr": "^3.2.4",
