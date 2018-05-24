@@ -1,3 +1,19 @@
 {
-  "presets": ["@babel/env", ["@babel/preset-stage-2", { "decoratorsLegacy": true }], "@babel/react"]
+  "presets": [
+    "@babel/env",
+    ["@babel/preset-stage-2", { "decoratorsLegacy": true }],
+    "@babel/react"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        [
+          "transform-react-remove-prop-types",
+          {
+            "removeImport": true
+          }
+        ]
+      ]
+    }
+  }
 }
