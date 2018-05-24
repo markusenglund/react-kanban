@@ -15,7 +15,6 @@
   "author": "Markus Englund <markus.s.englund@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "compression": "^1.7.2",
     "connect-mongo": "^2.0.1",
