@@ -1,9 +1,11 @@
 const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const DashboardPlugin = require("webpack-dashboard/plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CleanPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const BrotliPlugin = require("brotli-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 
 module.exports = {
@@ -71,11 +73,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(["dist"]),
-    new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
+    new CleanPlugin(["dist"]),
+    new CopyPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
     new DashboardPlugin(),
     new ManifestPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new CompressionPlugin(),
+    new BrotliPlugin()
   ],
   resolve: {
     extensions: [".js", ".jsx"]

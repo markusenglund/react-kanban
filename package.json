@@ -1,16 +1,14 @@
 {
   "name": "react-kanban",
   "version": "0.1.0",
-  "description":
-    "An open source kanban application created with React and Redux.",
+  "description": "An open source kanban application created with React and Redux.",
   "main": "dist/server.js",
   "scripts": {
     "build": "webpack-dashboard -- webpack --watch --mode development",
     "build:prod": "BABEL_ENV=production webpack --mode production",
     "serve": "nodemon dist/server.js",
     "serve:prod": "NODE_ENV=production node dist/server.js",
-    "analyze-bundle":
-      "BABEL_ENV=production webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
+    "analyze-bundle": "BABEL_ENV=production webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/",
     "format": "prettier --write '**/*.{js,jsx,css,scss,json,md}'"
   },
@@ -25,6 +23,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "express-sslify": "^1.2.0",
+    "express-static-gzip": "^0.3.2",
     "helmet": "^3.12.1",
     "marked": "^0.3.19",
     "mini-css-extract-plugin": "^0.4.0",
@@ -37,8 +36,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-aria-menubutton": "^5.1.1",
-    "react-beautiful-dnd":
-      "github:yogaboll/react-beautiful-dnd#include-generated",
+    "react-beautiful-dnd": "github:yogaboll/react-beautiful-dnd#include-generated",
     "react-day-picker": "^7.1.9",
     "react-dom": "^16.3.2",
     "react-helmet": "^5.2.0",
@@ -64,7 +62,9 @@
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
+    "brotli-webpack-plugin": "^1.0.0",
     "clean-webpack-plugin": "^0.1.19",
+    "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
