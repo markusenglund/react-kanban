@@ -67,9 +67,9 @@ class Home extends Component {
   };
 }
 
-const mapStateToProps = state => ({
-  boards: Object.values(state.boardsById),
-  listsById: state.listsById
+const mapStateToProps = ({ boardsById, listsById }) => ({
+  boards: Object.keys(boardsById).map(key => boardsById[key]),
+  listsById
 });
 
 export default connect(mapStateToProps)(Home);
