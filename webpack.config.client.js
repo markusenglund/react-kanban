@@ -4,7 +4,7 @@ const DashboardPlugin = require("webpack-dashboard/plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CompressionPlugin = require("compression-webpack-plugin");
+const ZopfliPlugin = require("zopfli-webpack-plugin");
 const BrotliPlugin = require("brotli-webpack-plugin");
 const UglifyPlugin = require("uglifyjs-webpack-plugin");
 const autoprefixer = require("autoprefixer");
@@ -79,7 +79,7 @@ module.exports = {
     new DashboardPlugin(),
     new ManifestPlugin(),
     new MiniCssExtractPlugin(),
-    new CompressionPlugin(),
+    new ZopfliPlugin(),
     new BrotliPlugin(),
     new UglifyPlugin({
       uglifyOptions: {

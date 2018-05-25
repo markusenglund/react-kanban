@@ -64,7 +64,6 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
     "brotli-webpack-plugin": "^1.0.0",
     "clean-webpack-plugin": "^0.1.19",
-    "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
@@ -89,6 +88,7 @@
     "webpack-cli": "^2.1.3",
     "webpack-dashboard": "^1.1.1",
     "webpack-manifest-plugin": "^2.0.2",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "zopfli-webpack-plugin": "^0.1.0"
   }
 }
