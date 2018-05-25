@@ -31,7 +31,7 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   // app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(helmet());
   app.use(logger("tiny"));
-  app.use(compression({ level: 9 }));
+  app.use(compression());
   app.use(favicon("dist/public/favicons/favicon.ico"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));

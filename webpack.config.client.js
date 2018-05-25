@@ -6,6 +6,7 @@ const CleanPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const BrotliPlugin = require("brotli-webpack-plugin");
+const UglifyPlugin = require("uglifyjs-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 
 module.exports = {
@@ -79,7 +80,14 @@ module.exports = {
     new ManifestPlugin(),
     new MiniCssExtractPlugin(),
     new CompressionPlugin(),
-    new BrotliPlugin()
+    new BrotliPlugin(),
+    new UglifyPlugin({
+      uglifyOptions: {
+        output: {
+          comments: false
+        }
+      }
+    })
   ],
   resolve: {
     extensions: [".js", ".jsx"]
