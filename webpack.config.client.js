@@ -51,7 +51,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
             loader: "url-loader",
@@ -60,16 +60,28 @@ module.exports = {
               name: "[name].[hash:6].[ext]",
               outputPath: "images/"
             }
-          },
-          {
-            loader: "image-webpack-loader",
-            options: {
-              mozjpeg: {
-                enabled: false
-              }
-            }
           }
+          // {
+          //   loader: "image-webpack-loader",
+          //   options: {
+          //     mozjpeg: {
+          //       enabled: false
+          //     }
+          //   }
+          // }
         ]
+      },
+      {
+        test: /\.svg$/,
+        use: {
+          loader: "svg-url-loader",
+          options: {
+            noquotes: true,
+            limit: 4096,
+            name: "[name].[hash:6].[ext]",
+            outputPath: "images/"
+          }
+        }
       }
     ]
   },

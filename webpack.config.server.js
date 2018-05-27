@@ -25,7 +25,7 @@ module.exports = {
         loader: "ignore-loader"
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
             loader: "url-loader",
@@ -35,16 +35,29 @@ module.exports = {
               name: "[name].[hash].[ext]",
               publicPath: "/static/images/"
             }
-          },
-          {
-            loader: "image-webpack-loader",
-            options: {
-              mozjpeg: {
-                enabled: false
-              }
-            }
           }
+          // {
+          //   loader: "image-webpack-loader",
+          //   options: {
+          //     mozjpeg: {
+          //       enabled: false
+          //     }
+          //   }
+          // }
         ]
+      },
+      {
+        test: /\.svg$/,
+        use: {
+          loader: "svg-url-loader",
+          options: {
+            noquotes: true,
+            emitFile: false,
+            limit: 4096,
+            name: "[name].[hash:6].[ext]",
+            outputPath: "images/"
+          }
+        }
       }
     ]
   },
