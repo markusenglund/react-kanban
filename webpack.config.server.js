@@ -35,15 +35,10 @@ module.exports = {
               name: "[name].[hash].[ext]",
               publicPath: "/static/images/"
             }
+          },
+          {
+            loader: "image-webpack-loader"
           }
-          // {
-          //   loader: "image-webpack-loader",
-          //   options: {
-          //     mozjpeg: {
-          //       enabled: false
-          //     }
-          //   }
-          // }
         ]
       },
       {

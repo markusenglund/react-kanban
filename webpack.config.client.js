@@ -60,15 +60,10 @@ module.exports = {
               name: "[name].[hash:6].[ext]",
               outputPath: "images/"
             }
+          },
+          {
+            loader: "image-webpack-loader"
           }
-          // {
-          //   loader: "image-webpack-loader",
-          //   options: {
-          //     mozjpeg: {
-          //       enabled: false
-          //     }
-          //   }
-          // }
         ]
       },
       {
