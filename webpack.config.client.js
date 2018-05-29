@@ -51,7 +51,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|gif)$/,
         use: [
           {
             loader: "url-loader",
@@ -62,6 +62,16 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.jpg$/,
+        use: {
+          loader: "responsive-loader",
+          options: {
+            name: "images/[name]-[width].[hash:6].[ext]",
+            quality: 60
+          }
+        }
       },
       {
         test: /\.webp$/,
