@@ -6,6 +6,7 @@ import FaTwitter from "react-icons/lib/fa/twitter";
 import FaUserSecret from "react-icons/lib/fa/user-secret";
 import googleLogo from "../../../assets/images/google-logo.svg";
 import kanbanLogo from "../../../assets/images/kanban-logo.svg";
+import backgroundImg from "../../../assets/images/postits-1920.jpg";
 import "./LandingPage.scss";
 
 class LandingPage extends Component {
@@ -22,6 +23,9 @@ class LandingPage extends Component {
       <Helmet>
         <title>Sign in | React Kanban</title>
       </Helmet>
+      <div className="landing-page-background">
+        <img src={backgroundImg} alt="background" />
+      </div>
       <div className="landing-page-info-wrapper">
         <div className="landing-page-info">
           <div className="landing-page-heading">

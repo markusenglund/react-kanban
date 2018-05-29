@@ -32,13 +32,13 @@ module.exports = {
             options: {
               emitFile: false,
               limit: 4096,
-              name: "[name].[hash].[ext]",
+              name: "[name].[hash:6].[ext]",
               publicPath: "/static/images/"
             }
-          },
-          {
-            loader: "image-webpack-loader"
           }
+          // {
+          //   loader: "image-webpack-loader"
+          // }
         ]
       },
       {

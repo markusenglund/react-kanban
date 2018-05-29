@@ -60,10 +60,10 @@ module.exports = {
               name: "[name].[hash:6].[ext]",
               outputPath: "images/"
             }
-          },
-          {
-            loader: "image-webpack-loader"
           }
+          // {
+          //   loader: "image-webpack-loader"
+          // }
         ]
       },
       {
@@ -86,8 +86,8 @@ module.exports = {
     new DashboardPlugin(),
     new ManifestPlugin(),
     new MiniCssExtractPlugin(),
-    new ZopfliPlugin(),
-    new BrotliPlugin(),
+    // new ZopfliPlugin(),
+    // new BrotliPlugin(),
     new UglifyPlugin({
       uglifyOptions: {
         output: {
