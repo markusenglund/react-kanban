@@ -6,8 +6,10 @@ import FaTwitter from "react-icons/lib/fa/twitter";
 import FaUserSecret from "react-icons/lib/fa/user-secret";
 import googleLogo from "../../../assets/images/google-logo.svg";
 import kanbanLogo from "../../../assets/images/kanban-logo.svg";
-import backgroundJpg from "../../../assets/images/postits-1920.jpg";
-import backgroundWebp from "../../../assets/images/postits-1920.webp";
+import backgroundJpg1920 from "../../../assets/images/postits-1920.jpg";
+import backgroundJpg1366 from "../../../assets/images/postits-1366.jpg";
+import backgroundWebp1920 from "../../../assets/images/postits-1920.webp";
+import backgroundWebp1366 from "../../../assets/images/postits-1366.webp";
 import "./LandingPage.scss";
 
 class LandingPage extends Component {
@@ -26,8 +28,14 @@ class LandingPage extends Component {
       </Helmet>
       <div className="landing-page-background">
         <picture>
-          <source srcSet={backgroundWebp} type="image/webp" />
-          <img src={backgroundJpg} alt="background" />
+          <source
+            srcSet={`${backgroundWebp1366} 1366w, ${backgroundWebp1920} 1920w`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${backgroundJpg1366} 1366w, ${backgroundJpg1920} 1920w`}
+          />
+          <img src={backgroundJpg1366} alt="background" />
         </picture>
       </div>
       <div className="landing-page-info-wrapper">
