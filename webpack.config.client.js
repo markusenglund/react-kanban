@@ -61,9 +61,18 @@ module.exports = {
               outputPath: "images/"
             }
           }
-          // {
-          //   loader: "image-webpack-loader"
-          // }
+        ]
+      },
+      {
+        test: /\.webp$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[hash:6].[ext]",
+              outputPath: "images/"
+            }
+          }
         ]
       },
       {

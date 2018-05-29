@@ -36,9 +36,19 @@ module.exports = {
               publicPath: "/static/images/"
             }
           }
-          // {
-          //   loader: "image-webpack-loader"
-          // }
+        ]
+      },
+      {
+        test: /\.webp$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              emiteFile: false,
+              name: "[name].[hash:6].[ext]",
+              outputPath: "/static/images/"
+            }
+          }
         ]
       },
       {
