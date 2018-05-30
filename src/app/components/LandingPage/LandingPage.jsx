@@ -28,7 +28,14 @@ class LandingPage extends Component {
       <Helmet>
         <title>Sign in | React Kanban</title>
       </Helmet>
-      <div className="landing-page-background">
+      <div
+        className="landing-page-background"
+        style={{
+          backgroundSize: "cover",
+          backgroundImage: 'url("' + backgroundJpg.placeholder + '")',
+          backgroundPosition: "50% 85%"
+        }}
+      >
         <picture>
           <source
             srcSet={`${backgroundWebp1366} 1366w, ${backgroundWebp1920} 1920w`}

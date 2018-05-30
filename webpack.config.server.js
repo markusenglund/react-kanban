@@ -44,6 +44,7 @@ module.exports = {
           loader: "responsive-loader",
           options: {
             name: "/static/images/[name]-[width].[hash:6].[ext]",
+            placeholder: true,
             quality: 60
           }
         }
