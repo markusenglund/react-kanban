@@ -1,6 +1,5 @@
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
-const DashboardPlugin = require("webpack-dashboard/plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -51,35 +50,12 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|gif)$/,
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
             loader: "url-loader",
             options: {
               limit: 4096,
-              name: "[name].[hash:6].[ext]",
-              outputPath: "images/"
-            }
-          }
-        ]
-      },
-      {
-        test: /\.jpg$/,
-        use: {
-          loader: "responsive-loader",
-          options: {
-            name: "images/[name]-[width].[hash:6].[ext]",
-            placeholder: true,
-            quality: 60
-          }
-        }
-      },
-      {
-        test: /\.webp$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
               name: "[name].[hash:6].[ext]",
               outputPath: "images/"
             }
@@ -103,10 +79,9 @@ module.exports = {
   plugins: [
     new CleanPlugin(["dist"]),
     new CopyPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
-    new DashboardPlugin(),
     new ManifestPlugin(),
     new MiniCssExtractPlugin(),
-    // new ZopfliPlugin(),
+    new ZopfliPlugin(),
     // new BrotliPlugin(),
     new UglifyPlugin({
       uglifyOptions: {

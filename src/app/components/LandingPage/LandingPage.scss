@@ -4,16 +4,6 @@
   height: 100%;
   width: 100%;
   color: white;
-  // background-color: #300; // is shown before image loads
-  // background-image: url("../../../assets/images/postits-1920.jpg");
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // background-position: 50% 100%;
-
-  // Smaller image for smaller screens
-  // @media (max-device-width: 1367px) {
-  //   background-image: url("../../../assets/images/postits-1366.jpg");
-  // }
 }
 
 .landing-page-background {
@@ -32,7 +22,7 @@
   height: 100%;
   position: absolute;
   object-fit: cover;
-  object-position: 50% 85%;
+  object-position: 50% 100%;
 }
 
 // wrapper added as a hack to make background

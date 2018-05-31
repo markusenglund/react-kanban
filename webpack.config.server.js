@@ -25,7 +25,7 @@ module.exports = {
         loader: "ignore-loader"
       },
       {
-        test: /\.(png|gif)$/,
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
             loader: "url-loader",
@@ -34,30 +34,6 @@ module.exports = {
               limit: 4096,
               name: "[name].[hash:6].[ext]",
               publicPath: "/static/images/"
-            }
-          }
-        ]
-      },
-      {
-        test: /\.jpg$/,
-        use: {
-          loader: "responsive-loader",
-          options: {
-            name: "/static/images/[name]-[width].[hash:6].[ext]",
-            placeholder: true,
-            quality: 60
-          }
-        }
-      },
-      {
-        test: /\.webp$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              emitFile: false,
-              name: "[name].[hash:6].[ext]",
-              outputPath: "/static/images/"
             }
           }
         ]

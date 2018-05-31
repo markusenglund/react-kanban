@@ -6,11 +6,8 @@ import FaTwitter from "react-icons/lib/fa/twitter";
 import FaUserSecret from "react-icons/lib/fa/user-secret";
 import googleLogo from "../../../assets/images/google-logo.svg";
 import kanbanLogo from "../../../assets/images/kanban-logo.svg";
-// import backgroundJpg1920 from "../../../assets/images/postits-1920.jpg";
-// import backgroundJpg1366 from "../../../assets/images/postits-1366.jpg";
-const backgroundJpg = require("../../../assets/images/postits-original.jpg?sizes[]=800,sizes[]=1366,sizes[]=1920");
-import backgroundWebp1920 from "../../../assets/images/postits-1920.webp";
-import backgroundWebp1366 from "../../../assets/images/postits-1366.webp";
+import background1920 from "../../../assets/images/postits-1920.jpg";
+import background1366 from "../../../assets/images/postits-1366.jpg";
 import "./LandingPage.scss";
 
 class LandingPage extends Component {
@@ -19,7 +16,6 @@ class LandingPage extends Component {
   };
 
   enterAsGuest = () => {
-    console.log(backgroundJpg);
     this.props.dispatch({ type: "ENTER_AS_GUEST" });
   };
 
@@ -28,25 +24,12 @@ class LandingPage extends Component {
       <Helmet>
         <title>Sign in | React Kanban</title>
       </Helmet>
-      <div
-        className="landing-page-background"
-        style={{
-          backgroundSize: "cover",
-          backgroundImage: 'url("' + backgroundJpg.placeholder + '")',
-          backgroundPosition: "50% 85%"
-        }}
-      >
-        <picture>
-          <source
-            srcSet={`${backgroundWebp1366} 1366w, ${backgroundWebp1920} 1920w`}
-            type="image/webp"
-          />
-          <source srcSet={backgroundJpg.srcSet} />
-          {/* <source
-            srcSet={`${backgroundJpg1366} 1366w, ${backgroundJpg1920} 1920w`}
-          /> */}
-          <img src={backgroundJpg.src} alt="background" />
-        </picture>
+      <div className="landing-page-background">
+        <img
+          srcSet={`${background1920} 1920w, ${background1366} 1366w`}
+          src={background1920}
+          alt="background"
+        />
       </div>
       <div className="landing-page-info-wrapper">
         <div className="landing-page-info">
