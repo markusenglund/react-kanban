@@ -82,11 +82,14 @@ module.exports = {
     new ManifestPlugin(),
     new MiniCssExtractPlugin(),
     new ZopfliPlugin(),
-    // new BrotliPlugin(),
+    new BrotliPlugin(),
     new UglifyPlugin({
       uglifyOptions: {
         output: {
           comments: false
+        },
+        compress: {
+          drop_console: true
         }
       }
     })
