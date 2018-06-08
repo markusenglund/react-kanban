@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Title } from "react-head";
 import slugify from "slugify";
 import classnames from "classnames";
 import Header from "../Header/Header";
@@ -25,9 +25,7 @@ class Home extends Component {
     const { boards, listsById, history } = this.props;
     return (
       <>
-        <Helmet>
-          <title>Home | React Kanban</title>
-        </Helmet>
+        <Title>Home | React Kanban</Title>
         <Header />
         <div className="home">
           <div className="main-content">
