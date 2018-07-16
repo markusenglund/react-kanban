@@ -15,6 +15,7 @@
   "author": "Markus Englund <markus.s.englund@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.53",
     "classnames": "^2.2.5",
     "compression": "^1.7.2",
     "connect-mongo": "^2.0.1",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.47",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.53",
     "@babel/preset-env": "^7.0.0-beta.47",
     "@babel/preset-react": "^7.0.0-beta.47",
     "@babel/preset-stage-2": "^7.0.0-beta.47",
