@@ -4,10 +4,7 @@
       "@babel/env",
       {
         "modules": false,
-        "loose": true,
-        "targets": {
-          "browsers": ["Chrome 64", "Edge 16", "Firefox 58", "Safari 11"]
-        }
+        "loose": true
       }
     ],
     ["@babel/preset-stage-2", { "decoratorsLegacy": true }],
