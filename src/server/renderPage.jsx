@@ -4,7 +4,7 @@ import { renderToString } from "react-dom/server";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router";
-import { Helmet } from "react-helmet";
+import { HeadCollector } from "react-head";
 import { resetContext } from "react-beautiful-dnd";
 import App from "../app/components/App";
 import rootReducer from "../app/reducers";
@@ -15,28 +15,29 @@ const manifest = JSON.parse(
   readFileSync(`./dist/public/manifest.json`, "utf8")
 );
 
+const css = readFileSync("./dist/public/main.css", "utf8");
+
 const renderPage = (req, res) => {
   // Put initialState (which contains board state) into a redux store that will be passed to the client
   // through the window object in the generated html string
   const store = createStore(rootReducer, req.initialState);
 
   const context = {};
-
+  const headTags = [];
   resetContext();
 
   // This is where the magic happens
   const appString = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
-    </Provider>
+    <HeadCollector headTags={headTags}>
+      <Provider store={store}>
+        <StaticRouter location={req.url} context={context}>
+          <App />
+        </StaticRouter>
+      </Provider>
+    </HeadCollector>
   );
 
   const preloadedState = store.getState();
-
-  // Extract head data (title) from the app
-  const helmet = Helmet.renderStatic();
 
   const html = `
     <!DOCTYPE html>
@@ -53,8 +54,8 @@ const renderPage = (req, res) => {
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
         <meta property="og:image" content="https://reactkanban.com/static/favicons/og-kanban-logo.png">
-        <link rel="stylesheet" href=${manifest["main.css"]}>
-        ${helmet.title.toString()}
+        <style>${css}</style>
+        ${renderToString(headTags)}
       </head>
       <body>
         <div id="app">${appString}</div>

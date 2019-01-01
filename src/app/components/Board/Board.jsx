@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Helmet } from "react-helmet";
+import { Title } from "react-head";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import classnames from "classnames";
 import List from "../List/List";
@@ -136,9 +136,7 @@ class Board extends Component {
     return (
       <>
         <div className={classnames("board", boardColor)}>
-          <Helmet>
-            <title>{boardTitle} | React Kanban</title>
-          </Helmet>
+          <Title>{boardTitle} | React Kanban</Title>
           <Header />
           <BoardHeader />
           {/* eslint-disable jsx-a11y/no-static-element-interactions */}

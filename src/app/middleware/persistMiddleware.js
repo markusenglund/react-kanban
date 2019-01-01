@@ -1,5 +1,4 @@
 import { denormalize, schema } from "normalizr";
-import axios from "axios";
 
 // Persist the board to the database after almost every action.
 const persistMiddleware = store => next => action => {
@@ -15,7 +14,12 @@ const persistMiddleware = store => next => action => {
   // Nothing is persisted for guest users
   if (user) {
     if (action.type === "DELETE_BOARD") {
-      axios.delete("/api/board", { data: { boardId } });
+      fetch("/api/board", {
+        method: "DELETE",
+        body: JSON.stringify({ boardId }),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
+      });
 
       // All action-types that are not DELETE_BOARD or PUT_BOARD_ID_IN_REDUX are currently modifying a board in a way that should
       // be persisted to db. If other types of actions are added, this logic will get unwieldy.
@@ -37,7 +41,12 @@ const persistMiddleware = store => next => action => {
       const boardData = denormalize(boardId, board, entities);
 
       // TODO: Provide warning message to user when put request doesn't work for whatever reason
-      axios.put("/api/board", boardData);
+      fetch("/api/board", {
+        method: "PUT",
+        body: JSON.stringify(boardData),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
+      });
     }
   }
 };

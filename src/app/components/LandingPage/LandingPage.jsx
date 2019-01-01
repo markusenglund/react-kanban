@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Helmet } from "react-helmet";
+import { Title } from "react-head";
 import FaTwitter from "react-icons/lib/fa/twitter";
 import FaUserSecret from "react-icons/lib/fa/user-secret";
 import googleLogo from "../../../assets/images/google-logo.svg";
 import kanbanLogo from "../../../assets/images/kanban-logo.svg";
+import background1920 from "../../../assets/images/postits-1920.jpg";
+import background1366 from "../../../assets/images/postits-1366.jpg";
 import "./LandingPage.scss";
 
 class LandingPage extends Component {
@@ -19,9 +21,14 @@ class LandingPage extends Component {
 
   render = () => (
     <div className="landing-page">
-      <Helmet>
-        <title>Sign in | React Kanban</title>
-      </Helmet>
+      <Title>Sign in | React Kanban</Title>
+      <div className="landing-page-background">
+        <img
+          srcSet={`${background1920} 1920w, ${background1366} 1366w`}
+          src={background1920}
+          alt="background"
+        />
+      </div>
       <div className="landing-page-info-wrapper">
         <div className="landing-page-info">
           <div className="landing-page-heading">

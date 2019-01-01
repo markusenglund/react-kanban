@@ -1,9 +1,10 @@
 const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const DashboardPlugin = require("webpack-dashboard/plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CleanPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const UglifyPlugin = require("uglifyjs-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 
 module.exports = {
@@ -26,11 +27,13 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: ExtractTextPlugin.extract([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
-              importLoaders: 1
+              importLoaders: 1,
+              minimize: true
             }
           },
           {
@@ -43,10 +46,10 @@ module.exports = {
           {
             loader: "sass-loader"
           }
-        ])
+        ]
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
             loader: "url-loader",
@@ -55,25 +58,39 @@ module.exports = {
               name: "[name].[hash:6].[ext]",
               outputPath: "images/"
             }
-          },
-          {
-            loader: "image-webpack-loader",
-            options: {
-              mozjpeg: {
-                enabled: false
-              }
-            }
           }
         ]
+      },
+      {
+        test: /\.svg$/,
+        use: {
+          loader: "svg-url-loader",
+          options: {
+            noquotes: true,
+            limit: 4096,
+            name: "[name].[hash:6].[ext]",
+            outputPath: "images/"
+          }
+        }
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(["dist"]),
-    new ExtractTextPlugin("bundle.[hash:6].css"),
-    new CopyWebpackPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
-    new DashboardPlugin(),
-    new ManifestPlugin()
+    new CleanPlugin(["dist"]),
+    new CopyPlugin([{ from: "src/assets/favicons", to: "favicons" }]),
+    new ManifestPlugin(),
+    new MiniCssExtractPlugin(),
+    new CompressionPlugin(),
+    new UglifyPlugin({
+      uglifyOptions: {
+        output: {
+          comments: false
+        },
+        compress: {
+          drop_console: true
+        }
+      }
+    })
   ],
   resolve: {
     extensions: [".js", ".jsx"]
