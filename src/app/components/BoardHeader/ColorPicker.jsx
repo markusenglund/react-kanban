@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import classnames from "classnames";
-import FaCheck from "react-icons/lib/fa/check";
+import { FaCheck } from "react-icons/fa";
 import colorIcon from "../../../assets/images/color-icon.png";
 import "./ColorPicker.scss";
 

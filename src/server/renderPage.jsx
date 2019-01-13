@@ -4,7 +4,7 @@ import { renderToString } from "react-dom/server";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router";
-import { HeadCollector } from "react-head";
+import { HeadProvider } from "react-head";
 import { resetContext } from "react-beautiful-dnd";
 import App from "../app/components/App";
 import rootReducer from "../app/reducers";
@@ -28,13 +28,13 @@ const renderPage = (req, res) => {
 
   // This is where the magic happens
   const appString = renderToString(
-    <HeadCollector headTags={headTags}>
       <Provider store={store}>
         <StaticRouter location={req.url} context={context}>
-          <App />
+          <HeadProvider headTags={headTags}>
+            <App />
+          </HeadProvider>
         </StaticRouter>
       </Provider>
-    </HeadCollector>
   );
 
   const preloadedState = store.getState();

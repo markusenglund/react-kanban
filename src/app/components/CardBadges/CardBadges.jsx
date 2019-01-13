@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import format from "date-fns/format";
 import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
-import MdAlarm from "react-icons/lib/md/access-alarm";
-import MdDoneAll from "react-icons/lib/fa/check-square-o";
+import { MdAlarm } from "react-icons/md";
+import { FaCheckSquare as MdDoneAll } from "react-icons/fa";
 import "./CardBadges.scss";
 
 class CardBadges extends Component {
