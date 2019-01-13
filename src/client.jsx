@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { BrowserRouter } from "react-router-dom";
+import { HeadProvider } from "react-head";
 import rootReducer from "./app/reducers";
 import persistMiddleware from "./app/middleware/persistMiddleware";
 import App from "./app/components/App";
@@ -21,7 +22,9 @@ const store = createStore(
 ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <HeadProvider>
+        <App />
+      </HeadProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById("app")
