@@ -23,7 +23,7 @@ const persistMiddleware = store => next => action => {
         headers: { "Content-Type": "application/json" },
         credentials: "include"
       }).then(res=>{
-        socket.emit('change', boardId);
+        socket.emit('change', {boardID:boardId, userID: user["_id"]});
       })
       // All action-types that are not DELETE_BOARD or PUT_BOARD_ID_IN_REDUX are currently modifying a board in a way that should
       // be persisted to db. If other types of actions are added, this logic will get unwieldy.
@@ -51,7 +51,7 @@ const persistMiddleware = store => next => action => {
         headers: { "Content-Type": "application/json" },
         credentials: "include"
       }).then(res=>{
-        socket.emit('change', boardId);
+        socket.emit('change', {boardID:boardId, userID: user["_id"]});
       })
     }
   }

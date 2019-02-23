@@ -72,7 +72,6 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
     socket.emit("connected");
 
     socket.on("userDetails", ({_id: userID})=>{
-      console.log(userID);
       userSockets[userID] = socket;
     })
 
@@ -87,19 +86,18 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
       }
     })
     
-    socket.on("change", (boardID)=>{
-      console.log("change");
-      sendChangeMessage(boardID, db);
+    socket.on("change", ({boardID, userID})=>{
+      sendChangeMessage(boardID, userID, db);
     })
   })
 
-  function sendChangeMessage(boardID, db){
+  function sendChangeMessage(boardID,userID, db){
     const boards = db.collection("boards");
     boards.findOne({_id: boardID}).then(board=>{
       if(board){
         let {users} = board;
         users.forEach(user=>{
-          if(userSockets[user]){
+          if(userSockets[user] && user!=userID){
             userSockets[user].emit("change");
           }
         })
