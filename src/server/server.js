@@ -65,17 +65,46 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   server.listen(port, () => console.log(`Server listening on port ${port}`));
 
   const io = socketIO(server);
+  let userSockets = {};
 
   io.on("connection", socket=>{
     console.log("user connected to socket");
+    socket.emit("connected");
+
+    socket.on("userDetails", ({_id: userID})=>{
+      console.log(userID);
+      userSockets[userID] = socket;
+    })
 
     socket.on("disconnect", ()=>{
       console.log("user disconnected");
+      let keys = Object.keys(userSockets);
+      for(let i=0; i< keys.length; i++){
+        if(userSockets[keys[i]].id === socket.id){
+          delete userSockets[keys[i]];
+          break;
+        }
+      }
     })
-
-    socket.on("change", ()=>{
+    
+    socket.on("change", (boardID)=>{
       console.log("change");
-      io.emit("change");
+      sendChangeMessage(boardID, db);
     })
   })
+
+  function sendChangeMessage(boardID, db){
+    const boards = db.collection("boards");
+    boards.findOne({_id: boardID}).then(board=>{
+      if(board){
+        let {users} = board;
+        users.forEach(user=>{
+          if(userSockets[user]){
+            userSockets[user].emit("change");
+          }
+        })
+      }
+    })
+  }
+
 });

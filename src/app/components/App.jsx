@@ -16,6 +16,8 @@ const App = ({ user, isGuest }) => {
 
   // Serve different pages depending on if user is logged in or not
   if (user || isGuest) {
+    //when user is connected registers socket to user for updates
+    socket.emit("userDetails", user);
     return (
       <Switch>
         <Route exact path="/" component={Home} />
