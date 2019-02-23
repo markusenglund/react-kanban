@@ -10,6 +10,16 @@ const boardsById = (state = {}, action) => {
         }
       };
     }
+    case "ADD_USER": {
+      const {boardId, userToAdd} = action.payload;
+      return {
+        ...state,
+        [boardId] : {
+          ...state[boardId],
+          users: [...state[boardId]["users"], userToAdd]
+        }
+      }
+    }
     case "MOVE_LIST": {
       const { oldListIndex, newListIndex, boardId } = action.payload;
       const newLists = Array.from(state[boardId].lists);

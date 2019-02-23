@@ -16,18 +16,13 @@ class Header extends Component {
       <header>
         <Link to="/" className="header-title">
           <img src={kanbanLogo} alt="React Kanban logo" />
-          &nbsp;React Kanban
+          &nbsp;AmanBoard 2
         </Link>
         <div className="header-right-side">
-          {user ? (
-            <img
-              src={user.imageUrl}
-              alt={user.name}
-              className="user-thumbnail"
-              title={user.name}
-            />
+        {user ? (
+            <p> {user.name} </p>
           ) : (
-            <FaUserSecret className="guest-icon" />
+            <p> </p>
           )}
           {user ? (
             <a className="signout-link" href="/auth/signout">

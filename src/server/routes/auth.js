@@ -22,6 +22,10 @@ router.get("/google/callback", passport.authenticate("google"), (req, res) => {
   res.redirect("/");
 });
 
+router.post("/local", passport.authenticate("local", { failureRedirect: '/login' }), (req, res) => {
+  res.redirect("/");
+});
+
 router.get("/signout", (req, res) => {
   req.logout();
   res.redirect("/");
