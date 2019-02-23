@@ -14,6 +14,9 @@ import configurePassport from "./passport";
 import api from "./routes/api";
 import auth from "./routes/auth";
 import fetchBoardData from "./fetchBoardData";
+import socketIO from "socket.io";
+import http from "http";
+
 
 // Load environment variables from .env file
 dotenv.config();
@@ -58,5 +61,21 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
 
   const port = process.env.PORT || "1337";
   /* eslint-disable no-console */
-  app.listen(port, () => console.log(`Server listening on port ${port}`));
+  const server = http.createServer(app);
+  server.listen(port, () => console.log(`Server listening on port ${port}`));
+
+  const io = socketIO(server);
+
+  io.on("connection", socket=>{
+    console.log("user connected to socket");
+
+    socket.on("disconnect", ()=>{
+      console.log("user disconnected");
+    })
+
+    socket.on("change", ()=>{
+      console.log("change");
+      io.emit("change");
+    })
+  })
 });

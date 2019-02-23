@@ -1,4 +1,5 @@
 import { denormalize, schema } from "normalizr";
+import socket from "../socketIOHandler";
 
 // Persist the board to the database after almost every action.
 const persistMiddleware = store => next => action => {
@@ -11,6 +12,8 @@ const persistMiddleware = store => next => action => {
     currentBoardId: boardId
   } = store.getState();
 
+
+
   // Nothing is persisted for guest users
   if (user) {
     if (action.type === "DELETE_BOARD") {
@@ -19,8 +22,9 @@ const persistMiddleware = store => next => action => {
         body: JSON.stringify({ boardId }),
         headers: { "Content-Type": "application/json" },
         credentials: "include"
-      });
-
+      }).then(res=>{
+        socket.emit('change');
+      })
       // All action-types that are not DELETE_BOARD or PUT_BOARD_ID_IN_REDUX are currently modifying a board in a way that should
       // be persisted to db. If other types of actions are added, this logic will get unwieldy.
     } else if (action.type !== "PUT_BOARD_ID_IN_REDUX") {
@@ -46,7 +50,9 @@ const persistMiddleware = store => next => action => {
         body: JSON.stringify(boardData),
         headers: { "Content-Type": "application/json" },
         credentials: "include"
-      });
+      }).then(res=>{
+        socket.emit('change');
+      })
     }
   }
 };

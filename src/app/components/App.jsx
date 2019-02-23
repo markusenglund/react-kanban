@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -6,8 +6,14 @@ import Home from "./Home/Home";
 import BoardContainer from "./Board/BoardContainer";
 import LandingPage from "./LandingPage/LandingPage";
 import "./App.scss";
+import socket from "../socketIOHandler";
 
 const App = ({ user, isGuest }) => {
+
+  socket.on("change", ()=>{
+    window.location.reload();
+  })
+
   // Serve different pages depending on if user is logged in or not
   if (user || isGuest) {
     return (

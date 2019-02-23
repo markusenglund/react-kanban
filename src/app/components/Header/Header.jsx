@@ -10,6 +10,7 @@ import "./Header.scss";
 
 class Header extends Component {
   static propTypes = { user: PropTypes.object };
+
   render = () => {
     const { user } = this.props;
     return (
