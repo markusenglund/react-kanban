@@ -57,6 +57,7 @@ npm start
 
 it should be used with the same .env file as described below.
 
+#### Environment Variables
 You need to add your own mongoDB url as well as auth credentials for the Google and Twitter sign in. You need to create a file with the name `.env` in the root directory with the following variables:
 
 ```
