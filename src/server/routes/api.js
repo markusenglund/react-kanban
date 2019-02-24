@@ -9,7 +9,8 @@ const api = db => {
   // This solution sends more data than necessary, but cuts down on code and
   // effectively prevents the db and client from ever getting out of sync
   router.put("/board", (req, res) => {
-    const board = req.body;
+    let board = req.body;
+    board = {...board, changed_by: req.user._id};
     boards
       .replaceOne({ _id: board._id, users: req.user._id }, board, {
         upsert: true
