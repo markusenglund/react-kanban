@@ -31,24 +31,6 @@ A server-rendered React app inspired by [Trello](https://trello.com/home).
 
 Setting up the full app with your own mongoDB instance and auth credentials for Twitter and Google sign-in requires significant effort. Use the simplified set up if you don't want to bother with that.
 
-#### Simplified setup
-
-```shell
-# Clone the simple-dev branch which does not include db and social sign-in stuff
-git clone https://github.com/yogaboll/react-kanban.git -b simple-dev
-
-cd react-kanban
-
-npm install
-
-npm run build
-
-# Open a second terminal window and run:
-npm run serve
-```
-
-The app will run on http://127.0.0.1:1337
-
 #### Full setup
 
 ```shell
@@ -58,6 +40,22 @@ cd react-kanban
 
 npm install
 ```
+#### Important
+
+Needs to be used with this REPO running: 
+https://github.com/ShragaUser/kanbanSocketIOConnector
+
+this REPO is responsible for making the app work with real time updates. 
+clone and run. 
+
+```
+git clone https://github.com/ShragaUser/kanbanSocketIOConnector.git
+cd SOCKETIOSERVICE
+npm install
+npm start
+```
+
+it should be used with the same .env file as described below.
 
 You need to add your own mongoDB url as well as auth credentials for the Google and Twitter sign in. You need to create a file with the name `.env` in the root directory with the following variables:
 
