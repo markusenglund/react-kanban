@@ -1,0 +1,26 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "modules": false,
+        "loose": true
+      }
+    ],
+    ["@babel/preset-stage-2", { "decoratorsLegacy": true }],
+    "@babel/react"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        ["@babel/plugin-transform-runtime", { "useBuiltIns": true }],
+        [
+          "transform-react-remove-prop-types",
+          {
+            "removeImport": true
+          }
+        ]
+      ]
+    }
+  }
+}

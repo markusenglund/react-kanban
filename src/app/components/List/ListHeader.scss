@@ -1,0 +1,100 @@
+@import "../../variables.scss";
+
+.list-header {
+  display: inline-flex;
+  flex-shrink: 0;
+  border-top-right-radius: $list-radius;
+  border-top-left-radius: $list-radius;
+  font-size: 18px;
+}
+
+.list-title-button {
+  flex-grow: 1;
+  min-width: 50%;
+  padding: 10px;
+  border: none;
+  border-top-left-radius: inherit;
+  color: $white;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  cursor: pointer !important;
+}
+
+.list-title-textarea-wrapper {
+  width: 100%;
+  padding: 4px 4px 4px 4px;
+}
+
+.list-title-textarea {
+  float: left;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px;
+  border-radius: 3px;
+  border: 0;
+  color: $black-text;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: inherit;
+  overflow: hidden;
+  resize: none;
+}
+
+.delete-list-wrapper {
+  position: relative;
+  align-self: flex-start;
+}
+
+.delete-list-button {
+  display: flex;
+  align-items: center;
+  margin: 4px;
+  padding: 10px;
+  border-radius: $list-radius;
+  color: $white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.delete-list-button:hover,
+.delete-list-button:focus {
+  background: $transparent-black;
+}
+
+.delete-list-button {
+  cursor: pointer;
+}
+
+.delete-list-menu {
+  position: absolute;
+  top: 100%;
+  left: -60px;
+  right: -60px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  padding: 5px;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+  color: $black-text;
+  background: $white;
+  font-weight: 700;
+  text-align: center;
+  z-index: 1;
+}
+
+.delete-list-confirm {
+  margin-top: 5px;
+  padding: 8px 30px;
+  border-radius: 6px;
+  color: white;
+  background: red;
+  text-align: center;
+  cursor: pointer;
+}
+
+.delete-list-confirm:hover,
+.delete-list-confirm:focus {
+  background: darkred;
+}

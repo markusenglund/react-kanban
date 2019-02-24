@@ -1,0 +1,179 @@
+@import "../../variables.scss";
+$board-width: 260px;
+$board-height: 140px;
+$board-margin: 5px;
+$main-margin: 40px;
+$add-board-bg: #ddd;
+$add-board-focus-bg: #ccc;
+
+@mixin board-button {
+  box-sizing: border-box;
+  width: $board-width;
+  height: $board-height;
+  margin: $board-margin;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: background 0.1s;
+  cursor: pointer;
+}
+
+.home {
+  display: inline-flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: #eee;
+  overflow: auto;
+}
+
+.main-content {
+  display: inline-flex;
+  flex-direction: column;
+  width: 4 * $board-width + 8 * $board-margin;
+  margin: $main-margin;
+}
+
+@media (max-width: 4 * $board-width + 8 * $board-margin + 2 * $main-margin) {
+  .main-content {
+    width: 3 * $board-width + 6 * $board-margin;
+  }
+}
+
+@media (max-width: 3 * $board-width + 6 * $board-margin + 2 * $main-margin) {
+  .main-content {
+    width: 2 * $board-width + 4 * $board-margin;
+  }
+}
+@media (max-width: 2 * $board-width + 4 * $board-margin + 2 * $main-margin) {
+  .main-content {
+    width: $board-width + 2 * $board-margin;
+    margin: $main-margin 0;
+  }
+}
+
+.main-content h1 {
+  margin: 20px 5px;
+  font-size: 22px;
+}
+
+.boards {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.board-link {
+  @include board-button;
+  display: inline-flex;
+  flex-direction: column;
+  color: white;
+  overflow-wrap: break-word;
+  text-decoration: none;
+
+  &.green {
+    background: $green;
+  }
+  &.blue {
+    background: $blue;
+  }
+  &.red {
+    background: $red;
+  }
+  &.pink {
+    background: $pink;
+  }
+}
+
+.board-link:hover,
+.board-link:focus {
+  &.green {
+    background: $dark-green;
+  }
+  &.blue {
+    background: $dark-blue;
+  }
+  &.pink {
+    background: $dark-pink;
+  }
+  &.red {
+    background: $dark-red;
+  }
+}
+
+.board-link-title {
+  padding-bottom: 5px;
+}
+
+.mini-board {
+  display: flex;
+  height: 100%;
+}
+
+.mini-list {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 24px;
+  height: 100%;
+  margin-right: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.add-board-button {
+  @include board-button;
+  margin-bottom: 20px;
+  border: 0;
+  background: $add-board-bg;
+  color: #444;
+}
+
+.add-board-button:hover,
+.add-board-button:focus {
+  background: $add-board-focus-bg;
+}
+
+.board-adder {
+  box-sizing: border-box;
+  width: $board-width;
+  height: $board-height;
+  margin: $board-margin;
+  margin-bottom: 20px;
+  padding: 8px;
+  border-radius: 3px;
+  background: $add-board-bg;
+  color: #444;
+  font-size: 16px;
+}
+
+.submit-board-button {
+  padding: 8px 12px 8px 12px;
+  margin: 8px 0 0 0;
+  border: none;
+  border-radius: 3px;
+  background: $success-button-color;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.submit-board-button:focus,
+.submit-board-button:hover {
+  background: $success-button-color-hover;
+}
+
+.submit-board-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 4px;
+  border: 0;
+  border-radius: 3px;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  overflow: hidden;
+  resize: none;
+}

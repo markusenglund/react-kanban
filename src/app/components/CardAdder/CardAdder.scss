@@ -1,0 +1,38 @@
+@import "../../variables.scss";
+
+.card-adder-textarea-wrapper {
+  margin: 6px 13px 0 13px;
+}
+
+.card-adder-textarea {
+  float: right; // removes mysterious empty space at the bottom of the textarea somehow
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 3px;
+  color: inherit;
+  font-family: inherit;
+  font-size: 16px;
+  resize: none;
+}
+
+.add-card-button {
+  align-self: center;
+  flex-shrink: 0;
+  width: 39px;
+  height: 39px;
+  margin-top: 6px;
+  border: none;
+  border-radius: $list-radius;
+  color: $white;
+  background: $transparent-black;
+  font-size: 28px;
+  transition: background 0.1s;
+  cursor: pointer;
+}
+
+.add-card-button:hover,
+.add-card-button:focus {
+  background: $less-transparent-black;
+}

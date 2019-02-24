@@ -1,0 +1,38 @@
+@import "../../variables.scss";
+
+.board-title-button {
+  display: flex;
+  min-width: 0;
+  padding: 6px 10px 6px 10px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  transition: background 0.1s;
+  cursor: pointer;
+}
+
+.board-title-button:hover,
+.board-title-button:focus {
+  background: $transparent-black;
+}
+
+.board-title-text {
+  margin: 0;
+  color: $white;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  white-space: nowrap;
+}
+
+.board-title-input {
+  width: 100%;
+  padding: 6px 10px 6px 10px;
+  border: 0;
+  color: inherit;
+  background: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: inherit;
+}

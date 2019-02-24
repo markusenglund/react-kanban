@@ -1,0 +1,42 @@
+// Base styles
+
+html {
+  height: 100%;
+  width: 100%;
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: #ddd;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #aaa;
+  }
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: "Helvetica Neue", "Segoe UI", "Trebuchet MS", Geneva, Tahoma,
+    sans-serif;
+  line-height: 1;
+}
+
+#app {
+  display: inline-flex;
+  height: 100%;
+  min-width: 100%;
+}
+
+button,
+span,
+a {
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+}

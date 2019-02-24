@@ -1,0 +1,62 @@
+@import "../../variables.scss";
+
+.list-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.list {
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: $list-width;
+  min-height: 0px; // fix flexbox browser incostiency
+  max-height: 100%;
+  margin: 0 5px 0 5px;
+  border-radius: $list-radius;
+  font-size: 14px;
+  transition: box-shadow 0.15s, background 0.3s;
+}
+
+.blue .list {
+  background: $transparent-blue;
+}
+.green .list {
+  background: $transparent-green;
+}
+.red .list {
+  background: $transparent-red;
+}
+.pink .list {
+  background: $transparent-pink;
+}
+
+.list--drag {
+  box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.cards-wrapper {
+  height: 100%;
+  margin: 0 3px 6px 3px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.cards-wrapper::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 2px;
+  background-color: $transparent-black;
+}
+
+.cards-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: $transparent-white;
+}
+.cards {
+  min-height: 1px;
+  margin-bottom: 3px;
+}

@@ -1,0 +1,41 @@
+@import "../../variables.scss";
+
+.board-header {
+  position: fixed;
+  top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  height: 40px;
+  width: 100%;
+  padding: 8px 10px 5px 10px;
+  color: $white;
+  z-index: 1;
+}
+
+.board-header-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 16px;
+  margin: 0 10px;
+  background: $transparent-white;
+}
+
+@media (max-width: 700px) {
+  .board-header-right-text {
+    display: none;
+  }
+  .vertical-line {
+    margin: 0 4px;
+  }
+  .board-header {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
