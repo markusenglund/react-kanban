@@ -15,15 +15,15 @@ class BoardMenu extends Component {
 
     handleSelection = () => {
         this.setState({close: false})
-        document.getElementById("sideNav").style.transition = "1s"
-        document.getElementById("sideNav").style.width = "20.5%";
+        this.refs.sideNav.style.transition = "1s"
+        this.refs.sideNav.style.width = "20.5%";
     };
 
     closeSideBar = () => {
         this.setState({open: false})
-        document.getElementById("sideNav").style.transition = "1s"
-        document.getElementById("sideNav").style.width = "0";
-        document.getElementById("sideNav").addEventListener("transitionend", (event) => {
+        this.refs.sideNav.style.transition = "1s"
+        this.refs.sideNav.style.width = "0";
+        this.refs.sideNav.addEventListener("transitionend", (event) => {
             this.setState({close: event.currentTarget.style.width == "0px" ? true : false, open: event.currentTarget.style.width != "0px" ? true : false})
         });
     }

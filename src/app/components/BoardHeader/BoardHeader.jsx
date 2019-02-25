@@ -15,7 +15,6 @@ const BoardHeader = () => (
       <ColorPicker />
       <div className="vertical-line" />
       <BoardDeleter />
-      <div className="vertical-line" />
       <BoardMenu />
     </div>
   </div>
