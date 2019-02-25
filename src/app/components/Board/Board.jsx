@@ -8,7 +8,6 @@ import List from "../List/List";
 import ListAdder from "../ListAdder/ListAdder";
 import Header from "../Header/Header";
 import BoardHeader from "../BoardHeader/BoardHeader";
-import BoardMenu from "../BoardMenu/BoardMenu";
 import "./Board.scss";
 
 class Board extends Component {
@@ -171,7 +170,6 @@ class Board extends Component {
               </Droppable>
             </DragDropContext>
           </div>
-          <BoardMenu/>
           <div className="board-underlay" />
         </div>
       </>

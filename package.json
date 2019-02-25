@@ -42,6 +42,7 @@
     "react-day-picker": "^7.1.9",
     "react-dom": "^16.2.0",
     "react-head": "^2.1.0",
+    "react-i18next": "^10.2.0",
     "react-icons": "^2.2.7",
     "react-modal": "^3.4.4",
     "react-onclickoutside": "^6.7.1",
