@@ -62,7 +62,7 @@ class BoardUserAdd extends Component {
                         type: "ADD_USER",
                         payload: {
                             boardId,
-                            userToAdd: {userId, role: DEFAULT_ROLE}
+                            userToAdd: {id: userId, role: DEFAULT_ROLE}
                         }
                       });
                   })
