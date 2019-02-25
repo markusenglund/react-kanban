@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { DEFAULT_ROLE } from '../../constants';
+import { ADMIN_ROLE, READ_WRITE_ROLE } from '../../constants';
 
 const api = db => {
   const router = Router();
@@ -12,10 +12,12 @@ const api = db => {
   router.put("/board", (req, res) => {
     let board = req.body;
     board = {...board, changed_by: req.user._id};
+    // Update the board only if the user's role in the board is admin/read-write
     boards
-      .replaceOne({ _id: board._id, users: {id: req.user._id, role: DEFAULT_ROLE }}, board, {
-        upsert: true
-      })
+      .replaceOne({ _id: board._id, $or: [
+        {users: {id: req.user._id, role: ADMIN_ROLE }},
+        {users: {id: req.user._id, role: READ_WRITE_ROLE }}
+      ]}, board, { upsert: true })
       .then(result => {
         res.send(result);
       });
