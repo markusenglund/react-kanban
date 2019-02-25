@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { DEFAULT_ROLE } from '../../constants';
 
 const api = db => {
   const router = Router();
@@ -12,7 +13,7 @@ const api = db => {
     let board = req.body;
     board = {...board, changed_by: req.user._id};
     boards
-      .replaceOne({ _id: board._id, users: {id: req.user._id, role: 'admin' }}, board, { // TODO MOVE TO CONST!!
+      .replaceOne({ _id: board._id, users: {id: req.user._id, role: DEFAULT_ROLE }}, board, {
         upsert: true
       })
       .then(result => {
@@ -55,10 +56,3 @@ const api = db => {
 };
 
 export default api;
-
-
-db.inventory.insertMany( [
-  { item: "journal1", qty: 25, users: [{id: 1, role: 'admin'}, {id: 2, role:'read'}], status: "A" },
-]);
-db.inventory.find({"users.id": 1, "users.role": 'admin'});
-db.inventory.find({"users": {id: 1, role: 'admin'}});

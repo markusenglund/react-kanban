@@ -1,3 +1,5 @@
+import { ADMIN_ROLE } from '../../constants';
+
 const boardsById = (state = {}, action) => {
   switch (action.type) {
     case "ADD_LIST": {
@@ -78,7 +80,7 @@ const boardsById = (state = {}, action) => {
           _id: boardId,
           title: boardTitle,
           lists: [],
-          users: [userId],
+          users: [{id: userId, role: ADMIN_ROLE}],
           color: "blue"
         }
       };

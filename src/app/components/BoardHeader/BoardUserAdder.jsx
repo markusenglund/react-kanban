@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { DEFAULT_ROLE } from '../../../constants';
 
 import "./BoardTitle.scss";
 
@@ -61,7 +62,7 @@ class BoardUserAdd extends Component {
                         type: "ADD_USER",
                         payload: {
                             boardId,
-                            userToAdd: {userId, role: 'admin'} // TODO: Get role from UI
+                            userToAdd: {userId, role: DEFAULT_ROLE}
                         }
                       });
                   })
