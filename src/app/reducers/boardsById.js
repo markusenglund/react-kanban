@@ -22,16 +22,12 @@ const boardsById = (state = {}, action) => {
         }
       }
     }
-    case "EDIT_USER" : {
-      const {boardId, userToEdit} = action.payload;
-      const newUsers = state[boardId].users.map(user => {
-        // Finds the userToEdit and replace it with the old user object
-        if(user.id === userToEdit.id)
-          return userToEdit;
-
-        return user;
-      });
-
+    case "CHANGE_USER_ROLE" : {
+      const {boardId, userId, role} = action.payload;
+      
+      // Finds the user (by userId) and change only it's role
+      const newUsers = state[boardId].users.map(user => user.id === userId ? {...user, role} : user);
+      
       return {
         ...state,
         [boardId] : {
