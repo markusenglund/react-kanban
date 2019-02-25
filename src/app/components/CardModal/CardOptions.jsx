@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import FaTrash from "react-icons/lib/fa/trash";
+import {FaCheckSquare} from "react-icons/lib/fa";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import ClickOutside from "../ClickOutside/ClickOutside";
@@ -24,6 +25,7 @@ class CardOptions extends Component {
   constructor() {
     super();
     this.state = { isCalendarOpen: false };
+    this.state = { isCheckOpen: false };
   }
 
   deleteCard = () => {
@@ -62,7 +64,23 @@ class CardOptions extends Component {
   toggleCalendar = () => {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
+  toggleCheck = () => {
+    
+    this.setState({ isCheckOpen: !this.state.isCheckOpen });
+    //this.nameInput.focus();
+  };
 
+  addCheckList = (e) => {
+    console.log(e.target.value)
+    if (e.key === 'Enter') {
+    const { dispatch, card } = this.props;
+    dispatch({
+      type: "CHANGE_CARD_TEXT",
+      payload: { cardId: card._id, cardText: `${card.text} \n [ ] ${e.target.value}` }
+    });
+    e.target.value = "";
+  }
+  };
   render() {
     const {
       isCardNearRightBorder,
@@ -72,7 +90,7 @@ class CardOptions extends Component {
       isThinDisplay,
       boundingRect
     } = this.props;
-    const { isCalendarOpen } = this.state;
+    const { isCalendarOpen, isCheckOpen } = this.state;
 
     const calendarStyle = {
       content: {
@@ -148,6 +166,22 @@ class CardOptions extends Component {
             </div>&nbsp;Due date
           </button>
         </div>
+        <div>
+          <button onClick={this.toggleCheck} className="options-list-button">
+            <div className="modal-icon">
+              <FaCheckSquare />
+            </div>&nbsp;Check list
+          </button>
+        </div>
+        <Modal
+          isOpen={isCheckOpen}
+          onRequestClose={this.toggleCheck}
+          overlayClassName="checkList-underlay"
+          className="checkList-modal"
+          style={isThinDisplay ? calendarMobileStyle : calendarStyle}
+        >
+          <input className="input" placeholder="Add a check list item..." onKeyPress={this.addCheckList} autoFocus/>
+        </Modal>
         <Modal
           isOpen={isCalendarOpen}
           onRequestClose={this.toggleCalendar}
