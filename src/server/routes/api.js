@@ -20,6 +20,14 @@ const api = db => {
       ]}, board, { upsert: true })
       .then(result => {
         res.send(result);
+      }).catch(err => {
+        // 11000 - MongoDB duplicate error - AKA the user don't have permissions for the board
+        if(err.code === 11000) {
+          res.status(403).send("You don't have permissions for this board");
+        }
+        else {
+          res.status(500).send('Error');
+        }
       });
   });
 
