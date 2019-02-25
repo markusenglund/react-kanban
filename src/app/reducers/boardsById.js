@@ -20,6 +20,36 @@ const boardsById = (state = {}, action) => {
         }
       }
     }
+    case "EDIT_USER" : {
+      const {boardId, userToEdit} = action.payload;
+      const newUsers = state[boardId].users.map(user => {
+        // Finds the userToEdit and replace it with the old user object
+        if(user.id === userToEdit.id)
+          return userToEdit;
+
+        return user;
+      });
+
+      return {
+        ...state,
+        [boardId] : {
+          ...state[boardId],
+          users: newUsers
+        }
+      }
+    }
+    case "REMOVE_USER": {
+      const {boardId, userIdToRemove} = action.payload;
+      const newUsers = state[boardId].users.filter(user => user.id !== userIdToRemove);
+
+      return {
+        ...state,
+        [boardId] : {
+          ...state[boardId],
+          users: newUsers
+        }
+      }
+    }
     case "MOVE_LIST": {
       const { oldListIndex, newListIndex, boardId } = action.payload;
       const newLists = Array.from(state[boardId].lists);

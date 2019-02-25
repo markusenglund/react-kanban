@@ -61,7 +61,7 @@ class BoardUserAdd extends Component {
                         type: "ADD_USER",
                         payload: {
                             boardId,
-                            userToAdd: userId
+                            userToAdd: {userId, role: 'admin'} // TODO: Get role from UI
                         }
                       });
                   })
