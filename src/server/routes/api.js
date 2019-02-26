@@ -65,12 +65,13 @@ const api = db => {
   })
 
   router.post('/users/getByIds', (req, res) => {
-    if(!user) {
+    if(!req.user) {
       return res.status(403).send("You don't have permissions");
     }
 
     users
       .find({ _id: { $in: req.body.ids || [] } })
+      .toArray()
       .then(users => {
       const serializedUsers = users.reduce((accumulator, currentUser) => {
         // Pick only public properties from the user's object
