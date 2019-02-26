@@ -69,7 +69,9 @@ const api = db => {
       return res.status(403).send("You don't have permissions");
     }
 
-    users.find({_id: req.body.ids}).then(users=> {
+    users
+      .find({ _id: { $in: req.body.ids || [] } })
+      .then(users => {
       const serializedUsers = users.reduce((accumulator, currentUser) => {
         // Pick only public properties from the user's object
         const serializedUser = pick(currentUser, PUBLIC_USER_PROPERTIES);
@@ -79,7 +81,8 @@ const api = db => {
       }, {});
 
       res.status(200).json(serializedUsers);
-    }).catch(err => {
+    })
+    .catch(err => {
       console.error(err);
       res.status(500).send('Error');
     });
