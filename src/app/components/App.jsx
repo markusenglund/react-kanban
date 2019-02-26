@@ -10,7 +10,7 @@ import socket from "../socketIOHandler";
 
 const App = ({ user, isGuest }) => {
 
-  socket.on("change", ()=>{
+  socket.on("change", () => {
     window.location.reload();
   })
 

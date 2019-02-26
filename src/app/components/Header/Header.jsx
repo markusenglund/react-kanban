@@ -6,6 +6,7 @@ import FaUserSecret from "react-icons/lib/fa/user-secret";
 import FaSignOut from "react-icons/lib/fa/sign-out";
 import FaSignIn from "react-icons/lib/fa/sign-in";
 import kanbanLogo from "../../../assets/images/kanban-logo.svg";
+import SearchBar from "./SearchBar";
 import "./Header.scss";
 
 class Header extends Component {
@@ -15,16 +16,17 @@ class Header extends Component {
     const { user } = this.props;
     return (
       <header>
-        <Link to="/" className="header-title">
-          <img src={kanbanLogo} alt="React Kanban logo" />
-          &nbsp;AmanBoard 2
-        </Link>
+        <div className="header-left-side">
+          <Link to="/" className="header-title">
+            <img src={kanbanLogo} alt="React Kanban logo" />
+            &nbsp;AmanBoard 2
+          </Link>
+          <div className="header-search-bar">
+            <SearchBar />
+          </div>
+        </div>
         <div className="header-right-side">
-        {user ? (
-            <p> {user.name} </p>
-          ) : (
-            <p> </p>
-          )}
+          {user ? <p> {user.name} </p> : <p> </p>}
           {user ? (
             <a className="signout-link" href="/auth/signout">
               <FaSignOut className="signout-icon" />
