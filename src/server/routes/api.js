@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { ADMIN_ROLE, READ_WRITE_ROLE } from '../../constants';
 
 const api = db => {
   const router = Router();
@@ -9,13 +10,24 @@ const api = db => {
   // This solution sends more data than necessary, but cuts down on code and
   // effectively prevents the db and client from ever getting out of sync
   router.put("/board", (req, res) => {
-    const board = req.body;
+    let board = req.body;
+    board = {...board, changed_by: req.user._id};
+    // Update the board only if the user's role in the board is admin/read-write
     boards
-      .replaceOne({ _id: board._id, users: req.user._id }, board, {
-        upsert: true
-      })
+      .replaceOne({ _id: board._id, $or: [
+        {users: {id: req.user._id, role: ADMIN_ROLE }},
+        {users: {id: req.user._id, role: READ_WRITE_ROLE }}
+      ]}, board, { upsert: true })
       .then(result => {
         res.send(result);
+      }).catch(err => {
+        // 11000 - MongoDB duplicate error - AKA the user don't have permissions for the board
+        if(err.code === 11000) {
+          res.status(403).send("You don't have permissions for this board");
+        }
+        else {
+          res.status(500).send('Error');
+        }
       });
   });
 

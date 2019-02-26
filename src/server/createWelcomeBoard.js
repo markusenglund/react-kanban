@@ -1,4 +1,5 @@
 import shortid from "shortid";
+import { ADMIN_ROLE } from '../constants';
 
 // Give every card in a list an _id and the color white UNLESS those properties already exist
 const appendAttributes = list =>
@@ -105,7 +106,7 @@ Since you are not signed in, your changes will not persist after you leave the w
         cards: appendAttributes(list3)
       }
     ],
-    users: userId ? [userId] : []
+    users: userId ? [{id: userId, role: ADMIN_ROLE}] : []
   };
 };
 
