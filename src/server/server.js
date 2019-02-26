@@ -14,22 +14,8 @@ import configurePassport from "./passport";
 import api from "./routes/api";
 import auth from "./routes/auth";
 import fetchBoardData from "./fetchBoardData";
-<<<<<<< HEAD
-import socketIO from "socket.io";
-import http from "http";
-
-
-=======
-import http from "http";
-
->>>>>>> master
-// Load environment variables from .env file
-dotenv.config();
-
-const app = express();
 
 const MongoStore = connectMongo(session);
-
 MongoClient.connect(process.env.MONGODB_URL).then(client => {
   const db = client.db(process.env.MONGODB_NAME);
 
@@ -69,48 +55,4 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   const server = http.createServer(app);
   server.listen(port, () => console.log(`Server listening on port ${port}`));
 
-<<<<<<< HEAD
-  const io = socketIO(server);
-  let userSockets = {};
-
-  io.on("connection", socket=>{
-    console.log("user connected to socket");
-    socket.emit("connected");
-
-    socket.on("userDetails", ({_id: userID})=>{
-      userSockets[userID] = socket;
-    })
-
-    socket.on("disconnect", ()=>{
-      console.log("user disconnected");
-      let keys = Object.keys(userSockets);
-      for(let i=0; i< keys.length; i++){
-        if(userSockets[keys[i]].id === socket.id){
-          delete userSockets[keys[i]];
-          break;
-        }
-      }
-    })
-    
-    socket.on("change", ({boardID, userID})=>{
-      sendChangeMessage(boardID, userID, db);
-    })
-  })
-
-  function sendChangeMessage(boardID,userID, db){
-    const boards = db.collection("boards");
-    boards.findOne({_id: boardID}).then(board=>{
-      if(board){
-        let {users} = board;
-        users.forEach(user=>{
-          if(userSockets[user] && user!=userID){
-            userSockets[user].emit("change");
-          }
-        })
-      }
-    })
-  }
-
-=======
->>>>>>> master
 });

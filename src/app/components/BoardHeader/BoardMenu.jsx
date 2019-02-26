@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./BoardMenu.scss";
 import FaAngleRight from "react-icons/lib/fa/angle-double-right";
 import FaAngleLeft from "react-icons/lib/fa/angle-double-left";
+import UsersList from "../Users/UsersList"
 import { timingSafeEqual } from "crypto";
 
 class BoardMenu extends Component {
@@ -47,6 +48,7 @@ class BoardMenu extends Component {
             margin: "16px 0",
             padding: 0,
             width: "100%"}}/>
+            <UsersList/>
             </div>
         )
     }
