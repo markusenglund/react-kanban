@@ -1,0 +1,14 @@
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://localhost:1337/metadata.xml">
+<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+	<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://localhost:1337/echo/saml2-logout/1/logout"/>
+<NameIormat>
+urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+</NameIormat>
+<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost:1337/echo/saml2-logout/1/postResponse" index="0"/>
+<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost:1337/metadata.xml" index="1"/>
+</SPSSODescriptor>
+<ContactPerson contactType="technical">
+<GivenName>Administrator</GivenName>
+<EmailAddress>noreply@example.org</EmailAddress>
+</ContactPerson>
+</EntityDescriptor>
