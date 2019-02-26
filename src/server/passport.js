@@ -2,8 +2,12 @@ import passport from "passport";
 import { Strategy as TwitterStrategy } from "passport-twitter";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as LocalStrategy } from "passport-local";
-import { Strategy as SamlStrategy, SamlConfig } from "passport-saml";
+import { Strategy as SamlStrategy} from "passport-saml";
+import dotenv from "dotenv";
+import authConfig from "./authConfig";
 import createWelcomeBoard from "./createWelcomeBoard";
+
+dotenv.config();
 
 const configurePassport = db => {
   const users = db.collection("users");
@@ -17,28 +21,6 @@ const configurePassport = db => {
       cb(null, user);
     });
   });
-
-
-  let authObj = {authentication: {
-    required: true,
-    secret: process.env.SECRET_KEY || 'bLue5tream@2018', // Don't use static value in production! remove from source control!
-    saml: {
-        entryPoint: process.env.SAML_ENTRY_POINT || 'http://localhost:8080/simplesaml/saml2/idp/SSOService.php',
-        issuer: process.env.SAML_ISSUER || 'http://localhost:3000/metadata.xml',
-        callbackUrl: process.env.SAML_CALLBACK_URL || 'http://localhost:1337/metadata.xml/callback',
-        authnContext: 'http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/windows',
-        identifierFormat: undefined,
-        signatureAlgorithm: 'sha1',
-        acceptedClockSkewMs: -1,
-    },
-    profileExtractor: {
-        id: process.env.PROFILE_EXTRACTOR_ID || 'id',
-        firstName: process.env.PROFILE_EXTRACTOR_FIRST_NAME || 'givenName',
-        lastName: process.env.PROFILE_EXTRACTOR_LAST_NAME || 'surName',
-        mail: process.env.PROFILE_EXTRACTOR_MAIL || 'mail',
-    },
-}};
-
 
   passport.use(new LocalStrategy(
     function(username, password, cb) {
@@ -61,26 +43,24 @@ const configurePassport = db => {
       });
     }
   ));
-
+  let {saml: samlConfig, profileExtractor} = authConfig();
   passport.use(new SamlStrategy(
-    {
-      entryPoint: process.env.SAML_ENTRY_POINT || 'http://localhost:8080/simplesaml/saml2/idp/SSOService.php',
-      issuer: process.env.SAML_ISSUER || 'http://localhost:1337/metadata.xml',
-      callbackUrl: process.env.SAML_CALLBACK_URL || 'http://localhost:1337/auth/saml/callback',
-      authnContext: 'http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/windows',
-      identifierFormat: undefined,
-      signatureAlgorithm: 'sha1',
-      acceptedClockSkewMs: -1,
-    },
+    samlConfig,
     (profile, done)=>{
+      profile = {
+        id: profile[profileExtractor.id],
+        firstName: profile[profileExtractor.firstName],
+        lastName: profile[profileExtractor.lastName],
+        mail: profile[profileExtractor.mail],
+      };
       users.findOne({ _id: profile.id }).then(user => {
         if (user) {
           done(null, user);
         } else {
-          console.log(profile);
           const newUser = {
-            _id: profile.uid,
-            name: profile.nameID,
+            _id: profile.id,
+            name: profile.firstName + " " + profile.lastName,
+            mail: profile.mail,
             imageUrl: null
           };
           users.insertOne(newUser).then(() => {
