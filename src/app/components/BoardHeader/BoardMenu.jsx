@@ -16,32 +16,28 @@ class BoardMenu extends Component {
     handleSelection = () => {
         this.setState({close: false})
         this.refs.sideNav.style.transition = "1s"
-        this.refs.sideNav.style.width = "20.5%";
+        this.refs.sideNav.style.flex = "1 1 1%";
     };
 
     closeSideBar = () => {
         this.setState({open: false})
         this.refs.sideNav.style.transition = "1s"
-        this.refs.sideNav.style.width = "0";
+        this.refs.sideNav.style.flex = "0 0 0%";
         this.refs.sideNav.addEventListener("transitionend", (event) => {
-            this.setState({close: event.currentTarget.style.width == "0px" ? true : false, open: event.currentTarget.style.width != "0px" ? true : false})
+            this.setState({close: event.currentTarget.style.flex == "0 0 0%" ? true : false, open: event.currentTarget.style.flex != "0 0 0%" ? true : false})
         });
     }
     
     render() {
         return(
             <div style={{backgroundColor: "#f5f6f7",
-            position: "fixed",
-            right: "0%",
-            top: "10%",
-            width: "20.5%",
-            height: "100%",
-            padding: "0 6px 0 12px",}}
+            width: "100%",
+            flex:" 1%"}}
             ref="sideNav">
             <div>
                 <h3 style={{textAlign: "center", color: "black"}}>Menu</h3>
-                {this.state.open ? <FaAngleRight className="hamburger-button" style ={{position: "absolute", right:"3%", top: "1%", color: "black"}} onClick={this.closeSideBar}/> : null}
-                {this.state.close ? <FaAngleLeft className="hamburger-button" style ={{position: "absolute", right:"95%", top: "0%", color: "black"}} onClick={this.handleSelection}/> : null}
+                {this.state.open ? <FaAngleRight className="hamburger-button" style ={{position: "absolute", right:"0%", top: "10%", color: "black"}} onClick={this.closeSideBar}/> : null}
+                {this.state.close ? <FaAngleLeft className="hamburger-button" style ={{position: "absolute", right:"3%", top: "9%", color: "black"}} onClick={this.handleSelection}/> : null}
             </div>
             <hr style={{
             margin: 0,

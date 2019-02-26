@@ -9,6 +9,7 @@ import ListAdder from "../ListAdder/ListAdder";
 import Header from "../Header/Header";
 import BoardHeader from "../BoardHeader/BoardHeader";
 import "./Board.scss";
+import BoardMenu from "../BoardHeader/BoardMenu";
 
 class Board extends Component {
   static propTypes = {
@@ -169,6 +170,7 @@ class Board extends Component {
                 )}
               </Droppable>
             </DragDropContext>
+          <BoardMenu />
           </div>
           <div className="board-underlay" />
         </div>
