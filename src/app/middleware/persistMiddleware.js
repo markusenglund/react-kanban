@@ -19,15 +19,13 @@ const persistMiddleware = store => next => action => {
     if (action.type === "DELETE_BOARD") {
       fetch("/api/board", {
         method: "DELETE",
-        body: JSON.stringify({ boardId }),
+        body: JSON.stringify({ boardId}),
         headers: { "Content-Type": "application/json" },
         credentials: "include"
-      }).then(res=>{
-        socket.emit('change', {boardID:boardId, userID: user["_id"]});
       })
       // All action-types that are not DELETE_BOARD or PUT_BOARD_ID_IN_REDUX are currently modifying a board in a way that should
       // be persisted to db. If other types of actions are added, this logic will get unwieldy.
-    } else if (action.type !== "PUT_BOARD_ID_IN_REDUX") {
+    } else if (!['PUT_BOARD_ID_IN_REDUX', 'UPDATE_FILTER','CHANGE_CARD_FILTER' ].includes(action.type)) {
       // Transform the flattened board state structure into the tree-shaped structure that the db uses.
       const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
       const list = new schema.Entity(
@@ -50,8 +48,6 @@ const persistMiddleware = store => next => action => {
         body: JSON.stringify(boardData),
         headers: { "Content-Type": "application/json" },
         credentials: "include"
-      }).then(res=>{
-        socket.emit('change', {boardID:boardId, userID: user["_id"]});
       })
     }
   }

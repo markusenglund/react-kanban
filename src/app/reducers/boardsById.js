@@ -1,3 +1,5 @@
+import { ADMIN_ROLE } from '../../constants';
+
 const boardsById = (state = {}, action) => {
   switch (action.type) {
     case "ADD_LIST": {
@@ -17,6 +19,32 @@ const boardsById = (state = {}, action) => {
         [boardId] : {
           ...state[boardId],
           users: [...state[boardId]["users"], userToAdd]
+        }
+      }
+    }
+    case "CHANGE_USER_ROLE" : {
+      const {boardId, userId, role} = action.payload;
+      
+      // Finds the user (by userId) and change only it's role
+      const newUsers = state[boardId].users.map(user => user.id === userId ? {...user, role} : user);
+      
+      return {
+        ...state,
+        [boardId] : {
+          ...state[boardId],
+          users: newUsers
+        }
+      }
+    }
+    case "REMOVE_USER": {
+      const {boardId, userIdToRemove} = action.payload;
+      const newUsers = state[boardId].users.filter(user => user.id !== userIdToRemove);
+
+      return {
+        ...state,
+        [boardId] : {
+          ...state[boardId],
+          users: newUsers
         }
       }
     }
@@ -48,7 +76,7 @@ const boardsById = (state = {}, action) => {
           _id: boardId,
           title: boardTitle,
           lists: [],
-          users: [userId],
+          users: [{id: userId, role: ADMIN_ROLE}],
           color: "blue"
         }
       };

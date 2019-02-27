@@ -6,6 +6,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { BrowserRouter } from "react-router-dom";
 import rootReducer from "./app/reducers";
 import persistMiddleware from "./app/middleware/persistMiddleware";
+import filterMiddleware from "./app/middleware/filterMiddleware";
 import App from "./app/components/App";
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
@@ -17,7 +18,7 @@ delete window.PRELOADED_STATE;
 const store = createStore(
   rootReducer,
   preloadedState,
-  composeWithDevTools(applyMiddleware(persistMiddleware))
+  composeWithDevTools(applyMiddleware(persistMiddleware,filterMiddleware))
 );
 
 ReactDOM.hydrate(
