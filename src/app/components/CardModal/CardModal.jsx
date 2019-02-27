@@ -15,7 +15,7 @@ class CardModal extends Component {
       text: PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
       date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-      color: PropTypes.string,
+      color: PropTypes.string
     }).isRequired,
     listId: PropTypes.string.isRequired,
     cardElement: PropTypes.shape({
@@ -23,7 +23,9 @@ class CardModal extends Component {
     }),
     isOpen: PropTypes.bool.isRequired,
     toggleCardEditor: PropTypes.func.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    assignedToMe: PropTypes.bool,
+    assignedUserName: PropTypes.string
   };
 
   constructor(props) {
@@ -32,7 +34,7 @@ class CardModal extends Component {
       newText: props.card.text,
       isColorPickerOpen: false,
       isTextareaFocused: true,
-      areCommentsOpen: false,
+      areCommentsOpen: false
     };
     if (typeof document !== "undefined") {
       Modal.setAppElement("#app");
@@ -90,7 +92,14 @@ class CardModal extends Component {
 
   render() {
     const { newText, isColorPickerOpen, isTextareaFocused } = this.state;
-    const { cardElement, card, listId, isOpen } = this.props;
+    const {
+      cardElement,
+      card,
+      listId,
+      isOpen,
+      assignedToMe,
+      assignedUserName
+    } = this.props;
     if (!cardElement) {
       return null;
     }
@@ -150,43 +159,6 @@ class CardModal extends Component {
         includeDefaultStyles={false}
         onClick={this.handleRequestClose}
       >
-        <div id="card-container">
-          <div id="text-area-container"
-            className="modal-textarea-wrapper"
-            style={{
-              minHeight: isThinDisplay ? "none" : boundingRect.height,
-              width: isThinDisplay ? "100%" : boundingRect.width,
-              boxShadow: isTextareaFocused
-                ? "0px 0px 3px 2px rgb(0, 180, 255)"
-                : null,
-              background: card.color
-            }}
-          >
-            <Textarea 
-              autoFocus
-              useCacheForDOMMeasurements
-              value={newText}
-              onChange={this.handleChange}
-              onKeyDown={this.handleKeyDown}
-              className="modal-textarea"
-              spellCheck={false}
-              onFocus={() => this.setState({ isTextareaFocused: true })}
-              onBlur={() => this.setState({ isTextareaFocused: false })}
-            />
-            {(card.date || checkboxes.total > 0) && (
-              <CardBadges date={card.date} checkboxes={checkboxes} />
-            )}
-          </div>
-          <div id="toggle-comments-button" >
-          <button className="comment-show-button" onClick={this.toggleComments}>
-            Toggle comments
-          </button>
-          </div>
-          <div id="comments-container">
-            <Comments showForm={this.state.areCommentsOpen} cardId={card._id} />
-          </div>
-        </div>
-
         <CardOptions
           isColorPickerOpen={isColorPickerOpen}
           card={card}
@@ -196,10 +168,51 @@ class CardModal extends Component {
           isThinDisplay={isThinDisplay}
           toggleColorPicker={this.toggleColorPicker}
         />
+        <div id="main-container">
+        <div
+          className="modal-textarea-wrapper"
+          style={{
+            minHeight: isThinDisplay ? "none" : boundingRect.height,
+            width: isThinDisplay ? "100%" : boundingRect.width,
+            boxShadow: isTextareaFocused
+              ? "0px 0px 3px 2px rgb(0, 180, 255)"
+              : null,
+            background: card.color
+          }}
+        >
+          <Textarea
+            autoFocus
+            useCacheForDOMMeasurements
+            value={newText}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            className="modal-textarea"
+            spellCheck={false}
+            onFocus={() => this.setState({ isTextareaFocused: true })}
+            onBlur={() => this.setState({ isTextareaFocused: false })}
+          />
+          {(card.date || checkboxes.total > 0 || assignedUserName) && (
+            <CardBadges
+              date={card.date}
+              checkboxes={checkboxes}
+              assignedUserName={assignedUserName}
+              assignedToMe={assignedToMe}
+            />
+          )}
+        </div>
+        <div id="toggle-comments-button">
+          <button className="comment-show-button" onClick={this.toggleComments}>
+            Toggle comments
+          </button>
+        </div>
+        <div id="comments-container">
+          <Comments showForm={this.state.areCommentsOpen} cardId={card._id} />
+        </div>
+        </div>
+       
       </Modal>
     );
   }
 }
-
 
 export default connect()(CardModal);

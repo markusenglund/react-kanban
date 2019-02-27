@@ -31,6 +31,15 @@ header {
   background: $transparent-pink;
 }
 
+.header-left-side {
+  display: inline-flex;
+  align-items: center;
+}
+
+.header-search-bar {
+  margin-right: 10px;
+}
+
 .header-title {
   display: inline-flex;
   align-items: center;
@@ -65,7 +74,7 @@ header {
 
 .signout-link {
   padding: 3px 5px 1px 5px;
-  margin-left: 12px;
+  margin-right: 12px;
   border: 1px solid $transparent-black;
   border-radius: 3px;
   color: white;

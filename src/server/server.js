@@ -15,6 +15,7 @@ import api from "./routes/api";
 import auth from "./routes/auth";
 import fetchBoardData from "./fetchBoardData";
 import http from "http";
+import path from "path";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -27,7 +28,12 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   const db = client.db(process.env.MONGODB_NAME);
 
   configurePassport(db);
-
+  app.get("/isAlive", (req,res,next)=>{
+    res.send("alive");
+  })
+  app.get("/metadata.xml", (req,res,next)=>{
+    res.sendFile(path.resolve(__dirname, "../assets/metadata.xml"));
+  })
   app.use(helmet());
   app.use(logger("tiny"));
   app.use(compression());
@@ -55,6 +61,15 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use("/auth", auth);
   app.use("/api", api(db));
   app.use(fetchBoardData(db));
+  if(process.env.NODE_ENV==="production"){
+    console.log("123");
+    app.use((req,res,next)=>{
+      if(!req.user)
+        res.redirect("/auth/saml")
+      else
+        next();
+    })
+  }
   app.get("*", renderPage);
 
   const port = process.env.PORT || "1337";

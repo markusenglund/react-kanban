@@ -1,0 +1,18 @@
+{
+    "Sign-out": "התנתק",
+    "Sign-in": "התחבר",
+    "Add-new-board": "צור לוח חדש...",
+    "Choose-User": "בחר משתמש:",
+    "Choose-Option": "-- בחר משתמש ---",
+    "Save": "שמור",
+    "Cancel": "בטל",
+    "Color": "צבע",
+    "Delete": "מחק",
+    "Due-Date": "תאריך יעד",
+    "CardOptions.assign": "שייך כרטיס",
+    "CardOptions.check_list": "צֶ'ק לִיסְט",
+    "CardOptions.check_list.placeholder": "הזן פריט...",
+    "UserPicker.placeholder": "בחר משתמש...",
+    "BoardLeave.Leave": "עזוב לוח",
+    "BoardLeave.are_you_sure": "האם את/ה בטוח/ה?"
+}
