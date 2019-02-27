@@ -8,8 +8,7 @@ import rootReducer from "./app/reducers";
 import persistMiddleware from "./app/middleware/persistMiddleware";
 import filterMiddleware from "./app/middleware/filterMiddleware";
 import App from "./app/components/App";
-import { I18nextProvider } from 'react-i18next';
-import i18n from './i18n';
+
 
 // Extract initial redux state received from the server
 const preloadedState = window.PRELOADED_STATE;

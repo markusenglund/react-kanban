@@ -24,8 +24,7 @@ class CardOptions extends Component {
 
   constructor() {
     super();
-    this.state = { isCalendarOpen: false };
-    this.state = { isCheckOpen: false };
+    this.state = { isCalendarOpen: false, isCheckOpen: false };
   }
 
   deleteCard = () => {
@@ -64,14 +63,12 @@ class CardOptions extends Component {
   toggleCalendar = () => {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
+
   toggleCheck = () => {
-    
     this.setState({ isCheckOpen: !this.state.isCheckOpen });
-    //this.nameInput.focus();
   };
 
   addCheckList = (e) => {
-    console.log(e.target.value)
     if (e.key === 'Enter') {
     const { dispatch, card } = this.props;
     dispatch({
