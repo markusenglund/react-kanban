@@ -8,6 +8,9 @@ import LandingPage from "./LandingPage/LandingPage";
 import "./App.scss";
 import socket from "../socketIOHandler";
 
+// Adding I18n
+import './../../i18n';
+
 const App = ({ user, isGuest }) => {
 
   socket.on("change", () => {
