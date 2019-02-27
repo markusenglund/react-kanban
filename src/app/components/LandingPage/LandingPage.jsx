@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Title } from "react-head";
-import FaTwitter from "react-icons/lib/fa/twitter";
-import FaUserSecret from "react-icons/lib/fa/user-secret";
-import googleLogo from "../../../assets/images/google-logo.svg";
 import kanbanLogo from "../../../assets/images/kanban-logo.svg";
 import background1920 from "../../../assets/images/postits-1920.jpg";
 import background1366 from "../../../assets/images/postits-1366.jpg";
@@ -44,29 +41,6 @@ class LandingPage extends Component {
             Awesome Kanban King
           </p>
           <div className="signin-buttons">
-            <div>
-              <a href="/auth/twitter" className="signin-button twitter-button">
-                <FaTwitter className="logo-icon" /> &nbsp;Sign in with Twitter
-              </a>
-            </div>
-            <div>
-              <a href="/auth/local" className="signin-button google-button">
-                <img
-                  className="google-logo"
-                  src={googleLogo}
-                  alt="google logo"
-                />
-                &nbsp;Sign in as Local
-              </a>
-            </div>
-            <div className="guest-button-wrapper">
-              <button
-                onClick={this.enterAsGuest}
-                className="signin-button guest-button"
-              >
-                <FaUserSecret className="logo-icon" /> &nbsp;Enter as guest
-              </button>
-            </div>
             <div>
               <form action="/auth/local" method="post">
                 <input type="text" name="username"/>
