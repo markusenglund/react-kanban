@@ -4,7 +4,7 @@ const cardsById = (state = {}, action) => {
       const { cardText, cardId } = action.payload;
       return {
         ...state,
-        [cardId]: { text: cardText, _id: cardId, comments: [] }
+        [cardId]: { text: cardText, _id: cardId, comments: [], labels: [] }
       };
     }
     case "CHANGE_CARD_TEXT": {
@@ -15,9 +15,22 @@ const cardsById = (state = {}, action) => {
       const { date, cardId } = action.payload;
       return { ...state, [cardId]: { ...state[cardId], date } };
     }
-    case "CHANGE_CARD_COLOR": {
-      const { color, cardId } = action.payload;
-      return { ...state, [cardId]: { ...state[cardId], color } };
+    case "ADD_LABEL": {
+      const { label, cardId } = action.payload;
+      return {
+        ...state,
+        [cardId]: { ...state[cardId], labels: [...state[cardId].labels, label] }
+      };
+    }
+    case "DELETE_LABEL": {
+      const { label, cardId } = action.payload;
+      return {
+        ...state,
+        [cardId]: {
+          ...state[cardId],
+          labels: state[cardId].labels.filter(currLabel => currLabel !== label)
+        }
+      };
     }
     case "ADD_COMMENT": {
       const { cardId, id: commentId } = action.payload;

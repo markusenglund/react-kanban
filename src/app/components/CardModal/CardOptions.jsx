@@ -42,16 +42,20 @@ class CardOptions extends Component {
     });
   };
 
-  changeColor = color => {
-    const { dispatch, card, toggleColorPicker } = this.props;
-    if (card.color !== color) {
+  addLabel = label => {
+    const { dispatch, card } = this.props;
+
+    if (card.labels.includes(label)) {
       dispatch({
-        type: "CHANGE_CARD_COLOR",
-        payload: { color, cardId: card._id }
+        type: "DELETE_LABEL",
+        payload: { label, cardId: card._id }
+      });
+    } else {
+      dispatch({
+        type: "ADD_LABEL",
+        payload: { label, cardId: card._id }
       });
     }
-    toggleColorPicker();
-    this.colorPickerButton.focus();
   };
 
   handleKeyDown = event => {
@@ -121,12 +125,12 @@ class CardOptions extends Component {
     };
 
     const colorsWithLabels = [
-      ["#89609e", t("CardColors.inprogress")],
-      ["#00c2e0", t("CardColors.general")],
-      ["#61bd4f", t("CardColors.tracking")],
-      ["#f2d600", t("CardColors.bug")],
-      ["#ff9f1a", t("CardColors.help")],
-      ["#eb5a46", t("CardColors.critical")]
+      ["#89609e", "inprogress"],
+      ["#00c2e0", "general"],
+      ["#61bd4f", "tracking"],
+      ["#f2d600", "bug"],
+      ["#ff9f1a", "help"],
+      ["#eb5a46", "critical"]
     ];
 
     return (
@@ -156,7 +160,7 @@ class CardOptions extends Component {
             aria-expanded={isColorPickerOpen}
           >
             <img src={colorIcon} alt="colorwheel" className="modal-icon" />
-            &nbsp;{t("Color")}
+            &nbsp;{t("Tags")}
           </button>
           {isColorPickerOpen && (
             <ClickOutside
@@ -171,14 +175,17 @@ class CardOptions extends Component {
                 {/* eslint-enable */}
                 {colorsWithLabels.map(colorLabel => {
                   const [color, label] = colorLabel;
+                  const labelSelected = this.props.card.labels.includes(label);
+                  const opacity = labelSelected ? 0.5 : 1
+
                   return (
                     <button
                       key={color}
-                      style={{ background: color, fontSize: 10 }}
+                      style={{ background: color, fontSize: 10, opacity: opacity }}
                       className="color-picker-color"
-                      onClick={() => this.changeColor(color)}
+                      onClick={() => this.addLabel(label)}
                     >
-                      {label}
+                      {t(`CardColors.${label}`)}
                     </button>
                   );
                 })}
