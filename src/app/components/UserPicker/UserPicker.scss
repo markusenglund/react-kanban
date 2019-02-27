@@ -11,8 +11,7 @@
 .user-picker-buttons {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 8px;
-  margin-top: 8px;
+  margin: 8px;
 
   button {
     width: 120px;
@@ -23,6 +22,8 @@
     font-weight: 700;
     transition: background 0.2s;
     cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   button:hover {

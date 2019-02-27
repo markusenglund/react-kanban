@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import Select from "react-select";
 
 import "./UserPicker.scss";
 
@@ -14,47 +15,60 @@ class UserPicker extends Component {
 
   constructor(props) {
     super(props);
+    const { boardUsersData, assignedUserId } = this.props;
+    const chosenUser = {
+      value: boardUsersData[assignedUserId]._id,
+      label: boardUsersData[assignedUserId].name
+    };
     this.state = {
-      chosenUserId: props.assignedUserId
+      chosenUser
     };
   }
 
   componentDidMount() {
-    this.setState({ chosenUserId: this.props.assignedUserId });
+    const { boardUsersData, assignedUserId } = this.props;
+    const chosenUser = {
+      value: boardUsersData[assignedUserId]._id,
+      label: boardUsersData[assignedUserId].name
+    };
+    this.setState({ chosenUser });
   }
 
   handleSave = () => {
-    const { chosenUserId } = this.state;
+    const { chosenUser } = this.state;
     const { dispatch, cardId, toggleAssign } = this.props;
 
     dispatch({
       type: "UPDATE_ASSIGNED_USER",
-      payload: { cardId, assignedUserId: chosenUserId }
+      payload: { cardId, assignedUserId: chosenUser.value }
     });
 
     toggleAssign();
   };
 
-  handleChange = event => {
-    this.setState({ chosenUserId: event.target.value });
+  handleChange = chosenUser => {
+    this.setState({ chosenUser });
   };
 
   render() {
     const { toggleAssign, boardUsersData, t } = this.props;
-    const { chosenUserId } = this.state;
-    const usersList = Object.values(boardUsersData).map((userData, i) => (
-      <option value={userData._id} key={i}>
-        {userData.name}
-      </option>
-    ));
+    const { chosenUser } = this.state;
+    const usersList = Object.values(boardUsersData).map((userData, i) => ({
+      value: userData._id,
+      label: userData.name
+    }));
 
     return (
       <div className="user-picker">
         <label>{t("Choose-User")}</label>
-        <select defaultValue={chosenUserId} onChange={this.handleChange}>
-          <option value="">{t("Choose-Option")}</option>
-          {usersList}
-        </select>
+        <Select
+          value={chosenUser}
+          onChange={this.handleChange}
+          options={usersList}
+          isSearchable={true}
+          autoFocus={true}
+          placeholder={"Tesssss"}
+        />
         <div className="user-picker-buttons">
           <button onClick={this.handleSave} className="user-picker-save-button">
             {t("Save")}
