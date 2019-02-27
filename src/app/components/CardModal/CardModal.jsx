@@ -22,7 +22,6 @@ class CardModal extends Component {
       getBoundingClientRect: PropTypes.func.isRequired
     }),
     isOpen: PropTypes.bool.isRequired,
-    isShowCommentForm: PropTypes.bool.isRequired,
     toggleCardEditor: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired
   };
@@ -32,7 +31,8 @@ class CardModal extends Component {
     this.state = {
       newText: props.card.text,
       isColorPickerOpen: false,
-      isTextareaFocused: true
+      isTextareaFocused: true,
+      areCommentsOpen: false,
     };
     if (typeof document !== "undefined") {
       Modal.setAppElement("#app");
@@ -82,6 +82,10 @@ class CardModal extends Component {
     if (!isColorPickerOpen) {
       toggleCardEditor();
     }
+  };
+
+  toggleComments = () => {
+    this.setState({ areCommentsOpen: !this.state.areCommentsOpen });
   };
 
   render() {
@@ -173,8 +177,13 @@ class CardModal extends Component {
               <CardBadges date={card.date} checkboxes={checkboxes} />
             )}
           </div>
+          <div id="toggle-comments-button" >
+          <button className="comment-show-button" onClick={this.toggleComments}>
+            Toggle comments
+          </button>
+          </div>
           <div id="comments-container">
-            <Comments showForm={this.props.isShowCommentForm} cardId={card._id} />
+            <Comments showForm={this.state.areCommentsOpen} cardId={card._id} />
           </div>
         </div>
 

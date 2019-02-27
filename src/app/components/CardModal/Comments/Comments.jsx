@@ -7,7 +7,7 @@ import CommentsList from "./CommentsList";
 class Comments extends Component {
   static propTypes = {
     showForm: PropTypes.bool.isRequired,
-    cardId: PropTypes.string.isRequired,
+    cardId: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -19,14 +19,14 @@ class Comments extends Component {
     const { cardId } = this.props;
     return (
       <div className="container">
-        {this.props.showForm && <CommentForm cardId={cardId}/> }
-        <CommentsList cardId={cardId}/>
+        {this.props.showForm && <CommentForm cardId={cardId} />}
+        {this.props.showForm && <CommentsList cardId={cardId} />}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   ...state
 });
 
