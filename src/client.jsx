@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import rootReducer from "./app/reducers";
 import persistMiddleware from "./app/middleware/persistMiddleware";
 import filterMiddleware from "./app/middleware/filterMiddleware";
+import historyMiddleware from "./app/middleware/historyMiddleware";
 import App from "./app/components/App";
 
 
@@ -17,7 +18,7 @@ delete window.PRELOADED_STATE;
 const store = createStore(
   rootReducer,
   preloadedState,
-  composeWithDevTools(applyMiddleware(persistMiddleware,filterMiddleware))
+  composeWithDevTools(applyMiddleware(persistMiddleware,filterMiddleware,historyMiddleware))
 );
 
 ReactDOM.hydrate(
