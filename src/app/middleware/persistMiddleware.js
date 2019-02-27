@@ -30,8 +30,6 @@ const persistMiddleware = store => next => action => {
       action.type !== "PUT_BOARD_ID_IN_REDUX" &&
       action.type !== "SET_CURRENT_CARD"
     ) {
-      if (action.type === "ADD_COMMENT") {
-      }
       // Transform the flattened board state structure into the tree-shaped structure that the db uses.
       const comment = new schema.Entity(
         "commentsById",

@@ -14,6 +14,7 @@ const App = ({ user, isGuest }) => {
     window.location.reload();
   })
 
+  
   // Serve different pages depending on if user is logged in or not
   if (user || isGuest) {
     //when user is connected registers socket to user for updates
