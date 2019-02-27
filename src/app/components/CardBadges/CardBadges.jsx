@@ -4,6 +4,7 @@ import format from "date-fns/format";
 import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import MdDoneAll from "react-icons/lib/fa/check-square-o";
+import FaUser from "react-icons/lib/fa/user";
 import "./CardBadges.scss";
 
 class CardBadges extends Component {
@@ -12,7 +13,9 @@ class CardBadges extends Component {
     checkboxes: PropTypes.shape({
       total: PropTypes.number.isRequired,
       checked: PropTypes.number.isRequired
-    }).isRequired
+    }).isRequired,
+    assignedToMe: PropTypes.bool,
+    assignedUserName: PropTypes.string
   };
 
   renderDueDate = () => {
@@ -46,7 +49,8 @@ class CardBadges extends Component {
 
     return (
       <div className="badge" style={{ background: dueDateColor }}>
-        <MdAlarm className="badge-icon" />&nbsp;
+        <MdAlarm className="badge-icon" />
+        &nbsp;
         {dueDateString}
       </div>
     );
@@ -63,8 +67,28 @@ class CardBadges extends Component {
         className="badge"
         style={{ background: checked === total ? "green" : "#444" }}
       >
-        <MdDoneAll className="badge-icon" />&nbsp;
+        <MdDoneAll className="badge-icon" />
+        &nbsp;
         {checked}/{total}
+      </div>
+    );
+  };
+
+  renderAssigned = () => {
+    const { assignedToMe, assignedUserName } = this.props;
+
+    if (!assignedUserName) {
+      return null;
+    }
+
+    return (
+      <div
+        className="badge"
+        style={{ background: assignedToMe ? "green" : "#444" }}
+      >
+        <FaUser className="badge-icon" />
+        &nbsp;
+        {assignedUserName}
       </div>
     );
   };
@@ -74,6 +98,7 @@ class CardBadges extends Component {
       <div className="card-badges">
         {this.renderDueDate()}
         {this.renderTaskProgress()}
+        {this.renderAssigned()}
       </div>
     );
   }

@@ -53,7 +53,7 @@ const api = db => {
 
   router.post("/userRegex", (req,res)=>{
     const {userSearchField} = req.body;
-    console.log(userSearchField);
+
     users.findOne({'name': {'$regex': userSearchField, '$options': 'i'}}).then(user=>{
       if(user){
         res.status(200).json(user.name);
