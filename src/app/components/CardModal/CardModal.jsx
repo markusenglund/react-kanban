@@ -158,7 +158,7 @@ class CardModal extends Component {
               background: card.color
             }}
           >
-            <Textarea
+            <Textarea 
               autoFocus
               useCacheForDOMMeasurements
               value={newText}
