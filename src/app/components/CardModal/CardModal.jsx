@@ -178,8 +178,7 @@ class CardModal extends Component {
             width: isThinDisplay ? "100%" : boundingRect.width,
             boxShadow: isTextareaFocused
               ? "0px 0px 3px 2px rgb(0, 180, 255)"
-              : null,
-            background: card.color
+              : null
           }}
         >
           <Textarea
