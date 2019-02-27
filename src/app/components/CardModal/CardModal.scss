@@ -11,6 +11,11 @@
   z-index: 3;
 }
 
+#main-container {
+  display: flex;
+  flex-direction: column;
+}
+
 #toggle-comments-button {
   margin-bottom: 8px;
   margin-top: 8px;
