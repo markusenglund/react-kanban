@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { DEFAULT_ROLE } from '../../../constants';
+import { loadBoardUsersData } from '../../actions/boardActions';
 
 import "./BoardTitle.scss";
 
@@ -10,7 +11,8 @@ class BoardUserAdd extends Component {
   static propTypes = {
     boardTitle: PropTypes.string.isRequired,
     boardId: PropTypes.string.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    users: PropTypes.array
   };
 
   constructor(props) {
@@ -46,7 +48,7 @@ class BoardUserAdd extends Component {
   };
 
   submitTitle = () => {
-    const { dispatch, boardId } = this.props;
+    const { dispatch, boardId, users } = this.props;
     const { userSearchField } = this.state;
     if (userSearchField === "" || userSearchField === "add user...") return;
     fetch("/api/userId", {
@@ -65,6 +67,9 @@ class BoardUserAdd extends Component {
                             userToAdd: {id: userId, role: DEFAULT_ROLE}
                         }
                       });
+                      const newUserIds = new Set([...users.map(user => user.id), userId]);
+                      
+                      loadBoardUsersData(dispatch, Array.from(newUserIds));
                   })
               }
           }
@@ -116,7 +121,8 @@ const mapStateToProps = (state, ownProps) => {
   const { boardId } = ownProps.match.params;
   return {
     boardTitle: state.boardsById[boardId].title,
-    boardId
+    boardId,
+    users: state.boardsById[boardId].users
   };
 };
 

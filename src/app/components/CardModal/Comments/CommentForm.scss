@@ -1,0 +1,47 @@
+@import "../../../variables.scss";
+
+#headline {
+  mix-blend-mode: screen;
+  color: white;
+}
+
+.comment-form-buttons {
+  margin-bottom: 8px;
+  margin-top: 8px;
+
+
+  button {
+    width: 120px;
+    height: 30px;
+    border: 0;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #bbb;
+  }
+
+  .comment-save-button {
+    align-items: flex-end;
+    color: white;
+    background: $success-button-color;
+  }
+
+  .comment-save-button:hover {
+    background: $success-button-color-hover;
+  }
+}
+
+#comment-input {
+  background-color: antiquewhite;
+  border-radius: 3px;
+}
+
+.modal-color-picker-wrapper {
+  position: relative;
+}
+

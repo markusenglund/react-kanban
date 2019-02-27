@@ -8,6 +8,8 @@ import List from "../List/List";
 import ListAdder from "../ListAdder/ListAdder";
 import Header from "../Header/Header";
 import BoardHeader from "../BoardHeader/BoardHeader";
+import { loadBoardUsersData } from "../../actions/boardActions";
+
 import "./Board.scss";
 import BoardMenu from "../BoardHeader/BoardMenu";
 
@@ -19,7 +21,8 @@ class Board extends Component {
     boardId: PropTypes.string.isRequired,
     boardTitle: PropTypes.string.isRequired,
     boardColor: PropTypes.string.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    boardUsers: PropTypes.array
   };
 
   constructor(props) {
@@ -32,11 +35,14 @@ class Board extends Component {
 
   // boardId is stored in the redux store so that it is available inside middleware
   componentDidMount = () => {
-    const { boardId, dispatch } = this.props;
+    const { boardId, dispatch, boardUsers } = this.props;
     dispatch({
       type: "PUT_BOARD_ID_IN_REDUX",
       payload: { boardId }
     });
+
+    const sharedUserIds = boardUsers.map(user => user.id);
+    loadBoardUsersData(dispatch, sharedUserIds);
   };
 
   handleDragEnd = ({ source, destination, type }) => {
@@ -185,7 +191,8 @@ const mapStateToProps = (state, ownProps) => {
     lists: board.lists.map(listId => state.listsById[listId]),
     boardTitle: board.title,
     boardColor: board.color,
-    boardId: board._id
+    boardId: board._id,
+    boardUsers: board.users
   };
 };
 

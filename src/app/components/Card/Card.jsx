@@ -14,12 +14,15 @@ class Card extends Component {
     card: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
-      color: PropTypes.string
+      color: PropTypes.string,
+      comments: PropTypes.array
     }).isRequired,
     listId: PropTypes.string.isRequired,
     isDraggingOver: PropTypes.bool.isRequired,
     index: PropTypes.number.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    assignedToMe: PropTypes.bool,
+    assignedUserName: PropTypes.string
   };
 
   constructor() {
@@ -41,6 +44,11 @@ class Card extends Component {
     } else if (tagName.toLowerCase() !== "a") {
       this.toggleCardEditor(event);
     }
+    const { dispatch } = this.props;
+    dispatch({
+      type: "SET_CURRENT_CARD",
+      payload: this.props.card._id
+    });
   };
 
   handleKeyDown = event => {
@@ -74,9 +82,10 @@ class Card extends Component {
   };
 
   render() {
-    const { card, index, listId, isDraggingOver } = this.props;
+    const { card, index, listId, isDraggingOver, assignedToMe, assignedUserName } = this.props;
     const { isModalOpen } = this.state;
     const checkboxes = findCheckboxes(card.text);
+
     return (
       <>
         <Draggable draggableId={card._id} index={index}>
@@ -113,8 +122,8 @@ class Card extends Component {
                   }}
                 />
                 {/* eslint-enable */}
-                {(card.date || checkboxes.total > 0) && (
-                  <CardBadges date={card.date} checkboxes={checkboxes} />
+                {(card.date || checkboxes.total > 0 || assignedUserName) && (
+                  <CardBadges date={card.date} checkboxes={checkboxes} assignedUserName={assignedUserName} assignedToMe={assignedToMe} />
                 )}
               </div>
               {/* Remove placeholder when not dragging over to reduce snapping */}
@@ -127,15 +136,25 @@ class Card extends Component {
           cardElement={this.ref}
           card={card}
           listId={listId}
+          isShowCommentForm
           toggleCardEditor={this.toggleCardEditor}
+          assignedUserName={assignedUserName}
+          assignedToMe={assignedToMe}
         />
       </>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  card: state.cardsById[ownProps.cardId]
-});
+const mapStateToProps = (state, ownProps) => {
+  const card = state.cardsById[ownProps.cardId];
+  const assignedUser = state.boardUsersData[card.assignedUserId] || {};
+
+  return {
+    card,
+    assignedUserName: assignedUser.name,
+    assignedToMe: assignedUser._id === state.user._id
+  }
+};
 
 export default connect(mapStateToProps)(Card);
