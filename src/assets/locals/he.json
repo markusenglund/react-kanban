@@ -19,5 +19,12 @@
     "Comments.comment": "הגב",
     "Comments.add_comment": "הוסף תגובה",
     "Comments.delete": "מחק",
-    "Comments.are_you_sure": "האם את/ה בטוח/ה?"
+    "Comments.are_you_sure": "האם את/ה בטוח/ה?",
+    "CardColors.not_immediate": "לא קריטי",
+    "CardColors.general": "כללי",
+    "CardColors.update": "עדכון",
+    "CardColors.bug": "תקלה",
+    "CardColors.help": "עזרה",
+    "CardColors.critical": "קריטי",
+    "SearchBar.placeholder": "חיפוש..."
 }

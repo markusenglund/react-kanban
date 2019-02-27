@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import FaTrash from "react-icons/lib/fa/trash";
 import FaUserPlus from "react-icons/lib/fa/user-plus";
-import {FaCheckSquare} from "react-icons/lib/fa";
+import { FaCheckSquare } from "react-icons/lib/fa";
 import { withTranslation } from "react-i18next";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
@@ -27,7 +27,11 @@ class CardOptions extends Component {
 
   constructor() {
     super();
-    this.state = { isCalendarOpen: false, isCheckOpen: false, isAssignOpen: false };
+    this.state = {
+      isCalendarOpen: false,
+      isCheckOpen: false,
+      isAssignOpen: false
+    };
   }
 
   deleteCard = () => {
@@ -67,7 +71,6 @@ class CardOptions extends Component {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
 
-
   toggleAssign = () => {
     this.setState({ isAssignOpen: !this.state.isAssignOpen });
   };
@@ -76,12 +79,15 @@ class CardOptions extends Component {
     this.setState({ isCheckOpen: !this.state.isCheckOpen });
   };
 
-  addCheckList = (e) => {
-    if (e.key === 'Enter') {
+  addCheckList = e => {
+    if (e.key === "Enter") {
       const { dispatch, card } = this.props;
       dispatch({
         type: "CHANGE_CARD_TEXT",
-        payload: { cardId: card._id, cardText: `${card.text} \n [ ] ${e.target.value}` }
+        payload: {
+          cardId: card._id,
+          cardText: `${card.text} \n [ ] ${e.target.value}`
+        }
       });
       e.target.value = "";
     }
@@ -113,6 +119,16 @@ class CardOptions extends Component {
         transform: "translateX(-50%)"
       }
     };
+
+    const colorsWithLabels = [
+      ["white", t("CardColors.not_immediate")],
+      ["#6df", t("CardColors.general")],
+      ["#6f6", t("CardColors.update")],
+      ["#ff6", t("CardColors.bug")],
+      ["#fa4", t("CardColors.help")],
+      ["#f66", t("CardColors.critical")]
+    ];
+    // ["white", "#6df", "#6f6", "#ff6", "#fa4", "#f66"]
     return (
       <div
         className="options-list"
@@ -153,16 +169,19 @@ class CardOptions extends Component {
                 onKeyDown={this.handleKeyDown}
               >
                 {/* eslint-enable */}
-                {["white", "#6df", "#6f6", "#ff6", "#fa4", "#f66"].map(
-                  color => (
+                {colorsWithLabels.map(colorLabel => {
+                  const [color, label] = colorLabel;
+                  return (
                     <button
                       key={color}
-                      style={{ background: color }}
+                      style={{ background: color, fontSize: 12 }}
                       className="color-picker-color"
                       onClick={() => this.changeColor(color)}
-                    />
-                  )
-                )}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
               </div>
             </ClickOutside>
           )}
@@ -197,7 +216,12 @@ class CardOptions extends Component {
           className="checkList-modal"
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
-          <input className="input" placeholder={t("CardOptions.check_list.placeholder")} onKeyPress={this.addCheckList} autoFocus/>
+          <input
+            className="input"
+            placeholder={t("CardOptions.check_list.placeholder")}
+            onKeyPress={this.addCheckList}
+            autoFocus
+          />
         </Modal>
         <Modal
           isOpen={isCalendarOpen}
@@ -219,10 +243,7 @@ class CardOptions extends Component {
           className="picker-modal"
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
-          <UserPicker
-            cardId={card._id}
-            toggleAssign={this.toggleAssign}
-          />
+          <UserPicker cardId={card._id} toggleAssign={this.toggleAssign} />
         </Modal>
       </div>
     );
