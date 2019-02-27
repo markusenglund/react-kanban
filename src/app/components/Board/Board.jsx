@@ -35,6 +35,7 @@ class Board extends Component {
 
   // boardId is stored in the redux store so that it is available inside middleware
   componentDidMount = () => {
+    document.getElementById("lists").scrollLeft = document.getElementById("lists").offsetWidth
     const { boardId, dispatch, boardUsers } = this.props;
     dispatch({
       type: "PUT_BOARD_ID_IN_REDUX",

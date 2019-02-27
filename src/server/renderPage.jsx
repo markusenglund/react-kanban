@@ -41,7 +41,7 @@ const renderPage = (req, res) => {
 
   const html = `
     <!DOCTYPE html>
-    <html>
+    <html style="width: 100vw;">
       <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -57,7 +57,8 @@ const renderPage = (req, res) => {
         <style>${css}</style>
         ${renderToString(headTags)}
       </head>
-      <body style="overflow-x: hidden">
+      <body dir="rtl" 
+      style="overflow-x: hidden">
         <div id="app">${appString}</div>
       </body>
       <script>

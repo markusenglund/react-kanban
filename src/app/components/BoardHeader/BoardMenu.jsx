@@ -19,13 +19,13 @@ class BoardMenu extends Component {
         this.refs.sideNav.style.transition = "1s"
         this.refs.sideNav.style.width = "339px";
         this.refs.sideNav.style.display = "block"
-        document.getElementById("lists").style.marginRight = "339px"
+        document.getElementById("lists").style.marginLeft = "339px"
         this.setState({close: false, open: true })
     };
 
     closeSideBar = () => {
         this.setState({open: false})
-        document.getElementById("lists").style.marginRight = "0px"
+        document.getElementById("lists").style.marginLeft = "0px"
         this.refs.sideNav.style.transition = "1s"
         this.refs.sideNav.style.width = "0px";
         this.refs.sideNav.addEventListener("transitionend", (event) => {
@@ -48,13 +48,13 @@ class BoardMenu extends Component {
             transition: "all 1s ease 0s",
             bottom: "0%",
             position: "absolute",
-            right: "0px",
+            left: "0px",
             top: "8%",
         }}
             ref="sideNav">
             <div>
                 <h3 style={{textAlign: "center", color: "black"}}>Menu</h3>
-                {this.state.open ? <FaAngleRight className="hamburger-button" style ={{position: "absolute", right:"0%", top: "1.5%", color: "black"}} onClick={this.closeSideBar}/> : null}
+                {this.state.open ? <FaAngleLeft className="hamburger-button" style ={{position: "absolute", right:"0%", top: "1.5%", color: "black"}} onClick={this.closeSideBar}/> : null}
             </div>
             <hr style={{
             margin: 0,
@@ -66,7 +66,7 @@ class BoardMenu extends Component {
             width: "100%"}}/>
             <UsersList/>
             </div>
-            {this.state.close ? <FaAngleLeft className="hamburger-button" style ={{position: "absolute", right:"0%", top: "9.5%", color: "black"}} onClick={this.handleSelection}/> : null}
+            {this.state.close ? <FaAngleRight className="hamburger-button" style ={{position: "absolute", left:"0%", top: "9.5%", color: "black"}} onClick={this.handleSelection}/> : null}
             </React.Fragment>
         )
     }
