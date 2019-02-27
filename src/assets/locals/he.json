@@ -11,5 +11,6 @@
     "Due-Date": "תאריך יעד",
     "CardOptions.assign": "שייך כרטיס",
     "CardOptions.check_list": "צֶ'ק לִיסְט",
-    "CardOptions.check_list.placeholder": "הזן פריט..."
+    "CardOptions.check_list.placeholder": "הזן פריט...",
+    "UserPicker.placeholder": "בחר משתמש..."
 }

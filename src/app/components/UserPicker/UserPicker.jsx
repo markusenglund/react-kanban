@@ -16,10 +16,14 @@ class UserPicker extends Component {
   constructor(props) {
     super(props);
     const { boardUsersData, assignedUserId } = this.props;
-    const chosenUser = {
-      value: boardUsersData[assignedUserId]._id,
-      label: boardUsersData[assignedUserId].name
-    };
+    let chosenUser = {};
+    if (boardUsersData[assignedUserId]) {
+      chosenUser = {
+        value: boardUsersData[assignedUserId]._id,
+        label: boardUsersData[assignedUserId].name
+      };
+    }
+
     this.state = {
       chosenUser
     };
@@ -27,10 +31,13 @@ class UserPicker extends Component {
 
   componentDidMount() {
     const { boardUsersData, assignedUserId } = this.props;
-    const chosenUser = {
-      value: boardUsersData[assignedUserId]._id,
-      label: boardUsersData[assignedUserId].name
-    };
+    let chosenUser = {};
+    if (boardUsersData[assignedUserId]) {
+      chosenUser = {
+        value: boardUsersData[assignedUserId]._id,
+        label: boardUsersData[assignedUserId].name
+      };
+    }
     this.setState({ chosenUser });
   }
 
@@ -53,7 +60,7 @@ class UserPicker extends Component {
   render() {
     const { toggleAssign, boardUsersData, t } = this.props;
     const { chosenUser } = this.state;
-    const usersList = Object.values(boardUsersData).map((userData, i) => ({
+    const usersList = Object.values(boardUsersData).map(userData => ({
       value: userData._id,
       label: userData.name
     }));
@@ -64,10 +71,10 @@ class UserPicker extends Component {
         <Select
           value={chosenUser}
           onChange={this.handleChange}
-          options={usersList}
+          options={[{ label: t("UserPicker.placeholder") }, ...usersList]}
           isSearchable={true}
           autoFocus={true}
-          placeholder={"Tesssss"}
+          placeholder={t("UserPicker.placeholder")}
         />
         <div className="user-picker-buttons">
           <button onClick={this.handleSave} className="user-picker-save-button">
