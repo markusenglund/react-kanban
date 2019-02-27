@@ -1,6 +1,3 @@
-import { denormalize, schema } from "normalizr";
-
-// Persist the board to the database after almost every action.
 const historyMiddleware = store => next => action => {
     next(action);
     const {

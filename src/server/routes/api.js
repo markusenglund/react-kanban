@@ -11,6 +11,7 @@ const api = db => {
   const boards = db.collection("boards");
   const users = db.collection("users");
   const history = db.collection("history");
+  const notifications = db.collection("notifications");
 
   // Replace the entire board every time the users modifies it in any way.
   // This solution sends more data than necessary, but cuts down on code and
@@ -61,6 +62,32 @@ const api = db => {
     .toArray()
     .then(histories=>{
       res.json(histories);
+    })
+  })
+
+  router.post("/notifications", (req,res)=>{
+      let {body:notification} = req; 
+      notifications.insert(notification).then(result=>{
+        res.status(200).send();
+      }).catch(err=>{
+        res.status(500).send('Error');
+      })
+  })
+
+  router.post("/notifications/getByUserId", (req,res)=>{
+    let {id} = req.body;
+    notifications
+    .find({ boardId: id })
+    .toArray()
+    .then(notifs=>{
+      res.json(notifs);
+    })
+  })
+
+  router.delete("/notifications", (req,res)=>{
+    const {_id} = body;
+    notifications.deleteOne({_id: _id}).then(result=>{
+      res.status(200).send();
     })
   })
 
