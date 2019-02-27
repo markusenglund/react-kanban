@@ -22,6 +22,7 @@ class CardModal extends Component {
       getBoundingClientRect: PropTypes.func.isRequired
     }),
     isOpen: PropTypes.bool.isRequired,
+    isShowCommentForm: PropTypes.bool.isRequired,
     toggleCardEditor: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired
   };
@@ -173,7 +174,7 @@ class CardModal extends Component {
             )}
           </div>
           <div id="comments-container">
-            <Comments cardId={card._id} />
+            <Comments showForm={this.props.isShowCommentForm} cardId={card._id} />
           </div>
         </div>
 

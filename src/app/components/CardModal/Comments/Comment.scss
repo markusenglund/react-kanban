@@ -58,22 +58,38 @@
 }
 
 #container {
-    background-color: bisque;
-    margin-top: 5px;
-    padding: 5px;
-    padding-top: 0px;
-    border-radius: 3px;
-    #header {
-        display: flex;
-        line-height: 0px;
-        #user {
-            flex: 1 1 0;
-            color: gray;
+    display: flex;
+    position: relative;
+    #delete-container {
+        width: 44px;
+        position: absolute;
+        left: 285px;
+        bottom: 50px;
+    }
+    
+    #comment-container {
+        flex: 6 0 0;
+        background-color: bisque;
+        margin-top: 5px;
+        padding: 5px;
+        padding-top: 0px;
+        border-radius: 3px;
+        #header {
+            display: flex;
+            line-height: 0px;
+            #user {
+                flex: 1 1 0;
+                color: gray;
+            }
+            #date {
+                text-align: end;
+                color: gray;
+                flex: 1 1 0;
+            }
         }
-        #date {
-            text-align: end;
-            color: gray;
-            flex: 1 1 0;
+        #comment-text {
+            overflow-wrap: break-word;
+            width: 265px;
         }
     }
 }

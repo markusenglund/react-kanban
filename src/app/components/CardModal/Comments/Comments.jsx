@@ -6,6 +6,7 @@ import CommentsList from "./CommentsList";
 
 class Comments extends Component {
   static propTypes = {
+    showForm: PropTypes.bool.isRequired,
     cardId: PropTypes.string.isRequired,
   };
 
@@ -18,7 +19,7 @@ class Comments extends Component {
     const { cardId } = this.props;
     return (
       <div className="container">
-        <CommentForm cardId={cardId}/>
+        {this.props.showForm && <CommentForm cardId={cardId}/> }
         <CommentsList cardId={cardId}/>
       </div>
     );

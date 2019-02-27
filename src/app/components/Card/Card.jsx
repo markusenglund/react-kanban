@@ -15,7 +15,7 @@ class Card extends Component {
       _id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
       color: PropTypes.string,
-      comments: PropTypes.array,
+      comments: PropTypes.array
     }).isRequired,
     listId: PropTypes.string.isRequired,
     isDraggingOver: PropTypes.bool.isRequired,
@@ -42,11 +42,11 @@ class Card extends Component {
     } else if (tagName.toLowerCase() !== "a") {
       this.toggleCardEditor(event);
     }
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     dispatch({
       type: "SET_CURRENT_CARD",
       payload: this.props.card._id
-    })
+    });
   };
 
   handleKeyDown = event => {
@@ -133,6 +133,7 @@ class Card extends Component {
           cardElement={this.ref}
           card={card}
           listId={listId}
+          isShowCommentForm
           toggleCardEditor={this.toggleCardEditor}
         />
       </>
