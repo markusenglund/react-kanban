@@ -47,7 +47,6 @@ const configurePassport = db => {
   passport.use(new SamlStrategy(
     samlConfig,
     (profile, done)=>{
-      console.log(profile);
       profile = {
         id: profile[profileExtractor.id],
         firstName: profile[profileExtractor.firstName],
