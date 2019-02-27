@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import FaTrash from "react-icons/lib/fa/trash";
+import FaUserPlus from "react-icons/lib/fa/user-plus";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import ClickOutside from "../ClickOutside/ClickOutside";
+import UserPicker from "../UserPicker/UserPicker";
 import colorIcon from "../../../assets/images/color-icon.png";
 import "./CardOptions.scss";
 
@@ -23,7 +25,7 @@ class CardOptions extends Component {
 
   constructor() {
     super();
-    this.state = { isCalendarOpen: false };
+    this.state = { isCalendarOpen: false, isAssignOpen: false };
   }
 
   deleteCard = () => {
@@ -63,6 +65,10 @@ class CardOptions extends Component {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
 
+  toggleAssign = () => {
+    this.setState({ isAssignOpen: !this.state.isAssignOpen });
+  };
+
   render() {
     const {
       isCardNearRightBorder,
@@ -72,7 +78,7 @@ class CardOptions extends Component {
       isThinDisplay,
       boundingRect
     } = this.props;
-    const { isCalendarOpen } = this.state;
+    const { isCalendarOpen, isAssignOpen } = this.state;
 
     const calendarStyle = {
       content: {
@@ -99,7 +105,8 @@ class CardOptions extends Component {
           <button onClick={this.deleteCard} className="options-list-button">
             <div className="modal-icon">
               <FaTrash />
-            </div>&nbsp;Delete
+            </div>
+            &nbsp;Delete
           </button>
         </div>
         <div className="modal-color-picker-wrapper">
@@ -145,20 +152,41 @@ class CardOptions extends Component {
           <button onClick={this.toggleCalendar} className="options-list-button">
             <div className="modal-icon">
               <MdAlarm />
-            </div>&nbsp;Due date
+            </div>
+            &nbsp;Due date
+          </button>
+        </div>
+        <div>
+          <button onClick={this.toggleAssign} className="options-list-button">
+            <div className="modal-icon">
+              <FaUserPlus />
+            </div>
+            &nbsp;Assign
           </button>
         </div>
         <Modal
           isOpen={isCalendarOpen}
           onRequestClose={this.toggleCalendar}
-          overlayClassName="calendar-underlay"
-          className="calendar-modal"
+          overlayClassName="modal-underlay"
+          className="picker-modal"
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
           <Calendar
             cardId={card._id}
             date={card.date}
             toggleCalendar={this.toggleCalendar}
+          />
+        </Modal>
+        <Modal
+          isOpen={isAssignOpen}
+          onRequestClose={this.toggleAssign}
+          overlayClassName="modal-underlay"
+          className="picker-modal"
+          style={isThinDisplay ? calendarMobileStyle : calendarStyle}
+        >
+          <UserPicker
+            cardId={card._id}
+            toggleAssign={this.toggleAssign}
           />
         </Modal>
       </div>

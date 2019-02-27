@@ -1,0 +1,40 @@
+@import "../../variables.scss";
+
+.user-picker {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  background: white;
+  padding: 5px;
+}
+
+.user-picker-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 8px;
+  margin-top: 8px;
+
+  button {
+    width: 120px;
+    height: 30px;
+    border: 0;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #bbb;
+  }
+
+  .user-picker-save-button {
+    color: white;
+    background: $success-button-color;
+  }
+
+  .user-picker-save-button:hover {
+    background: $success-button-color-hover;
+  }
+}
