@@ -20,11 +20,11 @@
     "Comments.add_comment": "הוסף תגובה",
     "Comments.delete": "מחק",
     "Comments.are_you_sure": "האם את/ה בטוח/ה?",
-    "CardColors.inprogress": "בטיפול",
-    "CardColors.general": "כללי",
-    "CardColors.tracking": "מעקב",
-    "CardColors.bug": "תקלה",
-    "CardColors.help": "עזרה",
-    "CardColors.critical": "קריטי",
+    "Labels.inprogress": "בטיפול",
+    "Labels.general": "כללי",
+    "Labels.tracking": "מעקב",
+    "Labels.bug": "תקלה",
+    "Labels.help": "עזרה",
+    "Labels.critical": "קריטי",
     "SearchBar.placeholder": "חיפוש..."
 }

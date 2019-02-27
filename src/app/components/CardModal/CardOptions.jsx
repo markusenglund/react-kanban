@@ -12,6 +12,7 @@ import ClickOutside from "../ClickOutside/ClickOutside";
 import UserPicker from "../UserPicker/UserPicker";
 import colorIcon from "../../../assets/images/color-icon.png";
 import "./CardOptions.scss";
+import { colorsWithLabels } from "../utils";
 
 class CardOptions extends Component {
   static propTypes = {
@@ -124,15 +125,6 @@ class CardOptions extends Component {
       }
     };
 
-    const colorsWithLabels = [
-      ["#89609e", "inprogress"],
-      ["#00c2e0", "general"],
-      ["#61bd4f", "tracking"],
-      ["#f2d600", "bug"],
-      ["#ff9f1a", "help"],
-      ["#eb5a46", "critical"]
-    ];
-
     return (
       <div
         className="options-list"
@@ -174,18 +166,22 @@ class CardOptions extends Component {
               >
                 {/* eslint-enable */}
                 {colorsWithLabels.map(colorLabel => {
-                  const [color, label] = colorLabel;
+                  const [label, color] = colorLabel;
                   const labelSelected = this.props.card.labels.includes(label);
-                  const opacity = labelSelected ? 0.5 : 1
+                  const opacity = labelSelected ? 0.5 : 1;
 
                   return (
                     <button
                       key={color}
-                      style={{ background: color, fontSize: 10, opacity: opacity }}
+                      style={{
+                        background: color,
+                        fontSize: 10,
+                        opacity: opacity
+                      }}
                       className="color-picker-color"
                       onClick={() => this.addLabel(label)}
                     >
-                      {t(`CardColors.${label}`)}
+                      {t(`Labels.${label}`)}
                     </button>
                   );
                 })}
