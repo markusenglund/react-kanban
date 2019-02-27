@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { withTranslation } from "react-i18next";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
@@ -33,7 +34,7 @@ class Comment extends Component {
 
   render() {
     moment.locale('he');
-    const { text, user, date } = this.props;
+    const { text, user, date, t } = this.props;
     return (
       <div id="container">
         <div id="comment-container">
@@ -56,8 +57,8 @@ class Comment extends Component {
               <FaTrash />
             </Button>
             <Menu className="delete-comment-menu">
-              <div className="delete-comment-header">Are you sure?</div>
-              <MenuItem className="delete-comment-confirm">Delete</MenuItem>
+              <div className="delete-comment-header">{t("Comments.are_you_sure")}</div>
+              <MenuItem className="delete-comment-confirm">{t("Comments.delete")}</MenuItem>
             </Menu>
           </Wrapper>
         </div>
@@ -66,4 +67,4 @@ class Comment extends Component {
   }
 }
 
-export default connect()(Comment);
+export default connect()(withTranslation()(Comment));

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
@@ -93,6 +94,7 @@ class CardModal extends Component {
   render() {
     const { newText, isColorPickerOpen, isTextareaFocused } = this.state;
     const {
+      t,
       cardElement,
       card,
       listId,
@@ -202,7 +204,7 @@ class CardModal extends Component {
         </div>
         <div id="toggle-comments-button">
           <button className="comment-show-button" onClick={this.toggleComments}>
-            Toggle comments
+          {t("Comments.toggle")}
           </button>
         </div>
         <div id="comments-container">
@@ -215,4 +217,4 @@ class CardModal extends Component {
   }
 }
 
-export default connect()(CardModal);
+export default connect()(withTranslation()(CardModal));

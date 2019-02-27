@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import shortid from 'shortid';
+import shortid from "shortid";
 import "./CommentForm.scss";
 
 class CommentForm extends Component {
@@ -48,10 +49,11 @@ class CommentForm extends Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <div className="container">
         <textarea
-          placeholder="Add comment"
+          placeholder= {t("Comments.add_comment")}
           value={this.state.commentText}
           onChange={this.textChanged}
           onKeyDown={this.handleKeyDown}
@@ -60,7 +62,7 @@ class CommentForm extends Component {
         />
         <div className="comment-form-buttons">
           <button onClick={this.handleSave} className="comment-save-button">
-            Comment
+            {t("Comments.comment")}
           </button>
         </div>
       </div>
@@ -72,4 +74,4 @@ const mapStateToProps = state => ({
   ...state
 });
 
-export default connect(mapStateToProps)(CommentForm);
+export default connect(mapStateToProps)(withTranslation()(CommentForm));
