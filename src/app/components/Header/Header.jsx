@@ -7,14 +7,15 @@ import FaSignOut from "react-icons/lib/fa/sign-out";
 import FaSignIn from "react-icons/lib/fa/sign-in";
 import kanbanLogo from "../../../assets/images/kanban-logo.svg";
 import "./Header.scss";
+import { withTranslation } from 'react-i18next';
 
 class Header extends Component {
   static propTypes = { user: PropTypes.object };
-
+  
   render = () => {
     const { user } = this.props;
-    return (
-      <header>
+    const { t, i18n } = this.props;
+    return (<header>
         <Link to="/" className="header-title">
           <img src={kanbanLogo} alt="React Kanban logo" />
           &nbsp;AmanBoard 2
@@ -28,12 +29,12 @@ class Header extends Component {
           {user ? (
             <a className="signout-link" href="/auth/signout">
               <FaSignOut className="signout-icon" />
-              &nbsp;Sign out
+              &nbsp; {t('Sign-out')}
             </a>
           ) : (
             <a className="signout-link" href="/">
               <FaSignIn className="signout-icon" />
-              &nbsp;Sign in
+              &nbsp;{t('Sign-in')}
             </a>
           )}
         </div>
@@ -44,4 +45,4 @@ class Header extends Component {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withTranslation()(Header));
