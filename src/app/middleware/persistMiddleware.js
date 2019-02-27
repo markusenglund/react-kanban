@@ -25,7 +25,7 @@ const persistMiddleware = store => next => action => {
       })
       // All action-types that are not DELETE_BOARD or PUT_BOARD_ID_IN_REDUX are currently modifying a board in a way that should
       // be persisted to db. If other types of actions are added, this logic will get unwieldy.
-    } else if (action.type !== "PUT_BOARD_ID_IN_REDUX") {
+    } else if (!['PUT_BOARD_ID_IN_REDUX', 'UPDATE_FILTER','CHANGE_CARD_FILTER', 'LOAD_BOARD_USERS_DATA'].includes(action.type)) {
       // Transform the flattened board state structure into the tree-shaped structure that the db uses.
       const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
       const list = new schema.Entity(

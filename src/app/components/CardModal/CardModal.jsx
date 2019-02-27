@@ -22,7 +22,9 @@ class CardModal extends Component {
     }),
     isOpen: PropTypes.bool.isRequired,
     toggleCardEditor: PropTypes.func.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    assignedToMe: PropTypes.bool,
+    assignedUserName: PropTypes.string
   };
 
   constructor(props) {
@@ -84,7 +86,7 @@ class CardModal extends Component {
 
   render() {
     const { newText, isColorPickerOpen, isTextareaFocused } = this.state;
-    const { cardElement, card, listId, isOpen } = this.props;
+    const { cardElement, card, listId, isOpen, assignedToMe, assignedUserName } = this.props;
     if (!cardElement) {
       return null;
     }
@@ -166,8 +168,8 @@ class CardModal extends Component {
             onFocus={() => this.setState({ isTextareaFocused: true })}
             onBlur={() => this.setState({ isTextareaFocused: false })}
           />
-          {(card.date || checkboxes.total > 0) && (
-            <CardBadges date={card.date} checkboxes={checkboxes} />
+          {(card.date || checkboxes.total > 0 || assignedUserName) && (
+            <CardBadges date={card.date} checkboxes={checkboxes} assignedUserName={assignedUserName} assignedToMe={assignedToMe} />
           )}
         </div>
         <CardOptions

@@ -31,6 +31,15 @@ header {
   background: $transparent-pink;
 }
 
+.header-left-side {
+  display: inline-flex;
+  align-items: center;
+}
+
+.header-search-bar {
+  margin-left: 10px;
+}
+
 .header-title {
   display: inline-flex;
   align-items: center;

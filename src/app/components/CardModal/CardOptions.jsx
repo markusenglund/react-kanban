@@ -3,9 +3,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import FaTrash from "react-icons/lib/fa/trash";
+import FaUserPlus from "react-icons/lib/fa/user-plus";
+import {FaCheckSquare} from "react-icons/lib/fa";
+import { withTranslation } from "react-i18next";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import ClickOutside from "../ClickOutside/ClickOutside";
+import UserPicker from "../UserPicker/UserPicker";
 import colorIcon from "../../../assets/images/color-icon.png";
 import "./CardOptions.scss";
 
@@ -23,7 +27,7 @@ class CardOptions extends Component {
 
   constructor() {
     super();
-    this.state = { isCalendarOpen: false };
+    this.state = { isCalendarOpen: false, isCheckOpen: false, isAssignOpen: false };
   }
 
   deleteCard = () => {
@@ -63,6 +67,25 @@ class CardOptions extends Component {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
 
+
+  toggleAssign = () => {
+    this.setState({ isAssignOpen: !this.state.isAssignOpen });
+  };
+
+  toggleCheck = () => {
+    this.setState({ isCheckOpen: !this.state.isCheckOpen });
+  };
+
+  addCheckList = (e) => {
+    if (e.key === 'Enter') {
+      const { dispatch, card } = this.props;
+      dispatch({
+        type: "CHANGE_CARD_TEXT",
+        payload: { cardId: card._id, cardText: `${card.text} \n [ ] ${e.target.value}` }
+      });
+      e.target.value = "";
+    }
+  };
   render() {
     const {
       isCardNearRightBorder,
@@ -70,9 +93,11 @@ class CardOptions extends Component {
       toggleColorPicker,
       card,
       isThinDisplay,
-      boundingRect
+      boundingRect,
+      t
     } = this.props;
-    const { isCalendarOpen } = this.state;
+
+    const { isCalendarOpen, isCheckOpen, isAssignOpen } = this.state;
 
     const calendarStyle = {
       content: {
@@ -99,7 +124,8 @@ class CardOptions extends Component {
           <button onClick={this.deleteCard} className="options-list-button">
             <div className="modal-icon">
               <FaTrash />
-            </div>&nbsp;Delete
+            </div>
+            &nbsp;{t("Delete")}
           </button>
         </div>
         <div className="modal-color-picker-wrapper">
@@ -114,7 +140,7 @@ class CardOptions extends Component {
             aria-expanded={isColorPickerOpen}
           >
             <img src={colorIcon} alt="colorwheel" className="modal-icon" />
-            &nbsp;Color
+            &nbsp;{t("Color")}
           </button>
           {isColorPickerOpen && (
             <ClickOutside
@@ -145,14 +171,39 @@ class CardOptions extends Component {
           <button onClick={this.toggleCalendar} className="options-list-button">
             <div className="modal-icon">
               <MdAlarm />
-            </div>&nbsp;Due date
+            </div>
+            &nbsp;{t("Due-Date")}
+          </button>
+        </div>
+        <div>
+          <button onClick={this.toggleAssign} className="options-list-button">
+            <div className="modal-icon">
+              <FaUserPlus />
+            </div>
+            &nbsp;{t("CardOptions.assign")}
+          </button>
+        </div>
+        <div>
+          <button onClick={this.toggleCheck} className="options-list-button">
+            <div className="modal-icon">
+              <FaCheckSquare />
+            </div>&nbsp;{t("CardOptions.check_list")}
           </button>
         </div>
         <Modal
+          isOpen={isCheckOpen}
+          onRequestClose={this.toggleCheck}
+          overlayClassName="checkList-underlay"
+          className="checkList-modal"
+          style={isThinDisplay ? calendarMobileStyle : calendarStyle}
+        >
+          <input className="input" placeholder={t("CardOptions.check_list.placeholder")} onKeyPress={this.addCheckList} autoFocus/>
+        </Modal>
+        <Modal
           isOpen={isCalendarOpen}
           onRequestClose={this.toggleCalendar}
-          overlayClassName="calendar-underlay"
-          className="calendar-modal"
+          overlayClassName="modal-underlay"
+          className="picker-modal"
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
           <Calendar
@@ -161,9 +212,21 @@ class CardOptions extends Component {
             toggleCalendar={this.toggleCalendar}
           />
         </Modal>
+        <Modal
+          isOpen={isAssignOpen}
+          onRequestClose={this.toggleAssign}
+          overlayClassName="modal-underlay"
+          className="picker-modal"
+          style={isThinDisplay ? calendarMobileStyle : calendarStyle}
+        >
+          <UserPicker
+            cardId={card._id}
+            toggleAssign={this.toggleAssign}
+          />
+        </Modal>
       </div>
     );
   }
 }
 
-export default connect()(CardOptions);
+export default connect()(withTranslation()(CardOptions));

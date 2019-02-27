@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import slugify from "slugify";
 import shortid from "shortid";
 import ClickOutside from "../ClickOutside/ClickOutside";
+import { withTranslation } from 'react-i18next';
 
 class BoardAdder extends Component {
   static propTypes = {
@@ -56,6 +57,7 @@ class BoardAdder extends Component {
 
   render = () => {
     const { isOpen, title } = this.state;
+    const { t, i18n } = this.props;
     return isOpen ? (
       <ClickOutside handleClickOutside={this.toggleOpen}>
         <form onSubmit={this.handleSubmit} className="board-adder">
@@ -78,7 +80,7 @@ class BoardAdder extends Component {
       </ClickOutside>
     ) : (
       <button onClick={this.toggleOpen} className="add-board-button">
-        Add a new board...
+        {t('Add-new-board')}
       </button>
     );
   };
@@ -88,4 +90,4 @@ const mapStateToProps = state => ({
   userId: state.user ? state.user._id : "guest"
 });
 
-export default connect(mapStateToProps)(BoardAdder);
+export default connect(mapStateToProps)(withTranslation()(BoardAdder));
