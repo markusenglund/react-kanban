@@ -1,5 +1,7 @@
+@import "../../variables.scss";
+
 .modal-underlay {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
@@ -7,6 +9,41 @@
   background: rgba(0, 0, 0, 0.6);
   opacity: 0;
   z-index: 3;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#toggle-comments-button {
+  margin-bottom: 8px;
+  margin-top: 8px;
+
+  button {
+    width: 140px;
+    height: 30px;
+    border: 0;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #bbb;
+  }
+
+  .comment-show-button {
+    align-items: flex-end;
+    color: white;
+    background: $success-button-color;
+  }
+
+  .comment-show-button:hover {
+    background: $success-button-color-hover;
+  }
 }
 
 .ReactModal__Overlay--after-open {
