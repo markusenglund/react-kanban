@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
@@ -31,13 +32,14 @@ class Comment extends Component {
   };
 
   render() {
+    moment.locale('he');
     const { text, user, date } = this.props;
     return (
       <div id="container">
         <div id="comment-container">
           <div id="header">
             <p id="user">{user}</p>
-            <p id="date">{new Date(date).toLocaleDateString("en-GB")}</p>
+            <p id="date">{moment(new Date(date)).fromNow()}</p>
           </div>
           <div id="comment-text"
             dangerouslySetInnerHTML={{
