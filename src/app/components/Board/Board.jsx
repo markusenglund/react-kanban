@@ -155,7 +155,7 @@ class Board extends Component {
                 direction="horizontal"
               >
                 {provided => (
-                  <div className="lists" ref={provided.innerRef}>
+                  <div className="lists" ref={provided.innerRef} id="lists">
                     {lists.map((list, index) => (
                       <List
                         list={list}

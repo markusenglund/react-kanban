@@ -57,7 +57,7 @@ const renderPage = (req, res) => {
         <style>${css}</style>
         ${renderToString(headTags)}
       </head>
-      <body>
+      <body style="overflow-x: hidden">
         <div id="app">${appString}</div>
       </body>
       <script>

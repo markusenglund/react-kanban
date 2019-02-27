@@ -17,28 +17,44 @@ class BoardMenu extends Component {
     handleSelection = () => {
         this.setState({close: false})
         this.refs.sideNav.style.transition = "1s"
-        this.refs.sideNav.style.flex = "1 1 1%";
+        this.refs.sideNav.style.width = "339px";
+        this.refs.sideNav.style.display = "block"
+        document.getElementById("lists").style.marginRight = "339px"
+        this.setState({close: false, open: true })
     };
 
     closeSideBar = () => {
         this.setState({open: false})
+        document.getElementById("lists").style.marginRight = "0px"
         this.refs.sideNav.style.transition = "1s"
-        this.refs.sideNav.style.flex = "0 0 0%";
+        this.refs.sideNav.style.width = "0px";
         this.refs.sideNav.addEventListener("transitionend", (event) => {
-            this.setState({close: event.currentTarget.style.flex == "0 0 0%" ? true : false, open: event.currentTarget.style.flex != "0 0 0%" ? true : false})
+            if(event.currentTarget.style.width == "0px") {
+                event.currentTarget.style.display = "none"
+                this.setState({close: true , open: false})
+            } else {
+                event.currentTarget.style.display = "block"
+                this.setState({close: false, open: true })
+            }
         });
     }
     
     render() {
         return(
+            <React.Fragment>
             <div style={{backgroundColor: "#f5f6f7",
-            width: "100%",
-            flex:" 1%"}}
+            width: "339px",
+            backgroundColor: "rgb(245, 246, 247)",
+            transition: "all 1s ease 0s",
+            bottom: "0%",
+            position: "absolute",
+            right: "0px",
+            top: "8%",
+        }}
             ref="sideNav">
             <div>
                 <h3 style={{textAlign: "center", color: "black"}}>Menu</h3>
-                {this.state.open ? <FaAngleRight className="hamburger-button" style ={{position: "absolute", right:"0%", top: "10%", color: "black"}} onClick={this.closeSideBar}/> : null}
-                {this.state.close ? <FaAngleLeft className="hamburger-button" style ={{position: "absolute", right:"3%", top: "9%", color: "black"}} onClick={this.handleSelection}/> : null}
+                {this.state.open ? <FaAngleRight className="hamburger-button" style ={{position: "absolute", right:"0%", top: "1.5%", color: "black"}} onClick={this.closeSideBar}/> : null}
             </div>
             <hr style={{
             margin: 0,
@@ -50,6 +66,8 @@ class BoardMenu extends Component {
             width: "100%"}}/>
             <UsersList/>
             </div>
+            {this.state.close ? <FaAngleLeft className="hamburger-button" style ={{position: "absolute", right:"0%", top: "9.5%", color: "black"}} onClick={this.handleSelection}/> : null}
+            </React.Fragment>
         )
     }
 }
