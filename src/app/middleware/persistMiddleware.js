@@ -66,8 +66,6 @@ const persistMiddleware = store => next => action => {
         body: JSON.stringify(boardData),
         headers: { "Content-Type": "application/json" },
         credentials: "include"
-      }).then(res => {
-        socket.emit("change", { boardID: boardId, userID: user["_id"] });
       });
     }
   }
