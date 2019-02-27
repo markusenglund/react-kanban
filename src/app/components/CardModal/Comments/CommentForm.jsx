@@ -50,8 +50,8 @@ class CommentForm extends Component {
   render() {
     return (
       <div className="container">
-        <p id="headline">Add comment</p>
         <textarea
+          placeholder="Add comment"
           value={this.state.commentText}
           onChange={this.textChanged}
           onKeyDown={this.handleKeyDown}
