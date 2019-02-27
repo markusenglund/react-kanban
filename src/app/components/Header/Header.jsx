@@ -24,7 +24,7 @@ class Header extends Component {
         <div className="header-left-side">
           <Link to="/" className="header-title">
             <img src={kanbanLogo} alt="React Kanban logo" />
-            &nbsp;AmanBoard 2
+            &nbsp;AmanBoard 2.0
           </Link>
           <div className="header-search-bar">
             <SearchBar />

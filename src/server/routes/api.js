@@ -10,6 +10,7 @@ const api = db => {
   const router = Router();
   const boards = db.collection("boards");
   const users = db.collection("users");
+  const history = db.collection("history");
 
   // Replace the entire board every time the users modifies it in any way.
   // This solution sends more data than necessary, but cuts down on code and
@@ -43,6 +44,25 @@ const api = db => {
         }
       });
   });
+
+  router.post("/history", (req,res)=>{
+    let {body:historyObj} = req; 
+    history.insert(historyObj).then(result=>{
+      res.status(200).send();
+    }).catch(err=>{
+      res.status(500).send('Error');
+    })
+  })
+
+  router.post("/history/getByBoardId", (req,res)=>{
+    let {ids} = req.body;
+    history
+    .find({ boardId: { $in: ids || [] } }, '-_id')
+    .toArray()
+    .then(histories=>{
+      res.json(histories);
+    })
+  })
 
   router.delete("/board", (req, res) => {
     const { boardId } = req.body;
