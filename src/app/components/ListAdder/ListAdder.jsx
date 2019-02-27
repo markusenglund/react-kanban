@@ -19,7 +19,7 @@ class ListAdder extends Component {
     };
   }
   handleFocus = () => {
-    // document.getElementById("lists").scrollLeft -= 400
+    document.getElementById("lists").scrollLeft -= 400
   }
   handleBlur = () => {
     this.setState({ isOpen: false });
