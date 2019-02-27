@@ -9,6 +9,7 @@ import ListAdder from "../ListAdder/ListAdder";
 import Header from "../Header/Header";
 import BoardHeader from "../BoardHeader/BoardHeader";
 import { loadBoardUsersData } from "../../actions/boardActions";
+
 import "./Board.scss";
 
 class Board extends Component {
