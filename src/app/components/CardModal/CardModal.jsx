@@ -86,7 +86,14 @@ class CardModal extends Component {
 
   render() {
     const { newText, isColorPickerOpen, isTextareaFocused } = this.state;
-    const { cardElement, card, listId, isOpen, assignedToMe, assignedUserName } = this.props;
+    const {
+      cardElement,
+      card,
+      listId,
+      isOpen,
+      assignedToMe,
+      assignedUserName
+    } = this.props;
     if (!cardElement) {
       return null;
     }
@@ -146,6 +153,15 @@ class CardModal extends Component {
         includeDefaultStyles={false}
         onClick={this.handleRequestClose}
       >
+        <CardOptions
+          isColorPickerOpen={isColorPickerOpen}
+          card={card}
+          listId={listId}
+          boundingRect={boundingRect}
+          isCardNearRightBorder={isCardNearRightBorder}
+          isThinDisplay={isThinDisplay}
+          toggleColorPicker={this.toggleColorPicker}
+        />
         <div
           className="modal-textarea-wrapper"
           style={{
@@ -169,18 +185,14 @@ class CardModal extends Component {
             onBlur={() => this.setState({ isTextareaFocused: false })}
           />
           {(card.date || checkboxes.total > 0 || assignedUserName) && (
-            <CardBadges date={card.date} checkboxes={checkboxes} assignedUserName={assignedUserName} assignedToMe={assignedToMe} />
+            <CardBadges
+              date={card.date}
+              checkboxes={checkboxes}
+              assignedUserName={assignedUserName}
+              assignedToMe={assignedToMe}
+            />
           )}
         </div>
-        <CardOptions
-          isColorPickerOpen={isColorPickerOpen}
-          card={card}
-          listId={listId}
-          boundingRect={boundingRect}
-          isCardNearRightBorder={isCardNearRightBorder}
-          isThinDisplay={isThinDisplay}
-          toggleColorPicker={this.toggleColorPicker}
-        />
       </Modal>
     );
   }
