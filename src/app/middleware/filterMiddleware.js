@@ -14,7 +14,7 @@ const filterMiddleware = store => next => action => {
             let matchingCardsById = {};
 
             Object.keys(cardsById).forEach(cardId => {
-              if (cardsById[cardId].text.toLowerCase().includes(currFilter.toLowerCase())) {
+              if ((cardsById[cardId].text || '').toLowerCase().includes(currFilter.toLowerCase())) {
                 matchingCardsById[cardId] = cardsById[cardId];
               }
             });
