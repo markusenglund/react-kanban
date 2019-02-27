@@ -121,14 +121,14 @@ class CardOptions extends Component {
     };
 
     const colorsWithLabels = [
-      ["white", t("CardColors.not_immediate")],
-      ["#6df", t("CardColors.general")],
-      ["#6f6", t("CardColors.update")],
-      ["#ff6", t("CardColors.bug")],
-      ["#fa4", t("CardColors.help")],
-      ["#f66", t("CardColors.critical")]
+      ["#89609e", t("CardColors.inprogress")],
+      ["#00c2e0", t("CardColors.general")],
+      ["#61bd4f", t("CardColors.tracking")],
+      ["#f2d600", t("CardColors.bug")],
+      ["#ff9f1a", t("CardColors.help")],
+      ["#eb5a46", t("CardColors.critical")]
     ];
-    // ["white", "#6df", "#6f6", "#ff6", "#fa4", "#f66"]
+
     return (
       <div
         className="options-list"
@@ -174,7 +174,7 @@ class CardOptions extends Component {
                   return (
                     <button
                       key={color}
-                      style={{ background: color, fontSize: 12 }}
+                      style={{ background: color, fontSize: 10 }}
                       className="color-picker-color"
                       onClick={() => this.changeColor(color)}
                     >
