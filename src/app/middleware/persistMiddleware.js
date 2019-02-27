@@ -9,10 +9,9 @@ const persistMiddleware = store => next => action => {
     boardsById,
     listsById,
     cardsById,
+    commentsById,
     currentBoardId: boardId
   } = store.getState();
-
-
 
   // Nothing is persisted for guest users
   if (user) {
@@ -22,14 +21,28 @@ const persistMiddleware = store => next => action => {
         body: JSON.stringify({ boardId }),
         headers: { "Content-Type": "application/json" },
         credentials: "include"
-      }).then(res=>{
-        socket.emit('change', {boardID:boardId, userID: user["_id"]});
-      })
+      }).then(res => {
+        socket.emit("change", { boardID: boardId, userID: user["_id"] });
+      });
       // All action-types that are not DELETE_BOARD or PUT_BOARD_ID_IN_REDUX are currently modifying a board in a way that should
       // be persisted to db. If other types of actions are added, this logic will get unwieldy.
-    } else if (action.type !== "PUT_BOARD_ID_IN_REDUX") {
+    } else if (
+      action.type !== "PUT_BOARD_ID_IN_REDUX" &&
+      action.type !== "SET_CURRENT_CARD"
+    ) {
+      if (action.type === "ADD_COMMENT") {
+      }
       // Transform the flattened board state structure into the tree-shaped structure that the db uses.
-      const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
+      const comment = new schema.Entity(
+        "commentsById",
+        {},
+        { idAttribute: "_id" }
+      );
+      const card = new schema.Entity(
+        "cardsById",
+        { comments: [comment] },
+        { idAttribute: "_id" }
+      );
       const list = new schema.Entity(
         "listsById",
         { cards: [card] },
@@ -40,7 +53,7 @@ const persistMiddleware = store => next => action => {
         { lists: [list] },
         { idAttribute: "_id" }
       );
-      const entities = { cardsById, listsById, boardsById };
+      const entities = { commentsById, cardsById, listsById, boardsById };
 
       const boardData = denormalize(boardId, board, entities);
 
@@ -50,9 +63,9 @@ const persistMiddleware = store => next => action => {
         body: JSON.stringify(boardData),
         headers: { "Content-Type": "application/json" },
         credentials: "include"
-      }).then(res=>{
-        socket.emit('change', {boardID:boardId, userID: user["_id"]});
-      })
+      }).then(res => {
+        socket.emit("change", { boardID: boardId, userID: user["_id"] });
+      });
     }
   }
 };

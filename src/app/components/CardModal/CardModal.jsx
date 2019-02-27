@@ -5,6 +5,7 @@ import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
 import CardBadges from "../CardBadges/CardBadges";
 import CardOptions from "./CardOptions";
+import Comments from "./Comments/Comments";
 import { findCheckboxes } from "../utils";
 import "./CardModal.scss";
 
@@ -14,7 +15,7 @@ class CardModal extends Component {
       text: PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
       date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-      color: PropTypes.string
+      color: PropTypes.string,
     }).isRequired,
     listId: PropTypes.string.isRequired,
     cardElement: PropTypes.shape({
@@ -144,32 +145,38 @@ class CardModal extends Component {
         includeDefaultStyles={false}
         onClick={this.handleRequestClose}
       >
-        <div
-          className="modal-textarea-wrapper"
-          style={{
-            minHeight: isThinDisplay ? "none" : boundingRect.height,
-            width: isThinDisplay ? "100%" : boundingRect.width,
-            boxShadow: isTextareaFocused
-              ? "0px 0px 3px 2px rgb(0, 180, 255)"
-              : null,
-            background: card.color
-          }}
-        >
-          <Textarea
-            autoFocus
-            useCacheForDOMMeasurements
-            value={newText}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            className="modal-textarea"
-            spellCheck={false}
-            onFocus={() => this.setState({ isTextareaFocused: true })}
-            onBlur={() => this.setState({ isTextareaFocused: false })}
-          />
-          {(card.date || checkboxes.total > 0) && (
-            <CardBadges date={card.date} checkboxes={checkboxes} />
-          )}
+        <div id="card-container">
+          <div id="text-area-container"
+            className="modal-textarea-wrapper"
+            style={{
+              minHeight: isThinDisplay ? "none" : boundingRect.height,
+              width: isThinDisplay ? "100%" : boundingRect.width,
+              boxShadow: isTextareaFocused
+                ? "0px 0px 3px 2px rgb(0, 180, 255)"
+                : null,
+              background: card.color
+            }}
+          >
+            <Textarea
+              autoFocus
+              useCacheForDOMMeasurements
+              value={newText}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+              className="modal-textarea"
+              spellCheck={false}
+              onFocus={() => this.setState({ isTextareaFocused: true })}
+              onBlur={() => this.setState({ isTextareaFocused: false })}
+            />
+            {(card.date || checkboxes.total > 0) && (
+              <CardBadges date={card.date} checkboxes={checkboxes} />
+            )}
+          </div>
+          <div id="comments-container">
+            <Comments cardId={card._id} />
+          </div>
         </div>
+
         <CardOptions
           isColorPickerOpen={isColorPickerOpen}
           card={card}
@@ -183,5 +190,6 @@ class CardModal extends Component {
     );
   }
 }
+
 
 export default connect()(CardModal);
