@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import FaTrash from "react-icons/lib/fa/trash";
 import FaUserPlus from "react-icons/lib/fa/user-plus";
 import {FaCheckSquare} from "react-icons/lib/fa";
+import { withTranslation } from "react-i18next";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import ClickOutside from "../ClickOutside/ClickOutside";
@@ -92,7 +93,8 @@ class CardOptions extends Component {
       toggleColorPicker,
       card,
       isThinDisplay,
-      boundingRect
+      boundingRect,
+      t
     } = this.props;
 
     const { isCalendarOpen, isCheckOpen, isAssignOpen } = this.state;
@@ -123,7 +125,7 @@ class CardOptions extends Component {
             <div className="modal-icon">
               <FaTrash />
             </div>
-            &nbsp;Delete
+            &nbsp;{t("Delete")}
           </button>
         </div>
         <div className="modal-color-picker-wrapper">
@@ -138,7 +140,7 @@ class CardOptions extends Component {
             aria-expanded={isColorPickerOpen}
           >
             <img src={colorIcon} alt="colorwheel" className="modal-icon" />
-            &nbsp;Color
+            &nbsp;{t("Color")}
           </button>
           {isColorPickerOpen && (
             <ClickOutside
@@ -170,7 +172,7 @@ class CardOptions extends Component {
             <div className="modal-icon">
               <MdAlarm />
             </div>
-            &nbsp;Due date
+            &nbsp;{t("Due-Date")}
           </button>
         </div>
         <div>
@@ -178,14 +180,14 @@ class CardOptions extends Component {
             <div className="modal-icon">
               <FaUserPlus />
             </div>
-            &nbsp;Assign
+            &nbsp;{t("CardOptions.assign")}
           </button>
         </div>
         <div>
           <button onClick={this.toggleCheck} className="options-list-button">
             <div className="modal-icon">
               <FaCheckSquare />
-            </div>&nbsp;Check list
+            </div>&nbsp;{t("CardOptions.check_list")}
           </button>
         </div>
         <Modal
@@ -195,7 +197,7 @@ class CardOptions extends Component {
           className="checkList-modal"
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
-          <input className="input" placeholder="Add a check list item..." onKeyPress={this.addCheckList} autoFocus/>
+          <input className="input" placeholder={t("CardOptions.check_list.placeholder")} onKeyPress={this.addCheckList} autoFocus/>
         </Modal>
         <Modal
           isOpen={isCalendarOpen}
@@ -227,4 +229,4 @@ class CardOptions extends Component {
   }
 }
 
-export default connect()(CardOptions);
+export default connect()(withTranslation()(CardOptions));

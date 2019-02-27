@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 
 import "./UserPicker.scss";
 
@@ -39,7 +40,7 @@ class UserPicker extends Component {
   };
 
   render() {
-    const { toggleAssign, boardUsersData } = this.props;
+    const { toggleAssign, boardUsersData, t } = this.props;
     const { chosenUserId } = this.state;
     const usersList = Object.values(boardUsersData).map((userData, i) => (
       <option value={userData._id} key={i}>
@@ -49,16 +50,16 @@ class UserPicker extends Component {
 
     return (
       <div className="user-picker">
-        <label>Choose a user:</label>
+        <label>{t("Choose-User")}</label>
         <select defaultValue={chosenUserId} onChange={this.handleChange}>
-          <option value="">--Please choose an option--</option>
+          <option value="">{t("Choose-Option")}</option>
           {usersList}
         </select>
         <div className="user-picker-buttons">
           <button onClick={this.handleSave} className="user-picker-save-button">
-            Save
+            {t("Save")}
           </button>
-          <button onClick={toggleAssign}>Cancel</button>
+          <button onClick={toggleAssign}>{t("Cancel")}</button>
         </div>
       </div>
     );
@@ -68,9 +69,8 @@ class UserPicker extends Component {
 const mapStateToProps = (state, ownProps) => {
   const { boardUsersData, cardsById } = state;
   const { assignedUserId } = cardsById[ownProps.cardId] || {};
-  console.log(state);
 
   return { boardUsersData, assignedUserId };
 };
 
-export default connect(mapStateToProps)(UserPicker);
+export default connect(mapStateToProps)(withTranslation()(UserPicker));
