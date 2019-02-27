@@ -9,6 +9,7 @@ import persistMiddleware from "./app/middleware/persistMiddleware";
 import filterMiddleware from "./app/middleware/filterMiddleware";
 import App from "./app/components/App";
 
+
 // Extract initial redux state received from the server
 const preloadedState = window.PRELOADED_STATE;
 delete window.PRELOADED_STATE;
