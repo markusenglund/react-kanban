@@ -40,6 +40,7 @@ class BoardMenu extends Component {
             transition: "all 1s ease 1s",
             bottom: "0%",
             position: "absolute",
+            borderTopRightRadius: "6px",
             left: "0px",
             top: "8%"
           }}
