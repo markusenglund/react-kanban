@@ -1,12 +1,12 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import ReactTooltip from "react-tooltip";
 import Modal from "react-modal";
+import { connect } from "react-redux";
+import ReactTooltip from "react-tooltip";
+import { ADMIN_ROLE } from "../../../constants";
 import UserAdder from "./UserAdder";
 import UserAvatar from "./UserAvatar";
-import { ADMIN_ROLE } from "../../../constants";
 import "./UsersList.scss";
 
 class UsersList extends Component {
