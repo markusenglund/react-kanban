@@ -9,6 +9,7 @@ import ListAdder from "../ListAdder/ListAdder";
 import Header from "../Header/Header";
 import BoardHeader from "../BoardHeader/BoardHeader";
 import { loadBoardUsersData } from "../../actions/boardActions";
+import { withTranslation } from "react-i18next";
 
 import "./Board.scss";
 import BoardMenu from "../BoardHeader/BoardMenu";
@@ -140,12 +141,13 @@ class Board extends Component {
   };
 
   render = () => {
-    const { lists, boardTitle, boardId, boardColor } = this.props;
-    let a = `url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1701/c8ab52d5f2f4372d17e75c4b71ae81de/photo-1549989476-69a92fa57c36)`;
+    const { lists, boardTitle, boardId, boardColor, t } = this.props;
     return (
       <>
-        <div className={classnames("board", null)} style={{backgroundImage: a}}>
-          <Title>{boardTitle} | React Kanban</Title>
+        <div className={classnames("board", boardColor)}>
+          <Title>
+            {boardTitle} | {t("project_name")}
+          </Title>
           <Header />
           <BoardHeader />
           {/* eslint-disable jsx-a11y/no-static-element-interactions */}
@@ -197,4 +199,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(Board);
+export default connect(mapStateToProps)(withTranslation()(Board));

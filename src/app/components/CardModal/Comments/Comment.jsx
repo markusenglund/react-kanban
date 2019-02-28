@@ -37,6 +37,20 @@ class Comment extends Component {
     const { text, user, date, t } = this.props;
     return (
       <div id="container">
+        <div id="delete-container">
+          <Wrapper
+            className="delete-comment-wrapper"
+            onSelection={this.deleteComment}
+          >
+            <Button className="delete-comment-button">
+              <FaTrash />
+            </Button>
+            <Menu className="delete-comment-menu">
+              <div className="delete-comment-header">{t("are_you_sure")}</div>
+              <MenuItem className="delete-comment-confirm">{t("Delete")}</MenuItem>
+            </Menu>
+          </Wrapper>
+        </div>
         <div id="comment-container">
           <div id="header">
             <p id="user">{user}</p>
@@ -47,20 +61,6 @@ class Comment extends Component {
               __html: formatMarkdown(text)
             }}
           />
-        </div>
-        <div id="delete-container">
-          <Wrapper
-            className="delete-comment-wrapper"
-            onSelection={this.deleteComment}
-          >
-            <Button className="delete-comment-button">
-              <FaTrash />
-            </Button>
-            <Menu className="delete-comment-menu">
-              <div className="delete-comment-header">{t("Comments.are_you_sure")}</div>
-              <MenuItem className="delete-comment-confirm">{t("Comments.delete")}</MenuItem>
-            </Menu>
-          </Wrapper>
         </div>
       </div>
     );
