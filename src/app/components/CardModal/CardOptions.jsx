@@ -89,7 +89,7 @@ class CardOptions extends Component {
     if (e.key === "Enter") {
       const { dispatch, card } = this.props;
       if(!e.target.value.trim()) {
-        document.getElementsByClassName("modal-textarea")[0].focus();
+        return this.toggleCheck();
       }
       dispatch({
         type: "CHANGE_CARD_TEXT",
