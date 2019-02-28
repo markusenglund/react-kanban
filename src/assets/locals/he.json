@@ -24,5 +24,26 @@
     "Home": "עמוד הבית",
     "Home.boards": "לוחות",
     "ListAdder.add_new_list": "הוסף רשימה חדשה...",
-    "Menu": "תפריט"
+    "Menu": "תפריט",
+
+    "History": "היסטוריה",
+    "ADD_LIST": "הוסיף רשימה",
+    "ADD_USER": "הוסיף משתמש",
+    "CHANGE_USER_ROLE": "שינה הרשאות למשתמש",
+    "REMOVE_USER": "מחק משתמש",
+    "MOVE_LIST": "הזיז רשימה",
+    "DELETE_LIST": "מחק רשימה",
+    "ADD_BOARD": "הוסיף לוח",
+    "ADD_CARD": "הוסיף כרטיס",
+    "CHANGE_BOARD_TITLE": "שינה את שם הלוח",
+    "CHANGE_BOARD_COLOR": "שינה את צבע הלוח",
+    "DELETE_BOARD": "מחק לוח",
+    "CHANGE_CARD_TEXT": "שינה את הטקסט של הכרטיס",
+    "CHANGE_CARD_DATE": "שינה את התאריך של הכרטיס",
+    "CHANGE_CARD_COLOR": "שינה את הצבע של הכרטיס",
+    "ADD_COMMENT": "הגיב לכרטיס",
+    "DELETE_COMMENT": "מחק תגובה מכרטיס",
+    "DELETE_CARD": "מחק כרטיס",
+    "UPDATE_ASSIGNED_USER": "שינה את האחראי על הכרטיס"
+
 }

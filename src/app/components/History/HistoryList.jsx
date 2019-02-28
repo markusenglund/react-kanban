@@ -1,48 +1,56 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./HistoryList.scss";
 
 class HistoryList extends Component {
-    state = {
-        history: []
-    }
+  static propTypes = {};
+  state = {
+    history: []
+  };
 
-    componentWillMount() { 
-        fetch("/api/history/getByBoardId", {
-            method: "POST",
-            body: JSON.stringify({id:this.props.currentBoardId}),
-            headers: { "Content-Type": "application/json" },
-            credentials: "include"
-          }).then(res=>{
-              if(res.status===200){
-                  res.json().then(history=>{
-                      this.history = history;
-                  })
-              }
-          })
-    }
+  componentDidMount() {
+    const boardId = this.props.match.params.boardId;
+    fetch("/api/history/getByBoardId", {
+      method: "POST",
+      body: JSON.stringify({ id: boardId }),
+      headers: { "Content-Type": "application/json" },
+      credentials: "include"
+    }).then(res => {
+      if (res.status === 200) {
+        res.json().then(history => {
+          this.setState({ history });
+        });
+      }
+    });
+  }
 
-    userId
-:
-"2"
-boardId
-:
-"SyHPq4NI4"
-action
-:
-"ADD_BOARD"
-    
-    render() {
-        return(
-            <div>
+
+  render() {
+    const { history } = this.state;
+    const { t } = this.props;
+    return (
+      <div id="history-list-container">
+        <p id="title">{t("History")}</p>
+        <div id="history-container">
+          {history.map((historyItem, key) => (
+            <div id="history-item" key={key}>
+              <p>{historyItem.userId}</p>
+              <p>{t(historyItem.action)}</p>
             </div>
-        )
-    }
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-    return { currentBoardId } = state;
-};
-  
-export default connect(mapStateToProps)(HistoryList); 
+const mapStateToProps = state => ({
+  currentBoardId: state.currentBoardId
+});
+
+export default withRouter(
+  connect(mapStateToProps)(withTranslation()(HistoryList))
+);

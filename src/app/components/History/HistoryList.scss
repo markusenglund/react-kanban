@@ -1,0 +1,19 @@
+#history-list-container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    #title {
+        font-weight: 600;
+        padding: 5px;
+    }
+    #history-container {
+        #history-item {
+            padding: 0px 5px;
+            border-bottom: 1px solid rgba(9,45,66,.13);
+            display: flex;
+            p {
+                flex: 1 1 0;
+            }
+        }
+    }
+}
