@@ -26,7 +26,7 @@
   "env": {
     "production": {
       "plugins": [
-        ["@babel/plugin-transform-runtime", { "useBuiltIns": true }],
+        ["@babel/plugin-transform-runtime"],
         [
           "transform-react-remove-prop-types",
           {

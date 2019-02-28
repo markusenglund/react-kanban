@@ -1,3 +1,5 @@
+import "@babel/polyfill";
+
 import { readFileSync } from "fs";
 import React from "react";
 import { renderToString } from "react-dom/server";
