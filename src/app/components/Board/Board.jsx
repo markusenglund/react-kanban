@@ -141,13 +141,14 @@ class Board extends Component {
 
   render = () => {
     const { lists, boardTitle, boardId, boardColor, t } = this.props;
-    let a = `url(${BASE_BOARD_BG_URL})`;
+    const imageUrl = `url(${BASE_BOARD_BG_URL})`;
+    const wrapperStyle = { backgroundImage: imageUrl, backgroundAttachment: "fixed" };
 
     return (
       <>
         <div
           className={classnames("board", boardColor)}
-          style={{ backgroundImage: a }}
+          style={wrapperStyle}
         >
           <Title>
             {boardTitle} | {t("project_name")}
@@ -185,7 +186,7 @@ class Board extends Component {
             </DragDropContext>
             <BoardMenu />
           </div>
-          <div className="board-underlay" />
+          <div className="board-underlay" style={wrapperStyle}/>
         </div>
       </>
     );
