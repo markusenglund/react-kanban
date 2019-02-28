@@ -14,17 +14,19 @@ class BoardMenu extends Component {
 
   openSideBar = () => {
     this.setState({ open: true });
+    this.refs.sideNav.style.position = "absolute";
     this.refs.sideNav.style.transition = "width 1s";
     this.refs.sideNav.style.width = "339px";
     this.refs.sideNav.style.display = "block";
-    document.getElementById("lists").style.marginLeft = "339px";
+   // document.getElementById("lists").style.marginLeft = "339px";
     this.setState({ open: true });
   };
 
   closeSideBar = () => {
     this.setState({ open: false });
-    document.getElementById("lists").style.marginLeft = "0px";
+    // document.getElementById("lists").style.marginLeft = "0px";
     this.refs.sideNav.style.transition = "width 1s";
+    this.refs.sideNav.style.position = "absolute";
     this.refs.sideNav.style.width = "0px";
     this.refs.sideNav.addEventListener("transitionend", event => {
       if (event.currentTarget.style.width == "0px") {
