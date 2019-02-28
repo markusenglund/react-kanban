@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import kanbanLogo from "../../../assets/images/kanban-logo.svg";
 import SearchBar from "./SearchBar";
+import Notification from "./Notification";
 import "./Header.scss";
 import { withTranslation } from "react-i18next";
 import { withRouter } from "react-router";
@@ -29,6 +30,9 @@ class Header extends Component {
           </Link>
           <div className="header-search-bar">
             {location.pathname !="/"? <SearchBar />: null}
+          </div>
+          <div className="header-notification">
+            <Notification />
           </div>
         </div>
         <div className="header-right-side">
