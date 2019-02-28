@@ -1,4 +1,5 @@
 import { Router } from "express";
+import {ObjectID} from 'mongodb';
 import {
   ADMIN_ROLE,
   READ_WRITE_ROLE,
@@ -85,8 +86,8 @@ const api = db => {
   })
 
   router.delete("/notifications", (req,res)=>{
-    const {_id} = body;
-    notifications.deleteOne({_id: _id}).then(result=>{
+    const {_id} = req.body;
+    notifications.deleteOne({_id: new ObjectID(_id)}).then(result=>{
       res.status(200).send();
     })
   })

@@ -1,21 +1,74 @@
 import React from "react";
 import { connect } from "react-redux";
-import {IconButton,Popover,Pane,Text,Position} from 'evergreen-ui'
+import {Icon,Button,Popover,Pane,Text,Position,Table,Pill} from 'evergreen-ui'
+import {withRouter} from 'react-router-dom'; 
+import socket from '../../socketIOHandler';
+import { withTranslation } from "react-i18next";
 
 class Notification extends React.Component {
   constructor(props) {
     super(props);
+    this.state ={
+      notifications:[]
+    }
+    socket.on("notification", (newNotification) => {
+      this.addNewNotification(newNotification);
+      //add state for changing logo to updates
+    });
+    
+  }
+  fetchNotificationsFromDB(){
+    fetch("/api//notifications/getByUserId", {
+      method: "POST",
+      body: JSON.stringify({ id:this.props.userId }),
+      headers: { "Content-Type": "application/json" },
+      credentials: "include"
+    }).then(response => {
+      if (response) {
+        if (response.status === 200) {
+          response.json().then(jsonData => {
+           this.setState({notifications:jsonData}) 
+          });
+        }
+      }
+    });
+  }
+  addNewNotification(newNotification){
+    let currentNotifications = this.state.notifications;
+    this.setState({notifications:[...currentNotifications,newNotification]});
   }
 
   componentDidMount() {
-    const cardsById = this.props.cardsById;
+    this.fetchNotificationsFromDB()
 
-    this.props.dispatch({
-      type: "CHANGE_CARD_FILTER",
-      payload: this.props.currFilter
-    });
+    const cardsById = this.props.cardsById;
+ 
+  }
+  goToBoard(notification){
+    const {history} = this.props;
+    history.push(`/b/${notification.boardId}`)
   }
 
+  notificationMessage(notification){
+    const { user, t } = this.props;
+      return `${t("Notifications."+notification.action)} ${notification.title}`
+  }
+deleteHandler(notification){
+  const notificationsWithRemovedNotification = [...this.state.notifications].filter(item=>item._id!==notification._id);          
+  this.setState({notifications:notificationsWithRemovedNotification}) 
+  fetch("/api//notifications/", {
+    method: "DELETE",
+    body: JSON.stringify({ _id:notification._id }),
+    headers: { "Content-Type": "application/json" },
+    credentials: "include"
+  }).then(response => {
+    if (response) {
+      if (response.status === 200) {
+        //success
+      }
+    }
+  });
+}
   render() {
     const styles = {
       container: {
@@ -36,31 +89,66 @@ class Notification extends React.Component {
         height: "25px"
       }
     };
-
     return (
       <div style={styles.container}>
         <Popover
         position={Position.BOTTOM_RIGHT}
   content={
-    <Pane
-      width={240}
-      height={240}
+    <Table
+      width={400}
+      height={480}
       display="flex"
-      alignItems="center"
-      justifyContent="center"
+      alignItems="flex-start"
+      justifyContent="flex-start"
       flexDirection="column"
     >
-      <Text>PopoverContent</Text>
-    </Pane>
-  }
->
-<IconButton
-        classNamestring="no-box-shadow"
+    <Table.VirtualBody width={400}
+      height={480}>
+        
+      {this.state.notifications?this.state.notifications.map(notification=>{return (
+         
+           <Table.Row
+         key={notification._id}
+         isSelectable
+         
+       >
+         
+         <Table.TextCell onClick={() => this.goToBoard(notification)} flexBasis={340} flexShrink={0} flexGrow={0}>
+         {this.notificationMessage(notification)}
+         </Table.TextCell>
+         <Table.Cell>
+         <Button
+         onClick={()=>this.deleteHandler(notification)}
         isActive={false}
         appearance="minimal"
-        height={24}
-        icon="notifications"
-      />
+      ><Icon  
+      
+      appearance="minimal"
+      height={40}
+      icon="trash"
+      color="danger"></Icon></Button>
+         </Table.Cell>
+       </Table.Row>
+      
+      )}):null}
+       
+       </Table.VirtualBody>
+</Table>
+  }
+>
+<Button
+        isActive={false}
+        appearance="minimal"
+        height={40}
+      >
+      { this.state.notifications.length>0?
+        (<Pill color="red" isSolid>{this.state.notifications.length}</Pill>):
+        null}
+      <Icon   
+      appearance="minimal"
+      height={40}
+      icon="notifications"
+      color="#ffffff"></Icon></Button>
 </Popover>
        
       </div>
@@ -70,7 +158,10 @@ class Notification extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { cardsById: state.cardsById, currFilter: state.currFilter};
+  return { 
+     userId:state.user ? state.user._id : "guest",
+     boardsById:state.boardsById
+  };
 };
 
-export default connect(mapStateToProps)(Notification);
+export default withRouter(connect(mapStateToProps)(withTranslation()(Notification)));

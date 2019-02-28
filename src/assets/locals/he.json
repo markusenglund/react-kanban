@@ -23,5 +23,9 @@
     "project_name": "AmanBoard 2.0",
     "Home": "עמוד הבית",
     "Home.boards": "לוחות",
-    "ListAdder.add_new_list": "הוסף רשימה חדשה..."
+    "ListAdder.add_new_list": "הוסף רשימה חדשה...",
+    "Notifications.UPDATE_ASSIGNED_USER":"נבחרת כאחראי במשימה בלוח:" ,
+    "Notifications.ADD_USER": "נוספת ללוח ",
+    "Notifications.REMOVE_USER":"הוסרת מלוח",
+    "Notifications.CHANGE_USER_ROLE":"שונו הרשאותיך בלוח זה"
 }
