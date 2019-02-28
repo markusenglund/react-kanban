@@ -55,10 +55,11 @@
 }
 
 .checkList-modal {
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  height: 50px;
+   position: absolute;
+   left: 1%;
+   top: 0%;
+   height: 50px;
+   z-index: 3;
 }
 
 .checkList-underlay {
@@ -69,6 +70,7 @@
   bottom: 0;
   z-index: 3;
 }
+
 .calendar {
   display: flex;
   flex-direction: column;
@@ -126,6 +128,7 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
   font-weight: 700;
   text-align: center;
+  z-index: 4;
 }
 
 .color-picker-color {
@@ -139,7 +142,7 @@
 .input {
   float: right; // removes mysterious empty space at the bottom of the textarea somehow
   box-sizing: border-box;
-  width: 100%;
+  width: 284px;
   padding: 10px 8px;
   border: 0;
   border-radius: 3px;
@@ -147,5 +150,17 @@
   font-family: inherit;
   font-size: 16px;
   resize: none;
-  margin-top: 6px;
+}
+
+.btn-3 {
+  letter-spacing: 0.05rem;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
+  z-index: 1;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+.btn-3:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  transform: scale(0.95);
 }

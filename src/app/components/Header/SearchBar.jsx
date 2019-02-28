@@ -14,7 +14,6 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const t = this.props.t;
     const styles = {
       container: {
         display: "flex",
@@ -33,7 +32,7 @@ class SearchBar extends React.Component {
         height: "25px"
       }
     };
-
+    const {t}=this.props;
     return (
       <div style={styles.container}>
         <input placeholder={t("SearchBar.placeholder")} style={styles.text} onChange={this._onChangeText} value={this.props.currFilter}/>

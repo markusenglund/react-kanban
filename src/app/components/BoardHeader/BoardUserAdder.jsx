@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { DEFAULT_ROLE } from '../../../constants';
 import { loadBoardUsersData } from '../../actions/boardActions';
-
+import { withTranslation } from "react-i18next";
 import "./BoardTitle.scss";
 
 class BoardUserAdd extends Component {
@@ -96,7 +96,7 @@ class BoardUserAdd extends Component {
 
   render() {
     const { isOpen, userSearchField } = this.state;
-    const { boardTitle } = this.props;
+    const { boardTitle,t } = this.props;
     return isOpen ? (
       <input
         autoFocus
@@ -126,4 +126,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(BoardUserAdd));
+export default withRouter(connect(mapStateToProps)(withTranslation()(BoardUserAdd)));
