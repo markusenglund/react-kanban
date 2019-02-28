@@ -62,7 +62,6 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   app.use("/api", api(db));
   app.use(fetchBoardData(db));
   if(process.env.NODE_ENV==="production"){
-    console.log("123");
     app.use((req,res,next)=>{
       if(!req.user)
         res.redirect("/auth/saml")
