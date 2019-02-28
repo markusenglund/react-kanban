@@ -56,9 +56,9 @@ const api = db => {
   })
 
   router.post("/history/getByBoardId", (req,res)=>{
-    let {ids} = req.body;
+    let {id} = req.body;
     history
-    .find({ boardId: { $in: ids || [] } }, '-_id')
+    .find({ boardId: id}, '-_id')
     .toArray()
     .then(histories=>{
       res.json(histories);
