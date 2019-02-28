@@ -1,6 +1,7 @@
 @import "../../variables.scss";
 
 .hamburger-button {
+    background-color: rgba(245, 246, 247, 1);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -13,7 +14,7 @@
   
   .hamburger-button:hover,
   .hamburger-button:focus {
-    background: $transparent-black;
+    background: rgba(255, 255, 255, 0.5);
   }
   
   .hamburger-button {
