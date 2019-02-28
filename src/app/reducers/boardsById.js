@@ -49,7 +49,9 @@ const boardsById = (state = {}, action) => {
       }
     }
     case "MOVE_LIST": {
-      const { oldListIndex, newListIndex, boardId } = action.payload;
+      let  { oldListIndex, newListIndex, boardId } = action.payload;
+      oldListIndex = state[boardId].lists.length - 1 - oldListIndex;
+      newListIndex = state[boardId].lists.length - 1 - newListIndex;
       const newLists = Array.from(state[boardId].lists);
       const [removedList] = newLists.splice(oldListIndex, 1);
       newLists.splice(newListIndex, 0, removedList);

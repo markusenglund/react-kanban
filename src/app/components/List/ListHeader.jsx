@@ -5,6 +5,7 @@ import Textarea from "react-textarea-autosize";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import FaTrash from "react-icons/lib/fa/trash";
 import "./ListHeader.scss";
+import { withTranslation } from "react-i18next";
 
 class ListTitle extends Component {
   static propTypes = {
@@ -75,7 +76,7 @@ class ListTitle extends Component {
 
   render() {
     const { isOpen, newTitle } = this.state;
-    const { dragHandleProps, listTitle } = this.props;
+    const { dragHandleProps, listTitle, t } = this.props;
     return (
       <div className="list-header">
         {isOpen ? (
@@ -111,8 +112,8 @@ class ListTitle extends Component {
             <FaTrash />
           </Button>
           <Menu className="delete-list-menu">
-            <div className="delete-list-header">Are you sure?</div>
-            <MenuItem className="delete-list-confirm">Delete</MenuItem>
+            <div className="delete-list-header">{t("are_you_sure")}</div>
+            <MenuItem className="delete-list-confirm">{t('Delete')}</MenuItem>
           </Menu>
         </Wrapper>
       </div>
@@ -120,4 +121,4 @@ class ListTitle extends Component {
   }
 }
 
-export default connect()(ListTitle);
+export default connect()(withTranslation()(ListTitle));

@@ -12,6 +12,7 @@ import { loadBoardUsersData } from "../../actions/boardActions";
 import { withTranslation } from "react-i18next";
 
 import "./Board.scss";
+import BoardMenu from "../BoardHeader/BoardMenu";
 
 class Board extends Component {
   static propTypes = {
@@ -140,9 +141,11 @@ class Board extends Component {
 
   render = () => {
     const { lists, boardTitle, boardId, boardColor, t } = this.props;
+    let a = `url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1701/c8ab52d5f2f4372d17e75c4b71ae81de/photo-1549989476-69a92fa57c36)`;
+    
     return (
       <>
-        <div className={classnames("board", boardColor)}>
+        <div className={classnames("board", boardColor)} style={{backgroundImage: a}}>
           <Title>
             {boardTitle} | {t("project_name")}
           </Title>
@@ -163,13 +166,13 @@ class Board extends Component {
               >
                 {provided => (
                   <div className="lists" ref={provided.innerRef}>
-                    {lists.map((list, index) => (
-                      <List
-                        list={list}
-                        boardId={boardId}
-                        index={index}
-                        key={list._id}
-                      />
+                    {lists.map((list, index) =>  (
+                        <List
+                          list={list}
+                          boardId={boardId}
+                          index={lists.length - 1 -index}
+                          key={list._id}
+                        />
                     ))}
                     {provided.placeholder}
                     <ListAdder boardId={boardId} />
@@ -177,6 +180,7 @@ class Board extends Component {
                 )}
               </Droppable>
             </DragDropContext>
+          <BoardMenu />
           </div>
           <div className="board-underlay" />
         </div>

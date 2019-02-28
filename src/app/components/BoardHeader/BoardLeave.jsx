@@ -43,9 +43,7 @@ class BoardLeave extends Component {
           </div>
         </Button>
         <Menu className="board-leave-menu">
-          <div className="board-leave-header">
-            {t("are_you_sure")}
-          </div>
+          <div className="board-leave-header">{t("are_you_sure")}</div>
           <MenuItem className="board-leave-confirm">
             {t("BoardLeave.Leave")}
           </MenuItem>

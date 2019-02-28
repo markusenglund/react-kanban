@@ -1,12 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import SearchIcon from "../../../assets/images/search_icon.svg";
+import { withTranslation } from "react-i18next";
 
 class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const cardsById = this.props.cardsById;
 
@@ -35,10 +32,10 @@ class SearchBar extends React.Component {
         height: "25px"
       }
     };
-
+    const {t}=this.props;
     return (
       <div style={styles.container}>
-        <input placeholder="Search something..." style={styles.text} onChange={this._onChangeText} value={this.props.currFilter}/>
+        <input placeholder={t("SearchBar.placeholder")} style={styles.text} onChange={this._onChangeText} value={this.props.currFilter}/>
         <img style={styles.icon} src={SearchIcon} />
       </div>
     );
@@ -57,4 +54,4 @@ const mapStateToProps = state => {
   return { cardsById: state.cardsById, currFilter: state.currFilter};
 };
 
-export default connect(mapStateToProps)(SearchBar);
+export default connect(mapStateToProps)(withTranslation()(SearchBar));

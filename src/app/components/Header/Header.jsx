@@ -8,12 +8,13 @@ import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import "./Header.scss";
 import { withTranslation } from "react-i18next";
+import { withRouter } from "react-router";
 
 class Header extends Component {
   static propTypes = { user: PropTypes.object };
 
   render = () => {
-    const { user } = this.props;
+    const { user, location } = this.props;
     const debug = process.env.NODE_ENV === "development";
     let loginBtn = null;
     if (debug) {
@@ -28,7 +29,7 @@ class Header extends Component {
             &nbsp;AmanBoard 2.0
           </Link>
           <div className="header-search-bar">
-            <SearchBar />
+            {location.pathname !="/"? <SearchBar />: null}
           </div>
           <div className="header-notification">
             <Notification />
@@ -45,4 +46,4 @@ class Header extends Component {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps)(withTranslation()(Header));
+export default connect(mapStateToProps)(withTranslation()(withRouter(Header)));

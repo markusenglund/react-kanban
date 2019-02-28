@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import format from "date-fns/format";
 import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 import MdAlarm from "react-icons/lib/md/access-alarm";
+import MdLabel from "react-icons/lib/md/label";
 import MdDoneAll from "react-icons/lib/fa/check-square-o";
 import FaUser from "react-icons/lib/fa/user";
 import "./CardBadges.scss";
+import { withTranslation } from "react-i18next";
+import { colorsWithLabels } from "../utils";
 
 class CardBadges extends Component {
   static propTypes = {
@@ -15,7 +19,8 @@ class CardBadges extends Component {
       checked: PropTypes.number.isRequired
     }).isRequired,
     assignedToMe: PropTypes.bool,
-    assignedUserName: PropTypes.string
+    assignedUserName: PropTypes.string,
+    labels: PropTypes.array
   };
 
   renderDueDate = () => {
@@ -93,15 +98,51 @@ class CardBadges extends Component {
     );
   };
 
+  renderLabels = () => {
+    const { labels, t } = this.props;
+    const colorsWithLabelsMap = new Map(colorsWithLabels);
+
+    if (!labels) {
+      return null;
+    }
+
+    return labels.map(label => (
+      <div
+        key={label}
+        className="badge"
+        style={{ background: colorsWithLabelsMap.get(label) }}
+      >
+        <MdLabel className="badge-icon" />
+        &nbsp;
+        {t(`Labels.${label}`)}
+      </div>
+    ));
+  };
+
+  onWheelLabels = e => {
+    const { currentTarget, deltaY } = e;
+    if (currentTarget.className === "scroll-wrapper") {
+      currentTarget.scrollTo(currentTarget.scrollLeft + deltaY, 0);
+      e.preventDefault();
+    }
+  };
+
   render() {
     return (
-      <div className="card-badges">
-        {this.renderDueDate()}
-        {this.renderTaskProgress()}
-        {this.renderAssigned()}
+      <div
+        id="scroll-wrapper"
+        className="scroll-wrapper"
+        onWheel={this.onWheelLabels}
+      >
+        <div className="card-badges">
+          {this.renderDueDate()}
+          {this.renderTaskProgress()}
+          {this.renderAssigned()}
+          {this.renderLabels()}
+        </div>
       </div>
     );
   }
 }
 
-export default CardBadges;
+export default connect()(withTranslation()(CardBadges));

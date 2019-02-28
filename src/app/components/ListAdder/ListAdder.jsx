@@ -19,6 +19,9 @@ class ListAdder extends Component {
       listTitle: ""
     };
   }
+  handleFocus = () => {
+    document.getElementById("lists").scrollLeft -= 400
+  }
   handleBlur = () => {
     this.setState({ isOpen: false });
   };
@@ -61,6 +64,7 @@ class ListAdder extends Component {
       <div className="list">
         <Textarea
           autoFocus
+          onFocus={this.handleFocus}
           useCacheForDOMMeasurements
           value={listTitle}
           onChange={this.handleChange}
