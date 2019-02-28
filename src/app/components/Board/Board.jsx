@@ -36,7 +36,6 @@ class Board extends Component {
 
   // boardId is stored in the redux store so that it is available inside middleware
   componentDidMount = () => {
-    document.getElementById("lists").scrollLeft = document.getElementById("lists").offsetWidth
     const { boardId, dispatch, boardUsers } = this.props;
     dispatch({
       type: "PUT_BOARD_ID_IN_REDUX",
@@ -166,14 +165,14 @@ class Board extends Component {
                 direction="horizontal"
               >
                 {provided => (
-                  <div className="lists" ref={provided.innerRef} id="lists">
-                    {lists.map((list, index) => (
-                      <List
-                        list={list}
-                        boardId={boardId}
-                        index={index}
-                        key={list._id}
-                      />
+                  <div className="lists" ref={provided.innerRef}>
+                    {lists.map((list, index) =>  (
+                        <List
+                          list={list}
+                          boardId={boardId}
+                          index={lists.length - 1 -index}
+                          key={list._id}
+                        />
                     ))}
                     {provided.placeholder}
                     <ListAdder boardId={boardId} />
