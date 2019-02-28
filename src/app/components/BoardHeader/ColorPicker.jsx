@@ -7,6 +7,7 @@ import classnames from "classnames";
 import FaCheck from "react-icons/lib/fa/check";
 import colorIcon from "../../../assets/images/color-icon.png";
 import "./ColorPicker.scss";
+import { withTranslation } from "react-i18next";
 
 class ColorPicker extends Component {
   static propTypes = {
@@ -24,7 +25,7 @@ class ColorPicker extends Component {
   };
 
   render() {
-    const { boardColor } = this.props;
+    const { boardColor,t } = this.props;
     const colors = ["blue", "green", "red", "pink"];
     return (
       <Wrapper
@@ -34,7 +35,7 @@ class ColorPicker extends Component {
         <Button className="color-picker">
           <img src={colorIcon} alt="colorwheel" className="modal-icon" />
           <div className="board-header-right-text">
-            &nbsp;Color &nbsp;&#9662;
+            &nbsp;{t('Color')} &nbsp;&#9662;
           </div>
         </Button>
         <Menu className="color-picker-menu">
@@ -61,4 +62,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(ColorPicker));
+export default withRouter(connect(mapStateToProps)(withTranslation()(ColorPicker)));

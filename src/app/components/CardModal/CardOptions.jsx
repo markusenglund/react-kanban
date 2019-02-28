@@ -121,7 +121,7 @@ class CardOptions extends Component {
         }}
       >
         <div>
-          <button onClick={this.deleteCard} className="options-list-button">
+          <button onClick={this.deleteCard} className="options-list-button btn-3">
             <div className="modal-icon">
               <FaTrash />
             </div>
@@ -130,7 +130,7 @@ class CardOptions extends Component {
         </div>
         <div className="modal-color-picker-wrapper">
           <button
-            className="options-list-button"
+            className="options-list-button btn-3"
             onClick={toggleColorPicker}
             onKeyDown={this.handleKeyDown}
             ref={ref => {
@@ -168,7 +168,7 @@ class CardOptions extends Component {
           )}
         </div>
         <div>
-          <button onClick={this.toggleCalendar} className="options-list-button">
+          <button onClick={this.toggleCalendar} className="options-list-button btn-3">
             <div className="modal-icon">
               <MdAlarm />
             </div>
@@ -176,7 +176,7 @@ class CardOptions extends Component {
           </button>
         </div>
         <div>
-          <button onClick={this.toggleAssign} className="options-list-button">
+          <button onClick={this.toggleAssign} className="options-list-button btn-3">
             <div className="modal-icon">
               <FaUserPlus />
             </div>
@@ -184,7 +184,7 @@ class CardOptions extends Component {
           </button>
         </div>
         <div>
-          <button onClick={this.toggleCheck} className="options-list-button">
+          <button onClick={this.toggleCheck} className="options-list-button btn-3">
             <div className="modal-icon">
               <FaCheckSquare />
             </div>&nbsp;{t("CardOptions.check_list")}
