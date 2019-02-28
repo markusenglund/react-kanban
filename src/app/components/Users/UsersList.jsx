@@ -25,6 +25,7 @@ class UsersList extends Component {
 
   _usersNames = () => {
     const { users, currentBoardId, boardUsers, user } = this.props;
+    const currentUser = user;
     const isCurrentUserAdmin = this.isCurrentUserAdmin();
 
     return Object.values(users).map((user, i) => {
@@ -34,6 +35,7 @@ class UsersList extends Component {
           currentBoardId={currentBoardId}
           boardUsers={boardUsers}
           isCurrentUserAdmin={isCurrentUserAdmin}
+          currentUser={currentUser}
           key={i}
         />
       );

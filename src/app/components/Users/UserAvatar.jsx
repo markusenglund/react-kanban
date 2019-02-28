@@ -27,12 +27,18 @@ class UserAvatar extends Component {
   };
 
   render() {
-    const { user, t, isCurrentUserAdmin } = this.props;
+    const { user, t, isCurrentUserAdmin, currentUser } = this.props;
 
     const words = user.name.split(" ");
     const randomStyle = {
       background: COLORS[Math.floor(Math.random() * COLORS.length)]
     };
+    const deleteButton = (
+      <div>
+        <div className="board-leave-header">{t("are_you_sure")}</div>
+        <MenuItem className="board-leave-confirm">{t("Delete")}</MenuItem>
+      </div>
+    );
 
     return (
       <div>
@@ -49,12 +55,9 @@ class UserAvatar extends Component {
 
           <ReactTooltip />
 
-          {isCurrentUserAdmin && (
-            <Menu className="board-leave-menu">
-              <div className="board-leave-header">{t("are_you_sure")}</div>
-              <MenuItem className="board-leave-confirm">{t("Delete")}</MenuItem>
-            </Menu>
-          )}
+          <Menu className="board-leave-menu">
+            {isCurrentUserAdmin && currentUser._id !== user._id && deleteButton}
+          </Menu>
         </Wrapper>
       </div>
     );
