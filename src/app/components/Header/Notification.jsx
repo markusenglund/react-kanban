@@ -94,26 +94,22 @@ deleteHandler(notification){
         <Popover
         position={Position.BOTTOM_RIGHT}
   content={
-    <Table
+    <Table 
       width={400}
       height={480}
-      display="flex"
-      alignItems="flex-start"
-      justifyContent="flex-start"
-      flexDirection="column"
     >
-    <Table.VirtualBody width={400}
+    <Table.VirtualBody style={{direction:"ltr"}} width={400}
       height={480}>
         
       {this.state.notifications?this.state.notifications.map(notification=>{return (
          
-           <Table.Row
+           <Table.Row style={{direction:"rtl"}}
          key={notification._id}
          isSelectable
          
        >
          
-         <Table.TextCell onClick={() => this.goToBoard(notification)} flexBasis={340} flexShrink={0} flexGrow={0}>
+         <Table.TextCell style={{direction:"rtl"}} onClick={() => this.goToBoard(notification)} flexBasis={340} flexShrink={0} flexGrow={0}>
          {this.notificationMessage(notification)}
          </Table.TextCell>
          <Table.Cell>
