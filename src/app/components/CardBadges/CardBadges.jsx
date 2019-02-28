@@ -101,7 +101,6 @@ class CardBadges extends Component {
   renderLabels = () => {
     const { labels, t } = this.props;
     const colorsWithLabelsMap = new Map(colorsWithLabels);
-    console.log(colorsWithLabelsMap);
 
     if (!labels) {
       return null;
@@ -122,11 +121,13 @@ class CardBadges extends Component {
 
   render() {
     return (
-      <div className="card-badges">
-        {this.renderDueDate()}
-        {this.renderTaskProgress()}
-        {this.renderAssigned()}
-        {this.renderLabels()}
+      <div className="scroll-wrapper">
+        <div className="card-badges">
+          {this.renderDueDate()}
+          {this.renderTaskProgress()}
+          {this.renderAssigned()}
+          {this.renderLabels()}
+        </div>
       </div>
     );
   }

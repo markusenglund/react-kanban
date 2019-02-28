@@ -2,7 +2,6 @@
   display: flex;
   padding: 0px 8px 6px 8px;
   font-size: 14px;
-  overflow: auto;
 }
 
 .badge {
@@ -15,4 +14,19 @@
 
 .badge-icon {
   margin-bottom: 2px;
+}
+
+.scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.scroll-wrapper::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #aaa;
 }

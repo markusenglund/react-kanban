@@ -45,8 +45,9 @@ class CardOptions extends Component {
 
   addLabel = label => {
     const { dispatch, card } = this.props;
+    const cardLabels = card.labels || [];
 
-    if (card.labels.includes(label)) {
+    if (cardLabels.includes(label)) {
       dispatch({
         type: "DELETE_LABEL",
         payload: { label, cardId: card._id }
@@ -167,8 +168,9 @@ class CardOptions extends Component {
                 {/* eslint-enable */}
                 {colorsWithLabels.map(colorLabel => {
                   const [label, color] = colorLabel;
-                  const labelSelected = this.props.card.labels.includes(label);
-                  const opacity = labelSelected ? 0.5 : 1;
+                  const labels = this.props.card.labels || [];
+                  const isLabelSelected = labels.includes(label);
+                  const opacity = isLabelSelected ? 0.5 : 1;
 
                   return (
                     <button

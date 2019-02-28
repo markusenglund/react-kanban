@@ -17,18 +17,20 @@ const cardsById = (state = {}, action) => {
     }
     case "ADD_LABEL": {
       const { label, cardId } = action.payload;
+      const cardLabels = state[cardId].labels || [];
       return {
         ...state,
-        [cardId]: { ...state[cardId], labels: [...state[cardId].labels, label] }
+        [cardId]: { ...state[cardId], labels: [...cardLabels, label] }
       };
     }
     case "DELETE_LABEL": {
       const { label, cardId } = action.payload;
+      const cardLabels = state[cardId].labels || [];
       return {
         ...state,
         [cardId]: {
           ...state[cardId],
-          labels: state[cardId].labels.filter(currLabel => currLabel !== label)
+          labels: cardLabels.filter(currLabel => currLabel !== label)
         }
       };
     }
