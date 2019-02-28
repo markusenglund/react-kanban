@@ -28,15 +28,6 @@ class BoardMenu extends Component {
     this.refs.sideNav.style.transition = "width 1s";
     this.refs.sideNav.style.position = "absolute";
     this.refs.sideNav.style.width = "0px";
-    this.refs.sideNav.addEventListener("transitionend", event => {
-      if (event.currentTarget.style.width == "0px") {
-        event.currentTarget.style.display = "block";
-        this.setState({ open: false });
-      } else {
-        event.currentTarget.style.display = "block";
-        this.setState({ open: true });
-      }
-    });
   };
 
   render() {

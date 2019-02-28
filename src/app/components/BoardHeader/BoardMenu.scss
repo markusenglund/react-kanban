@@ -10,18 +10,19 @@
     color: $white;
     transition: background 0.1s;
     cursor: pointer;
-  }
-  
-  .hamburger-button:hover,
-  .hamburger-button:focus {
+}
+
+.hamburger-button:hover,
+.hamburger-button:focus {
     background: rgba(255, 255, 255, 0.5);
-  }
-  
-  .hamburger-button {
+}
+
+.hamburger-button {
     cursor: pointer;
-  }
-  .hamburger-wrapper {
+}
+
+.hamburger-wrapper {
     position: relative;
     flex-shrink: 0;
     font-size: 16px;
-  }
+}
