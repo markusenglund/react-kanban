@@ -46,50 +46,56 @@ const api = db => {
       });
   });
 
-  router.post("/history", (req,res)=>{
-    let {body:historyObj} = req; 
-    history.insert(historyObj).then(result=>{
-      res.status(200).send();
-    }).catch(err=>{
-      res.status(500).send('Error');
-    })
-  })
-
-  router.post("/history/getByBoardId", (req,res)=>{
-    let {id} = req.body;
+  router.post("/history", (req, res) => {
+    let { body: historyObj } = req;
     history
-    .find({ boardId: id}, '-_id')
-    .toArray()
-    .then(histories=>{
-      res.json(histories);
-    })
-  })
-
-  router.post("/notifications", (req,res)=>{
-      let {body:notification} = req; 
-      notifications.insert(notification).then(result=>{
+      .insert(historyObj)
+      .then(result => {
         res.status(200).send();
-      }).catch(err=>{
-        res.status(500).send('Error');
       })
-  })
+      .catch(err => {
+        res.status(500).send("Error");
+      });
+  });
 
-  router.post("/notifications/getByUserId", (req,res)=>{
-    let {id} = req.body;
+  router.post("/history/getByBoardId", (req, res) => {
+    let { id } = req.body;
+    history
+      .find({ boardId: id }, "-_id")
+      .toArray()
+      .then(histories => {
+        res.json(histories);
+      });
+  });
+
+  router.post("/notifications", (req, res) => {
+    let { body: notification } = req;
     notifications
-    .find({ userId: id })
-    .toArray()
-    .then(notifs=>{
-      res.json(notifs);
-    })
-  })
+      .insert(notification)
+      .then(result => {
+        res.status(200).send();
+      })
+      .catch(err => {
+        res.status(500).send("Error");
+      });
+  });
 
-  router.delete("/notifications", (req,res)=>{
-    const {_id} = body;
-    notifications.deleteOne({_id: _id}).then(result=>{
+  router.post("/notifications/getByUserId", (req, res) => {
+    let { id } = req.body;
+    notifications
+      .find({ userId: id })
+      .toArray()
+      .then(notifs => {
+        res.json(notifs);
+      });
+  });
+
+  router.delete("/notifications", (req, res) => {
+    const { _id } = body;
+    notifications.deleteOne({ _id: _id }).then(result => {
       res.status(200).send();
-    })
-  })
+    });
+  });
 
   router.delete("/board", (req, res) => {
     const { boardId } = req.body;
@@ -112,10 +118,15 @@ const api = db => {
     const { userSearchField } = req.body;
 
     users
-      .findOne({ name: { $regex: userSearchField, $options: "i" } })
-      .then(user => {
-        if (user) {
-          res.status(200).json(user.name);
+      .find({ name: { $regex: userSearchField, $options: "i" } })
+      .toArray()
+      .then(users => {
+        if (users) {
+          const serializedUsers = users.map(user => ({
+            value: user._id,
+            label: user.name
+          }));
+          res.status(200).json(serializedUsers);
         } else {
           res.status(404).send("no Users EXISTS with such name");
         }

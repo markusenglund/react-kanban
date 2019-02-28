@@ -178,8 +178,7 @@ class CardModal extends Component {
             width: isThinDisplay ? "100%" : boundingRect.width,
             boxShadow: isTextareaFocused
               ? "0px 0px 3px 2px rgb(0, 180, 255)"
-              : null,
-            background: card.color
+              : null
           }}
         >
           <Textarea
@@ -193,12 +192,13 @@ class CardModal extends Component {
             onFocus={() => this.setState({ isTextareaFocused: true })}
             onBlur={() => this.setState({ isTextareaFocused: false })}
           />
-          {(card.date || checkboxes.total > 0 || assignedUserName) && (
+          {(card.date || checkboxes.total > 0 || assignedUserName || card.labels) && (
             <CardBadges
               date={card.date}
               checkboxes={checkboxes}
               assignedUserName={assignedUserName}
               assignedToMe={assignedToMe}
+              labels={card.labels}
             />
           )}
         </div>
