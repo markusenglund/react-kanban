@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Modal from "react-modal";
 import CardBadges from "../CardBadges/CardBadges";
 import CardOptions from "./CardOptions";
+import Comments from "./Comments/Comments";
 import { findCheckboxes } from "../utils";
 import "./CardModal.scss";
 
@@ -32,7 +34,8 @@ class CardModal extends Component {
     this.state = {
       newText: props.card.text,
       isColorPickerOpen: false,
-      isTextareaFocused: true
+      isTextareaFocused: true,
+      areCommentsOpen: false
     };
     if (typeof document !== "undefined") {
       Modal.setAppElement("#app");
@@ -84,9 +87,14 @@ class CardModal extends Component {
     }
   };
 
+  toggleComments = () => {
+    this.setState({ areCommentsOpen: !this.state.areCommentsOpen });
+  };
+
   render() {
     const { newText, isColorPickerOpen, isTextareaFocused } = this.state;
     const {
+      t,
       cardElement,
       card,
       listId,
@@ -162,6 +170,7 @@ class CardModal extends Component {
           isThinDisplay={isThinDisplay}
           toggleColorPicker={this.toggleColorPicker}
         />
+        <div id="main-container">
         <div
           className="modal-textarea-wrapper"
           style={{
@@ -193,9 +202,19 @@ class CardModal extends Component {
             />
           )}
         </div>
+        <div id="toggle-comments-button">
+          <button className="comment-show-button" onClick={this.toggleComments}>
+          {t("Comments.toggle")}
+          </button>
+        </div>
+        <div id="comments-container">
+          <Comments showForm={this.state.areCommentsOpen} cardId={card._id} />
+        </div>
+        </div>
+       
       </Modal>
     );
   }
 }
 
-export default connect()(CardModal);
+export default connect()(withTranslation()(CardModal));

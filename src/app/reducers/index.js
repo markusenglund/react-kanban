@@ -7,6 +7,8 @@ import user from "./user";
 import isGuest from "./isGuest";
 import currFilter from "./currFilter";
 import currentBoardId from "./currentBoardId";
+import currentCardId from "./currentCardId";
+import commentsById from "./commentsById";
 import boardUsersData from "./boardUsersData";
 
 export default combineReducers({
@@ -17,6 +19,8 @@ export default combineReducers({
   user,
   isGuest,
   currentBoardId,
+  currentCardId,
+  commentsById,
   currFilter,
   boardUsersData
 });

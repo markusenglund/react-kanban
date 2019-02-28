@@ -1,0 +1,95 @@
+@import "../../../variables.scss";
+.delete-comment-wrapper {
+    position: relative;
+    align-self: flex-start;
+}
+
+.delete-comment-button {
+    display: flex;
+    align-items: center;
+    margin: 4px;
+    padding: 10px;
+    border-radius: $list-radius;
+    color: $white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delete-comment-button:hover,
+.delete-comment-button:focus {
+    background: $transparent-black;
+}
+
+.delete-comment-button {
+    cursor: pointer;
+}
+
+.delete-comment-menu {
+    position: absolute;
+    top: 100%;
+    left: -60px;
+    right: -60px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+    color: $black-text;
+    background: $white;
+    font-weight: 700;
+    text-align: center;
+    z-index: 1;
+}
+
+.delete-comment-confirm {
+    margin-top: 5px;
+    padding: 8px 30px;
+    border-radius: 6px;
+    color: white;
+    background: red;
+    text-align: center;
+    cursor: pointer;
+}
+
+.delete-comment-confirm:hover,
+.delete-comment-confirm:focus {
+    background: darkred;
+}
+
+#container {
+    display: flex;
+    position: relative;
+    #delete-container {
+        width: 44px;
+        position: absolute;
+        left: 285px;
+        top: 0px;
+    }
+    
+    #comment-container {
+        flex: 6 0 0;
+        background-color: bisque;
+        margin-top: 5px;
+        padding: 5px;
+        padding-top: 0px;
+        border-radius: 3px;
+        #header {
+            display: flex;
+            line-height: 0px;
+            #user {
+                flex: 1 1 0;
+                color: gray;
+            }
+            #date {
+                text-align: end;
+                color: gray;
+                flex: 1 1 0;
+            }
+        }
+        #comment-text {
+            overflow-wrap: break-word;
+            width: 265px;
+        }
+    }
+}

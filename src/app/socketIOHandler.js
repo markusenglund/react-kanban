@@ -1,6 +1,6 @@
 import socketIOClient from 'socket.io-client';
-const socketLocation = "localhost:8200/";
+import {SOCKETLOCATION} from "../constants";
 
-const socket = socketIOClient(socketLocation);
+const socket = socketIOClient(SOCKETLOCATION);
 
 export default socket;
