@@ -14,10 +14,13 @@
     "CardOptions.check_list.placeholder": "הזן פריט...",
     "UserPicker.placeholder": "בחר משתמש...",
     "BoardLeave.Leave": "עזוב לוח",
-    "BoardLeave.are_you_sure": "האם את/ה בטוח/ה?",
+    "are_you_sure": "האם את/ה בטוח/ה?",
     "Comments.toggle": "הצג/הסתר תגובות",
     "Comments.comment": "הגב",
     "Comments.add_comment": "הוסף תגובה",
     "Comments.delete": "מחק",
-    "Comments.are_you_sure": "האם את/ה בטוח/ה?"
+    "BoardDeleter.delete": "מחק לוח",
+    "project_name": "AmanBoard 2.0",
+    "Home": "עמוד הבית",
+    "Home.boards": "לוחות"
 }
