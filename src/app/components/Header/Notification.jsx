@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {IconButton,Popover,Pane,Text} from 'evergreen-ui'
+import {IconButton,Popover,Pane,Text,Position} from 'evergreen-ui'
 
 class Notification extends React.Component {
   constructor(props) {
@@ -22,8 +22,9 @@ class Notification extends React.Component {
         display: "flex",
         alignItems: "center",
         padding: 4,
-        background: "#fbfbfb",
-        borderRadius: 3
+        background: "transparent",
+        border: "none",
+        outline: "none"
       },
       text: {
         display: "flex",
@@ -39,6 +40,7 @@ class Notification extends React.Component {
     return (
       <div style={styles.container}>
         <Popover
+        position={Position.BOTTOM_RIGHT}
   content={
     <Pane
       width={240}
@@ -53,6 +55,8 @@ class Notification extends React.Component {
   }
 >
 <IconButton
+        classNamestring="no-box-shadow"
+        isActive={false}
         appearance="minimal"
         height={24}
         icon="notifications"
