@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Title } from "react-head";
+import { withTranslation } from "react-i18next";
 import slugify from "slugify";
 import classnames from "classnames";
 import Header from "../Header/Header";
@@ -22,14 +23,16 @@ class Home extends Component {
     history: PropTypes.object.isRequired
   };
   render = () => {
-    const { boards, listsById, history } = this.props;
+    const { boards, listsById, history, t } = this.props;
     return (
       <>
-        <Title>Home | React Kanban</Title>
+        <Title>
+          {t("Home")} | {t("project_name")}
+        </Title>
         <Header />
         <div className="home">
           <div className="main-content">
-            <h1>Boards</h1>
+            <h1>{t("Home.boards")}</h1>
             <div className="boards">
               {boards.map(board => (
                 <Link
@@ -70,4 +73,4 @@ const mapStateToProps = ({ boardsById, listsById }) => ({
   listsById
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(withTranslation()(Home));
