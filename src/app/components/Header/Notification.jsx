@@ -67,7 +67,6 @@ class Notification extends React.Component {
       ...this.state.notifications
     ].filter(item => item._id !== notification._id);
     this.setState({ notifications: notificationsWithRemovedNotification });
-    console.log(notification);
     fetch("/api//notifications/", {
       method: "DELETE",
       body: JSON.stringify({ _id: notification._id }),
