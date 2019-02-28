@@ -1,0 +1,29 @@
+.dot {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 50px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  margin: 5px 0 5px 5px;
+  cursor: pointer;
+}
+
+.add-user {
+  background-color: limegreen;
+  font-size: 1.5em;
+  line-height: 45px;
+}
+
+.name-holder {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.user-list-wrapper {
+  border-bottom: 1px solid rgba(9, 45, 66, 0.13);
+  padding-right: 5px;
+}
