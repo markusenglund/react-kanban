@@ -77,7 +77,7 @@ const api = db => {
   router.post("/notifications/getByUserId", (req,res)=>{
     let {id} = req.body;
     notifications
-    .find({ boardId: id })
+    .find({ userId: id })
     .toArray()
     .then(notifs=>{
       res.json(notifs);
