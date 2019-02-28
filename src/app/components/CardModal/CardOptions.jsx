@@ -88,6 +88,9 @@ class CardOptions extends Component {
   addCheckList = e => {
     if (e.key === "Enter") {
       const { dispatch, card } = this.props;
+      if(!e.target.value.trim()) {
+        return this.toggleCheck();
+      }
       dispatch({
         type: "CHANGE_CARD_TEXT",
         payload: {
