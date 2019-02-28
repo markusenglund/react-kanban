@@ -34,5 +34,8 @@
     "Home": "עמוד הבית",
     "Home.boards": "לוחות",
     "ListAdder.add_new_list": "הוסף רשימה חדשה...",
-    "Menu": "תפריט"
+    "Menu": "תפריט",
+    "UsersList.title": "משתמשים:",
+    "UsersList.add_user_tip": "הוסף משתמש",
+    "UserAdder.search_place_holder": "חפש משתמש..."
 }
