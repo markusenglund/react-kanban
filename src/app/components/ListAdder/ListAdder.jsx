@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
 import "./ListAdder.scss";
@@ -45,13 +46,14 @@ class ListAdder extends Component {
   };
   render = () => {
     const { isOpen, listTitle } = this.state;
+    const { t } = this.props;
     if (!isOpen) {
       return (
         <button
           onClick={() => this.setState({ isOpen: true })}
           className="add-list-button"
         >
-          Add a new list...
+          {t("ListAdder.add_new_list")}
         </button>
       );
     }
@@ -72,4 +74,4 @@ class ListAdder extends Component {
   };
 }
 
-export default connect()(ListAdder);
+export default connect()(withTranslation()(ListAdder));

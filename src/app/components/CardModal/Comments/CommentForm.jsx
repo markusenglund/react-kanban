@@ -32,6 +32,11 @@ class CommentForm extends Component {
     const { dispatch, user, cardId } = this.props;
     const id = shortid.generate();
 
+    // Not comment empty comment
+    if (!commentText.trim()) {
+      return;
+    }
+
     dispatch({
       type: "ADD_COMMENT",
       payload: { commentText, user: user.name, cardId, id }
@@ -53,7 +58,7 @@ class CommentForm extends Component {
     return (
       <div className="container">
         <textarea
-          placeholder= {t("Comments.add_comment")}
+          placeholder={t("Comments.add_comment")}
           value={this.state.commentText}
           onChange={this.textChanged}
           onKeyDown={this.handleKeyDown}
@@ -71,7 +76,7 @@ class CommentForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state
+  user: state.user
 });
 
 export default connect(mapStateToProps)(withTranslation()(CommentForm));
