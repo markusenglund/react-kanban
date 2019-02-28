@@ -4,7 +4,6 @@ import ColorPicker from "./ColorPicker";
 import BoardDeleter from "./BoardDeleter";
 import BoardLeave from "./BoardLeave";
 
-import {Popover,Pane,Text,Button} from 'evergreen-ui';
 import "./BoardHeader.scss";
 
 const BoardHeader = () => (

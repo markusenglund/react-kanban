@@ -105,22 +105,24 @@ class Notification extends React.Component {
         <Popover
           position={Position.BOTTOM_RIGHT}
           content={
-            <Table
-              width={400}
-              height={480}
-              display="flex"
-              alignItems="flex-start"
-              justifyContent="flex-start"
-              flexDirection="column"
-            >
-              <Table.VirtualBody width={400} height={480}>
+            <Table width={400} height={480}>
+              <Table.VirtualBody
+                style={{ direction: "ltr" }}
+                width={400}
+                height={480}
+              >
                 {this.state.notifications
                   ? this.state.notifications.map(notification => {
                       if (!notification) return;
 
                       return (
-                        <Table.Row key={notification._id} isSelectable>
+                        <Table.Row
+                          style={{ direction: "rtl" }}
+                          key={notification._id}
+                          isSelectable
+                        >
                           <Table.TextCell
+                            style={{ direction: "rtl" }}
                             onClick={() => this.goToBoard(notification)}
                             flexBasis={340}
                             flexShrink={0}
