@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./BoardMenu.scss";
@@ -47,7 +48,7 @@ class BoardMenu extends Component {
           ref="sideNav"
         >
           <div>
-            <h3 style={{ textAlign: "center", color: "black" }}>Menu</h3>
+            <h3 style={{ textAlign: "center", color: "black" }}>{this.props.t("Menu")}</h3>
             {this.state.open ? (
               <FaAngleLeft
                 className="hamburger-button"
@@ -95,4 +96,4 @@ const mapStateToProps = (state, ownProps) => {
   return {};
 };
 
-export default connect(mapStateToProps)(BoardMenu);
+export default connect(mapStateToProps)(withTranslation()(BoardMenu));
