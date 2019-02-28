@@ -142,9 +142,11 @@ class Board extends Component {
 
   render = () => {
     const { lists, boardTitle, boardId, boardColor, t } = this.props;
+    let a = `url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1701/c8ab52d5f2f4372d17e75c4b71ae81de/photo-1549989476-69a92fa57c36)`;
+    
     return (
       <>
-        <div className={classnames("board", boardColor)}>
+        <div className={classnames("board", boardColor)} style={{backgroundImage: a}}>
           <Title>
             {boardTitle} | {t("project_name")}
           </Title>
