@@ -4,10 +4,6 @@ import SearchIcon from "../../../assets/images/search_icon.svg";
 import { withTranslation } from "react-i18next";
 
 class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const cardsById = this.props.cardsById;
 
@@ -39,7 +35,7 @@ class SearchBar extends React.Component {
     const {t}=this.props;
     return (
       <div style={styles.container}>
-        <input placeholder={t('Search')} style={styles.text} onChange={this._onChangeText} value={this.props.currFilter}/>
+        <input placeholder={t("SearchBar.placeholder")} style={styles.text} onChange={this._onChangeText} value={this.props.currFilter}/>
         <img style={styles.icon} src={SearchIcon} />
       </div>
     );

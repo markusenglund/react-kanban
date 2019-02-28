@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import FaTrash from "react-icons/lib/fa/trash";
 import FaUserPlus from "react-icons/lib/fa/user-plus";
-import {FaCheckSquare} from "react-icons/lib/fa";
+import { FaCheckSquare } from "react-icons/lib/fa";
 import { withTranslation } from "react-i18next";
 import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
@@ -12,6 +12,7 @@ import ClickOutside from "../ClickOutside/ClickOutside";
 import UserPicker from "../UserPicker/UserPicker";
 import colorIcon from "../../../assets/images/color-icon.png";
 import "./CardOptions.scss";
+import { colorsWithLabels } from "../utils";
 
 class CardOptions extends Component {
   static propTypes = {
@@ -27,7 +28,11 @@ class CardOptions extends Component {
 
   constructor() {
     super();
-    this.state = { isCalendarOpen: false, isCheckOpen: false, isAssignOpen: false };
+    this.state = {
+      isCalendarOpen: false,
+      isCheckOpen: false,
+      isAssignOpen: false
+    };
   }
 
   deleteCard = () => {
@@ -38,16 +43,21 @@ class CardOptions extends Component {
     });
   };
 
-  changeColor = color => {
-    const { dispatch, card, toggleColorPicker } = this.props;
-    if (card.color !== color) {
+  addLabel = label => {
+    const { dispatch, card } = this.props;
+    const cardLabels = card.labels || [];
+
+    if (cardLabels.includes(label)) {
       dispatch({
-        type: "CHANGE_CARD_COLOR",
-        payload: { color, cardId: card._id }
+        type: "DELETE_LABEL",
+        payload: { label, cardId: card._id }
+      });
+    } else {
+      dispatch({
+        type: "ADD_LABEL",
+        payload: { label, cardId: card._id }
       });
     }
-    toggleColorPicker();
-    this.colorPickerButton.focus();
   };
 
   handleKeyDown = event => {
@@ -67,7 +77,6 @@ class CardOptions extends Component {
     this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
   };
 
-
   toggleAssign = () => {
     this.setState({ isAssignOpen: !this.state.isAssignOpen });
   };
@@ -76,12 +85,15 @@ class CardOptions extends Component {
     this.setState({ isCheckOpen: !this.state.isCheckOpen });
   };
 
-  addCheckList = (e) => {
-    if (e.key === 'Enter') {
+  addCheckList = e => {
+    if (e.key === "Enter") {
       const { dispatch, card } = this.props;
       dispatch({
         type: "CHANGE_CARD_TEXT",
-        payload: { cardId: card._id, cardText: `${card.text} \n [ ] ${e.target.value}` }
+        payload: {
+          cardId: card._id,
+          cardText: `${card.text} \n [ ] ${e.target.value}`
+        }
       });
       e.target.value = "";
     }
@@ -113,6 +125,7 @@ class CardOptions extends Component {
         transform: "translateX(-50%)"
       }
     };
+
     return (
       <div
         className="options-list"
@@ -140,7 +153,7 @@ class CardOptions extends Component {
             aria-expanded={isColorPickerOpen}
           >
             <img src={colorIcon} alt="colorwheel" className="modal-icon" />
-            &nbsp;{t("Color")}
+            &nbsp;{t("Tags")}
           </button>
           {isColorPickerOpen && (
             <ClickOutside
@@ -153,16 +166,27 @@ class CardOptions extends Component {
                 onKeyDown={this.handleKeyDown}
               >
                 {/* eslint-enable */}
-                {["white", "#6df", "#6f6", "#ff6", "#fa4", "#f66"].map(
-                  color => (
+                {colorsWithLabels.map(colorLabel => {
+                  const [label, color] = colorLabel;
+                  const labels = this.props.card.labels || [];
+                  const isLabelSelected = labels.includes(label);
+                  const opacity = isLabelSelected ? 0.5 : 1;
+
+                  return (
                     <button
                       key={color}
-                      style={{ background: color }}
+                      style={{
+                        background: color,
+                        fontSize: 10,
+                        opacity: opacity
+                      }}
                       className="color-picker-color"
-                      onClick={() => this.changeColor(color)}
-                    />
-                  )
-                )}
+                      onClick={() => this.addLabel(label)}
+                    >
+                      {t(`Labels.${label}`)}
+                    </button>
+                  );
+                })}
               </div>
             </ClickOutside>
           )}
@@ -197,7 +221,12 @@ class CardOptions extends Component {
           className="checkList-modal"
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
-          <input className="input" placeholder={t("CardOptions.check_list.placeholder")} onKeyPress={this.addCheckList} autoFocus/>
+          <input
+            className="input"
+            placeholder={t("CardOptions.check_list.placeholder")}
+            onKeyPress={this.addCheckList}
+            autoFocus
+          />
         </Modal>
         <Modal
           isOpen={isCalendarOpen}
@@ -219,10 +248,7 @@ class CardOptions extends Component {
           className="picker-modal"
           style={isThinDisplay ? calendarMobileStyle : calendarStyle}
         >
-          <UserPicker
-            cardId={card._id}
-            toggleAssign={this.toggleAssign}
-          />
+          <UserPicker cardId={card._id} toggleAssign={this.toggleAssign} />
         </Modal>
       </div>
     );

@@ -1,7 +1,6 @@
 @import "../../variables.scss";
 
 .board {
-  display: inline-flex;
   height: 100%;
   min-width: 100%;
 }
@@ -33,6 +32,9 @@
   box-sizing: border-box;
   height: 100%;
   padding: 85px 5px 8px 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .lists {
@@ -40,4 +42,18 @@
   align-items: flex-start;
   height: 100%;
   user-select: none;
+  flex: 60%;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.lists::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+}
+
+.lists::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #aaa;
 }

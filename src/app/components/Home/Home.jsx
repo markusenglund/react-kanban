@@ -38,6 +38,7 @@ class Home extends Component {
                 <Link
                   key={board._id}
                   className={classnames("board-link", board.color)}
+                  style={{backgroundImage: `url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x319/e29564dc62742097a4cb32dc259a383e/photo-1549989476-69a92fa57c36.jpg")`}}
                   to={`/b/${board._id}/${slugify(board.title, {
                     lower: true
                   })}`}

@@ -9,20 +9,7 @@ class Cards extends Component {
     listId: PropTypes.string.isRequired,
     cards: PropTypes.arrayOf(PropTypes.string).isRequired
   };
-
-  componentDidUpdate = prevProps => {
-    // Scroll to bottom of list if a new card has been added
-    if (
-      this.props.cards[this.props.cards.length - 2] ===
-      prevProps.cards[prevProps.cards.length - 1]
-    ) {
-      this.scrollToBottom();
-    }
-  };
-
-  scrollToBottom = () => {
-    this.listEnd.scrollIntoView();
-  };
+  
 
   render() {
     const { listId, cards } = this.props;

@@ -6,7 +6,7 @@
     "Choose-Option": "-- בחר משתמש ---",
     "Save": "שמור",
     "Cancel": "בטל",
-    "Color": "צבע",
+    "Tags": "תגיות",
     "Delete": "מחק",
     "Search":"הזן ערך לחיפוש...",
     "Add-User":"הוסף משתמש...",
@@ -21,9 +21,17 @@
     "Comments.comment": "הגב",
     "Comments.add_comment": "הוסף תגובה",
     "Comments.delete": "מחק",
+    "Labels.inprogress": "בטיפול",
+    "Labels.general": "כללי",
+    "Labels.tracking": "מעקב",
+    "Labels.bug": "תקלה",
+    "Labels.help": "עזרה",
+    "Labels.critical": "קריטי",
+    "SearchBar.placeholder": "חיפוש...",
     "BoardDeleter.delete": "מחק לוח",
     "project_name": "AmanBoard 2.0",
     "Home": "עמוד הבית",
     "Home.boards": "לוחות",
-    "ListAdder.add_new_list": "הוסף רשימה חדשה..."
+    "ListAdder.add_new_list": "הוסף רשימה חדשה...",
+    "Menu": "תפריט"
 }

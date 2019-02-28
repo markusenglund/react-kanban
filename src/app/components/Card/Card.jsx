@@ -14,7 +14,7 @@ class Card extends Component {
     card: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
-      color: PropTypes.string,
+      labels: PropTypes.array,
       comments: PropTypes.array
     }).isRequired,
     listId: PropTypes.string.isRequired,
@@ -111,8 +111,7 @@ class Card extends Component {
                   this.handleKeyDown(event);
                 }}
                 style={{
-                  ...provided.draggableProps.style,
-                  background: card.color
+                  ...provided.draggableProps.style
                 }}
               >
                 <div
@@ -122,8 +121,8 @@ class Card extends Component {
                   }}
                 />
                 {/* eslint-enable */}
-                {(card.date || checkboxes.total > 0 || assignedUserName) && (
-                  <CardBadges date={card.date} checkboxes={checkboxes} assignedUserName={assignedUserName} assignedToMe={assignedToMe} />
+                {(card.date || checkboxes.total > 0 || assignedUserName || card.labels) && (
+                  <CardBadges date={card.date} checkboxes={checkboxes} assignedUserName={assignedUserName} assignedToMe={assignedToMe} labels={card.labels} />
                 )}
               </div>
               {/* Remove placeholder when not dragging over to reduce snapping */}

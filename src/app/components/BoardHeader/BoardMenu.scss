@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+
+.hamburger-button {
+    background-color: rgba(245, 246, 247, 1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 10px 8px 10px;
+    border-radius: 3px;
+    color: $white;
+    transition: background 0.1s;
+    cursor: pointer;
+}
+
+.hamburger-button:hover,
+.hamburger-button:focus {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.hamburger-button {
+    cursor: pointer;
+}
+
+.hamburger-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    font-size: 16px;
+}
