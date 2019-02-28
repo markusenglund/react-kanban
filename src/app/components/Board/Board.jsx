@@ -9,6 +9,7 @@ import ListAdder from "../ListAdder/ListAdder";
 import Header from "../Header/Header";
 import BoardHeader from "../BoardHeader/BoardHeader";
 import { loadBoardUsersData } from "../../actions/boardActions";
+import { withTranslation } from "react-i18next";
 
 import "./Board.scss";
 
@@ -138,11 +139,13 @@ class Board extends Component {
   };
 
   render = () => {
-    const { lists, boardTitle, boardId, boardColor } = this.props;
+    const { lists, boardTitle, boardId, boardColor, t } = this.props;
     return (
       <>
         <div className={classnames("board", boardColor)}>
-          <Title>{boardTitle} | React Kanban</Title>
+          <Title>
+            {boardTitle} | {t("project_name")}
+          </Title>
           <Header />
           <BoardHeader />
           {/* eslint-disable jsx-a11y/no-static-element-interactions */}
@@ -193,4 +196,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(Board);
+export default connect(mapStateToProps)(withTranslation()(Board));

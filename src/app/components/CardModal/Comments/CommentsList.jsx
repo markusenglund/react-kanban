@@ -29,7 +29,7 @@ class CommentsList extends Component {
 
 const mapStateToProps = (state) => {
   const {currentCardId} = state;
-  const commentsIdArr = state.cardsById[currentCardId].comments;
+  const commentsIdArr = state.cardsById[currentCardId].comments || [];
   const keys = Object.keys(state.commentsById);
   const comments = [];
   keys.forEach(key => {
