@@ -22,5 +22,6 @@
     "BoardDeleter.delete": "מחק לוח",
     "project_name": "AmanBoard 2.0",
     "Home": "עמוד הבית",
-    "Home.boards": "לוחות"
+    "Home.boards": "לוחות",
+    "ListAdder.add_new_list": "הוסף רשימה חדשה..."
 }
