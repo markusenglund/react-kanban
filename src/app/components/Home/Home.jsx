@@ -9,6 +9,7 @@ import classnames from "classnames";
 import Header from "../Header/Header";
 import BoardAdder from "./BoardAdder";
 import "./Home.scss";
+import { BASE_BOARD_BG_URL_SMALL } from "../../../constants";
 
 class Home extends Component {
   static propTypes = {
@@ -24,6 +25,7 @@ class Home extends Component {
   };
   render = () => {
     const { boards, listsById, history, t } = this.props;
+    const imageUrl = `url(${BASE_BOARD_BG_URL_SMALL})`;
     return (
       <>
         <Title>
@@ -38,7 +40,7 @@ class Home extends Component {
                 <Link
                   key={board._id}
                   className={classnames("board-link", board.color)}
-                  style={{backgroundImage: `url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x319/e29564dc62742097a4cb32dc259a383e/photo-1549989476-69a92fa57c36.jpg")`}}
+                  style={{backgroundImage: imageUrl}}
                   to={`/b/${board._id}/${slugify(board.title, {
                     lower: true
                   })}`}

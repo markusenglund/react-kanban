@@ -149,6 +149,15 @@ class CardModal extends Component {
       }
     };
 
+    const a = {
+      position: "fixed",
+      left: 0,
+      top: 0,
+      height: '100%',
+      width: '100%',
+      background: 'rgba(0, 0, 0, 0.6)'
+    }
+
     return (
       <Modal
         closeTimeoutMS={150}
@@ -171,47 +180,52 @@ class CardModal extends Component {
           toggleColorPicker={this.toggleColorPicker}
         />
         <div id="main-container">
-        <div
-          className="modal-textarea-wrapper"
-          style={{
-            minHeight: isThinDisplay ? "none" : boundingRect.height,
-            width: isThinDisplay ? "100%" : boundingRect.width,
-            boxShadow: isTextareaFocused
-              ? "0px 0px 3px 2px rgb(0, 180, 255)"
-              : null
-          }}
-        >
-          <Textarea
-            autoFocus
-            useCacheForDOMMeasurements
-            value={newText}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            className="modal-textarea"
-            spellCheck={false}
-            onFocus={() => this.setState({ isTextareaFocused: true })}
-            onBlur={() => this.setState({ isTextareaFocused: false })}
-          />
-          {(card.date || checkboxes.total > 0 || assignedUserName || card.labels) && (
-            <CardBadges
-              date={card.date}
-              checkboxes={checkboxes}
-              assignedUserName={assignedUserName}
-              assignedToMe={assignedToMe}
-              labels={card.labels}
+          <div
+            className="modal-textarea-wrapper"
+            style={{
+              minHeight: isThinDisplay ? "none" : boundingRect.height,
+              width: isThinDisplay ? "100%" : boundingRect.width,
+              boxShadow: isTextareaFocused
+                ? "0px 0px 3px 2px rgb(0, 180, 255)"
+                : null
+            }}
+          >
+            <Textarea
+              autoFocus
+              useCacheForDOMMeasurements
+              value={newText}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+              className="modal-textarea"
+              spellCheck={false}
+              onFocus={() => this.setState({ isTextareaFocused: true })}
+              onBlur={() => this.setState({ isTextareaFocused: false })}
             />
-          )}
+            {(card.date ||
+              checkboxes.total > 0 ||
+              assignedUserName ||
+              card.labels) && (
+              <CardBadges
+                date={card.date}
+                checkboxes={checkboxes}
+                assignedUserName={assignedUserName}
+                assignedToMe={assignedToMe}
+                labels={card.labels}
+              />
+            )}
+          </div>
+          <div id="toggle-comments-button">
+            <button
+              className="comment-show-button"
+              onClick={this.toggleComments}
+            >
+              {t("Comments.toggle")}
+            </button>
+          </div>
+          <div id="comments-container">
+            <Comments showForm={this.state.areCommentsOpen} cardId={card._id} />
+          </div>
         </div>
-        <div id="toggle-comments-button">
-          <button className="comment-show-button" onClick={this.toggleComments}>
-          {t("Comments.toggle")}
-          </button>
-        </div>
-        <div id="comments-container">
-          <Comments showForm={this.state.areCommentsOpen} cardId={card._id} />
-        </div>
-        </div>
-       
       </Modal>
     );
   }
