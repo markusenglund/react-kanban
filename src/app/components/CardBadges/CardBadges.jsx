@@ -119,9 +119,21 @@ class CardBadges extends Component {
     ));
   };
 
+  onWheelLabels = e => {
+    const { currentTarget, deltaY } = e;
+    if (currentTarget.className === "scroll-wrapper") {
+      currentTarget.scrollTo(currentTarget.scrollLeft + deltaY, 0);
+      e.preventDefault();
+    }
+  };
+
   render() {
     return (
-      <div className="scroll-wrapper">
+      <div
+        id="scroll-wrapper"
+        className="scroll-wrapper"
+        onWheel={this.onWheelLabels}
+      >
         <div className="card-badges">
           {this.renderDueDate()}
           {this.renderTaskProgress()}
