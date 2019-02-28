@@ -45,6 +45,13 @@
   top: 50%;
 }
 
+.user-add-modal {
+  top: 50px;
+  width: 300px;
+  position: absolute;
+  left: calc(50% - 150px);
+}
+
 .modal-underlay {
   position: fixed;
   top: 0;
@@ -55,11 +62,11 @@
 }
 
 .checkList-modal {
-   position: absolute;
-   left: 1%;
-   top: 0%;
-   height: 50px;
-   z-index: 3;
+  position: absolute;
+  left: 1%;
+  top: 0%;
+  height: 50px;
+  z-index: 3;
 }
 
 .checkList-underlay {

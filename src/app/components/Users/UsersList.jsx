@@ -79,7 +79,7 @@ class UsersList extends Component {
           isOpen={isModalOpen}
           onRequestClose={this.toggleModal}
           overlayClassName="modal-underlay"
-          className="picker-modal"
+          className="user-add-modal"
           style={modalStyle}
         >
           <UserAdder toggleModal={this.toggleModal} />
