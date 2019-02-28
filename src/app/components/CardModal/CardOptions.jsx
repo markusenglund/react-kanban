@@ -90,7 +90,6 @@ class CardOptions extends Component {
       const { dispatch, card } = this.props;
       if(!e.target.value.trim()) {
         document.getElementsByClassName("modal-textarea")[0].focus();
-  
       }
       dispatch({
         type: "CHANGE_CARD_TEXT",
