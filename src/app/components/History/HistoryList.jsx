@@ -31,13 +31,14 @@ class HistoryList extends Component {
   render() {
     const { history } = this.state;
     const { t } = this.props;
+    const {boardUsersData} = this.props;
     return (
       <div id="history-list-container">
         <p id="title">{t("History")}</p>
         <div id="history-container">
-          {history.map((historyItem, key) => (
+          { history.map((historyItem, key) => (
             <div id="history-item" key={key}>
-              <p>{historyItem.userId}</p>
+              <p>{(boardUsersData[historyItem.userId] || {name:""}).name}</p>
               <p>{t(historyItem.action)}</p>
             </div>
           ))}
@@ -48,7 +49,8 @@ class HistoryList extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentBoardId: state.currentBoardId
+  currentBoardId: state.currentBoardId,
+  boardUsersData: state.boardUsersData
 });
 
 export default withRouter(
