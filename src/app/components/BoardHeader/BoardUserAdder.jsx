@@ -100,7 +100,7 @@ class BoardUserAdd extends Component {
     return isOpen ? (
       <input
         autoFocus
-        value={t('Add-User')}
+        value={userSearchField}
         type="text"
         onKeyDown={this.handleKeyDown}
         onChange={this.handleChange}
@@ -111,7 +111,7 @@ class BoardUserAdd extends Component {
       />
     ) : (
       <button className="board-title-button" onClick={this.handleClick}>
-        <h1 className="board-title-text">{t('Add-User')}</h1>
+        <h1 className="board-title-text">{userSearchField}</h1>
       </button>
     );
   }
