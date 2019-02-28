@@ -1,4 +1,5 @@
 import { Router } from "express";
+import {ObjectID} from 'mongodb';
 import {
   ADMIN_ROLE,
   READ_WRITE_ROLE,
@@ -83,16 +84,16 @@ const api = db => {
   router.post("/notifications/getByUserId", (req, res) => {
     let { id } = req.body;
     notifications
-      .find({ userId: id })
-      .toArray()
-      .then(notifs => {
-        res.json(notifs);
-      });
-  });
+    .find({ userId: id })
+    .toArray()
+    .then(notifs=>{
+      res.json(notifs);
+    })
+  })
 
-  router.delete("/notifications", (req, res) => {
-    const { _id } = body;
-    notifications.deleteOne({ _id: _id }).then(result => {
+  router.delete("/notifications", (req,res)=>{
+    const {_id} = req.body;
+    notifications.deleteOne({_id: new ObjectID(_id)}).then(()=>{
       res.status(200).send();
     });
   });

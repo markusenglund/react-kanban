@@ -40,6 +40,9 @@ header {
   margin-right: 10px;
 }
 
+.header-notification {
+  margin-right: 10px;
+}
 .header-title {
   display: inline-flex;
   align-items: center;
@@ -48,7 +51,12 @@ header {
   font-weight: 700;
   text-decoration: none;
 }
-
+.css-1ii3p2c:not([disabled]):not([data-disabled]):focus{
+  box-shadow:none !important;
+}
+.no-box-shadow:not([disabled]):not([data-disabled]):focus{
+  box-shadow:none !important;
+}
 .header-title img {
   height: 30px;
 }
