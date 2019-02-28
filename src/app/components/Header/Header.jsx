@@ -29,7 +29,7 @@ class Header extends Component {
             &nbsp;AmanBoard 2.0
           </Link>
           <div className="header-search-bar">
-            {location.pathname !="/"? <SearchBar />: null}
+            {location.pathname != "/" ? <SearchBar /> : null}
           </div>
           <div className="header-notification">
             <Notification />

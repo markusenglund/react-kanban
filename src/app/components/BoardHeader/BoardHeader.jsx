@@ -10,6 +10,7 @@ const BoardHeader = () => (
   <div className="board-header">
     <BoardTitle />
     <div className="board-header-right">
+      <div className="vertical-line" />
       <ColorPicker />
       <div className="vertical-line" />
       <BoardDeleter />
